@@ -7,14 +7,27 @@
 //
 
 import UIKit
+import AVKit
+
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var video1: VideoView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
+        
+        
+        video1.configure(url: "https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4")
+        video1.play()
+        
     }
 
-
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        
+    }
 }
 
