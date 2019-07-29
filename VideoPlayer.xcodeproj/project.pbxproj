@@ -7,9 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8330BB3922E997830038FAE9 /* SampleVideo_1280x720_10mb.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 8330BB3822E997830038FAE9 /* SampleVideo_1280x720_10mb.mp4 */; };
+		8330BB3B22E9A8860038FAE9 /* Prelude.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8330BB3A22E9A8860038FAE9 /* Prelude.mp3 */; };
+		8330BB3F22EA7EB60038FAE9 /* PlayListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8330BB3E22EA7EB60038FAE9 /* PlayListViewController.storyboard */; };
+		8330BB4122EA7ECB0038FAE9 /* PlayListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330BB4022EA7ECB0038FAE9 /* PlayListViewController.swift */; };
+		8330BB4422EA80C50038FAE9 /* PlayItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330BB4322EA80C50038FAE9 /* PlayItemTableViewCell.swift */; };
+		8330BB4A22EA81FE0038FAE9 /* VideoObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330BB4922EA81FE0038FAE9 /* VideoObject.swift */; };
+		8330BB4B22EA8B3F0038FAE9 /* bulletTrain.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 8330BB4522EA81690038FAE9 /* bulletTrain.mp4 */; };
+		8330BB4C22EA8B3F0038FAE9 /* monkey.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 8330BB4622EA81690038FAE9 /* monkey.mp4 */; };
+		8330BB4D22EA8B3F0038FAE9 /* newYorkFlip.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 8330BB4722EA816A0038FAE9 /* newYorkFlip.mp4 */; };
 		839E117422CC84A60096E43C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839E117322CC84A60096E43C /* AppDelegate.swift */; };
-		839E117622CC84A60096E43C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839E117522CC84A60096E43C /* ViewController.swift */; };
-		839E117922CC84A60096E43C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 839E117722CC84A60096E43C /* Main.storyboard */; };
+		839E117622CC84A60096E43C /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839E117522CC84A60096E43C /* PlayViewController.swift */; };
+		839E117922CC84A60096E43C /* PlayViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 839E117722CC84A60096E43C /* PlayViewController.storyboard */; };
 		839E117B22CC84A80096E43C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 839E117A22CC84A80096E43C /* Assets.xcassets */; };
 		839E117E22CC84A80096E43C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 839E117C22CC84A80096E43C /* LaunchScreen.storyboard */; };
 		839E118E22CC930C0096E43C /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839E118C22CC930C0096E43C /* VideoView.swift */; };
@@ -19,10 +28,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8330BB3822E997830038FAE9 /* SampleVideo_1280x720_10mb.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = SampleVideo_1280x720_10mb.mp4; sourceTree = "<group>"; };
+		8330BB3A22E9A8860038FAE9 /* Prelude.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Prelude.mp3; sourceTree = "<group>"; };
+		8330BB3E22EA7EB60038FAE9 /* PlayListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PlayListViewController.storyboard; sourceTree = "<group>"; };
+		8330BB4022EA7ECB0038FAE9 /* PlayListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayListViewController.swift; sourceTree = "<group>"; };
+		8330BB4322EA80C50038FAE9 /* PlayItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayItemTableViewCell.swift; sourceTree = "<group>"; };
+		8330BB4522EA81690038FAE9 /* bulletTrain.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = bulletTrain.mp4; sourceTree = "<group>"; };
+		8330BB4622EA81690038FAE9 /* monkey.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = monkey.mp4; sourceTree = "<group>"; };
+		8330BB4722EA816A0038FAE9 /* newYorkFlip.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = newYorkFlip.mp4; sourceTree = "<group>"; };
+		8330BB4922EA81FE0038FAE9 /* VideoObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoObject.swift; sourceTree = "<group>"; };
 		839E117022CC84A60096E43C /* VideoPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		839E117322CC84A60096E43C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		839E117522CC84A60096E43C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		839E117822CC84A60096E43C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		839E117522CC84A60096E43C /* PlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
+		839E117822CC84A60096E43C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/PlayViewController.storyboard; sourceTree = "<group>"; };
 		839E117A22CC84A80096E43C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		839E117D22CC84A80096E43C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		839E117F22CC84A80096E43C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -43,6 +61,52 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8330BB0E22E98F510038FAE9 /* Local Videos */ = {
+			isa = PBXGroup;
+			children = (
+				8330BB4522EA81690038FAE9 /* bulletTrain.mp4 */,
+				8330BB4622EA81690038FAE9 /* monkey.mp4 */,
+				8330BB4722EA816A0038FAE9 /* newYorkFlip.mp4 */,
+				8330BB3A22E9A8860038FAE9 /* Prelude.mp3 */,
+				8330BB3822E997830038FAE9 /* SampleVideo_1280x720_10mb.mp4 */,
+			);
+			path = "Local Videos";
+			sourceTree = "<group>";
+		};
+		8330BB3C22EA7E8E0038FAE9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				839E117722CC84A60096E43C /* PlayViewController.storyboard */,
+				8330BB3E22EA7EB60038FAE9 /* PlayListViewController.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8330BB3D22EA7E910038FAE9 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				839E117522CC84A60096E43C /* PlayViewController.swift */,
+				8330BB4022EA7ECB0038FAE9 /* PlayListViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8330BB4222EA80B30038FAE9 /* CustomCell */ = {
+			isa = PBXGroup;
+			children = (
+				8330BB4322EA80C50038FAE9 /* PlayItemTableViewCell.swift */,
+			);
+			path = CustomCell;
+			sourceTree = "<group>";
+		};
+		8330BB4822EA81E90038FAE9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8330BB4922EA81FE0038FAE9 /* VideoObject.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		839E116722CC84A60096E43C = {
 			isa = PBXGroup;
 			children = (
@@ -62,14 +126,17 @@
 		839E117222CC84A60096E43C /* VideoPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				839E117322CC84A60096E43C /* AppDelegate.swift */,
 				83A3849F22CDC6A8007EA28D /* Common */,
 				839E118B22CC92F60096E43C /* Video */,
-				839E117322CC84A60096E43C /* AppDelegate.swift */,
-				839E117522CC84A60096E43C /* ViewController.swift */,
-				839E117722CC84A60096E43C /* Main.storyboard */,
+				8330BB4822EA81E90038FAE9 /* Model */,
+				8330BB3C22EA7E8E0038FAE9 /* View */,
+				8330BB3D22EA7E910038FAE9 /* Controller */,
 				839E117A22CC84A80096E43C /* Assets.xcassets */,
+				8330BB4222EA80B30038FAE9 /* CustomCell */,
 				839E117C22CC84A80096E43C /* LaunchScreen.storyboard */,
 				839E117F22CC84A80096E43C /* Info.plist */,
+				8330BB0E22E98F510038FAE9 /* Local Videos */,
 			);
 			path = VideoPlayer;
 			sourceTree = "<group>";
@@ -78,8 +145,8 @@
 			isa = PBXGroup;
 			children = (
 				839E118C22CC930C0096E43C /* VideoView.swift */,
-				839E119422CC98A00096E43C /* VideoControllerView.xib */,
 				839E119222CC96FC0096E43C /* VideoControllerView.swift */,
+				839E119422CC98A00096E43C /* VideoControllerView.xib */,
 			);
 			path = Video;
 			sourceTree = "<group>";
@@ -132,6 +199,11 @@
 				TargetAttributes = {
 					839E116F22CC84A60096E43C = {
 						CreatedOnToolsVersion = 10.2.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -158,10 +230,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8330BB4B22EA8B3F0038FAE9 /* bulletTrain.mp4 in Resources */,
+				8330BB4C22EA8B3F0038FAE9 /* monkey.mp4 in Resources */,
+				8330BB4D22EA8B3F0038FAE9 /* newYorkFlip.mp4 in Resources */,
 				839E117E22CC84A80096E43C /* LaunchScreen.storyboard in Resources */,
 				839E117B22CC84A80096E43C /* Assets.xcassets in Resources */,
 				839E119522CC98A00096E43C /* VideoControllerView.xib in Resources */,
-				839E117922CC84A60096E43C /* Main.storyboard in Resources */,
+				8330BB3F22EA7EB60038FAE9 /* PlayListViewController.storyboard in Resources */,
+				8330BB3922E997830038FAE9 /* SampleVideo_1280x720_10mb.mp4 in Resources */,
+				839E117922CC84A60096E43C /* PlayViewController.storyboard in Resources */,
+				8330BB3B22E9A8860038FAE9 /* Prelude.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,7 +252,10 @@
 			files = (
 				839E118E22CC930C0096E43C /* VideoView.swift in Sources */,
 				83A384A222CDC6C1007EA28D /* AVPlayer+.swift in Sources */,
-				839E117622CC84A60096E43C /* ViewController.swift in Sources */,
+				8330BB4A22EA81FE0038FAE9 /* VideoObject.swift in Sources */,
+				8330BB4122EA7ECB0038FAE9 /* PlayListViewController.swift in Sources */,
+				839E117622CC84A60096E43C /* PlayViewController.swift in Sources */,
+				8330BB4422EA80C50038FAE9 /* PlayItemTableViewCell.swift in Sources */,
 				839E119322CC96FC0096E43C /* VideoControllerView.swift in Sources */,
 				839E117422CC84A60096E43C /* AppDelegate.swift in Sources */,
 			);
@@ -183,12 +264,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		839E117722CC84A60096E43C /* Main.storyboard */ = {
+		839E117722CC84A60096E43C /* PlayViewController.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				839E117822CC84A60096E43C /* Base */,
 			);
-			name = Main.storyboard;
+			name = PlayViewController.storyboard;
 			sourceTree = "<group>";
 		};
 		839E117C22CC84A80096E43C /* LaunchScreen.storyboard */ = {

@@ -17,10 +17,14 @@ class VideoControllerView: UIView {
         }
     }
     
+    @IBOutlet weak var playOrPauseButton: UIButton!
     
     @IBOutlet weak var currentTimeLabel: UILabel!
     @IBOutlet weak var totalTimeLabel: UILabel!
     @IBOutlet weak var sliderView: UISlider!
+    
+    @IBOutlet weak var changeModeButton: UIButton!
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -71,51 +75,45 @@ class VideoControllerView: UIView {
     }
     
     
-    @IBAction func onPauseTouched(_ sender: UIButton) {
+    // MARK: - Event
+    
+    @IBAction func onPlayOrPauseTouched(_ sender: UIButton) {
         if(self.player!.isPlaying) {
             self.player?.pause()
+            self.playOrPauseButton.setImage(UIImage(named: "mPlay"), for: .normal)
         }
         else {
             self.player?.play()
+            self.playOrPauseButton.setImage(UIImage(named: "mStop"), for: .normal)
         }
     }
     
     
     fileprivate let seekDuration: Float64 = 5
     
+    @IBAction func onSkipBackwardTouched(_ sender: UIButton) {
+    
+        let playerCurrentTime = CMTimeGetSeconds(self.player!.currentTime())             // 24.015901193
+        
+        let seekTime = Int(playerCurrentTime - seekDuration)        // 19
+        let backwardTime: CMTime = CMTimeMake(value: Int64(seekTime * 1000), timescale: 1000)
+        player?.seek(to: backwardTime, toleranceBefore: CMTime.zero, toleranceAfter: CMTime.zero)
+        
+    }
+
     @IBAction func onSkipForwardTouched(_ sender: UIButton) {
         if let player = self.player {
             guard let duration = player.currentItem?.duration else {
                 return
             }
+            
             let playerCurrentTime = CMTimeGetSeconds(player.currentTime())
             let newTime = playerCurrentTime + seekDuration
-            
-//            if newTime < (CMTimeGetSeconds(duration)) {
-            
-                let time2: CMTime = CMTimeMake(value: Int64(newTime * 1000 as Float64), timescale: 1000)
-                player.seek(to: time2, toleranceBefore: CMTime.zero, toleranceAfter: CMTime.zero)
-//            }
-//            else {
-//                let time2: CMTime = CMTimeMake(duration)
-//                player.seek(to: time2)
-//            }
+            let time2: CMTime = CMTimeMake(value: Int64(newTime * 1000 as Float64), timescale: 1000)
+            player.seek(to: time2, toleranceBefore: CMTime.zero, toleranceAfter: CMTime.zero)
         }
     }
     
-    @IBAction func onSkipBackwardTouched(_ sender: UIButton) {
-    
-        let playerCurrentTime = CMTimeGetSeconds(self.player!.currentTime())
-        let seekTime = Int(playerCurrentTime - seekDuration)
-    
-        let time2: CMTime = CMTimeMake(value: Int64(seekTime * 1000), timescale: 1000)
-        
-        
-        print("\(time2)")
-//        player?.seek(to: time2, toleranceBefore: CMTime.zero, toleranceAfter: CMTime.zero)
-        player?.seek(to: time2)
-    
-    }
     
     
     @IBAction func playbackSliderValueChanged(_ playbackSlider: UISlider) {
@@ -128,6 +126,14 @@ class VideoControllerView: UIView {
             player?.play()
         }
     }
+    
+    
+    @IBAction func onChangeModeTouched(_ sender: UIButton) {
+        player
+        
+    }
+    
+    
     
 }
 

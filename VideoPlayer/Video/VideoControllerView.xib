@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VideoControllerView" customModule="VideoPlayer" customModuleProvider="target">
             <connections>
+                <outlet property="changeModeButton" destination="EqB-Xn-7Vv" id="SPJ-eR-ihy"/>
                 <outlet property="currentTimeLabel" destination="xSb-86-Iiz" id="c02-Eb-ak7"/>
+                <outlet property="playOrPauseButton" destination="ph7-5V-tPA" id="kvi-lh-4bS"/>
                 <outlet property="sliderView" destination="n3e-ar-1tz" id="bRO-vF-odE"/>
                 <outlet property="totalTimeLabel" destination="8gh-P3-VKU" id="x1f-tp-lyP"/>
             </connections>
@@ -22,7 +25,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jib-J9-qCm">
-                    <rect key="frame" x="0.0" y="265" width="414" height="59"/>
+                    <rect key="frame" x="0.0" y="226" width="414" height="59"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xtc-gN-Z9E">
                             <rect key="frame" x="372" y="0.0" width="27" height="59"/>
@@ -40,7 +43,7 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="n3e-ar-1tz">
+                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="n3e-ar-1tz">
                             <rect key="frame" x="106" y="14.5" width="201" height="31"/>
                             <color key="tintColor" red="0.0" green="1" blue="0.82352941176470584" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -74,7 +77,7 @@
                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <state key="normal" image="play"/>
                     <connections>
-                        <action selector="onPauseTouched:" destination="-1" eventType="touchUpInside" id="dn6-lN-c5f"/>
+                        <action selector="onPlayOrPauseTouched:" destination="-1" eventType="touchUpInside" id="Bt5-Jc-k9k"/>
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uxA-Fg-ndl">
@@ -105,6 +108,15 @@
                         <action selector="onSkipBackwardTouched:" destination="-1" eventType="touchUpInside" id="Qzs-xf-LY5"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EqB-Xn-7Vv">
+                    <rect key="frame" x="305" y="13" width="96" height="30"/>
+                    <state key="normal" title="Change Mode">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="onChangeModeTouched:" destination="-1" eventType="touchUpInside" id="KmL-67-TKz"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
@@ -113,16 +125,19 @@
                 <constraint firstAttribute="trailing" secondItem="Jib-J9-qCm" secondAttribute="trailing" id="9r6-6u-N6g"/>
                 <constraint firstItem="7rf-g4-8Pi" firstAttribute="centerY" secondItem="vpz-RV-2c8" secondAttribute="centerY" id="AER-PJ-0vZ"/>
                 <constraint firstItem="7rf-g4-8Pi" firstAttribute="centerX" secondItem="vpz-RV-2c8" secondAttribute="centerX" id="LKe-CN-Tcs"/>
-                <constraint firstAttribute="bottom" secondItem="Jib-J9-qCm" secondAttribute="bottom" id="LcW-Cm-hgE"/>
+                <constraint firstItem="NaZ-0O-eQE" firstAttribute="bottom" secondItem="Jib-J9-qCm" secondAttribute="bottom" constant="5" id="LcW-Cm-hgE"/>
+                <constraint firstItem="EqB-Xn-7Vv" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="13" id="Lfu-e5-AZ6"/>
                 <constraint firstItem="Jib-J9-qCm" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="SZm-57-LxK"/>
                 <constraint firstItem="sf3-lZ-ZAs" firstAttribute="leading" secondItem="ph7-5V-tPA" secondAttribute="trailing" constant="30" id="Y2j-99-JKA"/>
                 <constraint firstItem="ph7-5V-tPA" firstAttribute="leading" secondItem="vpz-RV-2c8" secondAttribute="trailing" constant="40" id="dAY-p2-QJ2"/>
                 <constraint firstItem="ph7-5V-tPA" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="hgu-6a-UZV"/>
                 <constraint firstItem="uxA-Fg-ndl" firstAttribute="centerY" secondItem="sf3-lZ-ZAs" secondAttribute="centerY" id="kkM-bE-gmN"/>
+                <constraint firstItem="NaZ-0O-eQE" firstAttribute="trailing" secondItem="EqB-Xn-7Vv" secondAttribute="trailing" constant="13" id="nZT-xN-sXC"/>
                 <constraint firstItem="sf3-lZ-ZAs" firstAttribute="centerY" secondItem="vpz-RV-2c8" secondAttribute="centerY" id="ohe-e4-6Nu"/>
                 <constraint firstItem="uxA-Fg-ndl" firstAttribute="centerX" secondItem="sf3-lZ-ZAs" secondAttribute="centerX" id="uXQ-PY-sZh"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="NaZ-0O-eQE"/>
             <point key="canvasLocation" x="137.68115942028987" y="-38.839285714285715"/>
         </view>
     </objects>

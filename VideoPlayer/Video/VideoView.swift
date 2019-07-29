@@ -33,6 +33,18 @@ class VideoView: UIView {
         }
     }
     
+    func configure(playerItem: AVPlayerItem) {
+            player = AVPlayer(playerItem: playerItem)
+            playerLayer = AVPlayerLayer(player: player)
+            
+            playerLayer?.videoGravity = .resizeAspectFill
+            layer.addSublayer(playerLayer!)
+            
+            setControllerView()
+            
+            NotificationCenter.default.addObserver(self, selector: #selector(reachTheEndOfTheVideo(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.player?.currentItem)
+    }
+    
     func setControllerView() {
         controllerView.frame = bounds
         controllerView.player = player
@@ -67,6 +79,5 @@ class VideoView: UIView {
         controllerView.frame = bounds
     }
     
-    //MARK: - Event
  
 }
