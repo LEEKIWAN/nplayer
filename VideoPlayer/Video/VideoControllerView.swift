@@ -11,6 +11,8 @@ import AVFoundation
 
 class VideoControllerView: UIView {
     
+    weak var videoView: VideoView?
+    
     var player: AVPlayer? {
         didSet {
             self.addPlayerObserver()
@@ -18,7 +20,6 @@ class VideoControllerView: UIView {
     }
     
     @IBOutlet weak var playOrPauseButton: UIButton!
-    
     @IBOutlet weak var currentTimeLabel: UILabel!
     @IBOutlet weak var totalTimeLabel: UILabel!
     @IBOutlet weak var sliderView: UISlider!
@@ -42,7 +43,7 @@ class VideoControllerView: UIView {
         self.addSubview(view)
     }
     
-    func setUI() {
+    func goosetUI() {
         
     }
     
@@ -61,6 +62,8 @@ class VideoControllerView: UIView {
     }
     
     
+    //MARK: - Seek Bar
+    
     func updateCurrentTimeText(currentTime: Float64) {
         let secs = Int(currentTime)
         self.currentTimeLabel.text = NSString(format: "%02d:%02d", secs / 60, secs % 60) as String
@@ -71,11 +74,20 @@ class VideoControllerView: UIView {
         let secs = Int((self.player?.currentItem?.duration.seconds)!)
         self.totalTimeLabel.text = NSString(format: "%02d:%02d", secs / 60, secs % 60) as String
         self.sliderView.maximumValue = Float(secs)
-        
     }
     
+    @IBAction func playbackSliderValueChanged(_ playbackSlider: UISlider) {
+        let seconds : Int64 = Int64(playbackSlider.value)
+        let targetTime:CMTime = CMTimeMake(value: seconds, timescale: 1)
+        
+        player!.seek(to: targetTime)
+        
+        if player!.rate == 0 {
+            player?.play()
+        }
+    }
     
-    // MARK: - Event
+    // MARK: - Play & Pause & Skip Event
     
     @IBAction func onPlayOrPauseTouched(_ sender: UIButton) {
         if(self.player!.isPlaying) {
@@ -113,26 +125,22 @@ class VideoControllerView: UIView {
             player.seek(to: time2, toleranceBefore: CMTime.zero, toleranceAfter: CMTime.zero)
         }
     }
+
     
-    
-    
-    @IBAction func playbackSliderValueChanged(_ playbackSlider: UISlider) {
-        let seconds : Int64 = Int64(playbackSlider.value)
-        let targetTime:CMTime = CMTimeMake(value: seconds, timescale: 1)
-        
-        player!.seek(to: targetTime)
-        
-        if player!.rate == 0 {
-            player?.play()
-        }
-    }
-    
+    // MODE Change
     
     @IBAction func onChangeModeTouched(_ sender: UIButton) {
-        player
+        if !player!.isPlaying {
+            return
+        }
         
+        if videoView?.playMode == .videoMode {
+            videoView?.playAudioMode()
+        }
+        else {
+            videoView?.playVideoMode()
+        }
     }
-    
     
     
 }

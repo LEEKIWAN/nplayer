@@ -14,7 +14,7 @@ import MediaPlayer
 
 class PlayViewController: UIViewController {
 
-    var playItem: VideoObject!
+    var playItem: FileObject!
     
     @IBOutlet weak var video1: VideoView!
     
@@ -26,9 +26,10 @@ class PlayViewController: UIViewController {
         guard let playItem = playItem else { return }
         
         let asset = AVAsset(url: playItem.url)
-        
         let item = AVPlayerItem(asset: asset)       // 실제 원본 어쏐
         
+        
+        video1.playerItem = item
         video1.configure(playerItem: item)
         
         
@@ -81,47 +82,47 @@ class PlayViewController: UIViewController {
     
     @objc func applicationdidEnterBackground(notification: Notification) {
         print("applicationdidEnterBackground")
-        guard let asset = video1.player?.currentItem?.asset else {
-            return
-        }
-
-        if video1.player?.isPlaying == false {
-            return
-        }
-
-        let playedTime = video1.player?.currentItem?.currentTime()
-
-
-        let audioAsset = self.getAudioAssetFrom(asset: asset)
-
-        let audioItem = AVPlayerItem(asset: audioAsset)
-        audioItem.seek(to: playedTime!, completionHandler: nil)
-
-        video1.configure(playerItem: audioItem)
-        video1.play()
+//        guard let asset = video1.player?.currentItem?.asset else {
+//            return
+//        }
+//
+//        if video1.player?.isPlaying == false {
+//            return
+//        }
+//
+//        let playedTime = video1.player?.currentItem?.currentTime()
+//
+//
+//        let audioAsset = self.getAudioAssetFrom(asset: asset)
+//
+//        let audioItem = AVPlayerItem(asset: audioAsset)
+//        audioItem.seek(to: playedTime!, completionHandler: nil)
+//
+//        video1.configure(playerItem: audioItem)
+//        video1.play()
         
     }
 
     @objc func applicationwillEnterForeground(notification: Notification) {
         print("applicationwillEnterForeground")
-        guard let playItem = playItem else { return }
-
-        if video1.player?.isPlaying == false {
-            return
-        }
-
-        let asset = AVAsset(url: playItem.url)
-
-        let playedTime = video1.player?.currentItem?.currentTime()
-
-        let item = AVPlayerItem(asset: asset)
-        item.seek(to: playedTime!, completionHandler: nil)
-
-
-        video1.pause()
-        video1.configure(playerItem: item)
-        video1.play()
-        
+//        guard let playItem = playItem else { return }
+//
+//        if video1.player?.isPlaying == false {
+//            return
+//        }
+//
+//        let asset = AVAsset(url: playItem.url)
+//
+//        let playedTime = video1.player?.currentItem?.currentTime()
+//
+//        let item = AVPlayerItem(asset: asset)
+//        item.seek(to: playedTime!, completionHandler: nil)
+//
+//
+//        video1.pause()
+//        video1.configure(playerItem: item)
+//        video1.play()
+////        
     }
 
     

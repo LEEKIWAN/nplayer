@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "FileListViewController.sortLoadedFileFromDocumentsFolder():FileListViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "fileList">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "VideoView.getAudioAssetFrom(asset:):VideoView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "FileListViewController.filterContentForSearchText(_:):FileListViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "filteredFileList">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "VideoView.configure(playerItem:):VideoView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.playerItem">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
