@@ -11,43 +11,43 @@ import AVKit
 import AVFoundation
 
 class VideoView: UIView {
-    var audioPlayGIFImageView: UIImageView?
+    var audioImageView: UIImageView?
     
     var playMode: PlayMode = .videoMode
     
-    var playerItem: AVPlayerItem?
-    
-    var playerLayer: AVPlayerLayer?
     var player: AVPlayer?
+    var playerItem: AVPlayerItem?
+    var playerLayer: AVPlayerLayer?
+    
+    
     var isLoop: Bool = false
     
-    var controllerView = VideoControllerView()
+//    var controllerView = VideoControllerView()
     
     func configure(playerItem: AVPlayerItem) {
         player = nil
         playerLayer?.removeFromSuperlayer()
         
-        player = AVPlayer(playerItem: playerItem)
-        playerLayer = AVPlayerLayer(player: player)
-    
-        layer.addSublayer(playerLayer!)
+        self.playerItem = playerItem
         
-        setControllerView()
+        self.player = AVPlayer(playerItem: self.playerItem)
+        self.playerLayer = AVPlayerLayer(player: self.player)
+        layer.addSublayer(playerLayer!)
         
         NotificationCenter.default.addObserver(self, selector: #selector(reachTheEndOfTheVideo(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.player?.currentItem)
     }
     
     // MARK: - Layout
-    func setControllerView() {
-        controllerView.frame = bounds
-        controllerView.player = player
-        controllerView.videoView = self
-        addSubview(controllerView)
-    }
+//    func setControllerView() {
+//        controllerView.frame = bounds
+//        controllerView.player = player
+//        controllerView.videoView = self
+//        addSubview(controllerView)
+//    }
     
     override func layoutSubviews() {
         playerLayer?.frame = bounds
-        controllerView.frame = bounds
+//        controllerView.frame = bounds
     }
     
     // MARK: - ETC
@@ -175,13 +175,13 @@ class VideoView: UIView {
 
     func addSubGifImageView() {
         let gif = try? UIImage(gifName: "CheapBitesizedIslandcanary-size_restricted.gif")
-        audioPlayGIFImageView = UIImageView(gifImage: gif!)
-        audioPlayGIFImageView?.frame = self.bounds
-        self.addSubview(audioPlayGIFImageView!)
+        audioImageView = UIImageView(gifImage: gif!)
+        audioImageView?.frame = self.bounds
+        self.addSubview(audioImageView!)
     }
     
     func removeSubGifImageView() {
-        audioPlayGIFImageView?.removeFromSuperview()
+        audioImageView?.removeFromSuperview()
     }
     
 }

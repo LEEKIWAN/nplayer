@@ -21,7 +21,7 @@ class FileItemTableViewCell: UITableViewCell {
     @IBOutlet weak var fileInfoStackView: UIStackView!
     @IBOutlet weak var playInfoStackView: UIStackView!
     
-    @IBOutlet weak var directoryNameLabel: UILabel!
+    @IBOutlet weak var fileCountLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -43,28 +43,51 @@ class FileItemTableViewCell: UITableViewCell {
         fileNameLabel.text = data.fileName
         fileSizeLabel.text = data.fileSize
         createDateLabel.text = data.fileCreation
-        
         thumbnailImageView.image = data.thumbnailImage
         
-        if data.extension == "directory" {
-            self.fileExtensionLabel.layer.cornerRadius = 0
-            fileInfoStackView.isHidden = true
-            playInfoStackView.isHidden = true
-            fileNameLabel.isHidden = true
-            directoryNameLabel.isHidden = false
-            
-            directoryNameLabel.text = data.fileName
+        if(data.extension.isEmpty) {
+            fileExtensionLabel.isHidden = true
         }
         else {
-            self.fileExtensionLabel.layer.cornerRadius = fileExtensionLabel.frame.height / 2
+            fileExtensionLabel.isHidden = false
+            fileExtensionLabel.text = data.extension.uppercased()
+        }
+        
+        
+        switch data.extension.lowercased() {
+            case "directory":
+                self.thumbnailImageView.layer.cornerRadius = 0
+                fileInfoStackView.isHidden = true
+                playInfoStackView.isHidden = true
+                
+                if let fileCount = data.fileCountInDir, fileCount > 0 {
+                    fileCountLabel.isHidden = false
+                    fileCountLabel.text = "\(fileCount)개의 항목"
+                }
+                else {
+                    fileCountLabel.isHidden = true
+                }
+            case "txt", "md", "swift":
+                self.thumbnailImageView.layer.cornerRadius = 0
+                fileInfoStackView.isHidden = false
+                playInfoStackView.isHidden = true
+                fileCountLabel.isHidden = true
+            case "png", "jpg", "gif":
+                self.thumbnailImageView.layer.cornerRadius = thumbnailImageView.frame.height / 2
+                fileInfoStackView.isHidden = false
+                playInfoStackView.isHidden = true
+                fileCountLabel.isHidden = true
+        
+            case "mp4", "avi":
+                self.thumbnailImageView.layer.cornerRadius = thumbnailImageView.frame.height / 2
+                
+                fileInfoStackView.isHidden = false
+                playInfoStackView.isHidden = false
+                fileCountLabel.isHidden = true
+            default:
+                self.thumbnailImageView.layer.cornerRadius = 0
+                break
             
-            fileInfoStackView.isHidden = false
-            playInfoStackView.isHidden = false
-            fileNameLabel.isHidden = false
-            directoryNameLabel.isHidden = true
-
-
-            fileExtensionLabel.text = String("\(data.extension)")
         }
         
         

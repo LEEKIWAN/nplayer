@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8316088A22F0392C004390AA /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8316088922F0392C004390AA /* UINavigationController+.swift */; };
+		8316088C22F150B4004390AA /* URL+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8316088B22F150B4004390AA /* URL+.swift */; };
 		8330BB3922E997830038FAE9 /* SampleVideo_1280x720_10mb.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 8330BB3822E997830038FAE9 /* SampleVideo_1280x720_10mb.mp4 */; };
 		8330BB3B22E9A8860038FAE9 /* Prelude.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8330BB3A22E9A8860038FAE9 /* Prelude.mp3 */; };
 		8330BB3F22EA7EB60038FAE9 /* FileListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8330BB3E22EA7EB60038FAE9 /* FileListViewController.storyboard */; };
@@ -17,12 +18,19 @@
 		8330BB4B22EA8B3F0038FAE9 /* bulletTrain.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 8330BB4522EA81690038FAE9 /* bulletTrain.mp4 */; };
 		8330BB4C22EA8B3F0038FAE9 /* monkey.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 8330BB4622EA81690038FAE9 /* monkey.mp4 */; };
 		8330BB4D22EA8B3F0038FAE9 /* newYorkFlip.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 8330BB4722EA816A0038FAE9 /* newYorkFlip.mp4 */; };
+		833CD48F22F2676B00617F63 /* TextViewerController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 833CD48E22F2676B00617F63 /* TextViewerController.storyboard */; };
+		833CD49122F267BB00617F63 /* TextViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833CD49022F267BB00617F63 /* TextViewerController.swift */; };
+		833CD49422F2A2B900617F63 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833CD49322F2A2B900617F63 /* Player.swift */; };
+		833CD49622F2A68300617F63 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833CD49522F2A68300617F63 /* PlayerView.swift */; };
+		833CD49822F2AA0700617F63 /* UIViewCtonroller+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833CD49722F2AA0700617F63 /* UIViewCtonroller+.swift */; };
 		8361C6C622EEE40B006ECF31 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8361C6C522EEE40B006ECF31 /* String+.swift */; };
 		83668D4022EE9147003C918B /* PlayMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83668D3F22EE9147003C918B /* PlayMode.swift */; };
 		83668D4222EEAE0C003C918B /* CheapBitesizedIslandcanary-size_restricted.gif in Resources */ = {isa = PBXBuildFile; fileRef = 83668D4122EEAE0C003C918B /* CheapBitesizedIslandcanary-size_restricted.gif */; };
 		83668D4822EEAE3C003C918B /* UIImage+SwiftyGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83668D4522EEAE3C003C918B /* UIImage+SwiftyGif.swift */; };
 		83668D4922EEAE3C003C918B /* UIImageView+SwiftyGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83668D4622EEAE3C003C918B /* UIImageView+SwiftyGif.swift */; };
 		83668D4A22EEAE3C003C918B /* SwiftyGifManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83668D4722EEAE3C003C918B /* SwiftyGifManager.swift */; };
+		837F8A3422F1813D005E0822 /* ImageViewerController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 837F8A3322F1813D005E0822 /* ImageViewerController.storyboard */; };
+		837F8A3622F18151005E0822 /* ImageViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837F8A3522F18151005E0822 /* ImageViewerController.swift */; };
 		839E117422CC84A60096E43C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839E117322CC84A60096E43C /* AppDelegate.swift */; };
 		839E117622CC84A60096E43C /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839E117522CC84A60096E43C /* PlayViewController.swift */; };
 		839E117922CC84A60096E43C /* PlayViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 839E117722CC84A60096E43C /* PlayViewController.storyboard */; };
@@ -39,6 +47,7 @@
 
 /* Begin PBXFileReference section */
 		8316088922F0392C004390AA /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
+		8316088B22F150B4004390AA /* URL+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+.swift"; sourceTree = "<group>"; };
 		8330BB3822E997830038FAE9 /* SampleVideo_1280x720_10mb.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = SampleVideo_1280x720_10mb.mp4; sourceTree = "<group>"; };
 		8330BB3A22E9A8860038FAE9 /* Prelude.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Prelude.mp3; sourceTree = "<group>"; };
 		8330BB3E22EA7EB60038FAE9 /* FileListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FileListViewController.storyboard; sourceTree = "<group>"; };
@@ -48,12 +57,19 @@
 		8330BB4622EA81690038FAE9 /* monkey.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = monkey.mp4; sourceTree = "<group>"; };
 		8330BB4722EA816A0038FAE9 /* newYorkFlip.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = newYorkFlip.mp4; sourceTree = "<group>"; };
 		8330BB4922EA81FE0038FAE9 /* FileObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileObject.swift; sourceTree = "<group>"; };
+		833CD48E22F2676B00617F63 /* TextViewerController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TextViewerController.storyboard; sourceTree = "<group>"; };
+		833CD49022F267BB00617F63 /* TextViewerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewerController.swift; sourceTree = "<group>"; };
+		833CD49322F2A2B900617F63 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		833CD49522F2A68300617F63 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		833CD49722F2AA0700617F63 /* UIViewCtonroller+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewCtonroller+.swift"; sourceTree = "<group>"; };
 		8361C6C522EEE40B006ECF31 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
-		83668D3F22EE9147003C918B /* PlayMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayMode.swift; sourceTree = "<group>"; };
+		83668D3F22EE9147003C918B /* PlayMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlayMode.swift; path = ../../Video/PlayMode.swift; sourceTree = "<group>"; };
 		83668D4122EEAE0C003C918B /* CheapBitesizedIslandcanary-size_restricted.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "CheapBitesizedIslandcanary-size_restricted.gif"; sourceTree = "<group>"; };
 		83668D4522EEAE3C003C918B /* UIImage+SwiftyGif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+SwiftyGif.swift"; sourceTree = "<group>"; };
 		83668D4622EEAE3C003C918B /* UIImageView+SwiftyGif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+SwiftyGif.swift"; sourceTree = "<group>"; };
 		83668D4722EEAE3C003C918B /* SwiftyGifManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyGifManager.swift; sourceTree = "<group>"; };
+		837F8A3322F1813D005E0822 /* ImageViewerController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ImageViewerController.storyboard; sourceTree = "<group>"; };
+		837F8A3522F18151005E0822 /* ImageViewerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerController.swift; sourceTree = "<group>"; };
 		839E117022CC84A60096E43C /* VideoPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		839E117322CC84A60096E43C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		839E117522CC84A60096E43C /* PlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
@@ -96,8 +112,10 @@
 		8330BB3C22EA7E8E0038FAE9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				839E117722CC84A60096E43C /* PlayViewController.storyboard */,
 				8330BB3E22EA7EB60038FAE9 /* FileListViewController.storyboard */,
+				839E117722CC84A60096E43C /* PlayViewController.storyboard */,
+				837F8A3322F1813D005E0822 /* ImageViewerController.storyboard */,
+				833CD48E22F2676B00617F63 /* TextViewerController.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -105,8 +123,10 @@
 		8330BB3D22EA7E910038FAE9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				839E117522CC84A60096E43C /* PlayViewController.swift */,
 				8330BB4022EA7ECB0038FAE9 /* FileListViewController.swift */,
+				839E117522CC84A60096E43C /* PlayViewController.swift */,
+				837F8A3522F18151005E0822 /* ImageViewerController.swift */,
+				833CD49022F267BB00617F63 /* TextViewerController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -128,9 +148,19 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		833CD49222F2A29300617F63 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				833CD49322F2A2B900617F63 /* Player.swift */,
+				833CD49522F2A68300617F63 /* PlayerView.swift */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
 		8361C6C722EFC15C006ECF31 /* Enum */ = {
 			isa = PBXGroup;
 			children = (
+				83668D3F22EE9147003C918B /* PlayMode.swift */,
 				839F9DF122EFC278003AFA0D /* FileExtension.swift */,
 			);
 			path = Enum;
@@ -195,7 +225,6 @@
 				839E118C22CC930C0096E43C /* VideoView.swift */,
 				839E119222CC96FC0096E43C /* VideoControllerView.swift */,
 				839E119422CC98A00096E43C /* VideoControllerView.xib */,
-				83668D3F22EE9147003C918B /* PlayMode.swift */,
 			);
 			path = Video;
 			sourceTree = "<group>";
@@ -203,6 +232,7 @@
 		83A3849F22CDC6A8007EA28D /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				833CD49222F2A29300617F63 /* Player */,
 				8361C6C722EFC15C006ECF31 /* Enum */,
 				83668D4322EEAE27003C918B /* Library */,
 				83A384A022CDC6AD007EA28D /* Extension */,
@@ -217,6 +247,8 @@
 				8361C6C522EEE40B006ECF31 /* String+.swift */,
 				839F9DF322EFDAEB003AFA0D /* UIColor+.swift */,
 				8316088922F0392C004390AA /* UINavigationController+.swift */,
+				8316088B22F150B4004390AA /* URL+.swift */,
+				833CD49722F2AA0700617F63 /* UIViewCtonroller+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -292,9 +324,11 @@
 				839E117B22CC84A80096E43C /* Assets.xcassets in Resources */,
 				839E119522CC98A00096E43C /* VideoControllerView.xib in Resources */,
 				8330BB3F22EA7EB60038FAE9 /* FileListViewController.storyboard in Resources */,
+				833CD48F22F2676B00617F63 /* TextViewerController.storyboard in Resources */,
 				8330BB3922E997830038FAE9 /* SampleVideo_1280x720_10mb.mp4 in Resources */,
 				839E117922CC84A60096E43C /* PlayViewController.storyboard in Resources */,
 				8330BB3B22E9A8860038FAE9 /* Prelude.mp3 in Resources */,
+				837F8A3422F1813D005E0822 /* ImageViewerController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,8 +340,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8316088A22F0392C004390AA /* UINavigationController+.swift in Sources */,
+				833CD49822F2AA0700617F63 /* UIViewCtonroller+.swift in Sources */,
+				8316088C22F150B4004390AA /* URL+.swift in Sources */,
 				83668D4A22EEAE3C003C918B /* SwiftyGifManager.swift in Sources */,
+				833CD49622F2A68300617F63 /* PlayerView.swift in Sources */,
 				839E118E22CC930C0096E43C /* VideoView.swift in Sources */,
+				833CD49422F2A2B900617F63 /* Player.swift in Sources */,
 				83A384A222CDC6C1007EA28D /* AVPlayer+.swift in Sources */,
 				8330BB4A22EA81FE0038FAE9 /* FileObject.swift in Sources */,
 				8330BB4122EA7ECB0038FAE9 /* FileListViewController.swift in Sources */,
@@ -319,7 +357,9 @@
 				839F9DF622EFFDED003AFA0D /* VideoObject.swift in Sources */,
 				839E119322CC96FC0096E43C /* VideoControllerView.swift in Sources */,
 				8361C6C622EEE40B006ECF31 /* String+.swift in Sources */,
+				833CD49122F267BB00617F63 /* TextViewerController.swift in Sources */,
 				83668D4022EE9147003C918B /* PlayMode.swift in Sources */,
+				837F8A3622F18151005E0822 /* ImageViewerController.swift in Sources */,
 				839E117422CC84A60096E43C /* AppDelegate.swift in Sources */,
 				839F9DF422EFDAEB003AFA0D /* UIColor+.swift in Sources */,
 			);

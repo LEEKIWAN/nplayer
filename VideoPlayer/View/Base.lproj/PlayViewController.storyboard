@@ -19,8 +19,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W1r-Li-a34" customClass="VideoView" customModule="VideoPlayer" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                                <color key="backgroundColor" red="0.058823529411764705" green="0.18431372549019609" blue="0.19215686274509802" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dEV-JM-2Ul">
                                 <rect key="frame" x="13" y="57" width="46" height="30"/>
@@ -32,22 +32,23 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="W1r-Li-a34" secondAttribute="trailing" id="5eH-OB-i0w"/>
-                            <constraint firstItem="W1r-Li-a34" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="D9U-6m-arx"/>
+                            <constraint firstAttribute="bottom" secondItem="W1r-Li-a34" secondAttribute="bottom" id="D1f-4T-6bD"/>
                             <constraint firstItem="dEV-JM-2Ul" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="13" id="EuP-WT-4BW"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="W1r-Li-a34" secondAttribute="bottom" id="N4w-YJ-Fai"/>
                             <constraint firstItem="W1r-Li-a34" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="awV-mZ-klB"/>
                             <constraint firstItem="dEV-JM-2Ul" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="13" id="dCd-wd-mLb"/>
+                            <constraint firstItem="W1r-Li-a34" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="mwY-Kg-Qho"/>
+                            <constraint firstAttribute="trailing" secondItem="W1r-Li-a34" secondAttribute="trailing" id="u7d-5b-afF"/>
+                            <constraint firstItem="W1r-Li-a34" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="yBA-7a-qrl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="video1" destination="W1r-Li-a34" id="IaM-sI-C7G"/>
+                        <outlet property="videoView" destination="W1r-Li-a34" id="N1H-Ak-HTB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="138"/>
+            <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
         </scene>
     </scenes>
 </document>

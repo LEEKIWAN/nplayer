@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GYD-lo-FN9">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Text Viewer Controller-->
+        <scene sceneID="a0t-64-R87">
+            <objects>
+                <viewController id="GYD-lo-FN9" customClass="TextViewerController" customModule="VideoPlayer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xeK-9m-0lR">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SfE-B6-AKr">
+                                <rect key="frame" x="0.0" y="44" width="414" height="45"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MGx-Ws-xjy">
+                                        <rect key="frame" x="13" y="11" width="23" height="23"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="MGx-Ws-xjy" secondAttribute="height" multiplier="1:1" id="JSR-fF-ZAK"/>
+                                        </constraints>
+                                        <color key="tintColor" red="0.99913078550000001" green="0.79727625849999995" blue="0.0021498878490000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" image="close"/>
+                                        <connections>
+                                            <action selector="onCloseTouched:" destination="GYD-lo-FN9" eventType="touchUpInside" id="Utc-0E-lZw"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1qG-HA-qVN">
+                                        <rect key="frame" x="192.5" y="12.5" width="29" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.20985230799999999" green="0.21004199979999999" blue="0.20988169309999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="E6c-I9-yQP"/>
+                                    <constraint firstAttribute="bottom" secondItem="MGx-Ws-xjy" secondAttribute="bottom" constant="11" id="Ee2-DW-9xD"/>
+                                    <constraint firstItem="1qG-HA-qVN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="MGx-Ws-xjy" secondAttribute="trailing" constant="13" id="NOU-Qt-U2a"/>
+                                    <constraint firstItem="MGx-Ws-xjy" firstAttribute="leading" secondItem="SfE-B6-AKr" secondAttribute="leading" constant="13" id="XYB-9s-uQ3"/>
+                                    <constraint firstItem="MGx-Ws-xjy" firstAttribute="centerY" secondItem="SfE-B6-AKr" secondAttribute="centerY" id="aRy-Ch-I3A"/>
+                                    <constraint firstItem="MGx-Ws-xjy" firstAttribute="top" secondItem="SfE-B6-AKr" secondAttribute="top" constant="11" id="d24-VR-Grq"/>
+                                    <constraint firstItem="1qG-HA-qVN" firstAttribute="centerY" secondItem="SfE-B6-AKr" secondAttribute="centerY" id="pLM-NI-MPe"/>
+                                    <constraint firstItem="1qG-HA-qVN" firstAttribute="centerX" secondItem="SfE-B6-AKr" secondAttribute="centerX" id="qtc-q0-tgm"/>
+                                </constraints>
+                            </view>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="CQr-6d-C2A">
+                                <rect key="frame" x="0.0" y="89" width="414" height="807"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.20985230799999999" green="0.21004199979999999" blue="0.20988169309999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="CQr-6d-C2A" secondAttribute="bottom" id="4fX-8t-vZh"/>
+                            <constraint firstItem="SfE-B6-AKr" firstAttribute="leading" secondItem="3cs-E4-H6S" secondAttribute="leading" id="GAy-tG-2Ol"/>
+                            <constraint firstItem="SfE-B6-AKr" firstAttribute="top" secondItem="3cs-E4-H6S" secondAttribute="top" id="RGX-Nr-fs8"/>
+                            <constraint firstItem="3cs-E4-H6S" firstAttribute="trailing" secondItem="SfE-B6-AKr" secondAttribute="trailing" id="cDn-FR-nIy"/>
+                            <constraint firstItem="CQr-6d-C2A" firstAttribute="leading" secondItem="3cs-E4-H6S" secondAttribute="leading" id="cqI-su-5Ns"/>
+                            <constraint firstItem="CQr-6d-C2A" firstAttribute="top" secondItem="SfE-B6-AKr" secondAttribute="bottom" id="eJS-oY-NkE"/>
+                            <constraint firstItem="3cs-E4-H6S" firstAttribute="trailing" secondItem="CQr-6d-C2A" secondAttribute="trailing" id="pDT-0Z-5zn"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="3cs-E4-H6S"/>
+                    </view>
+                    <connections>
+                        <outlet property="textView" destination="CQr-6d-C2A" id="3xO-YR-chf"/>
+                        <outlet property="titleLabel" destination="1qG-HA-qVN" id="ezI-Uu-xo5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KXQ-ML-Jvz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="100.00000000000001" y="-181.47321428571428"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="close" width="30" height="30"/>
+    </resources>
+</document>

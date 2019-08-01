@@ -20,8 +20,6 @@ class FileListViewController: UIViewController {
     var filteredFileList: [FileObject] = []
     let searchController = UISearchController(searchResultsController: nil)
     
-    
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -29,26 +27,37 @@ class FileListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.setSearchController()
-        self.listFilesFromDocumentsFolder()
-        self.sortLoadedFileFromDocumentsFolder()
         
-        tableView.reloadData()
+        if self == self.navigationController?.viewControllers[0] {
+            self.listFilesFromDocumentsFolder()
+            self.sortLoadedFileFromDocumentsFolder()
+            tableView.reloadData()
+        }
+        else {
+    
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.registerForKeyboardNotifications()
+        navigationItem.searchController = searchController
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        self.unregisterForKeyboardNotifications()
     }
     
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//
-//    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if(!searchBarIsEmpty()) {
+            DispatchQueue.main.async { [unowned self] in
+                self.searchController.searchBar.becomeFirstResponder()
+            }
+        }
+    }
     
     func setSearchController() {
         searchController.searchResultsUpdater = self
@@ -61,6 +70,7 @@ class FileListViewController: UIViewController {
         searchController.searchBar.barStyle = .black
     }
 
+    // MARK: - FileManager
     
     func listFilesFromDocumentsFolder() {
         var paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
@@ -68,25 +78,26 @@ class FileListViewController: UIViewController {
         let fileManager: FileManager = FileManager()
         let fileList = try? fileManager.contentsOfDirectory(atPath: documentsDirectory)
         
-        guard fileList != nil else {
-            self.fileList.removeAll()
-            return
-        }
-        
         for file in fileList! {
-            loadFileFromDocumentsFolder(fileName: file)
+            let filePath = (documentsDirectory as NSString).appendingPathComponent(file);
+            let fileUrl = URL(fileURLWithPath: filePath)
+            let file = FileObject(url: fileUrl)
+            self.fileList.append(file)
         }
     }
     
-    func loadFileFromDocumentsFolder(fileName: String) {
-        var paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        let documentsDirectory = paths[0] as NSString
-        let filePath: String = documentsDirectory.appendingPathComponent(fileName);
-        let fileUrl = URL(fileURLWithPath: filePath)
-        let file = FileObject(url: fileUrl)
-        self.fileList.append(file)
-        
+    func listFilesFromUrl(with url: URL) {
+        let fileManager: FileManager = FileManager()
+        let fileList = try? fileManager.contentsOfDirectory(atPath: url.path)
+
+        for file in fileList! {
+            let filePath = (url.path as NSString).appendingPathComponent(file)
+            let fileUrl = URL(fileURLWithPath: filePath)
+            let file = FileObject(url: fileUrl)
+            self.fileList.append(file)
+        }
     }
+    
     
     func sortLoadedFileFromDocumentsFolder() {
         var directoryList: [FileObject] = []
@@ -98,7 +109,6 @@ class FileListViewController: UIViewController {
                 fileList.remove(at: i)
             }
         }
-        
 
         directoryList.sort { (lhs, rhs) -> Bool in
             return lhs.fileName.lowercased() < rhs.fileName.lowercased()
@@ -111,7 +121,8 @@ class FileListViewController: UIViewController {
         fileList.insert(contentsOf: directoryList, at: 0)
     }
     
-    // MARK: - Private instance methods
+    
+    // MARK: - Filter SearchController
     
     func filterContentForSearchText(_ searchText: String) {
         filteredFileList = fileList.filter({( file: FileObject) -> Bool in
@@ -128,6 +139,52 @@ class FileListViewController: UIViewController {
     func isFiltering() -> Bool {
         return searchController.isActive && !searchBarIsEmpty()
     }
+    
+    
+    
+    // MARK: - KeyBoard
+    func registerForKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasHidden(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    func unregisterForKeyboardNotifications() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWasShown(notification: Notification) {
+        let notiInfo = notification.userInfo
+        
+        let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
+        let keyboardRectangle = keyboardFrame.cgRectValue
+        var keyboardHeight = keyboardRectangle.height
+        
+        if #available(iOS 11.0, *) {
+            keyboardHeight = keyboardHeight - view.safeAreaInsets.bottom
+        }
+        
+        let animationDuration = (notiInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0.0
+        
+        UIView.animate(withDuration: TimeInterval(animationDuration), animations: {
+            self.consTableViewBottom.constant = CGFloat(keyboardHeight)
+            self.view.layoutIfNeeded()
+        })
+        
+    }
+    
+    @objc func keyboardWasHidden(notification: Notification) {
+        let notiInfo = notification.userInfo
+        let animationDuration = (notiInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0.0
+        
+        UIView.animate(withDuration: TimeInterval(animationDuration), animations: {
+            self.consTableViewBottom.constant = 0
+            self.view.layoutIfNeeded()
+        })
+    }
+
+    
+
 }
 
 
@@ -153,16 +210,55 @@ extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
-    
     //MARK: - UITableViewDelegate
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        let storyBoard = UIStoryboard(name: "PlayViewController", bundle: nil)
 //        let playViewController = storyBoard.instantiateInitialViewController() as! PlayViewController
-//
-//        playViewController.playItem = videoItems[indexPath.row]
-//
+
+        
+        var data: FileObject
+        if isFiltering() {
+            data = filteredFileList[indexPath.row]
+        }
+        else {
+            data = fileList[indexPath.row]
+        }
+        
+        switch data.extension.lowercased() {
+            case "directory":
+                navigationItem.searchController = nil
+                
+                let storyBoard = UIStoryboard(name: "FileListViewController", bundle: nil)
+                let fileListViewController = storyBoard.instantiateViewController(withIdentifier: "FileListViewController") as! FileListViewController
+                fileListViewController.listFilesFromUrl(with: data.url)
+                fileListViewController.navigationItem.title = data.fileName
+                self.navigationController?.pushViewController(fileListViewController, animated: true)
+            
+            case "txt", "md", "swift":
+                let storyBoard = UIStoryboard(name: "TextViewerController", bundle: nil)
+                let textViewerController = storyBoard.instantiateInitialViewController() as! TextViewerController
+                textViewerController.data = data
+                self.present(textViewerController, animated: true, completion: nil)
+            
+            case "png", "jpg", "gif":
+                let storyBoard = UIStoryboard(name: "ImageViewerController", bundle: nil)
+                let imageViewerController = storyBoard.instantiateInitialViewController() as! ImageViewerController
+                imageViewerController.data = data
+                self.present(imageViewerController, animated: true, completion: nil)
+            
+            case "mp4", "avi":
+                let storyBoard = UIStoryboard(name: "PlayViewController", bundle: nil)
+                let playViewController = storyBoard.instantiateInitialViewController() as! PlayViewController
+                playViewController.playItem = data
+                self.present(playViewController, animated: true, completion: nil)
+            
+            default:
+                break
+        }
+        
+
 //        self.present(playViewController, animated: true, completion: nil)
-//    }
+    }
     
 }
 
