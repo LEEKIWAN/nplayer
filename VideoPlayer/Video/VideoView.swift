@@ -32,6 +32,7 @@ class VideoView: UIView {
         
         self.player = AVPlayer(playerItem: self.playerItem)
         self.playerLayer = AVPlayerLayer(player: self.player)
+//        self.playerLayer?.videoGravity = .
         layer.addSublayer(playerLayer!)
         
         NotificationCenter.default.addObserver(self, selector: #selector(reachTheEndOfTheVideo(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.player?.currentItem)

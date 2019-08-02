@@ -247,10 +247,15 @@ extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
                 self.present(imageViewerController, animated: true, completion: nil)
             
             case "mp4", "avi":
-                let storyBoard = UIStoryboard(name: "PlayViewController", bundle: nil)
-                let playViewController = storyBoard.instantiateInitialViewController() as! PlayViewController
-                playViewController.playItem = data
-                self.present(playViewController, animated: true, completion: nil)
+                let storyBoard = UIStoryboard(name: "VideoPlayerController", bundle: nil)
+                let videoPlayerController = storyBoard.instantiateInitialViewController() as! VideoPlayerController
+                videoPlayerController.playItem = data
+                self.present(videoPlayerController, animated: true, completion: nil)
+            
+//                let storyBoard = UIStoryboard(name: "PlayViewController", bundle: nil)
+//                let playViewController = storyBoard.instantiateInitialViewController() as! PlayViewController
+//                playViewController.playItem = data
+//                self.present(playViewController, animated: true, completion: nil)
             
             default:
                 break

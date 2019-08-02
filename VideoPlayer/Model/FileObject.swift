@@ -77,11 +77,14 @@ class FileObject {
         else if self.extension.lowercased() == "png" || self.extension.lowercased() == "gif" || self.extension.lowercased() == "jpg" {
             self.thumbnailImage = UIImage(contentsOfFile: filePath)
         }
+        else if self.extension.lowercased() == "swift" || self.extension.lowercased() == "txt" || self.extension.lowercased() == "md" {
+            self.thumbnailImage = UIImage(named: "text")
+        }
         else if self.extension == "directory" {
             self.thumbnailImage = UIImage(named: "folder")
         }
         else {
-            self.thumbnailImage = UIImage(named: "baseline_music_video_black_48pt")
+            self.thumbnailImage = UIImage(named: "file")
         }
     }
 

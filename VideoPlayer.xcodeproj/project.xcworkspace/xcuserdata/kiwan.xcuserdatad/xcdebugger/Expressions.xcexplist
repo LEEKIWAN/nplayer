@@ -14,6 +14,14 @@
          contextName = "VideoView.getAudioAssetFrom(asset:):VideoView.swift">
       </ContextState>
       <ContextState
+         contextName = "Player.observeValue(forKeyPath:of:change:context:):Player.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "playerItemContext">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "FileListViewController.filterContentForSearchText(_:):FileListViewController.swift">
          <PersistentStrings>
             <PersistentString
