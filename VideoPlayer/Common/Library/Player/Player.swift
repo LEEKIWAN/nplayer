@@ -41,7 +41,7 @@ public protocol PlayerDelegate: class {
     // buffered Duration
     func player(_ player: Player, bufferedDidChange bufferedDuration: TimeInterval, totalDuration: TimeInterval)
     // play error
-//    func vgPlayer(_ player: Player, playerFailed error: PlayerError)
+    //    func vgPlayer(_ player: Player, playerFailed error: PlayerError)
 }
 
 
@@ -131,7 +131,7 @@ open class Player: NSObject {
         displayView.player = self
         self.playerAsset = AVURLAsset(url: URL, options: .none)
         
-
+        
         if URL.absoluteString.hasPrefix("file:///") {
             let keys = ["tracks", "playable"]
             playerItem = AVPlayerItem(asset: self.playerAsset!, automaticallyLoadedAssetKeys: keys)
@@ -148,7 +148,7 @@ open class Player: NSObject {
     //MARK: - Observer
     
     internal func addPlayerObservers() {
-        timeObserver = player?.addPeriodicTimeObserver(forInterval: .init(value: 1, timescale: 1), queue: DispatchQueue.main, using: { [weak self] time in
+        timeObserver = player?.addPeriodicTimeObserver(forInterval: .init(value: 1, timescale: 10), queue: DispatchQueue.main, using: { [weak self] time in
             guard let strongSelf = self else { return }
             
             if let currentTime = strongSelf.player?.currentTime().seconds, let totalDuration = strongSelf.player?.currentItem?.duration.seconds {
@@ -164,7 +164,7 @@ open class Player: NSObject {
             player?.removeTimeObserver(timeObserver)
         }
     }
- 
+    
     // MARK: - Public
     
     open func reloadPlayer() {
@@ -202,14 +202,14 @@ open class Player: NSObject {
         guard contentURL != nil else { return }
         player?.play()
         state = .playing
-//        displayView.play()
+        displayView.playButton.isSelected = false
     }
     
     open func pause() {
         guard state == .paused else {
             player?.pause()
             state = .paused
-//        displayView.play()
+            displayView.playButton.isSelected = true
             return
         }
     }
@@ -267,78 +267,77 @@ open class Player: NSObject {
     }
     
     open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-            if keyPath == #keyPath(AVPlayerItem.status) {
-                var status: AVPlayerItem.Status?
+        if keyPath == #keyPath(AVPlayerItem.status) {
+            var status: AVPlayerItem.Status?
+            
+            if let statusNumber = change?[.newKey] as? NSNumber {
+                status = AVPlayerItem.Status(rawValue: statusNumber.intValue)!
+            }
+            else {
+                status = .unknown
+            }
+            
+            switch status! {
+            case .unknown:
+                startPlayerBuffering()
+            case .readyToPlay:
+                bufferState = .readyToPlay
+            case .failed:
+                state = .error
+                //                    collectplayererrorlgo
+                stopPlayerBuffering()
+                //                    delegate.playererr
                 
-                if let statusNumber = change?[.newKey] as? NSNumber {
-                    status = AVPlayerItem.Status(rawValue: statusNumber.intValue)!
-                }
-                else {
-                    status = .unknown
-                }
-                
-                switch status! {
-                case .unknown:
+                //                    diapl
+                break
+            default:
+                break
+            }
+            
+        }
+        else if keyPath == #keyPath(AVPlayerItem.isPlaybackBufferEmpty) {
+            if let playbackBufferEmpty = change?[.newKey] as? Bool {
+                if playbackBufferEmpty {
                     startPlayerBuffering()
-                case .readyToPlay:
-                    bufferState = .readyToPlay
-                case .failed:
-                    state = .error
-//                    collectplayererrorlgo
-                    stopPlayerBuffering()
-//                    delegate.playererr
+                }
+            }
+        }
+        else if keyPath  == #keyPath(AVPlayerItem.loadedTimeRanges) {
+            let loadedTimeRanges = player?.currentItem?.loadedTimeRanges            // 영상 로드된 시작 끝 값
+            if let bufferTimeRange = loadedTimeRanges?.first?.timeRangeValue {
+                let start = bufferTimeRange.start.seconds
+                let duration = bufferTimeRange.duration.seconds
+                let bufferTime = start + duration
+                
+                if let itemDuration = playerItem?.duration.seconds {
+                    delegate?.player(self, bufferedDidChange: bufferTime, totalDuration: itemDuration)
+                    displayView.bufferedDidChange(bufferTime, totalDuration: itemDuration)
+                    totalDuration = itemDuration
                     
-//                    diapl
-                    break
-                default:
-                    break
+                    if itemDuration == bufferTime {
+                        bufferState = .bufferFinished
+                    }
                 }
                 
-            }
-            else if keyPath == #keyPath(AVPlayerItem.isPlaybackBufferEmpty) {
-                if let playbackBufferEmpty = change?[.newKey] as? Bool {
-                    if playbackBufferEmpty {
-                        startPlayerBuffering()
-                    }
-                }
-            }
-            else if keyPath  == #keyPath(AVPlayerItem.loadedTimeRanges) {
-                let loadedTimeRanges = player?.currentItem?.loadedTimeRanges
-                
-                if let bufferTimeRange = loadedTimeRanges?.first?.timeRangeValue {
-                    let start = bufferTimeRange.start.seconds
-                    let duration = bufferTimeRange.duration.seconds
-                    let bufferTime = start + duration
-                    
-                    if let itemDuration = playerItem?.duration.seconds {
-                        delegate?.player(self, bufferedDidChange: bufferTime, totalDuration: itemDuration)
-                        displayView.bufferedDidChange(bufferTime, totalDuration: itemDuration)
-                        totalDuration = itemDuration
-                        
-                        if itemDuration == bufferTime {
-                            bufferState = .bufferFinished
-                        }
+                if let currentTime = playerItem?.currentTime().seconds {
+                    if bufferTime - currentTime >= bufferInterval && state != .paused {
+                        play()
                     }
                     
-                    if let currentTime = playerItem?.currentTime().seconds {
-                        if bufferTime - currentTime >= bufferInterval && state != .paused {
-                            play()
-                        }
-                        
-                        if (bufferTime - currentTime) < bufferInterval {
-                            bufferState = .buffering
-                            buffering = true
-                        }
-                        else {
-                            bufferState = .readyToPlay
-                            buffering = false
-                        }
+                    if (bufferTime - currentTime) < bufferInterval {
+                        bufferState = .buffering
+                        buffering = true
+                    }
+                    else {
+                        bufferState = .readyToPlay
+                        buffering = false
                     }
                 }
-                else {
-                    play()
-                }
             }
+            else {
+                play()
+            }
+        }
     }
     
     
@@ -349,7 +348,7 @@ open class Player: NSObject {
         NotificationCenter.default.addObserver(self, selector: #selector(applicationWillEnterForeground(_:)), name: UIApplication.willEnterForegroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(applicationDidEnterBackground(_:)), name: UIApplication.didEnterBackgroundNotification, object: nil)
     }
-
+    
     internal func removePlayerNotification() {
         NotificationCenter.default.removeObserver(self, name: .AVPlayerItemDidPlayToEndTime, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIApplication.willEnterForegroundNotification, object: nil)
@@ -363,9 +362,9 @@ open class Player: NSObject {
     }
     
     @objc internal func applicationWillEnterForeground(_ notification: Notification) {
-//        if let player = displayView.player {
-//            playerLayer.player = player
-//        }
+        //        if let player = displayView.player {
+        //            playerLayer.player = player
+        //        }
         
         switch self.backgroundMode {
         case .suspend:
@@ -378,9 +377,9 @@ open class Player: NSObject {
     }
     
     @objc internal func applicationDidEnterBackground(_ notification: Notification) {
-//        if let playerLayer = displayView.playerLayer  {
-//            playerLayer.player = nil
-//        }
+        //        if let playerLayer = displayView.playerLayer  {
+        //            playerLayer.player = nil
+        //        }
         
         switch self.backgroundMode {
         case .suspend:

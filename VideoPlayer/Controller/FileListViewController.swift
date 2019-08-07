@@ -73,7 +73,7 @@ class FileListViewController: UIViewController {
     // MARK: - FileManager
     
     func listFilesFromDocumentsFolder() {
-        var paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         let documentsDirectory: String = paths[0]
         let fileManager: FileManager = FileManager()
         let fileList = try? fileManager.contentsOfDirectory(atPath: documentsDirectory)

@@ -12,16 +12,16 @@ import AVFoundation
 
 public protocol VGPlayerViewDelegate: class {
     
-//    func vgPlayerView(_ playerView: VGPlayerView, willFullscreen isFullscreen: Bool)
-//    
-//    func vgPlayerView(didTappedClose playerView: VGPlayerView)
-//    
-//    func vgPlayerView(didDisplayControl playerView: VGPlayerView)
+    //    func vgPlayerView(_ playerView: VGPlayerView, willFullscreen isFullscreen: Bool)
+    //
+    //    func vgPlayerView(didTappedClose playerView: VGPlayerView)
+    //
+    //    func vgPlayerView(didDisplayControl playerView: VGPlayerView)
 }
 
 
 open class PlayerView: UIView {
-
+    
     @IBOutlet var view: UIView!    
     
     @IBOutlet weak var topView: UIView!
@@ -29,15 +29,18 @@ open class PlayerView: UIView {
     
     @IBOutlet weak var bottomView: UIView!    
     @IBOutlet weak var timeSlider: PlayerSlider!
+    @IBOutlet weak var fullScreenButton: UIButton!
+    
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var timeLabel: UILabel!
     
     @IBOutlet weak var replayButton: UIButton!
     
+    @IBOutlet weak var indicatorView: UIActivityIndicatorView!
     
     var player: Player?
     var controlViewDuration: TimeInterval = 5.0
-    var playerLayer : AVPlayerLayer?
+    var playerLayer: AVPlayerLayer?
     var isFullScreen: Bool = false
     var isTimeSliding: Bool = false
     var isDisplayControl: Bool = true {
@@ -50,16 +53,19 @@ open class PlayerView: UIView {
     
     var timer: Timer = Timer()
     
+    fileprivate weak var parentView: UIView?
+    fileprivate var viewFrame = CGRect()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setNib()
-//        setInit()
+        //        setInit()
     }
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setNib()
-//        setInit()
+        //        setInit()
     }
     
     func setNib() {
@@ -70,19 +76,25 @@ open class PlayerView: UIView {
     
     open override func layoutSubviews() {
         super.layoutSubviews()
-        updateDisplayView(frame: bounds)
+        playerLayer?.frame = self.bounds
     }
     
     
     open func reloadPlayerView() {
         playerLayer = AVPlayerLayer(player: nil)
+        timeSlider.value = 0
+        timeSlider.setProgress(0, animated: false)
+        replayButton.isHidden = true
+        isTimeSliding = false
+        indicatorView.startAnimating()
+        timeLabel.text = "--:-- / --:--"
         reloadPlayerLayer()
     }
     
     open func reloadPlayerLayer() {
         playerLayer = AVPlayerLayer(player: player?.player)
         self.view.layer.insertSublayer(playerLayer!, below: bottomView.layer)
-        updateDisplayView(frame: bounds)
+        playerLayer?.frame = self.bounds
         timeSlider.isUserInteractionEnabled = player?.mediaFormat != .m3u8
         self.reloadGravity()
     }
@@ -91,14 +103,14 @@ open class PlayerView: UIView {
         guard let player = player else { return }
         
         switch player.gravityMode {
-            case .resize:
-                playerLayer?.videoGravity = .resize
-            case .resizeAspect:
-                playerLayer?.videoGravity = .resizeAspect
-            case .resizeAspectFill:
-                playerLayer?.videoGravity = .resizeAspectFill
-            default:
-                break
+        case .resize:
+            playerLayer?.videoGravity = .resize
+        case .resizeAspect:
+            playerLayer?.videoGravity = .resizeAspect
+        case .resizeAspectFill:
+            playerLayer?.videoGravity = .resizeAspectFill
+        default:
+            break
         }
     }
     
@@ -113,7 +125,26 @@ open class PlayerView: UIView {
         }
         
         if state == .playFinished {
-            
+            indicatorView.stopAnimating()
+        }
+    }
+    
+    
+    open func bufferStateDidChange(_ state: PlayerBufferState) {
+        if state == .buffering {
+            indicatorView.startAnimating()
+        }
+        else {
+            indicatorView.stopAnimating()
+        }
+        
+        var current = formatSecondsToString(player!.currentDuration)
+        if (player?.totalDuration.isNaN)! {
+            current = "00:00"
+        }
+        
+        if state == .readyToPlay && !isTimeSliding {
+            timeLabel.text = "\(current + " / " +  (formatSecondsToString((player?.totalDuration)!)))"
         }
     }
     
@@ -129,48 +160,134 @@ open class PlayerView: UIView {
     }
     
     
-    open func bufferStateDidChange(_ state: PlayerBufferState) {
-        if state == .buffering {
-            
-        }
-        else {
-            
-        }
-        var current = formatSecondsToString(player!.currentDuration)
-        if (player?.totalDuration.isNaN)! {
-            current = "00:00"
-        }
-        
-        if state == .readyToPlay && !isTimeSliding {
-            timeLabel.text = "\(current + " / " +  (formatSecondsToString((player?.totalDuration)!)))"
-        }
-    }
     
     open func bufferedDidChange(_ bufferedDuration: TimeInterval, totalDuration: TimeInterval) {
-        timeSlider.setProgress(Float(bufferedDuration / totalDuration), animated: true)
+        if bufferedDuration == totalDuration {
+            timeSlider.setProgress(Float(bufferedDuration / totalDuration), animated: false)
+        }
+        else {
+            timeSlider.setProgress(Float(bufferedDuration / totalDuration), animated: true)
+        }
     }
     
+    
+    // MARK: - Full Screen
+    
+    open func enterFullScreen() {
+        let statusBarOrientation = UIApplication.shared.statusBarOrientation
+        if statusBarOrientation == .portrait {
+            parentView = self.superview!
+            viewFrame = self.frame
+        }
+        UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
+        UIApplication.shared.statusBarOrientation = .landscapeRight
+        UIApplication.shared.setStatusBarHidden(false, with: .fade)
+        
+        fullScreenButton.isSelected = true
+    }
+
+    open func exitFullScreen() {
+        UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
+        UIApplication.shared.statusBarOrientation = .portrait
+        
+        fullScreenButton.isSelected = false
+    }
+    
+    
+    // MARK: - ControlView
+    
+    open func displayControlView(_ willShow: Bool) {
+        if willShow {
+            showControlAnimation()
+        }
+        else {
+            hiddenControlAnimation()
+        }
+    }
+    
+    internal func showControlAnimation() {
+        bottomView.isHidden = false
+        topView.isHidden = false
+        isDisplayControl = true
+        UIView.animate(withDuration: 0.5, animations: {
+            self.bottomView.alpha = 1
+            self.topView.alpha = 1
+        }) { (completion) in
+            self.setupTimer()
+        }
+    }
+    
+    internal func hiddenControlAnimation() {
+        timer.invalidate()
+        isDisplayControl = false
+        UIView.animate(withDuration: 0.5, animations: {
+            self.bottomView.alpha = 0
+            self.topView.alpha = 0
+        }) { (completion) in
+            self.bottomView.isHidden = true
+            self.topView.isHidden = true
+        }
+    }
     
     internal func setupTimer() {
         timer.invalidate()
-//        timer = Timer.
+        timer = Timer.scheduledTimer(withTimeInterval: self.controlViewDuration, repeats: false, block: { [weak self] (timer) in
+            guard let strongSelf = self else { return }
+            strongSelf.displayControlView(false)
+        })
     }
-    
 
-    // MARK: - public
     
-    open func updateDisplayView(frame: CGRect) {
-        playerLayer?.frame = frame
+    // MARK: - Event - timeSlider
+    
+    @IBAction func timeSliderValueChanged(_ sender: PlayerSlider) {
+        if let duration = player?.totalDuration {
+            let currentTime = Double(sender.value) * duration
+            timeLabel.text = "\(formatSecondsToString(currentTime) + " / " +  (formatSecondsToString(duration)))"
+        }
     }
     
-    
-    open func play() {
-//        player?.play()
+    @IBAction func timeSliderTouchDown(_ sender: PlayerSlider) {
+        isTimeSliding = true
+        timer.invalidate()
     }
     
+    @IBAction func timeSliderTouchUpInside(_ sender: PlayerSlider) {
+        isTimeSliding = true
+        
+        if let duration = player?.totalDuration {
+            let currentTime = Double(sender.value) * duration
+            
+            player?.seekTime(currentTime, completion: { [weak self] (finished) in
+                guard let strongSelf = self else { return }
+                if finished {
+                    strongSelf.isTimeSliding = false
+                    strongSelf.setupTimer()
+                }
+            })
+            timeLabel.text = "\(formatSecondsToString(currentTime) + " / " +  (formatSecondsToString(duration)))"
+        }
+    }
     
+    // MARK: - Event - Button
     
+    @IBAction func onPlayTouched(_ sender: UIButton) {
+        if sender.isSelected {
+            player?.play()
+        }
+        else {
+            player?.pause()
+        }
+    }
     
+    @IBAction func onFullScreenTouched(_ sender: UIButton) {
+        if sender.isSelected {
+            self.exitFullScreen()
+        }
+        else {
+            self.enterFullScreen()
+        }
+    }
     
     
     

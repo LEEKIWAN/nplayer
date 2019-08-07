@@ -51,7 +51,7 @@
                                     <constraint firstItem="1qG-HA-qVN" firstAttribute="centerX" secondItem="SfE-B6-AKr" secondAttribute="centerX" id="qtc-q0-tgm"/>
                                 </constraints>
                             </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="CQr-6d-C2A">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="CQr-6d-C2A">
                                 <rect key="frame" x="0.0" y="89" width="414" height="807"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>

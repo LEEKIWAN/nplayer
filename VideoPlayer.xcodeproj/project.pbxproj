@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		830BF88422FA8E5F00D3D848 /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830BF88322FA8E5F00D3D848 /* CustomSlider.swift */; };
 		8316088A22F0392C004390AA /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8316088922F0392C004390AA /* UINavigationController+.swift */; };
 		8316088C22F150B4004390AA /* URL+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8316088B22F150B4004390AA /* URL+.swift */; };
 		8327B07122F2B33200D31C84 /* PlayerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8327B07022F2B33200D31C84 /* PlayerUtils.swift */; };
@@ -27,7 +28,6 @@
 		833CD49122F267BB00617F63 /* TextViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833CD49022F267BB00617F63 /* TextViewerController.swift */; };
 		833CD49422F2A2B900617F63 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833CD49322F2A2B900617F63 /* Player.swift */; };
 		833CD49622F2A68300617F63 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833CD49522F2A68300617F63 /* PlayerView.swift */; };
-		833CD49822F2AA0700617F63 /* UIViewCtonroller+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833CD49722F2AA0700617F63 /* UIViewCtonroller+.swift */; };
 		8361C6C622EEE40B006ECF31 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8361C6C522EEE40B006ECF31 /* String+.swift */; };
 		83668D4022EE9147003C918B /* PlayMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83668D3F22EE9147003C918B /* PlayMode.swift */; };
 		83668D4222EEAE0C003C918B /* CheapBitesizedIslandcanary-size_restricted.gif in Resources */ = {isa = PBXBuildFile; fileRef = 83668D4122EEAE0C003C918B /* CheapBitesizedIslandcanary-size_restricted.gif */; };
@@ -51,6 +51,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		830BF88322FA8E5F00D3D848 /* CustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
 		8316088922F0392C004390AA /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
 		8316088B22F150B4004390AA /* URL+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+.swift"; sourceTree = "<group>"; };
 		8327B07022F2B33200D31C84 /* PlayerUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerUtils.swift; sourceTree = "<group>"; };
@@ -71,7 +72,6 @@
 		833CD49022F267BB00617F63 /* TextViewerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewerController.swift; sourceTree = "<group>"; };
 		833CD49322F2A2B900617F63 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		833CD49522F2A68300617F63 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
-		833CD49722F2AA0700617F63 /* UIViewCtonroller+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewCtonroller+.swift"; sourceTree = "<group>"; };
 		8361C6C522EEE40B006ECF31 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		83668D3F22EE9147003C918B /* PlayMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlayMode.swift; path = ../../Video/PlayMode.swift; sourceTree = "<group>"; };
 		83668D4122EEAE0C003C918B /* CheapBitesizedIslandcanary-size_restricted.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "CheapBitesizedIslandcanary-size_restricted.gif"; sourceTree = "<group>"; };
@@ -168,6 +168,7 @@
 				833CD49522F2A68300617F63 /* PlayerView.swift */,
 				8327B07022F2B33200D31C84 /* PlayerUtils.swift */,
 				8327B07A22F4045200D31C84 /* PlayerSlider.swift */,
+				830BF88322FA8E5F00D3D848 /* CustomSlider.swift */,
 			);
 			path = Player;
 			sourceTree = "<group>";
@@ -263,7 +264,6 @@
 				839F9DF322EFDAEB003AFA0D /* UIColor+.swift */,
 				8316088922F0392C004390AA /* UINavigationController+.swift */,
 				8316088B22F150B4004390AA /* URL+.swift */,
-				833CD49722F2AA0700617F63 /* UIViewCtonroller+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -357,7 +357,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8316088A22F0392C004390AA /* UINavigationController+.swift in Sources */,
-				833CD49822F2AA0700617F63 /* UIViewCtonroller+.swift in Sources */,
 				8316088C22F150B4004390AA /* URL+.swift in Sources */,
 				83668D4A22EEAE3C003C918B /* SwiftyGifManager.swift in Sources */,
 				833CD49622F2A68300617F63 /* PlayerView.swift in Sources */,
@@ -380,6 +379,7 @@
 				833CD49122F267BB00617F63 /* TextViewerController.swift in Sources */,
 				83668D4022EE9147003C918B /* PlayMode.swift in Sources */,
 				837F8A3622F18151005E0822 /* ImageViewerController.swift in Sources */,
+				830BF88422FA8E5F00D3D848 /* CustomSlider.swift in Sources */,
 				839E117422CC84A60096E43C /* AppDelegate.swift in Sources */,
 				839F9DF422EFDAEB003AFA0D /* UIColor+.swift in Sources */,
 			);
