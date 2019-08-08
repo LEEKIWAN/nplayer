@@ -374,7 +374,7 @@ open class PlayerView: UIView {
                         strongSelf.isTimeSliding = false
                         strongSelf.setupTimer()
                     }
-                })
+                }) 
             case .vertical:
                 break
             }
