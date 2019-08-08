@@ -10,6 +10,12 @@ import UIKit
 import AVFoundation
 
 
+enum PanGestureDirection {
+    case vertical
+    case horizontal
+}
+
+
 public protocol VGPlayerViewDelegate: class {
     
     //    func vgPlayerView(_ playerView: VGPlayerView, willFullscreen isFullscreen: Bool)
@@ -39,7 +45,7 @@ open class PlayerView: UIView {
     @IBOutlet weak var indicatorView: UIActivityIndicatorView!
     
     var player: Player?
-    var controlViewDuration: TimeInterval = 5.0
+    var controlViewDuration: TimeInterval = 3.5
     var playerLayer: AVPlayerLayer?
     var isFullScreen: Bool = false
     var isTimeSliding: Bool = false
@@ -71,8 +77,12 @@ open class PlayerView: UIView {
     func setNib() {
         view = (Bundle.main.loadNibNamed("PlayerView", owner: self, options: nil)?.first as! UIView)
         view.frame = self.bounds
+        
+        singleTapGestureRecognizer.require(toFail: doubleTapGestureRecognizer)
+        
         self.addSubview(view)
     }
+    
     
     open override func layoutSubviews() {
         super.layoutSubviews()
@@ -228,7 +238,7 @@ open class PlayerView: UIView {
             self.topView.isHidden = true
         }
     }
-    
+
     internal func setupTimer() {
         timer.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: self.controlViewDuration, repeats: false, block: { [weak self] (timer) in
@@ -289,7 +299,110 @@ open class PlayerView: UIView {
         }
     }
     
+    @IBAction func onReplayTouched(_ sender: UIButton) {
+        player?.replaceVideo((player?.contentURL)!)
+        player?.play()
+    }
     
+    
+    // MARK: - Event - Gesture Recognizer
+    
+    fileprivate(set) var panGestureDirection : PanGestureDirection = .horizontal
+    fileprivate var sliderSeekTimeValue : TimeInterval = .nan
+    
+    @IBOutlet var singleTapGestureRecognizer: UITapGestureRecognizer!
+    @IBOutlet var doubleTapGestureRecognizer: UITapGestureRecognizer!
+    
+    
+    @IBAction func onSingleTapGesture(_ gesture: UITapGestureRecognizer) {
+        isDisplayControl = !isDisplayControl
+        displayControlView(isDisplayControl)
+    }
+    
+    @IBAction func onDoubleTapGesture(_ gesture: UITapGestureRecognizer) {
+        guard let player = player else {
+            return
+        }
+        
+        switch player.state {
+        case .playFinished:
+            break
+        case .playing:
+            player.pause()
+        case .paused:
+            player.play()
+        default:
+            break
+        }
+    }
+    
+    @IBAction func onPanGesture(_ gesture: UIPanGestureRecognizer) {
+        let translation = gesture.translation(in: self)
+        let location = gesture.location(in: self)
+        let velocity = gesture.velocity(in: self)
+        
+        switch gesture.state {
+        case .began:
+            let x = abs(translation.x)
+            let y = abs(translation.y)
+            
+            if x < y {
+                panGestureDirection = .vertical
+            }
+            else {
+                guard player?.mediaFormat == .m3u8 else {
+                    panGestureDirection = .horizontal
+                    return
+                }
+            }
+            
+        case .changed:
+            switch panGestureDirection {
+            case .horizontal:
+                sliderSeekTimeValue = panGestureHorizontal(velocity.x)
+            case .vertical:
+                panGestureVertical(velocity.y)
+            }
+            
+        case .ended:
+            switch panGestureDirection {
+            case .horizontal:
+                if sliderSeekTimeValue.isNaN { return }
+                player?.seekTime(sliderSeekTimeValue, completion: { [weak self] (finished) in
+                    guard let strongSelf = self else { return }
+                    if finished {
+                        strongSelf.isTimeSliding = false
+                        strongSelf.setupTimer()
+                    }
+                })
+            case .vertical:
+                break
+            }
+        default:
+            break
+        }
+    }
+    
+    internal func panGestureHorizontal(_ velocityX: CGFloat) -> TimeInterval {
+        displayControlView(true)
+        isTimeSliding = true
+        timer.invalidate()
+        let value = timeSlider.value
+        
+        if let _ = player?.currentDuration, let totalDuration = player?.totalDuration {
+            let sliderValue = (TimeInterval(value) * totalDuration) + TimeInterval(velocityX) / 100.0 * (TimeInterval(totalDuration) / 400)
+            timeSlider.setValue(Float(sliderValue/totalDuration), animated: true)
+            return sliderValue
+        }
+        else {
+            return TimeInterval.nan
+        }
+    }
+    
+
+    internal func panGestureVertical(_ velocityY: CGFloat) {
+        
+    }
     
     //MARK: - Player Delegate
     
