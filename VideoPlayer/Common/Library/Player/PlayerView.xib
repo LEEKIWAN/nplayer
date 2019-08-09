@@ -32,7 +32,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0wy-gv-wn6">
-                    <rect key="frame" x="0.0" y="360" width="420" height="38"/>
+                    <rect key="frame" x="0.0" y="394" width="420" height="38"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hiF-aG-tTQ">
                             <rect key="frame" x="390" y="9" width="20" height="20"/>
@@ -137,7 +137,7 @@
             <gestureRecognizers/>
             <constraints>
                 <constraint firstItem="Nrd-ys-lEy" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="0KH-rT-ZTp"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="0wy-gv-wn6" secondAttribute="bottom" id="3a7-wk-1do"/>
+                <constraint firstAttribute="bottom" secondItem="0wy-gv-wn6" secondAttribute="bottom" id="3a7-wk-1do"/>
                 <constraint firstItem="Goj-0F-4kz" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="GNr-bT-a8c"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="0wy-gv-wn6" secondAttribute="trailing" id="IP9-k0-GlA"/>
                 <constraint firstItem="0wy-gv-wn6" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="JhY-kX-GDN"/>

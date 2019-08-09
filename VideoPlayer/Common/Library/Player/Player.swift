@@ -221,21 +221,21 @@ open class Player: NSObject {
             }
         }
         
-//        DispatchQueue.main.async { [weak self] in
-//            guard let strongSelf = self else { return }
-//            strongSelf.seeking = true
-//            strongSelf.startPlayerBuffering()
-//            strongSelf.playerItem?.seek(to: CMTimeMakeWithSeconds(time, preferredTimescale: Int32(NSEC_PER_SEC)), completionHandler: { (finished) in
-//                DispatchQueue.main.async {
-//                    strongSelf.seeking = false
-//                    strongSelf.stopPlayerBuffering()
-//                    strongSelf.play()
-//                    if(completion != nil) {
-//                        completion!(finished)
-//                    }
-//                }
-//            })
-//        }
+        DispatchQueue.main.async { [weak self] in
+            guard let strongSelf = self else { return }
+            strongSelf.seeking = true
+            strongSelf.startPlayerBuffering()
+            strongSelf.playerItem?.seek(to: CMTimeMakeWithSeconds(time, preferredTimescale: Int32(NSEC_PER_SEC)), completionHandler: { (finished) in
+                DispatchQueue.main.async {
+                    strongSelf.seeking = false
+                    strongSelf.stopPlayerBuffering()
+                    strongSelf.play()
+                    if(completion != nil) {
+                        completion!(finished)
+                    }
+                }
+            })
+        }
     }
     
     //MARK: - buffering
@@ -279,14 +279,13 @@ open class Player: NSObject {
             
             switch status! {
             case .unknown:
-//                startPlayerBuffering()
-                break
+                startPlayerBuffering()
             case .readyToPlay:
                 bufferState = .readyToPlay
             case .failed:
                 state = .error
                 //                    collectplayererrorlgo
-//                stopPlayerBuffering()
+                stopPlayerBuffering()
                 //                    delegate.playererr
                 
                 //                    diapl
@@ -297,47 +296,47 @@ open class Player: NSObject {
             
         }
         else if keyPath == #keyPath(AVPlayerItem.isPlaybackBufferEmpty) {
-//            if let playbackBufferEmpty = change?[.newKey] as? Bool {
-//                if playbackBufferEmpty {
-//                    startPlayerBuffering()
-//                }
-//            }
+            if let playbackBufferEmpty = change?[.newKey] as? Bool {
+                if playbackBufferEmpty {
+                    startPlayerBuffering()
+                }
+            }
         }
         else if keyPath  == #keyPath(AVPlayerItem.loadedTimeRanges) {
-//            let loadedTimeRanges = player?.currentItem?.loadedTimeRanges            // 영상 로드된 시작 끝 값
-//            if let bufferTimeRange = loadedTimeRanges?.first?.timeRangeValue {
-//                let start = bufferTimeRange.start.seconds
-//                let duration = bufferTimeRange.duration.seconds
-//                let bufferTime = start + duration
-//
-//                if let itemDuration = playerItem?.duration.seconds {
-//                    delegate?.player(self, bufferedDidChange: bufferTime, totalDuration: itemDuration)
-//                    displayView.bufferedDidChange(bufferTime, totalDuration: itemDuration)
-//                    totalDuration = itemDuration
-//
-//                    if itemDuration == bufferTime {
-//                        bufferState = .bufferFinished
-//                    }
-//                }
-//
-//                if let currentTime = playerItem?.currentTime().seconds {
-//                    if bufferTime - currentTime >= bufferInterval && state != .paused {
-//                        play()
-//                    }
-//
-//                    if (bufferTime - currentTime) < bufferInterval {
-//                        bufferState = .buffering
-//                        buffering = true
-//                    }
-//                    else {
-//                        bufferState = .readyToPlay
-//                        buffering = false
-//                    }
-//                }
-//            }
-//            else {
-//                play()
-//            }
+            let loadedTimeRanges = player?.currentItem?.loadedTimeRanges            // 영상 로드된 시작 끝 값
+            if let bufferTimeRange = loadedTimeRanges?.first?.timeRangeValue {
+                let start = bufferTimeRange.start.seconds
+                let duration = bufferTimeRange.duration.seconds
+                let bufferTime = start + duration
+                
+                if let itemDuration = playerItem?.duration.seconds {
+                    delegate?.player(self, bufferedDidChange: bufferTime, totalDuration: itemDuration)
+                    displayView.bufferedDidChange(bufferTime, totalDuration: itemDuration)
+                    totalDuration = itemDuration
+                    
+                    if itemDuration == bufferTime {
+                        bufferState = .bufferFinished
+                    }
+                }
+                
+                if let currentTime = playerItem?.currentTime().seconds {
+                    if bufferTime - currentTime >= bufferInterval && state != .paused {
+                        play()
+                    }
+                    
+                    if (bufferTime - currentTime) < bufferInterval {
+                        bufferState = .buffering
+                        buffering = true
+                    }
+                    else {
+                        bufferState = .readyToPlay
+                        buffering = false
+                    }
+                }
+            }
+            else {
+                play()
+            }
         }
     }
     
