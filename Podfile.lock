@@ -1,0 +1,26 @@
+PODS:
+  - FDFullscreenPopGesture (1.1)
+  - MJRefresh (3.2.0)
+  - ZFPlayer (3.2.13):
+    - ZFPlayer/Core (= 3.2.13)
+  - ZFPlayer/Core (3.2.13)
+
+DEPENDENCIES:
+  - FDFullscreenPopGesture
+  - MJRefresh
+  - ZFPlayer (~> 3.0)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - FDFullscreenPopGesture
+    - MJRefresh
+    - ZFPlayer
+
+SPEC CHECKSUMS:
+  FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
+  MJRefresh: ed450d6eb9d3346a2cb033ab7eb6de090aeef437
+  ZFPlayer: b2ba40c924e1b9a7f0a670632c4235ffbe6ee055
+
+PODFILE CHECKSUM: cc353883ea22e8d35b6bef3c01b1f2cefe832ecd
+
+COCOAPODS: 1.7.2

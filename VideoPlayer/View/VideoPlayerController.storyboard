@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="t6b-hE-MdM">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14845" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="t6b-hE-MdM">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14799.2"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,10 +16,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ka3-5e-uWr" customClass="PlayerView" customModule="VideoPlayer" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                                <color key="backgroundColor" red="0.1529411765" green="0.1533069313" blue="0.15318098660000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EJQ-zP-uEF">
                                 <rect key="frame" x="13" y="57" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
@@ -32,18 +26,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Ka3-5e-uWr" firstAttribute="leading" secondItem="bnh-CM-ymk" secondAttribute="leading" id="73l-0J-BoI"/>
                             <constraint firstItem="EJQ-zP-uEF" firstAttribute="top" secondItem="bnh-CM-ymk" secondAttribute="top" constant="13" id="Q7H-KE-YB1"/>
-                            <constraint firstItem="bnh-CM-ymk" firstAttribute="bottom" secondItem="Ka3-5e-uWr" secondAttribute="bottom" id="WeT-be-80S"/>
                             <constraint firstItem="EJQ-zP-uEF" firstAttribute="leading" secondItem="bnh-CM-ymk" secondAttribute="leading" constant="13" id="fqO-0A-kF1"/>
-                            <constraint firstItem="Ka3-5e-uWr" firstAttribute="top" secondItem="bnh-CM-ymk" secondAttribute="top" id="tIP-ra-w47"/>
-                            <constraint firstItem="bnh-CM-ymk" firstAttribute="trailing" secondItem="Ka3-5e-uWr" secondAttribute="trailing" id="zZ6-tq-f09"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bnh-CM-ymk"/>
                     </view>
-                    <connections>
-                        <outlet property="playerView" destination="Ka3-5e-uWr" id="7dx-Dg-dXg"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jst-LF-t7H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
