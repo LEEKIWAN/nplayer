@@ -32,10 +32,8 @@ class FileListViewController: UIViewController {
         if self == self.navigationController?.viewControllers[0] {
             self.listFilesFromDocumentsFolder()
             self.sortLoadedFileFromDocumentsFolder()
+            
             tableView.reloadData()
-        }
-        else {
-    
         }
     }
     
@@ -200,11 +198,19 @@ extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! FileItemTableViewCell
         
+    
+        
         if isFiltering() {
             cell.setData(data: filteredFileList[indexPath.row])
+//            filteredFileList[indexPath.row].cellView = cell
+            filteredFileList[indexPath.row].tableView = tableView
+            filteredFileList[indexPath.row].indexPath = indexPath
         }
         else {
             cell.setData(data: fileList[indexPath.row])
+            fileList[indexPath.row].tableView = tableView
+            fileList[indexPath.row].indexPath = indexPath
+//            fileList[indexPath.row].cellView = cell
         }
         
         return cell
@@ -224,8 +230,9 @@ extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
             data = fileList[indexPath.row]
         }
         
-        switch data.extension.lowercased() {
-            case "directory":
+        
+        switch data.getFileType() {
+            case .directory:
                 navigationItem.searchController = nil
                 
                 let storyBoard = UIStoryboard(name: "FileListViewController", bundle: nil)
@@ -234,28 +241,24 @@ extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
                 fileListViewController.navigationItem.title = data.fileName
                 self.navigationController?.pushViewController(fileListViewController, animated: true)
             
-            case "txt", "md", "swift":
+            case .text:
                 let storyBoard = UIStoryboard(name: "TextViewerController", bundle: nil)
                 let textViewerController = storyBoard.instantiateInitialViewController() as! TextViewerController
                 textViewerController.data = data
                 self.present(textViewerController, animated: true, completion: nil)
             
-            case "png", "jpg", "gif":
+            case .image:
                 let storyBoard = UIStoryboard(name: "ImageViewerController", bundle: nil)
                 let imageViewerController = storyBoard.instantiateInitialViewController() as! ImageViewerController
                 imageViewerController.data = data
                 self.present(imageViewerController, animated: true, completion: nil)
             
-            case "mp4", "avi":
+            case .video:
                 let storyBoard = UIStoryboard(name: "VideoPlayerController", bundle: nil)
                 let videoPlayerController = storyBoard.instantiateInitialViewController() as! VideoPlayerController
                 videoPlayerController.playItem = data
+                
                 self.present(videoPlayerController, animated: true, completion: nil)
-            
-//                let storyBoard = UIStoryboard(name: "PlayViewController", bundle: nil)
-//                let playViewController = storyBoard.instantiateInitialViewController() as! PlayViewController
-//                playViewController.playItem = data
-//                self.present(playViewController, animated: true, completion: nil)
             
             default:
                 break

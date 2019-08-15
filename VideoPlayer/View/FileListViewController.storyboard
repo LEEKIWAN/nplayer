@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14845" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dj2-YK-GTR">
-    <device id="retina5_5" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dj2-YK-GTR">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14799.2"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -121,7 +123,9 @@
                                             <outlet property="fileNameLabel" destination="unH-ak-13X" id="Yun-fK-2JP"/>
                                             <outlet property="fileSizeLabel" destination="aC9-xj-t1u" id="0gX-lG-WeC"/>
                                             <outlet property="playInfoStackView" destination="cTi-My-xlm" id="dtW-Rh-EjB"/>
+                                            <outlet property="playedDurationLabel" destination="Ctb-yn-U3x" id="m63-Lf-xlR"/>
                                             <outlet property="thumbnailImageView" destination="xmr-BK-y7I" id="ha4-JJ-dUI"/>
+                                            <outlet property="totalDurationLabel" destination="IOf-zE-DCH" id="81B-VS-uMH"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -165,7 +169,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dj2-YK-GTR" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qqf-xl-70U">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.20985230799999999" green="0.21004199979999999" blue="0.20988169309999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" red="0.20985230803489685" green="0.21004199981689453" blue="0.20988169312477112" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
