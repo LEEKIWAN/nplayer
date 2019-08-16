@@ -95,8 +95,8 @@ class FileItemTableViewCell: UITableViewCell {
             default:
                 self.thumbnailImageView.layer.cornerRadius = 0
                 break
-            
         }
+        
         
     }
     

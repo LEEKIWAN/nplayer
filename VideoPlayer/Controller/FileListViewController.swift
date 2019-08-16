@@ -12,7 +12,10 @@ import AVKit
 
 
 class FileListViewController: UIViewController {
-
+    
+    var currentDirectoryURL: URL?
+    var directoryMonitor: DirectoryMonitor?
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var consTableViewBottom: NSLayoutConstraint!
     
@@ -30,16 +33,16 @@ class FileListViewController: UIViewController {
         self.setSearchController()
         
         if self == self.navigationController?.viewControllers[0] {
-            self.listFilesFromDocumentsFolder()
-            self.sortLoadedFileFromDocumentsFolder()
-            
+            currentDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            listFilesFromUrl(with: currentDirectoryURL!)
             tableView.reloadData()
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.registerForKeyboardNotifications()
+        registerForKeyboardNotifications()
+        directoryMonitor?.startMonitoring()
         navigationItem.searchController = searchController
     }
     
@@ -70,30 +73,22 @@ class FileListViewController: UIViewController {
 
     // MARK: - FileManager
     
-    func listFilesFromDocumentsFolder() {
-        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        let documentsDirectory: String = paths[0]
-        let fileManager: FileManager = FileManager()
-        let fileList = try? fileManager.contentsOfDirectory(atPath: documentsDirectory)
-        
-        for file in fileList! {
-            let filePath = (documentsDirectory as NSString).appendingPathComponent(file);
-            let fileUrl = URL(fileURLWithPath: filePath)
-            let file = FileObject(url: fileUrl)
-            self.fileList.append(file)
-        }
-    }
-    
     func listFilesFromUrl(with url: URL) {
+        fileList.removeAll()
+        currentDirectoryURL = url
+        directoryMonitor = DirectoryMonitor(URL: url)
+        directoryMonitor?.delegate = self
+        
         let fileManager: FileManager = FileManager()
         let fileList = try? fileManager.contentsOfDirectory(atPath: url.path)
-
+        
         for file in fileList! {
             let filePath = (url.path as NSString).appendingPathComponent(file)
             let fileUrl = URL(fileURLWithPath: filePath)
             let file = FileObject(url: fileUrl)
             self.fileList.append(file)
         }
+        sortLoadedFileFromDocumentsFolder()
     }
     
     
@@ -139,7 +134,6 @@ class FileListViewController: UIViewController {
     }
     
     
-    
     // MARK: - KeyBoard
     func registerForKeyboardNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -180,11 +174,7 @@ class FileListViewController: UIViewController {
             self.view.layoutIfNeeded()
         })
     }
-
-    
-
 }
-
 
 extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
     //MARK: - UITableViewDataSource
@@ -198,19 +188,15 @@ extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! FileItemTableViewCell
         
-    
-        
         if isFiltering() {
-            cell.setData(data: filteredFileList[indexPath.row])
-//            filteredFileList[indexPath.row].cellView = cell
             filteredFileList[indexPath.row].tableView = tableView
             filteredFileList[indexPath.row].indexPath = indexPath
+            cell.setData(data: filteredFileList[indexPath.row])
         }
         else {
-            cell.setData(data: fileList[indexPath.row])
             fileList[indexPath.row].tableView = tableView
             fileList[indexPath.row].indexPath = indexPath
-//            fileList[indexPath.row].cellView = cell
+            cell.setData(data: fileList[indexPath.row])
         }
         
         return cell
@@ -218,9 +204,6 @@ extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
     
     //MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let storyBoard = UIStoryboard(name: "PlayViewController", bundle: nil)
-//        let playViewController = storyBoard.instantiateInitialViewController() as! PlayViewController
-
         
         var data: FileObject
         if isFiltering() {
@@ -284,3 +267,18 @@ extension FileListViewController: UISearchResultsUpdating {
     }
 }
 
+
+extension FileListViewController: DirectoryMonitorDelegate {
+    func directoryMonitorDidObserveChange(directoryMonitor: DirectoryMonitor) {
+        guard let currentDirectoryURL = currentDirectoryURL else {
+            return
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.listFilesFromUrl(with: currentDirectoryURL)
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+}

@@ -16,3 +16,4 @@ enum FileType {
     case directory
     case etc
 }
+

@@ -129,23 +129,26 @@ class FileObject: NSObject, VLCMediaThumbnailerDelegate, VLCMediaDelegate {
     }
     
     func mediaThumbnailer(_ mediaThumbnailer: VLCMediaThumbnailer!, didFinishThumbnail thumbnail: CGImage!) {
-        guard let tableView = tableView , let indexPath = indexPath else {
-            return
-        }
         self.thumbnailImage = UIImage(cgImage: thumbnail)
-        tableView.reloadRows(at: [indexPath], with: .none)
+        tableView?.reloadRows(at: [indexPath!], with: .none)
         
         print("fetched")
     }
     
+    
     // MARK: - VLCMediaDelegate
     
     func mediaDidFinishParsing(_ aMedia: VLCMedia) {
-        guard let tableView = tableView , let indexPath = indexPath else {
-            return
-        }
         self.totalDurationText = vlcMedia?.length.stringValue
-        tableView.reloadRows(at: [indexPath], with: .none)
+        
+//        print(self.totalDurationText)
+        
+//        print(aMedia.tracksInformation)
+//        print(aMedia.stats)
+        
+//        print(aMedia)
+        
+        tableView?.reloadRows(at: [indexPath!], with: .none)
     }
     
 }

@@ -39,6 +39,7 @@
 		836C8DE02305095900283583 /* CMTime+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836C8DDF2305095900283583 /* CMTime+.swift */; };
 		837F8A3422F1813D005E0822 /* ImageViewerController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 837F8A3322F1813D005E0822 /* ImageViewerController.storyboard */; };
 		837F8A3622F18151005E0822 /* ImageViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837F8A3522F18151005E0822 /* ImageViewerController.swift */; };
+		83945D462306359200B7987B /* DirectoryMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83945D452306359200B7987B /* DirectoryMonitor.swift */; };
 		839E117422CC84A60096E43C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839E117322CC84A60096E43C /* AppDelegate.swift */; };
 		839E117622CC84A60096E43C /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839E117522CC84A60096E43C /* PlayViewController.swift */; };
 		839E117922CC84A60096E43C /* PlayViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 839E117722CC84A60096E43C /* PlayViewController.storyboard */; };
@@ -87,6 +88,7 @@
 		836C8DDF2305095900283583 /* CMTime+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CMTime+.swift"; sourceTree = "<group>"; };
 		837F8A3322F1813D005E0822 /* ImageViewerController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ImageViewerController.storyboard; sourceTree = "<group>"; };
 		837F8A3522F18151005E0822 /* ImageViewerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerController.swift; sourceTree = "<group>"; };
+		83945D452306359200B7987B /* DirectoryMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryMonitor.swift; sourceTree = "<group>"; };
 		839E117022CC84A60096E43C /* VideoPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		839E117322CC84A60096E43C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		839E117522CC84A60096E43C /* PlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 			children = (
 				833CD49222F2A29300617F63 /* Player */,
 				83668D4422EEAE2D003C918B /* SwiftyGif */,
+				83945D452306359200B7987B /* DirectoryMonitor.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -428,6 +431,7 @@
 				83668D4922EEAE3C003C918B /* UIImageView+SwiftyGif.swift in Sources */,
 				83668D4822EEAE3C003C918B /* UIImage+SwiftyGif.swift in Sources */,
 				839E117622CC84A60096E43C /* PlayViewController.swift in Sources */,
+				83945D462306359200B7987B /* DirectoryMonitor.swift in Sources */,
 				8330BB4422EA80C50038FAE9 /* FileItemTableViewCell.swift in Sources */,
 				8327B07922F3CF6700D31C84 /* VideoPlayerController.swift in Sources */,
 				836C8DE02305095900283583 /* CMTime+.swift in Sources */,

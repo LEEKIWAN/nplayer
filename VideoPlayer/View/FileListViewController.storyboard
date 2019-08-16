@@ -78,22 +78,22 @@
                                                             </constraints>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="cTi-My-xlm">
-                                                            <rect key="frame" x="0.0" y="52.333333333333336" width="82" height="14.333333333333336"/>
+                                                            <rect key="frame" x="0.0" y="52.333333333333336" width="85" height="14.333333333333336"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ctb-yn-U3x">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="31" height="14.333333333333334"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ctb-yn-U3x">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="34" height="14.333333333333334"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                     <color key="textColor" red="0.50690054890000003" green="0.50341296199999996" blue="0.50306892400000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fYA-ds-EF8">
-                                                                    <rect key="frame" x="39" y="0.0" width="4" height="14.333333333333334"/>
+                                                                    <rect key="frame" x="42" y="0.0" width="4" height="14.333333333333334"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                     <color key="textColor" red="0.50690054890000003" green="0.50341296199999996" blue="0.50306892400000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IOf-zE-DCH">
-                                                                    <rect key="frame" x="51" y="0.0" width="31" height="14.333333333333334"/>
+                                                                    <rect key="frame" x="54" y="0.0" width="31" height="14.333333333333334"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                     <color key="textColor" red="0.50690054890000003" green="0.50341296199999996" blue="0.50306892400000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
