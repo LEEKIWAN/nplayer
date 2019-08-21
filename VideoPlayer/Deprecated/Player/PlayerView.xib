@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PlayerView" customModule="VideoPlayer" customModuleProvider="target">
+            <connections>
+                <outlet property="bottomView" destination="0wy-gv-wn6" id="MR3-lJ-hzA"/>
+                <outlet property="doubleTapGestureRecognizer" destination="UlZ-hx-ERh" id="dkg-ld-tOc"/>
+                <outlet property="fullScreenButton" destination="hiF-aG-tTQ" id="4yl-bl-OWR"/>
+                <outlet property="indicatorView" destination="nFE-Xa-K4w" id="SJC-pb-BgT"/>
+                <outlet property="playButton" destination="vkg-li-ATD" id="XCr-qD-L9J"/>
+                <outlet property="replayButton" destination="Goj-0F-4kz" id="Krj-mZ-FHg"/>
+                <outlet property="singleTapGestureRecognizer" destination="KeJ-2T-uR0" id="i0P-T8-FK2"/>
+                <outlet property="timeLabel" destination="6EX-2Q-V80" id="TuN-p0-8Eg"/>
+                <outlet property="timeSlider" destination="awd-2p-4P6" id="cGy-lk-MG3"/>
+                <outlet property="titleLabel" destination="pwP-Hi-E6J" id="CgM-eq-BUU"/>
+                <outlet property="topView" destination="Nrd-ys-lEy" id="hDF-t3-o9X"/>
+                <outlet property="view" destination="iN0-l3-epB" id="gKj-t1-ldz"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="420" height="432"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0wy-gv-wn6">
+                    <rect key="frame" x="0.0" y="394" width="420" height="38"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hiF-aG-tTQ">
+                            <rect key="frame" x="390" y="9" width="20" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="20" id="P4c-gh-eFb"/>
+                                <constraint firstAttribute="width" secondItem="hiF-aG-tTQ" secondAttribute="height" multiplier="1:1" id="VOe-FC-MVh"/>
+                            </constraints>
+                            <state key="normal" image="VGPlayer_ic_fullscreen"/>
+                            <state key="selected" image="VGPlayer_ic_fullscreen_exit"/>
+                            <connections>
+                                <action selector="onFullScreenTouched:" destination="-1" eventType="touchUpInside" id="ExV-RG-ZiT"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vkg-li-ATD">
+                            <rect key="frame" x="20" y="9" width="20" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="vkg-li-ATD" secondAttribute="height" multiplier="1:1" id="8JM-Dq-5Wq"/>
+                                <constraint firstAttribute="width" constant="20" id="SJ7-gf-ATL"/>
+                            </constraints>
+                            <state key="normal" image="VGPlayer_ic_pause"/>
+                            <state key="selected" image="VGPlayer_ic_play"/>
+                            <connections>
+                                <action selector="onPlayTouched:" destination="-1" eventType="touchUpInside" id="QCg-po-4ym"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--:-- / --:--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6EX-2Q-V80">
+                            <rect key="frame" x="316.5" y="12" width="63.5" height="14.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="awd-2p-4P6" customClass="PlayerSlider" customModule="VideoPlayer" customModuleProvider="target">
+                            <rect key="frame" x="63" y="4" width="245.5" height="31"/>
+                            <connections>
+                                <action selector="timeSliderTouchDown:" destination="-1" eventType="touchDown" id="Crz-9D-4pH"/>
+                                <action selector="timeSliderTouchUpInside:" destination="-1" eventType="touchUpInside" id="jqC-e8-KkH"/>
+                                <action selector="timeSliderValueChanged:" destination="-1" eventType="valueChanged" id="zb0-o3-La5"/>
+                            </connections>
+                        </slider>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="vkg-li-ATD" firstAttribute="centerY" secondItem="0wy-gv-wn6" secondAttribute="centerY" id="7Td-jI-Kmz"/>
+                        <constraint firstAttribute="height" constant="38" id="968-nV-pWk"/>
+                        <constraint firstItem="vkg-li-ATD" firstAttribute="width" secondItem="vkg-li-ATD" secondAttribute="height" multiplier="1:1" id="9yh-R6-3v3"/>
+                        <constraint firstItem="vkg-li-ATD" firstAttribute="leading" secondItem="0wy-gv-wn6" secondAttribute="leading" constant="20" id="Ioz-Ni-10q"/>
+                        <constraint firstItem="6EX-2Q-V80" firstAttribute="centerY" secondItem="0wy-gv-wn6" secondAttribute="centerY" id="OuT-Jy-1hL"/>
+                        <constraint firstItem="6EX-2Q-V80" firstAttribute="leading" secondItem="awd-2p-4P6" secondAttribute="trailing" constant="10" id="WoB-DP-Tgm"/>
+                        <constraint firstItem="awd-2p-4P6" firstAttribute="centerY" secondItem="0wy-gv-wn6" secondAttribute="centerY" id="X2a-Uc-hF7"/>
+                        <constraint firstAttribute="trailing" secondItem="hiF-aG-tTQ" secondAttribute="trailing" constant="10" id="bCo-YS-QVD"/>
+                        <constraint firstItem="hiF-aG-tTQ" firstAttribute="centerY" secondItem="0wy-gv-wn6" secondAttribute="centerY" id="lHJ-C4-918"/>
+                        <constraint firstItem="hiF-aG-tTQ" firstAttribute="leading" secondItem="6EX-2Q-V80" secondAttribute="trailing" constant="10" id="q19-db-zYg"/>
+                        <constraint firstItem="awd-2p-4P6" firstAttribute="leading" secondItem="vkg-li-ATD" secondAttribute="trailing" constant="25" id="zaO-Cn-5LR"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nrd-ys-lEy">
+                    <rect key="frame" x="0.0" y="0.0" width="420" height="40"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5RF-nk-4Em">
+                            <rect key="frame" x="17" y="7.5" width="25" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="25" id="wmd-qf-h4z"/>
+                                <constraint firstAttribute="width" secondItem="5RF-nk-4Em" secondAttribute="height" multiplier="1:1" id="xzj-9Q-Vzt"/>
+                            </constraints>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal" image="close"/>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pwP-Hi-E6J">
+                            <rect key="frame" x="55" y="12" width="310" height="16"/>
+                            <string key="text">abeltitleLabelabeltitleLabelabeltitleLabelabeltitleLabelabeltitleLabelabeltitleLabelabeltitleLabelabeltitleLabelabeltitleLabelabeltitleLabelabeltitleLabelabeltitleLabelabeltitleLabelabeltitleLabelabeltitleLabelabeltitleLabelabeltitleLabelabeltitleLabelabeltitleLabelabeltitleLabelabeltitleLabelabeltitleLabelabeltitleLabelabeltitleLabel</string>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="pwP-Hi-E6J" firstAttribute="leading" secondItem="5RF-nk-4Em" secondAttribute="trailing" constant="13" id="Epm-2P-kal"/>
+                        <constraint firstItem="pwP-Hi-E6J" firstAttribute="centerY" secondItem="Nrd-ys-lEy" secondAttribute="centerY" id="KRB-sG-zaX"/>
+                        <constraint firstItem="5RF-nk-4Em" firstAttribute="centerY" secondItem="Nrd-ys-lEy" secondAttribute="centerY" id="Qci-xg-Z2C"/>
+                        <constraint firstAttribute="height" constant="40" id="RgR-Oh-ovC"/>
+                        <constraint firstItem="pwP-Hi-E6J" firstAttribute="centerX" secondItem="Nrd-ys-lEy" secondAttribute="centerX" id="qfE-A4-LhP"/>
+                        <constraint firstItem="5RF-nk-4Em" firstAttribute="leading" secondItem="Nrd-ys-lEy" secondAttribute="leading" constant="17" id="uph-WX-AB6"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Goj-0F-4kz">
+                    <rect key="frame" x="192.5" y="197.5" width="35" height="37"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="Goj-0F-4kz" secondAttribute="height" multiplier="74:79" id="8iD-R1-zWQ"/>
+                        <constraint firstAttribute="width" constant="35" id="vro-1L-9Ti"/>
+                    </constraints>
+                    <state key="normal" image="VGPlayer_ic_replay"/>
+                    <connections>
+                        <action selector="onReplayTouched:" destination="-1" eventType="touchUpInside" id="vMH-NJ-oYE"/>
+                    </connections>
+                </button>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="nFE-Xa-K4w">
+                    <rect key="frame" x="191.5" y="197.5" width="37" height="37"/>
+                </activityIndicatorView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <gestureRecognizers/>
+            <constraints>
+                <constraint firstItem="Nrd-ys-lEy" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="0KH-rT-ZTp"/>
+                <constraint firstAttribute="bottom" secondItem="0wy-gv-wn6" secondAttribute="bottom" id="3a7-wk-1do"/>
+                <constraint firstItem="Goj-0F-4kz" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="GNr-bT-a8c"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="0wy-gv-wn6" secondAttribute="trailing" id="IP9-k0-GlA"/>
+                <constraint firstItem="0wy-gv-wn6" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="JhY-kX-GDN"/>
+                <constraint firstItem="nFE-Xa-K4w" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="duD-3J-J4J"/>
+                <constraint firstItem="nFE-Xa-K4w" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="fI6-xG-H7s"/>
+                <constraint firstItem="Goj-0F-4kz" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="hc3-I1-6eU"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Nrd-ys-lEy" secondAttribute="trailing" id="pJl-rC-bkX"/>
+                <constraint firstItem="Nrd-ys-lEy" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="tFv-le-wqA"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="KeJ-2T-uR0" appends="YES" id="wMq-tO-Na1"/>
+                <outletCollection property="gestureRecognizers" destination="UlZ-hx-ERh" appends="YES" id="Chj-N9-Ed1"/>
+                <outletCollection property="gestureRecognizers" destination="Jet-ru-Rxg" appends="YES" id="ugY-lU-VOy"/>
+            </connections>
+            <point key="canvasLocation" x="142.02898550724638" y="293.30357142857139"/>
+        </view>
+        <tapGestureRecognizer id="KeJ-2T-uR0">
+            <connections>
+                <action selector="onSingleTapGesture:" destination="-1" id="yRZ-Ax-CXt"/>
+                <outlet property="delegate" destination="iN0-l3-epB" id="pFM-Fd-Dfr"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer numberOfTapsRequired="2" id="UlZ-hx-ERh">
+            <connections>
+                <action selector="onDoubleTapGesture:" destination="-1" id="hmS-sf-5oF"/>
+                <outlet property="delegate" destination="iN0-l3-epB" id="kiF-Vb-sNj"/>
+            </connections>
+        </tapGestureRecognizer>
+        <panGestureRecognizer minimumNumberOfTouches="1" id="Jet-ru-Rxg">
+            <connections>
+                <action selector="onPanGesture:" destination="-1" id="1Ie-Z6-pbm"/>
+                <outlet property="delegate" destination="iN0-l3-epB" id="3GY-uG-1Nw"/>
+            </connections>
+        </panGestureRecognizer>
+    </objects>
+    <resources>
+        <image name="VGPlayer_ic_fullscreen" width="47" height="47"/>
+        <image name="VGPlayer_ic_fullscreen_exit" width="41" height="44"/>
+        <image name="VGPlayer_ic_pause" width="31" height="50"/>
+        <image name="VGPlayer_ic_play" width="42" height="50"/>
+        <image name="VGPlayer_ic_replay" width="74" height="79"/>
+        <image name="close" width="30" height="30"/>
+    </resources>
+</document>

@@ -237,11 +237,18 @@ extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
                 self.present(imageViewerController, animated: true, completion: nil)
             
             case .video:
-                let storyBoard = UIStoryboard(name: "VideoPlayerController", bundle: nil)
-                let videoPlayerController = storyBoard.instantiateInitialViewController() as! VideoPlayerController
-                videoPlayerController.playItem = data
+//                let storyBoard = UIStoryboard(name: "VideoPlayerController", bundle: nil)
+//                let videoPlayerController = storyBoard.instantiateInitialViewController() as! VideoPlayerController
+//                videoPlayerController.playItem = data
+//                self.present(videoPlayerController, animated: true, completion: nil)
                 
-                self.present(videoPlayerController, animated: true, completion: nil)
+
+                let storyBoard = UIStoryboard(name: "VideoDetailViewController", bundle: nil)
+                let videoDetailViewController = storyBoard.instantiateInitialViewController() as! VideoDetailViewController
+                videoDetailViewController.data = data
+                videoDetailViewController.navigationItem.title = data.fileName
+                self.navigationController?.pushViewController(videoDetailViewController, animated: true)
+            
             
             default:
                 break

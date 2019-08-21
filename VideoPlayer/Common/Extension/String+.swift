@@ -9,6 +9,9 @@
 import Foundation
 
 extension String {
+
+    
+    
     
     func fileName() -> String {
         return NSURL(fileURLWithPath: self).deletingPathExtension?.lastPathComponent ?? ""
@@ -17,5 +20,46 @@ extension String {
     func fileExtension() -> String {
         return NSURL(fileURLWithPath: self).pathExtension ?? ""
     }
+    
+
+    
+    
+    init(fourCharCode: FourCharCode) {
+        let n = Int(fourCharCode)
+        var s: String = ""
+        
+        let unicodes = [UnicodeScalar((n >> 24) & 255), UnicodeScalar((n >> 16) & 255), UnicodeScalar((n >> 8) & 255), UnicodeScalar(n & 255)]
+        unicodes.compactMap { (unicode) -> String? in
+            guard let unicode = unicode else { return nil }
+            return String(unicode)
+            }.forEach { (unicode) in
+                s.append(unicode)
+        }
+        
+        self = s.trimmingCharacters(in: CharacterSet.whitespaces)
+    }
+    
+    
+    func toCodecName() -> String {
+        let textValue = self
+        
+        switch textValue {
+        case "h264":
+            return "H.264"
+        case "h265":
+            return "H.265"
+        case "mp4v", "m4s2":
+            return "MPEG-4"
+        case "mp3":
+            return "MP3"
+        case "AAC", "AACP", "MP4A", "mp4a", "VLB":
+            return "AAC"
+            
+        default:
+            return "MPEG-4"
+        }
+        
+    }
+    
 }
 

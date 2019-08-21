@@ -131,8 +131,6 @@ class FileObject: NSObject, VLCMediaThumbnailerDelegate, VLCMediaDelegate {
     func mediaThumbnailer(_ mediaThumbnailer: VLCMediaThumbnailer!, didFinishThumbnail thumbnail: CGImage!) {
         self.thumbnailImage = UIImage(cgImage: thumbnail)
         tableView?.reloadRows(at: [indexPath!], with: .none)
-        
-        print("fetched")
     }
     
     
@@ -140,14 +138,6 @@ class FileObject: NSObject, VLCMediaThumbnailerDelegate, VLCMediaDelegate {
     
     func mediaDidFinishParsing(_ aMedia: VLCMedia) {
         self.totalDurationText = vlcMedia?.length.stringValue
-        
-//        print(self.totalDurationText)
-        
-//        print(aMedia.tracksInformation)
-//        print(aMedia.stats)
-        
-//        print(aMedia)
-        
         tableView?.reloadRows(at: [indexPath!], with: .none)
     }
     

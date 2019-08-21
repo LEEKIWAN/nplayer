@@ -21,17 +21,9 @@
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Add rotation observer
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(VideoPlayerController.rotated),
-            name: UIDevice.orientationDidChangeNotification,
-            object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(VideoPlayerController.rotated), name: UIDevice.orientationDidChangeNotification, object: nil)
         
-        //Setup movieView
-        
-        //Add tap gesture to movieView for play/pause
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(VideoPlayerController.movieViewTapped(_:)))
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(movieViewTapped(_:)))
         self.videoView.addGestureRecognizer(gesture)
         
     }
@@ -49,33 +41,16 @@
         
         let url = playItem.url
         
-        if url == nil {
-            print("Invalid URL")
-            return
-        }
-        
         let media = VLCMedia(url: url)
-        
-        // Set media options
-        // https://wiki.videolan.org/VLC_command-line_help
-        //media.addOptions([
-        //    "network-caching": 300
-        //])
-        
         mediaPlayer.media = media
         
         mediaPlayer.delegate = self
         mediaPlayer.drawable = self.videoView
-        
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
     
     @objc func rotated() {
         
-        let orientation = UIDevice.current.orientation
+//        let orientation = UIDevice.current.orientation
         
         //        if (UIDeviceOrientationIsLandscape(orientation)) {
         //            print("Switched to landscape")
@@ -110,6 +85,11 @@
         self.dismiss(animated: true, completion: nil)
     }
     
+    
+    deinit {
+        print("deinit")
+//        mediaPlayer.stop()
+    }
  }
  
  
