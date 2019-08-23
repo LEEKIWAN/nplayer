@@ -9,12 +9,16 @@
 import Foundation
 import AVFoundation
 
-class VideoDetailViewController: UIViewController {
+class VideoDetailViewController: UIViewController, VideoViewDelegate {
+    var shouldHideHomeBarIndicator = false
     
     var data: FileObject?
     
     var mediaPlayer: VLCMediaPlayer = VLCMediaPlayer()
     let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+    
+//    let videoView = VideoView(frame: (self.navigationController?.view.window!.bounds)!)
+    var videoView: VideoView!
     
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var thumbnailImageView: UIImageView!
@@ -32,11 +36,17 @@ class VideoDetailViewController: UIViewController {
     }
     
     
+    override var prefersHomeIndicatorAutoHidden: Bool {
+        return shouldHideHomeBarIndicator
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let data = data else {
             return
         }
+        
+        self.navigationController?.navigationBar.isTranslucent = false;
         
         titleLabel.text = "\(data.fileName).\(data.extension)"
         thumbnailImageView.image = data.thumbnailImage
@@ -74,6 +84,11 @@ class VideoDetailViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         blurView.frame = backgroundImageView.bounds
+        
+        if let videoView = videoView {
+            videoView.frame = (self.navigationController?.view.window?.bounds)!
+        }
+        
     }
     
     //MARK: - UI
@@ -98,9 +113,42 @@ class VideoDetailViewController: UIViewController {
         backgroundImageView.addSubview(blurView)
     }
     
-    //MARK: - Event
+    func setPrefersHomeIndicator(autoHidden: Bool) {
+        self.shouldHideHomeBarIndicator = autoHidden
+        self.setNeedsUpdateOfHomeIndicatorAutoHidden()
+    }
+    
+    //MARK: - Event     - 플레이
     
     @IBAction func onPlayTouched(_ sender: UIButton) {
+//        let value = UIInterfaceOrientation.landscapeRight.rawValue
+//        UIDevice.current.setValue(value, forKey: "orientation")
+        
+        videoView = VideoView(frame: (self.navigationController?.view.window!.bounds)!)
+        videoView.delegate = self
+        videoView.setPlayItem(item: data!)
+        
+        videoView.alpha = 0
+        UIView.animate(withDuration: 0.2, delay: 0.1, animations: {
+            self.videoView.alpha = 1
+            self.navigationController?.view.window?.addSubview(self.videoView)
+        }) { (completion) in
+//            AppUtility.lockOrientation(.landscape)
+            self.setPrefersHomeIndicator(autoHidden: true)
+        }
+    }
+    
+    //MARK: - VideoViewDelegate     - 클로즈
+    func videoViewDidClosed(videoView: VideoView) {
+//        AppUtility.lockOrientation(.all)
+//        let value = UIInterfaceOrientation.portrait.rawValue
+//        UIDevice.current.setValue(value, forKey: "orientation")
+        
+        self.setPrefersHomeIndicator(autoHidden: false)
+    }
+
+    
+    func videoViewDidPlayed(videoView: VideoView) {
         
     }
     

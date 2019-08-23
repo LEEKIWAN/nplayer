@@ -14,66 +14,66 @@ import MediaPlayer
 
 class PlayViewController: UIViewController {
 
-    var playItem: FileObject!
-    
-    @IBOutlet weak var videoView: VideoView!
-    
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
-    //MARK: - Life Cycle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        guard let playItem = playItem else { return }
-        
-        let asset = AVAsset(url: playItem.url)
-        let item = AVPlayerItem(asset: asset)       
-        videoView.configure(playerItem: item)
-    }
-    
-
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        NotificationCenter.default.addObserver(self, selector: #selector(applicationdidEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(applicationwillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+//    var playItem: FileObject!
+//    
+//    @IBOutlet weak var videoView: VideoView!
+//    
+//    
+//    override var preferredStatusBarStyle: UIStatusBarStyle {
+//        return .lightContent
+//    }
+//    
+//    //MARK: - Life Cycle
+//    
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        guard let playItem = playItem else { return }
+//        
+//        let asset = AVAsset(url: playItem.url)
+//        let item = AVPlayerItem(asset: asset)       
+//        videoView.configure(playerItem: item)
+//    }
+//    
 //
+////    override func viewWillAppear(_ animated: Bool) {
+////        super.viewWillAppear(animated)
+////        NotificationCenter.default.addObserver(self, selector: #selector(applicationdidEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
+////        NotificationCenter.default.addObserver(self, selector: #selector(applicationwillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+////
+////    }
+////
+////    override func viewWillDisappear(_ animated: Bool) {
+////        super.viewWillDisappear(animated)
+////        NotificationCenter.default.removeObserver(self, name: UIApplication.didEnterBackgroundNotification, object: nil)
+////        NotificationCenter.default.removeObserver(self, name: UIApplication.willEnterForegroundNotification, object: nil)
+////    }
+//    
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        videoView.play()
 //    }
 //
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(animated)
-//        NotificationCenter.default.removeObserver(self, name: UIApplication.didEnterBackgroundNotification, object: nil)
-//        NotificationCenter.default.removeObserver(self, name: UIApplication.willEnterForegroundNotification, object: nil)
+//    // MARK: - Func
+//    
+//    func getAudioAssetFrom(asset: AVAsset) -> AVAsset {
+//        let assetTracks = asset.tracks
+//        var audio: AVAssetTrack? = nil
+//
+//        for track in assetTracks {
+//            if track.mediaType == .audio {
+//                audio = track
+//            }
+//        }
+//        
+//        let composition = AVMutableComposition()
+//        let compositionTrack = composition.addMutableTrack(withMediaType: audio!.mediaType, preferredTrackID: kCMPersistentTrackID_Invalid)
+//
+//        try! compositionTrack?.insertTimeRange(CMTimeRange(start: .zero, duration: asset.duration), of: audio!, at: .zero)
+//
+//        
+//        return composition
 //    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        videoView.play()
-    }
-
-    // MARK: - Func
-    
-    func getAudioAssetFrom(asset: AVAsset) -> AVAsset {
-        let assetTracks = asset.tracks
-        var audio: AVAssetTrack? = nil
-
-        for track in assetTracks {
-            if track.mediaType == .audio {
-                audio = track
-            }
-        }
-        
-        let composition = AVMutableComposition()
-        let compositionTrack = composition.addMutableTrack(withMediaType: audio!.mediaType, preferredTrackID: kCMPersistentTrackID_Invalid)
-
-        try! compositionTrack?.insertTimeRange(CMTimeRange(start: .zero, duration: asset.duration), of: audio!, at: .zero)
-
-        
-        return composition
-    }
-    
+//    
     //MARK: - Background & Foreground
 
     
@@ -124,11 +124,11 @@ class PlayViewController: UIViewController {
 
     
     //MARK: - Event
-    @IBAction func onCloseTouched(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
-        
-        videoView.stop()
-    }
+//    @IBAction func onCloseTouched(_ sender: UIButton) {
+//        self.dismiss(animated: true, completion: nil)
+//
+//        videoView.stop()
+//    }
     
     
     

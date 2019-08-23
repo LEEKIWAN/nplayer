@@ -10,9 +10,6 @@ import Foundation
 
 extension String {
 
-    
-    
-    
     func fileName() -> String {
         return NSURL(fileURLWithPath: self).deletingPathExtension?.lastPathComponent ?? ""
     }
@@ -60,6 +57,7 @@ extension String {
         }
         
     }
+    
     
 }
 
