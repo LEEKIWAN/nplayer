@@ -19,6 +19,7 @@
 		8327B07722F3CF4B00D31C84 /* VideoPlayerController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8327B07622F3CF4B00D31C84 /* VideoPlayerController.storyboard */; };
 		8327B07922F3CF6700D31C84 /* VideoPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8327B07822F3CF6700D31C84 /* VideoPlayerController.swift */; };
 		8327B07B22F4045300D31C84 /* PlayerSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8327B07A22F4045200D31C84 /* PlayerSlider.swift */; };
+		832925902310F4DD009BE3D4 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8329258F2310F4DD009BE3D4 /* Toast.swift */; };
 		8330BB3F22EA7EB60038FAE9 /* FileListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8330BB3E22EA7EB60038FAE9 /* FileListViewController.storyboard */; };
 		8330BB4122EA7ECB0038FAE9 /* FileListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330BB4022EA7ECB0038FAE9 /* FileListViewController.swift */; };
 		8330BB4422EA80C50038FAE9 /* FileItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330BB4322EA80C50038FAE9 /* FileItemTableViewCell.swift */; };
@@ -70,6 +71,7 @@
 		8327B07622F3CF4B00D31C84 /* VideoPlayerController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = VideoPlayerController.storyboard; sourceTree = "<group>"; };
 		8327B07822F3CF6700D31C84 /* VideoPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerController.swift; sourceTree = "<group>"; };
 		8327B07A22F4045200D31C84 /* PlayerSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSlider.swift; sourceTree = "<group>"; };
+		8329258F2310F4DD009BE3D4 /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		8330BB3E22EA7EB60038FAE9 /* FileListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FileListViewController.storyboard; sourceTree = "<group>"; };
 		8330BB4022EA7ECB0038FAE9 /* FileListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileListViewController.swift; sourceTree = "<group>"; };
 		8330BB4322EA80C50038FAE9 /* FileItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileItemTableViewCell.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				83668D4422EEAE2D003C918B /* SwiftyGif */,
 				83945D452306359200B7987B /* DirectoryMonitor.swift */,
 				83EE1179230D2E300030A24E /* AppUtility.swift */,
+				8329258F2310F4DD009BE3D4 /* Toast.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -446,6 +449,7 @@
 				839E119322CC96FC0096E43C /* VideoControllerView.swift in Sources */,
 				8361C6C622EEE40B006ECF31 /* String+.swift in Sources */,
 				8327B07122F2B33200D31C84 /* PlayerUtils.swift in Sources */,
+				832925902310F4DD009BE3D4 /* Toast.swift in Sources */,
 				8311BD13230FD8950004E891 /* VideoAspectRatio.swift in Sources */,
 				833CD49122F267BB00617F63 /* TextViewerController.swift in Sources */,
 				83668D4022EE9147003C918B /* PlayMode.swift in Sources */,

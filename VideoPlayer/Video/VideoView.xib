@@ -16,9 +16,12 @@
                 <outlet property="controllerView" destination="ChQ-Hd-6Y1" id="XuR-md-pCq"/>
                 <outlet property="currentDurationLabel" destination="hcc-5w-g0Z" id="JXe-nn-pf3"/>
                 <outlet property="doubleTapGestureRecognizer" destination="jgz-RX-hOj" id="fRc-FG-5wd"/>
+                <outlet property="normalSpeedButton" destination="bif-pA-ngo" id="m7U-K3-bKq"/>
                 <outlet property="panGestureRecognizer" destination="fAY-VL-tSi" id="CHW-VX-RYh"/>
                 <outlet property="pauseButton" destination="8hl-4c-nbe" id="rry-zz-Ipl"/>
                 <outlet property="playButton" destination="7CI-kH-BCs" id="EM4-Sf-HhR"/>
+                <outlet property="playSpeedDownButton" destination="5p8-3F-Z5F" id="Ae9-nq-y5J"/>
+                <outlet property="playSpeedUpButton" destination="Vpc-fw-V7m" id="bIo-Uv-e1v"/>
                 <outlet property="screenRatioButton" destination="nbm-ar-NR2" id="fC9-4j-Jsv"/>
                 <outlet property="singleTapGestureRecognizer" destination="U7D-Cu-s5k" id="96L-3w-8sL"/>
                 <outlet property="skipBackwardButton" destination="YXf-N5-4F0" id="Zae-Ni-h6u"/>
@@ -31,18 +34,18 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="236"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="393"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aad-b1-ZbY">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="236"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="393"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
                         <outletCollection property="gestureRecognizers" destination="T86-ZE-61a" appends="YES" id="lPg-UW-Ypg"/>
                     </connections>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ChQ-Hd-6Y1">
-                    <rect key="frame" x="0.0" y="44" width="414" height="158"/>
+                    <rect key="frame" x="0.0" y="44" width="414" height="315"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bgd-G2-7f8" userLabel="Top View">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
@@ -60,7 +63,7 @@
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hcc-5w-g0Z">
-                                    <rect key="frame" x="40" y="12.5" width="50" height="15"/>
+                                    <rect key="frame" x="40" y="13" width="50" height="14.5"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="50" id="J5o-eJ-7Yz"/>
                                     </constraints>
@@ -69,7 +72,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FeA-1U-skI">
-                                    <rect key="frame" x="351" y="12.5" width="50" height="15"/>
+                                    <rect key="frame" x="351" y="13" width="50" height="14.5"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="50" id="vq2-Qz-iVE"/>
                                     </constraints>
@@ -103,7 +106,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ftS-zR-Dqv" userLabel="Bottom View">
-                            <rect key="frame" x="0.0" y="118" width="414" height="40"/>
+                            <rect key="frame" x="0.0" y="275" width="414" height="40"/>
                             <subviews>
                                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7CI-kH-BCs">
                                     <rect key="frame" x="186" y="0.0" width="42" height="40"/>
@@ -172,9 +175,61 @@
                                 <constraint firstAttribute="trailing" secondItem="nbm-ar-NR2" secondAttribute="trailing" id="vjF-qS-3vv"/>
                             </constraints>
                         </view>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="jPR-UU-UGQ">
+                            <rect key="frame" x="368" y="98" width="33" height="119"/>
+                            <subviews>
+                                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vpc-fw-V7m">
+                                    <rect key="frame" x="0.0" y="0.0" width="33" height="33"/>
+                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="Vpc-fw-V7m" secondAttribute="height" id="YRh-rR-BGN"/>
+                                    </constraints>
+                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <inset key="imageEdgeInsets" minX="7" minY="7" maxX="7" maxY="7"/>
+                                    <state key="normal" image="up"/>
+                                    <connections>
+                                        <action selector="onPlaySpeedUpTouched:" destination="-1" eventType="touchUpInside" id="lOr-CU-TmK"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bif-pA-ngo">
+                                    <rect key="frame" x="0.0" y="43" width="33" height="33"/>
+                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="33" id="uUV-Ed-YIa"/>
+                                        <constraint firstAttribute="width" secondItem="bif-pA-ngo" secondAttribute="height" id="w7r-e9-RYi"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <state key="normal" title="1.0">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="onNormalSpeedTouched:" destination="-1" eventType="touchUpInside" id="nWL-dD-PKv"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5p8-3F-Z5F">
+                                    <rect key="frame" x="0.0" y="86" width="33" height="33"/>
+                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="5p8-3F-Z5F" secondAttribute="height" id="QD0-Z3-n8p"/>
+                                    </constraints>
+                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <inset key="imageEdgeInsets" minX="7" minY="7" maxX="7" maxY="7"/>
+                                    <state key="normal" title="1.0" image="down"/>
+                                    <connections>
+                                        <action selector="onPlaySpeedDownTouched:" destination="-1" eventType="touchUpInside" id="XAe-dR-fN1"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="Vpc-fw-V7m" firstAttribute="width" secondItem="Vpc-fw-V7m" secondAttribute="height" id="7Jt-fr-rJk"/>
+                                <constraint firstItem="5p8-3F-Z5F" firstAttribute="width" secondItem="5p8-3F-Z5F" secondAttribute="height" id="r72-qh-qPg"/>
+                            </constraints>
+                        </stackView>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="jPR-UU-UGQ" secondAttribute="trailing" constant="13" id="0vb-hm-WyB"/>
+                        <constraint firstItem="jPR-UU-UGQ" firstAttribute="centerY" secondItem="ChQ-Hd-6Y1" secondAttribute="centerY" id="EfF-se-rGG"/>
                         <constraint firstAttribute="trailing" secondItem="bgd-G2-7f8" secondAttribute="trailing" id="I7v-Uc-pYM"/>
                         <constraint firstAttribute="bottom" secondItem="ftS-zR-Dqv" secondAttribute="bottom" id="Nr2-MU-bdU"/>
                         <constraint firstItem="bgd-G2-7f8" firstAttribute="leading" secondItem="ChQ-Hd-6Y1" secondAttribute="leading" id="QOr-ao-cWq"/>
@@ -204,7 +259,7 @@
                 <outletCollection property="gestureRecognizers" destination="fAY-VL-tSi" appends="YES" id="4ku-4U-JQo"/>
                 <outletCollection property="gestureRecognizers" destination="jgz-RX-hOj" appends="YES" id="4YL-O9-XHS"/>
             </connections>
-            <point key="canvasLocation" x="47.826086956521742" y="256.47321428571428"/>
+            <point key="canvasLocation" x="47.826086956521742" y="309.04017857142856"/>
         </view>
         <tapGestureRecognizer id="U7D-Cu-s5k">
             <connections>
@@ -235,8 +290,10 @@
         <image name="VGPlayer_ic_pause" width="31" height="50"/>
         <image name="VGPlayer_ic_play" width="42" height="50"/>
         <image name="close" width="30" height="30"/>
+        <image name="down" width="40" height="40"/>
         <image name="fastforward-1" width="48" height="48"/>
         <image name="fullscreen-1" width="30" height="30"/>
         <image name="rewind-1" width="48" height="48"/>
+        <image name="up" width="40" height="40"/>
     </resources>
 </document>

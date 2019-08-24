@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MediaPlayer
 
 protocol VideoViewDelegate: class {
     func videoViewDidClosed(videoView: VideoView)
@@ -22,6 +23,7 @@ class VideoView: UIView {
     
     var mediaPlayer: VLCMediaPlayer = VLCMediaPlayer(options: ["-vvvv"])
     
+    var playSpeedRate: Float = 1.0
     
     
     @IBOutlet weak var videoView: UIView!
@@ -42,17 +44,25 @@ class VideoView: UIView {
     @IBOutlet weak var skipForwardButton: UIButton!
     @IBOutlet weak var screenRatioButton: UIButton!
     
-
+    var volumeSlider : UISlider?
+    
+    // speed
+    @IBOutlet weak var playSpeedUpButton: UIButton!
+    @IBOutlet weak var normalSpeedButton: UIButton!
+    @IBOutlet weak var playSpeedDownButton: UIButton!
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setNib()
+        setUI()
         setEvent()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setNib()
+        setUI()
         setEvent()
     }
     
@@ -60,6 +70,12 @@ class VideoView: UIView {
         let view = Bundle.main.loadNibNamed("VideoView", owner: self, options: nil)?.first as! UIView
         view.frame = self.bounds
         self.addSubview(view)
+    }
+    
+    func setUI() {
+        playSpeedUpButton.layer.cornerRadius = playSpeedUpButton.bounds.height / 2
+        normalSpeedButton.layer.cornerRadius = normalSpeedButton.bounds.height / 2
+        playSpeedDownButton.layer.cornerRadius = playSpeedDownButton.bounds.height / 2
     }
     
     func setEvent() {
@@ -73,8 +89,17 @@ class VideoView: UIView {
         mediaPlayer.media = playItem.vlcMedia!
         mediaPlayer.delegate = self
         mediaPlayer.drawable = videoView
+        
+        configurationVolumeSlider()
         setupTimer()
         play()
+    }
+    
+    internal func configurationVolumeSlider() {
+        let volumeView = MPVolumeView()
+        if let view = volumeView.subviews.first as? UISlider {
+            volumeSlider = view
+        }
     }
     
     
@@ -166,18 +191,25 @@ class VideoView: UIView {
     
     @IBOutlet var panGestureRecognizer: UIPanGestureRecognizer!
     var panGestureDirection: GestureDirection = .horizontal
+    var isVolumeAreaTouched : Bool = false
+    
     
     @IBAction func onPanGesture(_ gesture: UIPanGestureRecognizer) {
-        let translation = gesture.translation(in: self)
-//        let location = gesture.location(in: self)
-//        let velocity = gesture.velocity(in: self)
+//        let translation = gesture.translation(in: self)
+        let location = gesture.location(in: self)
+        let velocity = gesture.velocity(in: self)
+        
+        print(location)
         
         switch gesture.state {
         case .began:
-            let x = abs(translation.x)
-            let y = abs(translation.y)
-
-            if x < y {
+            if abs(Float(velocity.y)) > abs(Float(velocity.x)) {
+                if location.x > bounds.width / 2 {
+                    isVolumeAreaTouched = true
+                } else {
+                    isVolumeAreaTouched = false
+                }
+                
                 panGestureDirection = .vertical
             }
             else {
@@ -197,21 +229,15 @@ class VideoView: UIView {
                 play()
                 panGestureRecognizer.isEnabled = false
                 panGestureRecognizer.isEnabled = true
-                
             }
             else {
-                if direction == .Down {
-                    print("down")
-                }
-                else if direction == .Up {
-                    print("up")
-                }
+                isVolumeAreaTouched ? (volumeSlider!.value -= Float(velocity.y / 10000)) : (UIScreen.main.brightness -= velocity.y / 10000)
             }
         default:
             break
         }
     }
-    
+
     deinit {
         print("deinit")
     }
@@ -312,6 +338,33 @@ extension VideoView: VLCMediaPlayerDelegate {
                 self.onCloseTouched(self.closeButton)
             }
         }
+    }
+    
+}
+
+// MARK: - Play Speed Control
+extension VideoView {
+    @IBAction func onPlaySpeedUpTouched(_ sender: UIButton) {
+        if playSpeedRate >= 4.0 {
+            return
+        }
+        playSpeedRate += 0.1
+        mediaPlayer.fastForward(atRate: playSpeedRate)
+        normalSpeedButton.setTitle("\(playSpeedRate)", for: .normal)
+    }
+    
+    @IBAction func onNormalSpeedTouched(_ sender: UIButton) {
+        mediaPlayer.fastForward(atRate: 1.0)
+        normalSpeedButton.setTitle("\(playSpeedRate)", for: .normal)
+    }
+    
+    @IBAction func onPlaySpeedDownTouched(_ sender: UIButton) {
+        if playSpeedRate <= 0.1 {
+            return
+        }
+        playSpeedRate -= 0.1
+        mediaPlayer.fastForward(atRate: playSpeedRate)
+        normalSpeedButton.setTitle("\(playSpeedRate)", for: .normal)
     }
     
 }

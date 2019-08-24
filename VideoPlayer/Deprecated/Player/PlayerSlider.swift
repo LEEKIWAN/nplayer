@@ -49,7 +49,9 @@ open class PlayerSlider: UISlider {
         minimumValue = 0.0
         value = 0.0
         maximumTrackTintColor = UIColor.clear
-        minimumTrackTintColor = UIColor.white
+//        minimumTrackTintColor = UIColor.white
+        minimumTrackTintColor = UIColor(hexFromString: "#2D7FC1")
+        
         
         let thumbImage = UIImage(named: "VGPlayer_ic_slider_thumb")
         let normalThumbImage = PlayerUtils.imageSize(image: thumbImage!, scaledToSize: CGSize(width: 15, height: 15))
@@ -58,6 +60,7 @@ open class PlayerSlider: UISlider {
         setThumbImage(highlightedThumbImage, for: .highlighted)
         
         backgroundColor = UIColor.clear
+        
         progressView.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.7988548801)
         progressView.trackTintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.2964201627)
     }
