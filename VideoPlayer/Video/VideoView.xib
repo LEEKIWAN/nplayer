@@ -12,10 +12,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VideoView" customModule="VideoPlayer" customModuleProvider="target">
             <connections>
+                <outlet property="brightnessSettingBoundsView" destination="lNZ-jO-pH3" id="v8F-t7-hae"/>
                 <outlet property="closeButton" destination="3pl-VL-ESx" id="LeJ-Ob-B5P"/>
                 <outlet property="controllerView" destination="ChQ-Hd-6Y1" id="XuR-md-pCq"/>
                 <outlet property="currentDurationLabel" destination="hcc-5w-g0Z" id="JXe-nn-pf3"/>
-                <outlet property="doubleTapGestureRecognizer" destination="jgz-RX-hOj" id="fRc-FG-5wd"/>
                 <outlet property="normalSpeedButton" destination="bif-pA-ngo" id="m7U-K3-bKq"/>
                 <outlet property="panGestureRecognizer" destination="fAY-VL-tSi" id="CHW-VX-RYh"/>
                 <outlet property="pauseButton" destination="8hl-4c-nbe" id="rry-zz-Ipl"/>
@@ -47,6 +47,13 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ChQ-Hd-6Y1">
                     <rect key="frame" x="0.0" y="44" width="414" height="315"/>
                     <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lNZ-jO-pH3">
+                            <rect key="frame" x="62" y="75" width="290" height="200"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="200" id="85U-UX-p5l"/>
+                            </constraints>
+                        </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bgd-G2-7f8" userLabel="Top View">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
                             <subviews>
@@ -147,15 +154,30 @@
                                     <constraints>
                                         <constraint firstAttribute="width" constant="40" id="RMs-Re-Dqx"/>
                                     </constraints>
-                                    <state key="normal" image="fullscreen-1"/>
+                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <inset key="imageEdgeInsets" minX="7" minY="7" maxX="7" maxY="7"/>
+                                    <state key="normal" image="baseline_settings_overscan_white_48pt"/>
                                     <connections>
                                         <action selector="onScreenRatioTouched:" destination="-1" eventType="touchUpInside" id="oYZ-TJ-qoI"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HXp-19-myF">
+                                    <rect key="frame" x="334" y="0.0" width="40" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="40" id="yO0-U8-S7U"/>
+                                    </constraints>
+                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <inset key="imageEdgeInsets" minX="7" minY="7" maxX="7" maxY="7"/>
+                                    <state key="normal" image="baseline_settings_brightness_white_48pt"/>
+                                    <connections>
+                                        <action selector="onBrightnessSettingTouched:" destination="-1" eventType="touchUpInside" id="dUF-oZ-R5W"/>
                                     </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" red="0.1333333333" green="0.1333333333" blue="0.1333333333" alpha="0.69539276541095896" colorSpace="custom" customColorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstItem="YXf-N5-4F0" firstAttribute="top" secondItem="ftS-zR-Dqv" secondAttribute="top" id="3BC-Qh-Pdd"/>
+                                <constraint firstItem="nbm-ar-NR2" firstAttribute="leading" secondItem="HXp-19-myF" secondAttribute="trailing" id="4EG-Or-bis"/>
                                 <constraint firstItem="7CI-kH-BCs" firstAttribute="centerX" secondItem="ftS-zR-Dqv" secondAttribute="centerX" id="8Yh-fd-AT5"/>
                                 <constraint firstItem="7CI-kH-BCs" firstAttribute="top" secondItem="ftS-zR-Dqv" secondAttribute="top" id="FB0-VE-lqN"/>
                                 <constraint firstAttribute="bottom" secondItem="YXf-N5-4F0" secondAttribute="bottom" id="IaD-gv-u1x"/>
@@ -165,21 +187,23 @@
                                 <constraint firstAttribute="bottom" secondItem="7CI-kH-BCs" secondAttribute="bottom" id="Qzg-yj-0GW"/>
                                 <constraint firstItem="7CI-kH-BCs" firstAttribute="centerY" secondItem="ftS-zR-Dqv" secondAttribute="centerY" id="S88-bV-ktI"/>
                                 <constraint firstItem="7CI-kH-BCs" firstAttribute="leading" secondItem="8hl-4c-nbe" secondAttribute="leading" id="T5B-OB-n32"/>
+                                <constraint firstItem="HXp-19-myF" firstAttribute="top" secondItem="ftS-zR-Dqv" secondAttribute="top" id="YZc-H6-ted"/>
                                 <constraint firstItem="OqO-tP-WkO" firstAttribute="top" secondItem="ftS-zR-Dqv" secondAttribute="top" id="b1e-8H-Yrh"/>
                                 <constraint firstAttribute="bottom" secondItem="OqO-tP-WkO" secondAttribute="bottom" id="cfZ-yO-Ady"/>
                                 <constraint firstItem="7CI-kH-BCs" firstAttribute="leading" secondItem="YXf-N5-4F0" secondAttribute="trailing" id="dWe-wu-nMf"/>
                                 <constraint firstItem="7CI-kH-BCs" firstAttribute="bottom" secondItem="8hl-4c-nbe" secondAttribute="bottom" id="ek9-eg-fty"/>
+                                <constraint firstAttribute="bottom" secondItem="HXp-19-myF" secondAttribute="bottom" id="fec-0K-3Yp"/>
                                 <constraint firstAttribute="bottom" secondItem="nbm-ar-NR2" secondAttribute="bottom" id="hsR-pz-asi"/>
                                 <constraint firstItem="7CI-kH-BCs" firstAttribute="top" secondItem="8hl-4c-nbe" secondAttribute="top" id="kfu-ZE-WeP"/>
                                 <constraint firstItem="nbm-ar-NR2" firstAttribute="top" secondItem="ftS-zR-Dqv" secondAttribute="top" id="lfz-iC-wxl"/>
                                 <constraint firstAttribute="trailing" secondItem="nbm-ar-NR2" secondAttribute="trailing" id="vjF-qS-3vv"/>
                             </constraints>
                         </view>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="jPR-UU-UGQ">
-                            <rect key="frame" x="368" y="98" width="33" height="119"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="jPR-UU-UGQ">
+                            <rect key="frame" x="364" y="88" width="37" height="139"/>
                             <subviews>
                                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vpc-fw-V7m">
-                                    <rect key="frame" x="0.0" y="0.0" width="33" height="33"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="37" height="37"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="Vpc-fw-V7m" secondAttribute="height" id="YRh-rR-BGN"/>
@@ -192,10 +216,10 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bif-pA-ngo">
-                                    <rect key="frame" x="0.0" y="43" width="33" height="33"/>
+                                    <rect key="frame" x="0.0" y="51" width="37" height="37"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="33" id="uUV-Ed-YIa"/>
+                                        <constraint firstAttribute="width" constant="37" id="uUV-Ed-YIa"/>
                                         <constraint firstAttribute="width" secondItem="bif-pA-ngo" secondAttribute="height" id="w7r-e9-RYi"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -207,7 +231,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5p8-3F-Z5F">
-                                    <rect key="frame" x="0.0" y="86" width="33" height="33"/>
+                                    <rect key="frame" x="0.0" y="102" width="37" height="37"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="5p8-3F-Z5F" secondAttribute="height" id="QD0-Z3-n8p"/>
@@ -231,11 +255,14 @@
                         <constraint firstAttribute="trailing" secondItem="jPR-UU-UGQ" secondAttribute="trailing" constant="13" id="0vb-hm-WyB"/>
                         <constraint firstItem="jPR-UU-UGQ" firstAttribute="centerY" secondItem="ChQ-Hd-6Y1" secondAttribute="centerY" id="EfF-se-rGG"/>
                         <constraint firstAttribute="trailing" secondItem="bgd-G2-7f8" secondAttribute="trailing" id="I7v-Uc-pYM"/>
+                        <constraint firstItem="ftS-zR-Dqv" firstAttribute="top" secondItem="lNZ-jO-pH3" secondAttribute="bottom" id="MdC-IH-uSh"/>
                         <constraint firstAttribute="bottom" secondItem="ftS-zR-Dqv" secondAttribute="bottom" id="Nr2-MU-bdU"/>
                         <constraint firstItem="bgd-G2-7f8" firstAttribute="leading" secondItem="ChQ-Hd-6Y1" secondAttribute="leading" id="QOr-ao-cWq"/>
                         <constraint firstAttribute="trailing" secondItem="ftS-zR-Dqv" secondAttribute="trailing" id="XNb-Iu-Yps"/>
+                        <constraint firstItem="lNZ-jO-pH3" firstAttribute="centerX" secondItem="ChQ-Hd-6Y1" secondAttribute="centerX" id="XvU-uD-ubq"/>
                         <constraint firstItem="ftS-zR-Dqv" firstAttribute="leading" secondItem="ChQ-Hd-6Y1" secondAttribute="leading" id="ek7-AB-GLd"/>
                         <constraint firstItem="bgd-G2-7f8" firstAttribute="top" secondItem="ChQ-Hd-6Y1" secondAttribute="top" id="gN4-3l-gt4"/>
+                        <constraint firstItem="lNZ-jO-pH3" firstAttribute="width" secondItem="ChQ-Hd-6Y1" secondAttribute="width" multiplier="0.7" id="hct-av-Bnc"/>
                     </constraints>
                     <connections>
                         <outletCollection property="gestureRecognizers" destination="U7D-Cu-s5k" appends="YES" id="UgL-Oq-cd7"/>
@@ -257,7 +284,6 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outletCollection property="gestureRecognizers" destination="fAY-VL-tSi" appends="YES" id="4ku-4U-JQo"/>
-                <outletCollection property="gestureRecognizers" destination="jgz-RX-hOj" appends="YES" id="4YL-O9-XHS"/>
             </connections>
             <point key="canvasLocation" x="47.826086956521742" y="309.04017857142856"/>
         </view>
@@ -273,12 +299,7 @@
                 <outlet property="delegate" destination="aad-b1-ZbY" id="7XN-cs-pPU"/>
             </connections>
         </tapGestureRecognizer>
-        <tapGestureRecognizer numberOfTapsRequired="2" id="jgz-RX-hOj">
-            <connections>
-                <action selector="onDoubleTapGesture:" destination="-1" id="PpP-AG-MAg"/>
-                <outlet property="delegate" destination="iN0-l3-epB" id="H0c-w8-6yc"/>
-            </connections>
-        </tapGestureRecognizer>
+        <tapGestureRecognizer numberOfTapsRequired="2" id="jgz-RX-hOj"/>
         <panGestureRecognizer minimumNumberOfTouches="1" id="fAY-VL-tSi">
             <connections>
                 <action selector="onPanGesture:" destination="-1" id="j4f-8l-iKv"/>
@@ -289,10 +310,11 @@
     <resources>
         <image name="VGPlayer_ic_pause" width="31" height="50"/>
         <image name="VGPlayer_ic_play" width="42" height="50"/>
+        <image name="baseline_settings_brightness_white_48pt" width="48" height="48"/>
+        <image name="baseline_settings_overscan_white_48pt" width="48" height="48"/>
         <image name="close" width="30" height="30"/>
         <image name="down" width="40" height="40"/>
         <image name="fastforward-1" width="48" height="48"/>
-        <image name="fullscreen-1" width="30" height="30"/>
         <image name="rewind-1" width="48" height="48"/>
         <image name="up" width="40" height="40"/>
     </resources>

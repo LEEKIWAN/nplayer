@@ -46,6 +46,15 @@ class VideoView: UIView {
     
     var volumeSlider : UISlider?
     
+    @IBOutlet weak var brightnessSettingBoundsView: UIView!
+    
+    lazy var brightnessSettingView: BrightnessSettingView = {
+        let settingView = BrightnessSettingView(frame: self.brightnessSettingBoundsView.bounds)
+        settingView.delegate = self
+        return settingView
+    }()
+    
+    
     // speed
     @IBOutlet weak var playSpeedUpButton: UIButton!
     @IBOutlet weak var normalSpeedButton: UIButton!
@@ -79,8 +88,9 @@ class VideoView: UIView {
     }
     
     func setEvent() {
-        singleTapGestureRecognizer.require(toFail: doubleTapGestureRecognizer)
-        videoSingleTapGestureRecognizer.require(toFail: doubleTapGestureRecognizer)
+        panGestureRecognizer.delegate = self
+//        singleTapGestureRecognizer.require(toFail: doubleTapGestureRecognizer)
+//        videoSingleTapGestureRecognizer.require(toFail: doubleTapGestureRecognizer)
         
     }
     
@@ -147,6 +157,12 @@ class VideoView: UIView {
         self.mediaPlayerTimeChanged(nil)
     }
     
+    
+    @IBAction func onBrightnessSettingTouched(_ sender: UIButton) {
+        brightnessSettingBoundsView.addSubview(brightnessSettingView)
+    }
+    
+    
     @IBAction func onScreenRatioTouched(_ sender: UIButton) {
         switch currentAspectRatio {
         case .aspectFit:
@@ -198,8 +214,6 @@ class VideoView: UIView {
 //        let translation = gesture.translation(in: self)
         let location = gesture.location(in: self)
         let velocity = gesture.velocity(in: self)
-        
-        print(location)
         
         switch gesture.state {
         case .began:
@@ -348,23 +362,75 @@ extension VideoView {
         if playSpeedRate >= 4.0 {
             return
         }
-        playSpeedRate += 0.1
+        playSpeedRate = Float(String(format: "%.1f", playSpeedRate + 0.1))!
         mediaPlayer.fastForward(atRate: playSpeedRate)
-        normalSpeedButton.setTitle("\(playSpeedRate)", for: .normal)
+        normalSpeedButton.setTitle(String(format: "%.1f", playSpeedRate), for: .normal)
+        setupTimer()
     }
     
     @IBAction func onNormalSpeedTouched(_ sender: UIButton) {
+        playSpeedRate = 1.0
         mediaPlayer.fastForward(atRate: 1.0)
-        normalSpeedButton.setTitle("\(playSpeedRate)", for: .normal)
+        normalSpeedButton.setTitle(String(format: "%.1f", playSpeedRate), for: .normal)
+        setupTimer()
     }
     
     @IBAction func onPlaySpeedDownTouched(_ sender: UIButton) {
         if playSpeedRate <= 0.1 {
             return
         }
-        playSpeedRate -= 0.1
+        playSpeedRate = Float(String(format: "%.1f", playSpeedRate - 0.1))!
         mediaPlayer.fastForward(atRate: playSpeedRate)
-        normalSpeedButton.setTitle("\(playSpeedRate)", for: .normal)
+        normalSpeedButton.setTitle(String(format: "%.1f", playSpeedRate), for: .normal)
+        setupTimer()
     }
     
+}
+
+
+extension VideoView: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        var isDrawableView = false
+        
+        let drawableView = mediaPlayer.drawable as! UIView
+        for view in drawableView.subviews {
+            if touch.view! == view {
+                isDrawableView = true
+                break
+            }
+        }
+        
+        return touch.view! == controllerView || isDrawableView
+    }
+
+    
+}
+
+extension VideoView: BrightnessSliderDelegate {
+    func onSliderTouchDown(view: BrightnessSettingView, slider: UISlider) {
+        controlViewTimer.invalidate()
+    }
+    
+    func onSliderValuedChanged(view: BrightnessSettingView, slider: UISlider) {
+        controlViewTimer.invalidate()
+
+        switch slider.tag {
+        case SliderType.brightness.rawValue:
+            mediaPlayer.brightness = slider.value
+        case SliderType.contrast.rawValue:
+            mediaPlayer.contrast = slider.value
+        case SliderType.hue.rawValue:
+            mediaPlayer.hue = slider.value
+        case SliderType.saturation.rawValue:
+            mediaPlayer.saturation = slider.value
+        case SliderType.gamma.rawValue:
+            mediaPlayer.gamma = slider.value
+        default:
+            break
+        }
+    }
+    
+    func onSliderTouchUpInside(view: BrightnessSettingView, slider: UISlider) {
+        setupTimer()
+    }
 }

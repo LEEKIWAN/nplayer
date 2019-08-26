@@ -20,6 +20,8 @@
 		8327B07922F3CF6700D31C84 /* VideoPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8327B07822F3CF6700D31C84 /* VideoPlayerController.swift */; };
 		8327B07B22F4045300D31C84 /* PlayerSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8327B07A22F4045200D31C84 /* PlayerSlider.swift */; };
 		832925902310F4DD009BE3D4 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8329258F2310F4DD009BE3D4 /* Toast.swift */; };
+		83292597231256ED009BE3D4 /* BrightnessSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83292595231256ED009BE3D4 /* BrightnessSettingView.swift */; };
+		83292598231256ED009BE3D4 /* BrightnessSettingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83292596231256ED009BE3D4 /* BrightnessSettingView.xib */; };
 		8330BB3F22EA7EB60038FAE9 /* FileListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8330BB3E22EA7EB60038FAE9 /* FileListViewController.storyboard */; };
 		8330BB4122EA7ECB0038FAE9 /* FileListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330BB4022EA7ECB0038FAE9 /* FileListViewController.swift */; };
 		8330BB4422EA80C50038FAE9 /* FileItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330BB4322EA80C50038FAE9 /* FileItemTableViewCell.swift */; };
@@ -72,6 +74,8 @@
 		8327B07822F3CF6700D31C84 /* VideoPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerController.swift; sourceTree = "<group>"; };
 		8327B07A22F4045200D31C84 /* PlayerSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSlider.swift; sourceTree = "<group>"; };
 		8329258F2310F4DD009BE3D4 /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		83292595231256ED009BE3D4 /* BrightnessSettingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrightnessSettingView.swift; sourceTree = "<group>"; };
+		83292596231256ED009BE3D4 /* BrightnessSettingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BrightnessSettingView.xib; sourceTree = "<group>"; };
 		8330BB3E22EA7EB60038FAE9 /* FileListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FileListViewController.storyboard; sourceTree = "<group>"; };
 		8330BB4022EA7ECB0038FAE9 /* FileListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileListViewController.swift; sourceTree = "<group>"; };
 		8330BB4322EA80C50038FAE9 /* FileItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileItemTableViewCell.swift; sourceTree = "<group>"; };
@@ -252,6 +256,8 @@
 			children = (
 				83EE1175230D16C50030A24E /* VideoView.xib */,
 				83EE1177230D1B320030A24E /* VideoView.swift */,
+				83292596231256ED009BE3D4 /* BrightnessSettingView.xib */,
+				83292595231256ED009BE3D4 /* BrightnessSettingView.swift */,
 			);
 			path = Video;
 			sourceTree = "<group>";
@@ -384,6 +390,7 @@
 				8330BB3F22EA7EB60038FAE9 /* FileListViewController.storyboard in Resources */,
 				833CD48F22F2676B00617F63 /* TextViewerController.storyboard in Resources */,
 				839E117922CC84A60096E43C /* PlayViewController.storyboard in Resources */,
+				83292598231256ED009BE3D4 /* BrightnessSettingView.xib in Resources */,
 				8327B07722F3CF4B00D31C84 /* VideoPlayerController.storyboard in Resources */,
 				83EE116F230CCB220030A24E /* VideoDetailViewController.storyboard in Resources */,
 				837F8A3422F1813D005E0822 /* ImageViewerController.storyboard in Resources */,
@@ -450,6 +457,7 @@
 				8361C6C622EEE40B006ECF31 /* String+.swift in Sources */,
 				8327B07122F2B33200D31C84 /* PlayerUtils.swift in Sources */,
 				832925902310F4DD009BE3D4 /* Toast.swift in Sources */,
+				83292597231256ED009BE3D4 /* BrightnessSettingView.swift in Sources */,
 				8311BD13230FD8950004E891 /* VideoAspectRatio.swift in Sources */,
 				833CD49122F267BB00617F63 /* TextViewerController.swift in Sources */,
 				83668D4022EE9147003C918B /* PlayMode.swift in Sources */,
