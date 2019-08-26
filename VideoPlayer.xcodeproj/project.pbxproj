@@ -50,6 +50,8 @@
 		839F9DF222EFC278003AFA0D /* FileType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839F9DF122EFC278003AFA0D /* FileType.swift */; };
 		839F9DF422EFDAEB003AFA0D /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839F9DF322EFDAEB003AFA0D /* UIColor+.swift */; };
 		83A384A222CDC6C1007EA28D /* AVPlayer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A384A122CDC6C1007EA28D /* AVPlayer+.swift */; };
+		83AEA34423139B9600354500 /* PreferenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AEA34323139B9600354500 /* PreferenceManager.swift */; };
+		83AEA3462313ADB700354500 /* UIVIew+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AEA3452313ADB700354500 /* UIVIew+.swift */; };
 		83EE116F230CCB220030A24E /* VideoDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83EE116E230CCB220030A24E /* VideoDetailViewController.storyboard */; };
 		83EE1172230CCB9B0030A24E /* VideoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EE1171230CCB9B0030A24E /* VideoDetailViewController.swift */; };
 		83EE1174230CE38E0030A24E /* FourCharCode+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EE1173230CE38E0030A24E /* FourCharCode+.swift */; };
@@ -106,6 +108,8 @@
 		839F9DF122EFC278003AFA0D /* FileType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FileType.swift; path = VideoPlayer/Common/Extension/FileType.swift; sourceTree = SOURCE_ROOT; };
 		839F9DF322EFDAEB003AFA0D /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		83A384A122CDC6C1007EA28D /* AVPlayer+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVPlayer+.swift"; sourceTree = "<group>"; };
+		83AEA34323139B9600354500 /* PreferenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceManager.swift; sourceTree = "<group>"; };
+		83AEA3452313ADB700354500 /* UIVIew+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIew+.swift"; sourceTree = "<group>"; };
 		83EE116E230CCB220030A24E /* VideoDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = VideoDetailViewController.storyboard; sourceTree = "<group>"; };
 		83EE1171230CCB9B0030A24E /* VideoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailViewController.swift; sourceTree = "<group>"; };
 		83EE1173230CE38E0030A24E /* FourCharCode+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FourCharCode+.swift"; sourceTree = "<group>"; };
@@ -268,6 +272,7 @@
 				8361C6C722EFC15C006ECF31 /* Enum */,
 				83668D4322EEAE27003C918B /* Library */,
 				83A384A022CDC6AD007EA28D /* Extension */,
+				83AEA34323139B9600354500 /* PreferenceManager.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -283,6 +288,7 @@
 				836C8DDF2305095900283583 /* CMTime+.swift */,
 				83EE1173230CE38E0030A24E /* FourCharCode+.swift */,
 				8311BD06230E873D0004E891 /* UIPanGestureRecognizer+.swift */,
+				83AEA3452313ADB700354500 /* UIVIew+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -457,6 +463,7 @@
 				8361C6C622EEE40B006ECF31 /* String+.swift in Sources */,
 				8327B07122F2B33200D31C84 /* PlayerUtils.swift in Sources */,
 				832925902310F4DD009BE3D4 /* Toast.swift in Sources */,
+				83AEA34423139B9600354500 /* PreferenceManager.swift in Sources */,
 				83292597231256ED009BE3D4 /* BrightnessSettingView.swift in Sources */,
 				8311BD13230FD8950004E891 /* VideoAspectRatio.swift in Sources */,
 				833CD49122F267BB00617F63 /* TextViewerController.swift in Sources */,
@@ -464,6 +471,7 @@
 				837F8A3622F18151005E0822 /* ImageViewerController.swift in Sources */,
 				830BF88422FA8E5F00D3D848 /* CustomSlider.swift in Sources */,
 				839E117422CC84A60096E43C /* AppDelegate.swift in Sources */,
+				83AEA3462313ADB700354500 /* UIVIew+.swift in Sources */,
 				839F9DF422EFDAEB003AFA0D /* UIColor+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

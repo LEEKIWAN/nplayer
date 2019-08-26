@@ -21,7 +21,7 @@ protocol BrightnessSliderDelegate: class {
     func onSliderTouchDown(view :BrightnessSettingView, slider: UISlider)
     func onSliderValuedChanged(view :BrightnessSettingView, slider: UISlider)
     func onSliderTouchUpInside(view :BrightnessSettingView, slider: UISlider)
-
+    func onResetTouched(view :BrightnessSettingView)
 }
 
 
@@ -38,6 +38,7 @@ class BrightnessSettingView: UIView {
     @IBOutlet weak var gammaSlider: UISlider!
     
     
+    @IBOutlet weak var resetButton: UIButton!
     override init(frame: CGRect) {
         super.init(frame: frame)
         setNib()
@@ -71,7 +72,8 @@ class BrightnessSettingView: UIView {
         
         brightnessSlider.minimumValue = 0.0
         brightnessSlider.maximumValue = 2.0
-        brightnessSlider.value = 1.0
+        brightnessSlider.value = PreferenceManager.shared.brightness
+
         brightnessSlider.setThumbImage(normalThumbImage, for: .normal)
         brightnessSlider.setThumbImage(highlightedThumbImage, for: .highlighted)
         
@@ -79,7 +81,7 @@ class BrightnessSettingView: UIView {
         contrastSlider.tag = SliderType.contrast.rawValue
         contrastSlider.minimumValue = 0.0
         contrastSlider.maximumValue = 2.0
-        contrastSlider.value = 1.0
+        contrastSlider.value = PreferenceManager.shared.contrast
         contrastSlider.setThumbImage(normalThumbImage, for: .normal)
         contrastSlider.setThumbImage(highlightedThumbImage, for: .highlighted)
         
@@ -87,7 +89,7 @@ class BrightnessSettingView: UIView {
         hueSlider.tag = SliderType.hue.rawValue
         hueSlider.minimumValue = -180
         hueSlider.maximumValue = 180
-        hueSlider.value = 0
+        hueSlider.value = PreferenceManager.shared.hue
         hueSlider.setThumbImage(normalThumbImage, for: .normal)
         hueSlider.setThumbImage(highlightedThumbImage, for: .highlighted)
         
@@ -95,7 +97,7 @@ class BrightnessSettingView: UIView {
         saturationSlider.tag = SliderType.saturation.rawValue
         saturationSlider.minimumValue = 0.0
         saturationSlider.maximumValue = 3.0
-        saturationSlider.value = 1.0
+        saturationSlider.value = PreferenceManager.shared.saturation
         saturationSlider.setThumbImage(normalThumbImage, for: .normal)
         saturationSlider.setThumbImage(highlightedThumbImage, for: .highlighted)
         
@@ -103,7 +105,7 @@ class BrightnessSettingView: UIView {
         gammaSlider.tag = SliderType.gamma.rawValue
         gammaSlider.minimumValue = 0.0
         gammaSlider.maximumValue = 10.0
-        gammaSlider.value = 1.0
+        gammaSlider.value = PreferenceManager.shared.gamma
         gammaSlider.setThumbImage(normalThumbImage, for: .normal)
         gammaSlider.setThumbImage(highlightedThumbImage, for: .highlighted)
     }
@@ -122,5 +124,25 @@ class BrightnessSettingView: UIView {
     @IBAction func onSliderTouchUpInside(_ sender: UISlider) {
         delegate?.onSliderTouchUpInside(view: self, slider: sender)
     }
+    
+    
+    
+    @IBAction func onResetTouched(_ sender: UIButton) {
+        PreferenceManager.shared.brightness = 1.0
+        PreferenceManager.shared.contrast = 1.0
+        PreferenceManager.shared.hue = 1.0
+        PreferenceManager.shared.saturation = 1.0
+        PreferenceManager.shared.gamma = 1.0
+        
+        brightnessSlider.value = PreferenceManager.shared.brightness
+        contrastSlider.value = PreferenceManager.shared.contrast
+        hueSlider.value = PreferenceManager.shared.hue
+        saturationSlider.value = PreferenceManager.shared.saturation
+        gammaSlider.value = PreferenceManager.shared.gamma
+        
+        delegate?.onResetTouched(view: self)
+        
+    }
+    
     
 }

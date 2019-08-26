@@ -25,7 +25,6 @@ class VideoView: UIView {
     
     var playSpeedRate: Float = 1.0
     
-    
     @IBOutlet weak var videoView: UIView!
     @IBOutlet weak var controllerView: UIView!
     
@@ -36,7 +35,6 @@ class VideoView: UIView {
     @IBOutlet weak var totalDurationLabel: UILabel!
     
     // bottom view
-    
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var pauseButton: UIButton!
     
@@ -54,6 +52,7 @@ class VideoView: UIView {
     @IBOutlet weak var normalSpeedButton: UIButton!
     @IBOutlet weak var playSpeedDownButton: UIButton!
     
+    @IBOutlet weak var rotationLockButton: UIButton!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -79,6 +78,8 @@ class VideoView: UIView {
         playSpeedUpButton.layer.cornerRadius = playSpeedUpButton.bounds.height / 2
         normalSpeedButton.layer.cornerRadius = normalSpeedButton.bounds.height / 2
         playSpeedDownButton.layer.cornerRadius = playSpeedDownButton.bounds.height / 2
+        rotationLockButton.layer.cornerRadius = rotationLockButton.bounds.height / 2
+        brightnessSettingView.layer.cornerRadius = 10
     }
     
     func setEvent() {
@@ -99,6 +100,13 @@ class VideoView: UIView {
         
         configurationVolumeSlider()
         setupTimer()
+        
+        mediaPlayer.brightness = PreferenceManager.shared.brightness
+        mediaPlayer.contrast = PreferenceManager.shared.contrast
+        mediaPlayer.hue = PreferenceManager.shared.hue
+        mediaPlayer.saturation = PreferenceManager.shared.saturation
+        mediaPlayer.gamma = PreferenceManager.shared.gamma
+        
         play()
     }
     
@@ -113,15 +121,7 @@ class VideoView: UIView {
     var isDisplayControl: Bool = true
     var controlViewTimer: Timer = Timer()
    
-    
-    open func displayControlView(_ willShow: Bool) {
-        if willShow {
-            showControlAnimation()
-        }
-        else {
-            hiddenControlAnimation()
-        }
-    }
+ 
     
     
     // MARK: - Event
@@ -155,8 +155,56 @@ class VideoView: UIView {
     }
     
     
+    @IBAction func onRotationLockTouched(_ sender: UIButton) {
+        rotationLockButton.isSelected = !rotationLockButton.isSelected
+        
+        if rotationLockButton.isSelected {
+            let LANDSCAPE_RIGHT: Bool = UIDevice.current.orientation == UIDeviceOrientation.landscapeRight
+            let LANDSCAPE_LEFT: Bool = UIDevice.current.orientation == UIDeviceOrientation.landscapeLeft
+            let PORTRAIT: Bool = UIDevice.current.orientation == UIDeviceOrientation.portrait
+            
+            var orientationMask: UIInterfaceOrientationMask = .all
+            
+            if LANDSCAPE_RIGHT {
+                print("LANDSCAPE_RIGHT")
+                orientationMask = .landscapeLeft
+            }
+            else if LANDSCAPE_LEFT {
+                print("LANDSCAPE_LEFT")
+                orientationMask = .landscapeRight
+            }
+            else if PORTRAIT {
+                orientationMask = .portrait
+            }
+            
+            AppUtility.lockOrientation(orientationMask)
+        }
+        else {
+            AppUtility.lockOrientation(.all)
+        }
+        
+        UIViewController.attemptRotationToDeviceOrientation()
+    }
+    
+    
     @IBAction func onBrightnessSettingTouched(_ sender: UIButton) {
-        brightnessSettingView.isHidden = !brightnessSettingView.isHidden
+        if brightnessSettingView.isHidden {
+            brightnessSettingView.isHidden = false
+            brightnessSettingView.alpha = 0
+            UIView.animate(withDuration: 0.2, animations: {
+                self.brightnessSettingView.alpha = 1
+            }) { (completion) in
+                
+            }
+        }
+        else {
+            UIView.animate(withDuration: 0.2, animations: {
+                self.brightnessSettingView.alpha = 0
+            }) { (completion) in
+                self.brightnessSettingView.isHidden = true
+            }
+        }
+        setupTimer()
     }
     
     
@@ -276,6 +324,16 @@ extension VideoView {
 
 // MARK: - ControlView Show && Hide
 extension VideoView {
+    
+    open func displayControlView(_ willShow: Bool) {
+        if willShow {
+            showControlAnimation()
+        }
+        else {
+            hiddenControlAnimation()
+        }
+    }
+    
     internal func showControlAnimation() {
         controllerView.alpha = 0
         isDisplayControl = true
@@ -292,12 +350,13 @@ extension VideoView {
         UIView.animate(withDuration: 0.3, animations: {
             self.controllerView.alpha = 0
         }) { (completion) in
+            self.brightnessSettingView.isHidden = true
         }
     }
     
     internal func setupTimer() {
         controlViewTimer.invalidate()
-        controlViewTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: false, block: { [weak self] (timer) in
+        controlViewTimer = Timer.scheduledTimer(withTimeInterval: 3.5, repeats: false, block: { [weak self] (timer) in
             guard let strongSelf = self else { return }
             strongSelf.displayControlView(false)
         })
@@ -432,20 +491,34 @@ extension VideoView: BrightnessSliderDelegate {
         switch slider.tag {
         case SliderType.brightness.rawValue:
             mediaPlayer.brightness = slider.value
+            PreferenceManager.shared.brightness = slider.value
         case SliderType.contrast.rawValue:
             mediaPlayer.contrast = slider.value
+            PreferenceManager.shared.contrast = slider.value
         case SliderType.hue.rawValue:
             mediaPlayer.hue = slider.value
+            PreferenceManager.shared.hue = slider.value
         case SliderType.saturation.rawValue:
             mediaPlayer.saturation = slider.value
+            PreferenceManager.shared.saturation = slider.value
         case SliderType.gamma.rawValue:
             mediaPlayer.gamma = slider.value
+            PreferenceManager.shared.gamma = slider.value
         default:
             break
         }
     }
     
     func onSliderTouchUpInside(view: BrightnessSettingView, slider: UISlider) {
+        setupTimer()
+    }
+    
+    func onResetTouched(view: BrightnessSettingView) {
+        mediaPlayer.brightness = PreferenceManager.shared.brightness
+        mediaPlayer.contrast = PreferenceManager.shared.contrast
+        mediaPlayer.hue = PreferenceManager.shared.hue
+        mediaPlayer.saturation = PreferenceManager.shared.saturation
+        mediaPlayer.gamma = PreferenceManager.shared.gamma
         setupTimer()
     }
 }

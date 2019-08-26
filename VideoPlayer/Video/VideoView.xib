@@ -22,6 +22,7 @@
                 <outlet property="playButton" destination="7CI-kH-BCs" id="EM4-Sf-HhR"/>
                 <outlet property="playSpeedDownButton" destination="5p8-3F-Z5F" id="Ae9-nq-y5J"/>
                 <outlet property="playSpeedUpButton" destination="Vpc-fw-V7m" id="bIo-Uv-e1v"/>
+                <outlet property="rotationLockButton" destination="305-Oy-aAp" id="hFe-oJ-KAc"/>
                 <outlet property="screenRatioButton" destination="nbm-ar-NR2" id="fC9-4j-Jsv"/>
                 <outlet property="singleTapGestureRecognizer" destination="U7D-Cu-s5k" id="96L-3w-8sL"/>
                 <outlet property="skipBackwardButton" destination="YXf-N5-4F0" id="Zae-Ni-h6u"/>
@@ -47,11 +48,11 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ChQ-Hd-6Y1">
                     <rect key="frame" x="0.0" y="44" width="414" height="315"/>
                     <subviews>
-                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lNZ-jO-pH3" customClass="BrightnessSettingView" customModule="VideoPlayer" customModuleProvider="target">
-                            <rect key="frame" x="62" y="75" width="290" height="200"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lNZ-jO-pH3" customClass="BrightnessSettingView" customModule="VideoPlayer" customModuleProvider="target">
+                            <rect key="frame" x="62" y="95" width="290" height="180"/>
+                            <color key="backgroundColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="200" id="85U-UX-p5l"/>
+                                <constraint firstAttribute="height" constant="180" id="85U-UX-p5l"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bgd-G2-7f8" userLabel="Top View">
@@ -209,7 +210,7 @@
                                         <constraint firstAttribute="width" secondItem="Vpc-fw-V7m" secondAttribute="height" id="YRh-rR-BGN"/>
                                     </constraints>
                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <inset key="imageEdgeInsets" minX="7" minY="7" maxX="7" maxY="7"/>
+                                    <inset key="imageEdgeInsets" minX="9" minY="9" maxX="9" maxY="9"/>
                                     <state key="normal" image="up"/>
                                     <connections>
                                         <action selector="onPlaySpeedUpTouched:" destination="-1" eventType="touchUpInside" id="lOr-CU-TmK"/>
@@ -222,7 +223,7 @@
                                         <constraint firstAttribute="width" constant="37" id="uUV-Ed-YIa"/>
                                         <constraint firstAttribute="width" secondItem="bif-pA-ngo" secondAttribute="height" id="w7r-e9-RYi"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                     <state key="normal" title="1.0">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
@@ -237,7 +238,7 @@
                                         <constraint firstAttribute="width" secondItem="5p8-3F-Z5F" secondAttribute="height" id="QD0-Z3-n8p"/>
                                     </constraints>
                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <inset key="imageEdgeInsets" minX="7" minY="7" maxX="7" maxY="7"/>
+                                    <inset key="imageEdgeInsets" minX="9" minY="9" maxX="9" maxY="9"/>
                                     <state key="normal" title="1.0" image="down"/>
                                     <connections>
                                         <action selector="onPlaySpeedDownTouched:" destination="-1" eventType="touchUpInside" id="XAe-dR-fN1"/>
@@ -249,17 +250,70 @@
                                 <constraint firstItem="5p8-3F-Z5F" firstAttribute="width" secondItem="5p8-3F-Z5F" secondAttribute="height" id="r72-qh-qPg"/>
                             </constraints>
                         </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="mIm-Gx-wFp">
+                            <rect key="frame" x="13" y="88" width="37" height="139"/>
+                            <subviews>
+                                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="305-Oy-aAp">
+                                    <rect key="frame" x="0.0" y="0.0" width="37" height="37"/>
+                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="305-Oy-aAp" secondAttribute="height" id="efu-bH-3k2"/>
+                                    </constraints>
+                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <inset key="imageEdgeInsets" minX="9" minY="9" maxX="9" maxY="9"/>
+                                    <state key="normal" image="baseline_screen_rotation_white_48pt"/>
+                                    <state key="selected" image="baseline_screen_lock_rotation_white_48pt"/>
+                                    <connections>
+                                        <action selector="onRotationLockTouched:" destination="-1" eventType="touchUpInside" id="vkz-yW-7h4"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2RW-Be-Igb">
+                                    <rect key="frame" x="0.0" y="51" width="37" height="37"/>
+                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="37" id="4kY-as-BUj"/>
+                                        <constraint firstAttribute="width" secondItem="2RW-Be-Igb" secondAttribute="height" id="yBE-X2-8a4"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <state key="normal" title="1.0">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="onNormalSpeedTouched:" destination="-1" eventType="touchUpInside" id="TKZ-iL-5h0"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E4z-gt-bZJ">
+                                    <rect key="frame" x="0.0" y="102" width="37" height="37"/>
+                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="E4z-gt-bZJ" secondAttribute="height" id="5OH-lu-KMz"/>
+                                    </constraints>
+                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <inset key="imageEdgeInsets" minX="7" minY="7" maxX="7" maxY="7"/>
+                                    <state key="normal" title="1.0" image="down"/>
+                                    <connections>
+                                        <action selector="onPlaySpeedDownTouched:" destination="-1" eventType="touchUpInside" id="dhz-uC-fwc"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="E4z-gt-bZJ" firstAttribute="width" secondItem="E4z-gt-bZJ" secondAttribute="height" id="joO-6c-hiQ"/>
+                                <constraint firstItem="305-Oy-aAp" firstAttribute="width" secondItem="305-Oy-aAp" secondAttribute="height" id="pb9-dR-zns"/>
+                            </constraints>
+                        </stackView>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="jPR-UU-UGQ" secondAttribute="trailing" constant="13" id="0vb-hm-WyB"/>
                         <constraint firstItem="jPR-UU-UGQ" firstAttribute="centerY" secondItem="ChQ-Hd-6Y1" secondAttribute="centerY" id="EfF-se-rGG"/>
+                        <constraint firstItem="mIm-Gx-wFp" firstAttribute="centerY" secondItem="ChQ-Hd-6Y1" secondAttribute="centerY" id="FkT-0i-z0b"/>
                         <constraint firstAttribute="trailing" secondItem="bgd-G2-7f8" secondAttribute="trailing" id="I7v-Uc-pYM"/>
                         <constraint firstItem="ftS-zR-Dqv" firstAttribute="top" secondItem="lNZ-jO-pH3" secondAttribute="bottom" id="MdC-IH-uSh"/>
                         <constraint firstAttribute="bottom" secondItem="ftS-zR-Dqv" secondAttribute="bottom" id="Nr2-MU-bdU"/>
                         <constraint firstItem="bgd-G2-7f8" firstAttribute="leading" secondItem="ChQ-Hd-6Y1" secondAttribute="leading" id="QOr-ao-cWq"/>
                         <constraint firstAttribute="trailing" secondItem="ftS-zR-Dqv" secondAttribute="trailing" id="XNb-Iu-Yps"/>
                         <constraint firstItem="lNZ-jO-pH3" firstAttribute="centerX" secondItem="ChQ-Hd-6Y1" secondAttribute="centerX" id="XvU-uD-ubq"/>
+                        <constraint firstItem="mIm-Gx-wFp" firstAttribute="leading" secondItem="ChQ-Hd-6Y1" secondAttribute="leading" constant="13" id="btA-De-TDG"/>
                         <constraint firstItem="ftS-zR-Dqv" firstAttribute="leading" secondItem="ChQ-Hd-6Y1" secondAttribute="leading" id="ek7-AB-GLd"/>
                         <constraint firstItem="bgd-G2-7f8" firstAttribute="top" secondItem="ChQ-Hd-6Y1" secondAttribute="top" id="gN4-3l-gt4"/>
                         <constraint firstItem="lNZ-jO-pH3" firstAttribute="width" secondItem="ChQ-Hd-6Y1" secondAttribute="width" multiplier="0.7" id="hct-av-Bnc"/>
@@ -310,6 +364,8 @@
     <resources>
         <image name="VGPlayer_ic_pause" width="31" height="50"/>
         <image name="VGPlayer_ic_play" width="42" height="50"/>
+        <image name="baseline_screen_lock_rotation_white_48pt" width="48" height="48"/>
+        <image name="baseline_screen_rotation_white_48pt" width="48" height="48"/>
         <image name="baseline_settings_brightness_white_48pt" width="48" height="48"/>
         <image name="baseline_settings_overscan_white_48pt" width="48" height="48"/>
         <image name="close" width="30" height="30"/>

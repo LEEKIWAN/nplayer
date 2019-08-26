@@ -79,6 +79,7 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
         if let audioInfo = audioInfo {
             audioInformationUpdate(track: audioInfo)
         }
+    
     }
     
     override func viewDidLayoutSubviews() {
@@ -118,12 +119,20 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
         self.setNeedsUpdateOfHomeIndicatorAutoHidden()
     }
     
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        coordinator.animate(alongsideTransition: { _ in
+//            self.gradient.frame = self.loginButton.bounds
+        }) { (_) in
+//            self.gradient.frame = self.loginButton.bounds
+        }
+    }
+    
+    
     //MARK: - Event     - 플레이
     
     @IBAction func onPlayTouched(_ sender: UIButton) {
-//        let value = UIInterfaceOrientation.landscapeRight.rawValue
-//        UIDevice.current.setValue(value, forKey: "orientation")
-        
         videoView = VideoView(frame: (self.navigationController?.view.window!.bounds)!)
         videoView.delegate = self
         videoView.setPlayItem(item: data!)
@@ -140,11 +149,10 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
     
     //MARK: - VideoViewDelegate     - 클로즈
     func videoViewDidClosed(videoView: VideoView) {
-//        AppUtility.lockOrientation(.all)
-//        let value = UIInterfaceOrientation.portrait.rawValue
-//        UIDevice.current.setValue(value, forKey: "orientation")
-        
+        AppUtility.lockOrientation(.all)
         self.setPrefersHomeIndicator(autoHidden: false)
+        
+        UIViewController.attemptRotationToDeviceOrientation()
     }
 
     
