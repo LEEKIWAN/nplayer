@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VideoView" customModule="VideoPlayer" customModuleProvider="target">
             <connections>
-                <outlet property="brightnessSettingBoundsView" destination="lNZ-jO-pH3" id="v8F-t7-hae"/>
+                <outlet property="brightnessSettingView" destination="lNZ-jO-pH3" id="due-Qg-v8G"/>
                 <outlet property="closeButton" destination="3pl-VL-ESx" id="LeJ-Ob-B5P"/>
                 <outlet property="controllerView" destination="ChQ-Hd-6Y1" id="XuR-md-pCq"/>
                 <outlet property="currentDurationLabel" destination="hcc-5w-g0Z" id="JXe-nn-pf3"/>
@@ -47,7 +47,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ChQ-Hd-6Y1">
                     <rect key="frame" x="0.0" y="44" width="414" height="315"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lNZ-jO-pH3">
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lNZ-jO-pH3" customClass="BrightnessSettingView" customModule="VideoPlayer" customModuleProvider="target">
                             <rect key="frame" x="62" y="75" width="290" height="200"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>

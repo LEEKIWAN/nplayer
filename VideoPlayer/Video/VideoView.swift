@@ -46,13 +46,7 @@ class VideoView: UIView {
     
     var volumeSlider : UISlider?
     
-    @IBOutlet weak var brightnessSettingBoundsView: UIView!
-    
-    lazy var brightnessSettingView: BrightnessSettingView = {
-        let settingView = BrightnessSettingView(frame: self.brightnessSettingBoundsView.bounds)
-        settingView.delegate = self
-        return settingView
-    }()
+    @IBOutlet weak var brightnessSettingView: BrightnessSettingView!
     
     
     // speed
@@ -88,7 +82,10 @@ class VideoView: UIView {
     }
     
     func setEvent() {
+        brightnessSettingView.delegate = self
         panGestureRecognizer.delegate = self
+        singleTapGestureRecognizer.delegate = self
+//        videoSingleTapGestureRecognizer.delegate = self
 //        singleTapGestureRecognizer.require(toFail: doubleTapGestureRecognizer)
 //        videoSingleTapGestureRecognizer.require(toFail: doubleTapGestureRecognizer)
         
@@ -159,7 +156,7 @@ class VideoView: UIView {
     
     
     @IBAction func onBrightnessSettingTouched(_ sender: UIButton) {
-        brightnessSettingBoundsView.addSubview(brightnessSettingView)
+        brightnessSettingView.isHidden = !brightnessSettingView.isHidden
     }
     
     
@@ -390,17 +387,35 @@ extension VideoView {
 
 extension VideoView: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        var isDrawableView = false
         
-        let drawableView = mediaPlayer.drawable as! UIView
-        for view in drawableView.subviews {
-            if touch.view! == view {
-                isDrawableView = true
-                break
+        if gestureRecognizer == panGestureRecognizer {
+            var isDrawableView = false
+            
+            let drawableView = mediaPlayer.drawable as! UIView
+            for view in drawableView.subviews {
+                if touch.view! == view {
+                    isDrawableView = true
+                    break
+                }
             }
+            
+            return touch.view! == controllerView || isDrawableView
+        }
+        else if gestureRecognizer == singleTapGestureRecognizer || gestureRecognizer == videoView {
+            var isDrawableView = false
+            
+            let drawableView = mediaPlayer.drawable as! UIView
+            for view in drawableView.subviews {
+                if touch.view! == view {
+                    isDrawableView = true
+                    break
+                }
+            }
+            
+            return touch.view! == controllerView || isDrawableView
         }
         
-        return touch.view! == controllerView || isDrawableView
+        return true
     }
 
     
