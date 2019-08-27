@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import MediaPlayer
 
 protocol VideoViewDelegate: class {
     func videoViewDidClosed(videoView: VideoView)
@@ -25,8 +24,11 @@ class VideoView: UIView {
     
     var playSpeedRate: Float = 1.0
     
+    var sleepTimer: Timer = Timer()
+    
     @IBOutlet weak var videoView: UIView!
     @IBOutlet weak var controllerView: UIView!
+    @IBOutlet weak var brightnessToastView: BrightnessToastView!
     
     // top view
     @IBOutlet weak var sliderView: PlayerSlider!
@@ -38,21 +40,23 @@ class VideoView: UIView {
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var pauseButton: UIButton!
     
+    @IBOutlet weak var sleepTimerButton: UIButton!
     @IBOutlet weak var skipBackwardButton: UIButton!
     @IBOutlet weak var skipForwardButton: UIButton!
     @IBOutlet weak var screenRatioButton: UIButton!
     
-    var volumeSlider : UISlider?
-    
     @IBOutlet weak var brightnessSettingView: BrightnessSettingView!
     
     
-    // speed
+    // speed ribght
     @IBOutlet weak var playSpeedUpButton: UIButton!
     @IBOutlet weak var normalSpeedButton: UIButton!
     @IBOutlet weak var playSpeedDownButton: UIButton!
     
+    // left
     @IBOutlet weak var rotationLockButton: UIButton!
+    @IBOutlet weak var repeatButton: UIButton!
+    @IBOutlet weak var settingButton: UIButton!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -79,6 +83,8 @@ class VideoView: UIView {
         normalSpeedButton.layer.cornerRadius = normalSpeedButton.bounds.height / 2
         playSpeedDownButton.layer.cornerRadius = playSpeedDownButton.bounds.height / 2
         rotationLockButton.layer.cornerRadius = rotationLockButton.bounds.height / 2
+        repeatButton.layer.cornerRadius = repeatButton.bounds.height / 2
+        settingButton.layer.cornerRadius = settingButton.bounds.height / 2
         brightnessSettingView.layer.cornerRadius = 10
     }
     
@@ -98,7 +104,7 @@ class VideoView: UIView {
         mediaPlayer.delegate = self
         mediaPlayer.drawable = videoView
         
-        configurationVolumeSlider()
+        
         setupTimer()
         
         mediaPlayer.brightness = PreferenceManager.shared.brightness
@@ -110,13 +116,6 @@ class VideoView: UIView {
         play()
     }
     
-    internal func configurationVolumeSlider() {
-        let volumeView = MPVolumeView()
-        if let view = volumeView.subviews.first as? UISlider {
-            volumeSlider = view
-        }
-    }
-    
     
     var isDisplayControl: Bool = true
     var controlViewTimer: Timer = Timer()
@@ -125,8 +124,22 @@ class VideoView: UIView {
     
     
     // MARK: - Event
+    @IBAction func onSleepTimerTouched(_ sender: UIButton) {
+        if sleepTimerButton.isSelected {
+            sleepTimerButton.isSelected = !sleepTimerButton.isSelected
+            sleepTimer.invalidate()
+            setupTimer()
+        }
+        else {
+            self.hiddenControlAnimation()
+            let popupView = SleepTimerPopupView(frame: self.bounds)
+            popupView.delegate = self
+            addSubview(popupView)
+        }
+        
+    }
     
-    @IBAction func onCloseTouched(_ sender: UIButton) {
+    @IBAction func onCloseTouched(_ sender: UIButton?) {
         UIView.animate(withDuration: 0.2, delay: 0, animations: {
             self.alpha = 0
         }) { (completion) in
@@ -166,11 +179,9 @@ class VideoView: UIView {
             var orientationMask: UIInterfaceOrientationMask = .all
             
             if LANDSCAPE_RIGHT {
-                print("LANDSCAPE_RIGHT")
                 orientationMask = .landscapeLeft
             }
             else if LANDSCAPE_LEFT {
-                print("LANDSCAPE_LEFT")
                 orientationMask = .landscapeRight
             }
             else if PORTRAIT {
@@ -185,6 +196,14 @@ class VideoView: UIView {
         
         UIViewController.attemptRotationToDeviceOrientation()
     }
+    
+    @IBAction func onRepeatTouched(_ sender: UIButton) {
+        repeatButton.isSelected = !repeatButton.isSelected
+    }
+    
+    @IBAction func onSettingTouched(_ sender: UIButton) {
+    }
+    
     
     
     @IBAction func onBrightnessSettingTouched(_ sender: UIButton) {
@@ -228,26 +247,25 @@ class VideoView: UIView {
         setupTimer()
     }
     
-    
     // MARK: - UIGestureRecognizer
     
     @IBOutlet var videoSingleTapGestureRecognizer: UITapGestureRecognizer!
     @IBOutlet var singleTapGestureRecognizer: UITapGestureRecognizer!
-    @IBOutlet var doubleTapGestureRecognizer: UITapGestureRecognizer!
+//    @IBOutlet var doubleTapGestureRecognizer: UITapGestureRecognizer!
    
     @IBAction func onSingleTapGesture(_ gesture: UITapGestureRecognizer) {
         isDisplayControl = !isDisplayControl
         displayControlView(isDisplayControl)
     }
     
-    @IBAction func onDoubleTapGesture(_ gesture: UITapGestureRecognizer) {
-        if mediaPlayer.isPlaying {
-            pause()
-        }
-        else {
-            play()
-        }
-    }
+//    @IBAction func onDoubleTapGesture(_ gesture: UITapGestureRecognizer) {
+//        if mediaPlayer.isPlaying {
+//            pause()
+//        }
+//        else {
+//            play()
+//        }
+//    }
     
     
     @IBOutlet var panGestureRecognizer: UIPanGestureRecognizer!
@@ -290,7 +308,8 @@ class VideoView: UIView {
                 panGestureRecognizer.isEnabled = true
             }
             else {
-                isVolumeAreaTouched ? (volumeSlider!.value -= Float(velocity.y / 10000)) : (UIScreen.main.brightness -= velocity.y / 10000)
+//                isVolumeAreaTouched ? (volumeSlider!.value -= Float(velocity.y / 10000)) : (UIScreen.main.brightness -= velocity.y / 10000)
+                    brightnessToastView.updateProgressView(isVolumeAreaTouched: isVolumeAreaTouched, value: Float(velocity.y / 10000))
             }
         default:
             break
@@ -404,8 +423,16 @@ extension VideoView: VLCMediaPlayerDelegate {
     
     func mediaPlayerStateChanged(_ aNotification: Notification!) {
         if mediaPlayer.state == .ended {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                self.onCloseTouched(self.closeButton)
+            
+            if repeatButton.isSelected {
+                
+//                mediaPlayer.time = VLCTime(int: 0)
+//                mediaPlayer.play()
+            }
+            else {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                    self.onCloseTouched(self.closeButton)
+                }
             }
         }
     }
@@ -440,7 +467,6 @@ extension VideoView {
         normalSpeedButton.setTitle(String(format: "%.1f", playSpeedRate), for: .normal)
         setupTimer()
     }
-    
 }
 
 
@@ -476,8 +502,6 @@ extension VideoView: UIGestureRecognizerDelegate {
         
         return true
     }
-
-    
 }
 
 extension VideoView: BrightnessSliderDelegate {
@@ -521,4 +545,18 @@ extension VideoView: BrightnessSliderDelegate {
         mediaPlayer.gamma = PreferenceManager.shared.gamma
         setupTimer()
     }
+}
+
+extension VideoView: SleepTimerPopupViewDelegate {
+    func SleepTimerPopup(view: SleepTimerPopupView, hour: Int, minutes: Int) {
+        sleepTimerButton.isSelected = true
+        
+        let timeInterval: Double = Double((hour * 60 * 60) + (minutes * 60))
+        sleepTimer.invalidate()
+        sleepTimer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: false, block: { [weak self] (timer) in
+            guard let strongSelf = self else { return }
+            strongSelf.onCloseTouched(nil)
+        })
+    }
+
 }

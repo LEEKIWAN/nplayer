@@ -159,7 +159,6 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
     func videoViewDidPlayed(videoView: VideoView) {
         
     }
-    
 
     
 }
