@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MediaPlayer
 
 protocol VideoViewDelegate: class {
     func videoViewDidClosed(videoView: VideoView)
@@ -25,6 +26,8 @@ class VideoView: UIView {
     var playSpeedRate: Float = 1.0
     
     var sleepTimer: Timer = Timer()
+    var volumeView: MPVolumeView = MPVolumeView(frame: CGRect(x: -1000, y: -1000, width: 100, height: 100))
+
     
     @IBOutlet weak var videoView: UIView!
     @IBOutlet weak var controllerView: UIView!
@@ -95,7 +98,11 @@ class VideoView: UIView {
 //        videoSingleTapGestureRecognizer.delegate = self
 //        singleTapGestureRecognizer.require(toFail: doubleTapGestureRecognizer)
 //        videoSingleTapGestureRecognizer.require(toFail: doubleTapGestureRecognizer)
-        
+    }
+    
+    func configurateVolume() {
+        brightnessToastView.volumeSlider = volumeView.subviews.first as? UISlider
+        addSubview(volumeView)
     }
     
     func setPlayItem(item: FileObject) {
@@ -104,7 +111,7 @@ class VideoView: UIView {
         mediaPlayer.delegate = self
         mediaPlayer.drawable = videoView
         
-        
+        configurateVolume()
         setupTimer()
         
         mediaPlayer.brightness = PreferenceManager.shared.brightness
@@ -308,8 +315,7 @@ class VideoView: UIView {
                 panGestureRecognizer.isEnabled = true
             }
             else {
-//                isVolumeAreaTouched ? (volumeSlider!.value -= Float(velocity.y / 10000)) : (UIScreen.main.brightness -= velocity.y / 10000)
-                    brightnessToastView.updateProgressView(isVolumeAreaTouched: isVolumeAreaTouched, value: Float(velocity.y / 10000))
+                brightnessToastView.updateProgressView(isVolumeAreaTouched: isVolumeAreaTouched, value: Float(velocity.y / 10000))
             }
         default:
             break

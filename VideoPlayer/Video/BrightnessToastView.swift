@@ -12,7 +12,6 @@ import MediaPlayer
 class BrightnessToastView: UIView {
     var hideTimer: Timer = Timer()
     
-    var volumeView: MPVolumeView = MPVolumeView(frame: .zero)
     var volumeSlider : UISlider?
     
     @IBOutlet weak var imageView: UIImageView!
@@ -44,50 +43,61 @@ class BrightnessToastView: UIView {
         progoressView.trackTintColor = UIColor.lightGray.withAlphaComponent(0.4)
         
         self.isHidden = true
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            self.addSubview(self.volumeView)
-        }
     }
     
     func setEvent() {
-//        addVolumeObserver()
+        addVolumeObserver()
     }
     
     func addVolumeObserver() {
-        
         let audioSession = AVAudioSession.sharedInstance()
         do {
             try audioSession.setActive(true, options: [])
-            audioSession.addObserver(self, forKeyPath: "outputVolume", options: NSKeyValueObservingOptions.new, context: nil)
+            audioSession.addObserver(self, forKeyPath: "outputVolume", options: NSKeyValueObservingOptions.old, context: nil)
         } catch {
             print("Error")
         }
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-//        addSubview(volumeView)
-        
+        if keyPath == "outputVolume"{
+            let audioSession = AVAudioSession.sharedInstance()
+            setVolumeProgressView(value: audioSession.outputVolume)
+        }
+    }
+    
+    func setVolumeProgressView(value: Float) {
         self.isHidden = false
         UIView.animate(withDuration: 0.2, animations: {
             self.alpha = 1
         }, completion: { (completion) in
         })
         
-        setupHideTimer()
-        
-        if keyPath == "outputVolume" {
-            let audioSession = AVAudioSession.sharedInstance()
-            volumeSlider!.value -= 0.01
-            print("눌럿다.")
+        guard let volumeSlider = volumeSlider else {
+            return
         }
+        
+        volumeSlider.value = value
+        progoressView.setProgress(volumeSlider.value, animated: false)
+        
+        if volumeSlider.value == 0 {
+            imageView.setImage(UIImage(named: "ZFPlayer_muted")!)
+        }
+        else if volumeSlider.value < 0.5 {
+            imageView.setImage(UIImage(named: "ZFPlayer_volume_low")!)
+        }
+            
+        else {
+            imageView.setImage(UIImage(named: "ZFPlayer_volume_high")!)
+        }
+    
+        
+        setupHideTimer()
     }
     
     
     
     func updateProgressView(isVolumeAreaTouched: Bool, value: Float) {
-//        addSubview(volumeView)
-        
         self.isHidden = false
         UIView.animate(withDuration: 0.2, animations: {
             self.alpha = 1
@@ -95,7 +105,7 @@ class BrightnessToastView: UIView {
         })
         
         if isVolumeAreaTouched {
-            guard let volumeSlider = volumeView.subviews.first as? UISlider else {
+            guard let volumeSlider = volumeSlider else {
                 return
             }
             
@@ -124,7 +134,6 @@ class BrightnessToastView: UIView {
             else {
                 imageView.setImage(UIImage(named: "ZFPlayer_brightness_low")!)
             }
-            
         }
         
         setupHideTimer()
