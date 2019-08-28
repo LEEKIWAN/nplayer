@@ -29,7 +29,7 @@ protocol BrightnessSliderDelegate: class {
 
 class BrightnessSettingView: UIView {
     
-    var delegate: BrightnessSliderDelegate?
+    weak var delegate: BrightnessSliderDelegate?
     
     @IBOutlet weak var brightnessSlider: UISlider!
     @IBOutlet weak var contrastSlider: UISlider!
@@ -42,18 +42,13 @@ class BrightnessSettingView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setNib()
-//        setUI()
-//        setEvent()
-        
         setConfiguration()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setNib()
-//        setUI()
         setConfiguration()
-//        setEvent()
     }
     
     func setNib() {

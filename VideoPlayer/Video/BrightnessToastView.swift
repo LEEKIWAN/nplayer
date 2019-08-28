@@ -11,9 +11,9 @@ import MediaPlayer
 
 class BrightnessToastView: UIView {
     var hideTimer: Timer = Timer()
+    let audioSession = AVAudioSession.sharedInstance()
     
-    var volumeSlider : UISlider?
-    
+    weak var volumeSlider : UISlider?
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var progoressView: UIProgressView!
     
@@ -50,7 +50,6 @@ class BrightnessToastView: UIView {
     }
     
     func addVolumeObserver() {
-        let audioSession = AVAudioSession.sharedInstance()
         do {
             try audioSession.setActive(true, options: [])
             audioSession.addObserver(self, forKeyPath: "outputVolume", options: NSKeyValueObservingOptions.old, context: nil)
@@ -61,7 +60,6 @@ class BrightnessToastView: UIView {
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "outputVolume"{
-            let audioSession = AVAudioSession.sharedInstance()
             setVolumeProgressView(value: audioSession.outputVolume)
         }
     }
@@ -155,12 +153,11 @@ class BrightnessToastView: UIView {
         })
     }
     
-    deinit {
-        print("제거")
-    }
-    
-    
     // MARK : - Event
     
+    deinit {
+        audioSession.removeObserver(self, forKeyPath: "outputVolume")
+        
+    }
 }
 

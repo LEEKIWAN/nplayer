@@ -17,7 +17,7 @@ protocol SleepTimerPopupViewDelegate: class {
 
 class SleepTimerPopupView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
     
-    var delegate: SleepTimerPopupViewDelegate?
+    weak var delegate: SleepTimerPopupViewDelegate?
 
     
     var hour: Int = 0
