@@ -10,10 +10,10 @@ import Foundation
 import MediaPlayer
 
 class BrightnessToastView: UIView {
+    var hideTimer: Timer = Timer()
     
     var volumeView: MPVolumeView = MPVolumeView(frame: .zero)
     var volumeSlider : UISlider?
-    
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var progoressView: UIProgressView!
@@ -42,21 +42,60 @@ class BrightnessToastView: UIView {
         self.layer.cornerRadius = self.bounds.height / 2
         progoressView.progressTintColor = UIColor.white
         progoressView.trackTintColor = UIColor.lightGray.withAlphaComponent(0.4)
-        volumeView.clipsToBounds = true
         
-        volumeSlider = volumeView.subviews.first as? UISlider
-        self.addSubview(volumeView)
+        self.isHidden = true
         
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.addSubview(self.volumeView)
+        }
     }
     
     func setEvent() {
-        
+//        addVolumeObserver()
     }
     
+    func addVolumeObserver() {
+        
+        let audioSession = AVAudioSession.sharedInstance()
+        do {
+            try audioSession.setActive(true, options: [])
+            audioSession.addObserver(self, forKeyPath: "outputVolume", options: NSKeyValueObservingOptions.new, context: nil)
+        } catch {
+            print("Error")
+        }
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+//        addSubview(volumeView)
+        
+        self.isHidden = false
+        UIView.animate(withDuration: 0.2, animations: {
+            self.alpha = 1
+        }, completion: { (completion) in
+        })
+        
+        setupHideTimer()
+        
+        if keyPath == "outputVolume" {
+            let audioSession = AVAudioSession.sharedInstance()
+            volumeSlider!.value -= 0.01
+            print("눌럿다.")
+        }
+    }
+    
+    
+    
     func updateProgressView(isVolumeAreaTouched: Bool, value: Float) {
+//        addSubview(volumeView)
+        
+        self.isHidden = false
+        UIView.animate(withDuration: 0.2, animations: {
+            self.alpha = 1
+        }, completion: { (completion) in
+        })
         
         if isVolumeAreaTouched {
-            guard let volumeSlider = volumeSlider else {
+            guard let volumeSlider = volumeView.subviews.first as? UISlider else {
                 return
             }
             
@@ -88,9 +127,29 @@ class BrightnessToastView: UIView {
             
         }
         
-//        UIScreen.main.brightness -= value
-        
+        setupHideTimer()
     }
+    
+    
+    func setupHideTimer() {
+        hideTimer.invalidate()
+        hideTimer = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false, block: { [weak self] (timer) in
+            guard let strongSelf = self else { return }
+            
+            UIView.animate(withDuration: 0.2, animations: {
+                strongSelf.alpha = 0
+            }, completion: { (completion) in
+                strongSelf.isHidden = true
+            })
+            
+            
+        })
+    }
+    
+    deinit {
+        print("제거")
+    }
+    
     
     // MARK : - Event
     
