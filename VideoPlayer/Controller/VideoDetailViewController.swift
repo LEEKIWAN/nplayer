@@ -161,4 +161,34 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
     }
 
     
+    func onTest(videoView: VideoView) {
+        let storyBoard = UIStoryboard(name: "SettingPopupViewController", bundle: nil)
+        let settingPopupViewController = storyBoard.instantiateInitialViewController() as! SettingPopupViewController
+        
+        settingPopupViewController.modalPresentationStyle = .overCurrentContext
+       
+        
+        var activeController = UIApplication.shared.keyWindow?.rootViewController
+        
+        if (activeController is UINavigationController) {
+            activeController = (activeController as? UINavigationController)?.visibleViewController
+        } else if activeController?.presentedViewController != nil {
+            activeController = activeController?.presentedViewController
+        }
+        
+        
+        
+        activeController?.present(settingPopupViewController, animated: false, completion: nil)
+        
+        
+        
+//        UIApplication.shared.delegate?.window.r
+//        self.present(settingPopupViewController, animated: false, completion: nil)
+        
+    }
+    
+    deinit {
+        print("Asdf")
+    }
+    
 }

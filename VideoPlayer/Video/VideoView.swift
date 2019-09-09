@@ -18,7 +18,7 @@ protocol VideoViewDelegate: class {
 class VideoView: UIView {
     var currentAspectRatio: VideoAspectRatio = .aspectFit
     
-    var delegate: VideoViewDelegate?
+    weak var delegate: VideoViewDelegate?
     var playItem: FileObject!
     
     var mediaPlayer: VLCMediaPlayer = VLCMediaPlayer(options: ["-vvvv"])
@@ -119,8 +119,15 @@ class VideoView: UIView {
         mediaPlayer.hue = PreferenceManager.shared.hue
         mediaPlayer.saturation = PreferenceManager.shared.saturation
         mediaPlayer.gamma = PreferenceManager.shared.gamma
+
+//        mediaPlayer.currentVideoSubTitleIndex
+        
         
         play()
+        
+        //
+        
+        
     }
     
     
@@ -148,6 +155,9 @@ class VideoView: UIView {
     
     @IBAction func onCloseTouched(_ sender: UIButton?) {
         UIView.animate(withDuration: 0.2, delay: 0, animations: {
+//            self.mediaPlayer.st
+            self.mediaPlayer.media = nil
+            
             self.alpha = 0
         }) { (completion) in
             self.removeFromSuperview()
@@ -201,17 +211,30 @@ class VideoView: UIView {
             AppUtility.lockOrientation(.all)
         }
         
+        setupTimer()
         UIViewController.attemptRotationToDeviceOrientation()
     }
     
     @IBAction func onRepeatTouched(_ sender: UIButton) {
         repeatButton.isSelected = !repeatButton.isSelected
+        setupTimer()
     }
     
     @IBAction func onSettingTouched(_ sender: UIButton) {
+        let popupView = SettingPopupView(frame: self.bounds)
+//        popupView.delegate = self
+        addSubview(popupView)
+//        let storyBoard = UIStoryboard(name: "SettingPopupViewController", bundle: nil)
+//        let settingPopupViewController = storyBoard.instantiateInitialViewController() as! SettingPopupViewController
+////        self.navigationController?.pushViewController(fileListViewController, animated: true)
+//
+//        self.parentViewController?.present(settingPopupViewController, animated: false, completion: nil)
+        
+        
+        
+        
+        setupTimer()
     }
-    
-    
     
     @IBAction func onBrightnessSettingTouched(_ sender: UIButton) {
         if brightnessSettingView.isHidden {
@@ -219,9 +242,7 @@ class VideoView: UIView {
             brightnessSettingView.alpha = 0
             UIView.animate(withDuration: 0.2, animations: {
                 self.brightnessSettingView.alpha = 1
-            }) { (completion) in
-                
-            }
+            })
         }
         else {
             UIView.animate(withDuration: 0.2, animations: {
@@ -323,6 +344,7 @@ class VideoView: UIView {
     }
 
     deinit {
+        self.mediaPlayer.media = nil
         print("deinit")
     }
 }
@@ -400,16 +422,16 @@ extension VideoView {
         mediaPlayer.time = VLCTime(int: Int32(currentTime))
         currentDurationLabel.text = currentDuration?.stringValue
         totalDurationLabel.text = totalDuration.stringValue
-        
-        play()
     }
     
     @IBAction func timeSliderTouchDown(_ sender: PlayerSlider) {
         controlViewTimer.invalidate()
+        mediaPlayer.pause()
     }
     
     @IBAction func timeSliderTouchUpInside(_ sender: PlayerSlider) {
         setupTimer()
+        mediaPlayer.play()
     }
     
 }

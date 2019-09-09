@@ -30,7 +30,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="CS1-7t-LvT" secondAttribute="height" multiplier="1:1" id="WB2-Bz-o57"/>
                                         </constraints>
-                                        <color key="tintColor" red="0.99913078550000001" green="0.79727625849999995" blue="0.0021498878490000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="tintColor" red="1" green="0.79607843137254897" blue="0.0039215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" image="close"/>
                                         <connections>
                                             <action selector="onCloseTouched:" destination="70e-W7-qhh" eventType="touchUpInside" id="Prg-pi-5VZ"/>
