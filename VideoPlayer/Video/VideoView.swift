@@ -12,6 +12,7 @@ import MediaPlayer
 protocol VideoViewDelegate: class {
     func videoViewDidClosed(videoView: VideoView)
     func videoViewDidPlayed(videoView: VideoView)
+    func videoViewSettingTouched(videoView: VideoView)
 }
 
 
@@ -119,14 +120,11 @@ class VideoView: UIView {
         mediaPlayer.hue = PreferenceManager.shared.hue
         mediaPlayer.saturation = PreferenceManager.shared.saturation
         mediaPlayer.gamma = PreferenceManager.shared.gamma
-
-//        mediaPlayer.currentVideoSubTitleIndex
-        
         
         play()
         
-        //
         
+        mediaPlayer.setTextRendererFontSize(PreferenceManager.shared.subtitleSize as NSNumber)
         
     }
     
@@ -155,7 +153,6 @@ class VideoView: UIView {
     
     @IBAction func onCloseTouched(_ sender: UIButton?) {
         UIView.animate(withDuration: 0.2, delay: 0, animations: {
-//            self.mediaPlayer.st
             self.mediaPlayer.media = nil
             
             self.alpha = 0
@@ -221,18 +218,7 @@ class VideoView: UIView {
     }
     
     @IBAction func onSettingTouched(_ sender: UIButton) {
-        let popupView = SettingPopupView(frame: self.bounds)
-//        popupView.delegate = self
-        addSubview(popupView)
-//        let storyBoard = UIStoryboard(name: "SettingPopupViewController", bundle: nil)
-//        let settingPopupViewController = storyBoard.instantiateInitialViewController() as! SettingPopupViewController
-////        self.navigationController?.pushViewController(fileListViewController, animated: true)
-//
-//        self.parentViewController?.present(settingPopupViewController, animated: false, completion: nil)
-        
-        
-        
-        
+        delegate?.videoViewSettingTouched(videoView: self)
         setupTimer()
     }
     

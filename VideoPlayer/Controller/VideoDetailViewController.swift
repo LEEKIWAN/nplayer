@@ -17,7 +17,7 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
     var mediaPlayer: VLCMediaPlayer = VLCMediaPlayer()
     let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
     
-//    let videoView = VideoView(frame: (self.navigationController?.view.window!.bounds)!)
+    //    let videoView = VideoView(frame: (self.navigationController?.view.window!.bounds)!)
     var videoView: VideoView!
     
     @IBOutlet weak var backgroundImageView: UIImageView!
@@ -79,7 +79,7 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
         if let audioInfo = audioInfo {
             audioInformationUpdate(track: audioInfo)
         }
-    
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -97,7 +97,7 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
     func videoInformationUpdate(track: Dictionary<String, Any>) {
         let videoResolution = "\(track["width"] as! Int)x\(track["height"] as! Int)"
         let codecFourCC = FourCharCode(integerLiteral: track["codec"] as! UInt32).toString()
-
+        
         videoDescriptionLabel.text = "\(videoResolution)" + ", \(codecFourCC.toCodecName())"
     }
     
@@ -123,9 +123,9 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         coordinator.animate(alongsideTransition: { _ in
-//            self.gradient.frame = self.loginButton.bounds
+            //            self.gradient.frame = self.loginButton.bounds
         }) { (_) in
-//            self.gradient.frame = self.loginButton.bounds
+            //            self.gradient.frame = self.loginButton.bounds
         }
     }
     
@@ -140,9 +140,10 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
         videoView.alpha = 0
         UIView.animate(withDuration: 0.2, delay: 0.1, animations: {
             self.videoView.alpha = 1
-            self.navigationController?.view.window?.addSubview(self.videoView)
+            self.navigationController?.view.addSubview(self.videoView)
+            
         }) { (completion) in
-//            AppUtility.lockOrientation(.landscape)
+            //            AppUtility.lockOrientation(.landscape)
             self.setPrefersHomeIndicator(autoHidden: true)
         }
     }
@@ -154,38 +155,25 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
         
         UIViewController.attemptRotationToDeviceOrientation()
     }
-
+    
     
     func videoViewDidPlayed(videoView: VideoView) {
         
     }
-
     
-    func onTest(videoView: VideoView) {
+    func videoViewSettingTouched(videoView: VideoView) {
         let storyBoard = UIStoryboard(name: "SettingPopupViewController", bundle: nil)
-        let settingPopupViewController = storyBoard.instantiateInitialViewController() as! SettingPopupViewController
+        guard let settingPopupViewController = storyBoard.instantiateInitialViewController() else { return }
         
-        settingPopupViewController.modalPresentationStyle = .overCurrentContext
-       
+        let popupVC = PopupViewController(contentController: settingPopupViewController, popupWidth: 300, popupHeight: 300)
         
-        var activeController = UIApplication.shared.keyWindow?.rootViewController
+        popupVC.cornerRadius = 5
+        present(popupVC, animated: true, completion: nil)
         
-        if (activeController is UINavigationController) {
-            activeController = (activeController as? UINavigationController)?.visibleViewController
-        } else if activeController?.presentedViewController != nil {
-            activeController = activeController?.presentedViewController
-        }
-        
-        
-        
-        activeController?.present(settingPopupViewController, animated: false, completion: nil)
-        
-        
-        
-//        UIApplication.shared.delegate?.window.r
 //        self.present(settingPopupViewController, animated: false, completion: nil)
-        
     }
+    
+    
     
     deinit {
         print("Asdf")

@@ -1,0 +1,2 @@
+${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/fluid_slider.framework
+${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/pop.framework

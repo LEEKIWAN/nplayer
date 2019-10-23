@@ -65,6 +65,16 @@ class PreferenceManager {
         }
     }
     
+    var subtitleSize: Float {
+        get {
+            return UserDefaults.standard.float(forKey: "subtitleSize")
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "subtitleSize")
+            UserDefaults.standard.synchronize()
+        }
+    }
+    
     
     
 //    var serverLocation: String {
@@ -132,8 +142,9 @@ class PreferenceManager {
     // MARK: - initialize Values
     
     func initializeDefaultValues() {
-        
         var defaultValues: [String : Any] = ["contrast" : 1.0, "brightness" : 1.0, "hue" : 1.0, "saturation" : 1.0, "gamma" : 1.0]
+        
+        defaultValues["subtitleSize"] = 0
         
         UserDefaults.standard.register(defaults: defaultValues)
     }
