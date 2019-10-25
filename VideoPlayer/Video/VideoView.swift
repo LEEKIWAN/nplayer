@@ -18,6 +18,7 @@ protocol VideoViewDelegate: class {
 
 class VideoView: UIView {
     var currentAspectRatio: VideoAspectRatio = .aspectFit
+    var isPlaying: Bool = true
     
     weak var delegate: VideoViewDelegate?
     var playItem: FileObject!
@@ -28,15 +29,13 @@ class VideoView: UIView {
     
     var sleepTimer: Timer = Timer()
     var volumeView: MPVolumeView = MPVolumeView(frame: CGRect(x: -1000, y: -1000, width: 100, height: 100))
-
+    
     
     @IBOutlet weak var videoView: UIView!
     @IBOutlet weak var controllerView: UIView!
     @IBOutlet weak var brightnessToastView: BrightnessToastView!
     
-    // top view
-    @IBOutlet weak var sliderView: PlayerSlider!
-    @IBOutlet weak var sliderView2: PlayerSliderView!
+    @IBOutlet weak var sliderView: PlayerSliderView!
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var currentDurationLabel: UILabel!
     @IBOutlet weak var totalDurationLabel: UILabel!
@@ -63,7 +62,10 @@ class VideoView: UIView {
     @IBOutlet weak var repeatButton: UIButton!
     @IBOutlet weak var settingButton: UIButton!
     
+    @IBOutlet weak var statusBar: StatusBar!
     @IBOutlet open weak var consStatusBarHeight: NSLayoutConstraint!
+    @IBOutlet weak var consLeftWidth: NSLayoutConstraint!
+    @IBOutlet weak var consRightWidth: NSLayoutConstraint!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -79,6 +81,8 @@ class VideoView: UIView {
         setEvent()
     }
     
+    //MARK: - Private Func
+    
     func setNib() {
         let view = Bundle.main.loadNibNamed("VideoView", owner: self, options: nil)?.first as! UIView
         view.frame = self.bounds
@@ -93,29 +97,30 @@ class VideoView: UIView {
         repeatButton.layer.cornerRadius = repeatButton.bounds.height / 2
         settingButton.layer.cornerRadius = settingButton.bounds.height / 2
         brightnessSettingView.layer.cornerRadius = 10
+        closeButton.imageView?.contentMode = .scaleAspectFit
+        
     }
     
     func setEvent() {
+        mediaPlayer.delegate = self
+        sliderView.delegate = self
         brightnessSettingView.delegate = self
         panGestureRecognizer.delegate = self
         singleTapGestureRecognizer.delegate = self
-//        videoSingleTapGestureRecognizer.delegate = self
-//        singleTapGestureRecognizer.require(toFail: doubleTapGestureRecognizer)
-//        videoSingleTapGestureRecognizer.require(toFail: doubleTapGestureRecognizer)
+        //        videoSingleTapGestureRecognizer.delegate = self
+        //        singleTapGestureRecognizer.require(toFail: doubleTapGestureRecognizer)
+        //        videoSingleTapGestureRecognizer.require(toFail: doubleTapGestureRecognizer)
     }
     
-    func configurateVolume() {
-        brightnessToastView.volumeSlider = volumeView.subviews.first as? UISlider
-        addSubview(volumeView)
-    }
     
     func setPlayItem(item: FileObject) {
         self.playItem = item
         mediaPlayer.media = playItem.vlcMedia!
-        mediaPlayer.delegate = self
+        
         mediaPlayer.drawable = videoView
         
-        configurateVolume()
+        
+        configureVolume()
         setupTimer()
         
         mediaPlayer.brightness = PreferenceManager.shared.brightness
@@ -126,16 +131,37 @@ class VideoView: UIView {
         
         play()
         
+        configureVisibleStatusBar()
+        sliderView.setProgress(0, animated: false)
         
         mediaPlayer.setTextRendererFontSize(PreferenceManager.shared.subtitleSize as NSNumber)
-        
+    }
+    
+    
+    // MARK: - Configure
+    func configureVolume() {
+        brightnessToastView.volumeSlider = volumeView.subviews.first as? UISlider
+        addSubview(volumeView)
+    }
+    
+    open func configureVisibleStatusBar() {
+        if UIDevice.current.orientation.isLandscape {
+            statusBar.isHidden = false
+            consStatusBarHeight.constant = 23
+            consLeftWidth.constant = 50
+            consRightWidth.constant = 50
+        }
+        else {
+            statusBar.isHidden = true
+            consStatusBarHeight.constant = 0
+            consLeftWidth.constant = 40
+            consRightWidth.constant = 40
+        }
     }
     
     
     var isDisplayControl: Bool = true
     var controlViewTimer: Timer = Timer()
-   
- 
     
     
     // MARK: - Event
@@ -268,21 +294,21 @@ class VideoView: UIView {
     
     @IBOutlet var videoSingleTapGestureRecognizer: UITapGestureRecognizer!
     @IBOutlet var singleTapGestureRecognizer: UITapGestureRecognizer!
-//    @IBOutlet var doubleTapGestureRecognizer: UITapGestureRecognizer!
-   
+    //    @IBOutlet var doubleTapGestureRecognizer: UITapGestureRecognizer!
+    
     @IBAction func onSingleTapGesture(_ gesture: UITapGestureRecognizer) {
         isDisplayControl = !isDisplayControl
         displayControlView(isDisplayControl)
     }
     
-//    @IBAction func onDoubleTapGesture(_ gesture: UITapGestureRecognizer) {
-//        if mediaPlayer.isPlaying {
-//            pause()
-//        }
-//        else {
-//            play()
-//        }
-//    }
+    //    @IBAction func onDoubleTapGesture(_ gesture: UITapGestureRecognizer) {
+    //        if mediaPlayer.isPlaying {
+    //            pause()
+    //        }
+    //        else {
+    //            play()
+    //        }
+    //    }
     
     
     @IBOutlet var panGestureRecognizer: UIPanGestureRecognizer!
@@ -291,7 +317,7 @@ class VideoView: UIView {
     
     
     @IBAction func onPanGesture(_ gesture: UIPanGestureRecognizer) {
-//        let translation = gesture.translation(in: self)
+        //        let translation = gesture.translation(in: self)
         let location = gesture.location(in: self)
         let velocity = gesture.velocity(in: self)
         
@@ -331,7 +357,7 @@ class VideoView: UIView {
             break
         }
     }
-
+    
     deinit {
         self.mediaPlayer.media = nil
         print("deinit")
@@ -401,26 +427,30 @@ extension VideoView {
 
 
 // MARK: - SliderView Touch Event
-extension VideoView {
-    @IBAction func timeSliderValueChanged(_ sender: PlayerSlider) {
-        let currentDuration = mediaPlayer.time
-        let totalDuration = mediaPlayer.media.length
-        
-        let currentTime = sender.value * Float(totalDuration.intValue)
-        
-        mediaPlayer.time = VLCTime(int: Int32(currentTime))
-        currentDurationLabel.text = currentDuration?.stringValue
-        totalDurationLabel.text = totalDuration.stringValue
-    }
-    
-    @IBAction func timeSliderTouchDown(_ sender: PlayerSlider) {
+extension VideoView: PlayerSliderViewDelegate {
+    func timeSliderTouchDown(sliderView: PlayerSliderView) {
+        isPlaying = mediaPlayer.isPlaying
         controlViewTimer.invalidate()
         mediaPlayer.pause()
+        playButton.isHidden = false
+        pauseButton.isHidden = true
     }
     
-    @IBAction func timeSliderTouchUpInside(_ sender: PlayerSlider) {
+    func timeSliderTouchUpInside(sliderView: PlayerSliderView) {
+        if isPlaying {
+            play()
+        }
         setupTimer()
-        mediaPlayer.play()
+        
+    }
+    
+    func timeSliderValueChanged(sliderView: PlayerSliderView) {
+        let totalDuration = mediaPlayer.media.length
+        let currentTime = sliderView.progressView.progress * Float(totalDuration.intValue)
+        
+        let currentDuration = VLCTime(int: Int32(currentTime))
+        mediaPlayer.time = currentDuration
+        currentDurationLabel.text = currentDuration?.stringValue
     }
     
 }
@@ -434,9 +464,7 @@ extension VideoView: VLCMediaPlayerDelegate {
         totalDurationLabel.text = totalDuration.stringValue!
         
         let progresssValue = Float(currentDuration!.intValue) / Float(totalDuration.intValue)
-        
-//        sliderView.value = progresssValue
-        sliderView2.setProgress(progresssValue, animated: false)
+        sliderView.setProgress(progresssValue, animated: false)
     }
     
     func mediaPlayerStateChanged(_ aNotification: Notification!) {
@@ -444,8 +472,8 @@ extension VideoView: VLCMediaPlayerDelegate {
             
             if repeatButton.isSelected {
                 
-//                mediaPlayer.time = VLCTime(int: 0)
-//                mediaPlayer.play()
+                //                mediaPlayer.time = VLCTime(int: 0)
+                //                mediaPlayer.play()
             }
             else {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
@@ -522,6 +550,7 @@ extension VideoView: UIGestureRecognizerDelegate {
     }
 }
 
+//MARK: - BrightnessSliderDelegate
 extension VideoView: BrightnessSliderDelegate {
     func onSliderTouchDown(view: BrightnessSettingView, slider: UISlider) {
         controlViewTimer.invalidate()
@@ -529,7 +558,7 @@ extension VideoView: BrightnessSliderDelegate {
     
     func onSliderValuedChanged(view: BrightnessSettingView, slider: UISlider) {
         controlViewTimer.invalidate()
-
+        
         switch slider.tag {
         case SliderType.brightness.rawValue:
             mediaPlayer.brightness = slider.value
@@ -576,5 +605,5 @@ extension VideoView: SleepTimerPopupViewDelegate {
             strongSelf.onCloseTouched(nil)
         })
     }
-
+    
 }

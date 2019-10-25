@@ -338,7 +338,7 @@ open class PlayerView: UIView {
     
     @IBAction func onPanGesture(_ gesture: UIPanGestureRecognizer) {
         let translation = gesture.translation(in: self)
-        let location = gesture.location(in: self)
+//        let location = gesture.location(in: self)
         let velocity = gesture.velocity(in: self)
         
         switch gesture.state {

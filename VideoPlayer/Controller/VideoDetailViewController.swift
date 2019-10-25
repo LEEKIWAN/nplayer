@@ -128,18 +128,8 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
         }
         
         coordinator.animate(alongsideTransition: { _ in
-            if UIDevice.current.orientation.isLandscape {
-                print("Landscape")
-                videoView.consStatusBarHeight.constant = 20
-            } else {
-                print("Portrait")
-                videoView.consStatusBarHeight.constant = 0
-            }
-            
-            
-            
+            videoView.configureVisibleStatusBar()                
         }) { (_) in
-//            videoView.consStatusBarHeight.constant = 0
         }
     }
     

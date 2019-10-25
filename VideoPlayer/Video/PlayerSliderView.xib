@@ -10,7 +10,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PlayerSliderView" customModule="VideoPlayer" customModuleProvider="target">
             <connections>
                 <outlet property="progressView" destination="hgJ-Py-cV3" id="MU3-RC-MtB"/>
-                <outlet property="sliderView" destination="YHO-OP-RIb" id="SMY-eZ-HZ8"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -20,20 +19,13 @@
             <subviews>
                 <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="hgJ-Py-cV3">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                    <color key="tintColor" red="1" green="0.83234566450000003" blue="0.47320586440000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </progressView>
-                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="YHO-OP-RIb">
-                    <rect key="frame" x="-2" y="0.0" width="418" height="57"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                </slider>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="hgJ-Py-cV3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="2GV-V1-cK5"/>
-                <constraint firstAttribute="bottom" secondItem="YHO-OP-RIb" secondAttribute="bottom" id="8wi-JD-sqo"/>
                 <constraint firstAttribute="bottom" secondItem="hgJ-Py-cV3" secondAttribute="bottom" id="H5Z-Ep-9Y6"/>
-                <constraint firstItem="YHO-OP-RIb" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="hSy-Rn-FRR"/>
-                <constraint firstAttribute="trailing" secondItem="YHO-OP-RIb" secondAttribute="trailing" id="oTc-0Q-Z3S"/>
-                <constraint firstItem="YHO-OP-RIb" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="rMC-Lx-CQG"/>
                 <constraint firstItem="hgJ-Py-cV3" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="uaW-yp-ZyU"/>
                 <constraint firstAttribute="trailing" secondItem="hgJ-Py-cV3" secondAttribute="trailing" id="zIg-U9-yAa"/>
             </constraints>

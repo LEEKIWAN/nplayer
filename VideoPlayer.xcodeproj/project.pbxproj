@@ -47,6 +47,8 @@
 		837FC9A823628F5D0028CFF4 /* PlayerSliderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 837FC9A723628F5D0028CFF4 /* PlayerSliderView.xib */; };
 		837FC9AA23628F680028CFF4 /* PlayerSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837FC9A923628F680028CFF4 /* PlayerSliderView.swift */; };
 		83801844235EFC00000FC7A5 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83801843235EFC00000FC7A5 /* PopupViewController.swift */; };
+		8389DC9C236352C7007D5779 /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8389DC9B236352C7007D5779 /* StatusBar.swift */; };
+		8389DC9E236352D3007D5779 /* StatusBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8389DC9D236352D3007D5779 /* StatusBar.xib */; };
 		83945D462306359200B7987B /* DirectoryMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83945D452306359200B7987B /* DirectoryMonitor.swift */; };
 		8398DD1A2314EF590084951A /* SleepTimerPopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8398DD192314EF590084951A /* SleepTimerPopupView.xib */; };
 		8398DD1C2314EF680084951A /* SleepTimerPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8398DD1B2314EF680084951A /* SleepTimerPopupView.swift */; };
@@ -114,6 +116,8 @@
 		837FC9A723628F5D0028CFF4 /* PlayerSliderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerSliderView.xib; sourceTree = "<group>"; };
 		837FC9A923628F680028CFF4 /* PlayerSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSliderView.swift; sourceTree = "<group>"; };
 		83801843235EFC00000FC7A5 /* PopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
+		8389DC9B236352C7007D5779 /* StatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBar.swift; sourceTree = "<group>"; };
+		8389DC9D236352D3007D5779 /* StatusBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusBar.xib; sourceTree = "<group>"; };
 		83945D452306359200B7987B /* DirectoryMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryMonitor.swift; sourceTree = "<group>"; };
 		8398DD192314EF590084951A /* SleepTimerPopupView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SleepTimerPopupView.xib; sourceTree = "<group>"; };
 		8398DD1B2314EF680084951A /* SleepTimerPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepTimerPopupView.swift; sourceTree = "<group>"; };
@@ -292,6 +296,8 @@
 				8398DD1B2314EF680084951A /* SleepTimerPopupView.swift */,
 				833748E72315140B00B535F0 /* BrightnessToastView.xib */,
 				833748E92315141700B535F0 /* BrightnessToastView.swift */,
+				8389DC9D236352D3007D5779 /* StatusBar.xib */,
+				8389DC9B236352C7007D5779 /* StatusBar.swift */,
 				837FC9A723628F5D0028CFF4 /* PlayerSliderView.xib */,
 				837FC9A923628F680028CFF4 /* PlayerSliderView.swift */,
 			);
@@ -434,6 +440,7 @@
 				8327B07722F3CF4B00D31C84 /* VideoPlayerController.storyboard in Resources */,
 				8398DD1A2314EF590084951A /* SleepTimerPopupView.xib in Resources */,
 				833748FA2317AD6600B535F0 /* SettingPopupViewController.storyboard in Resources */,
+				8389DC9E236352D3007D5779 /* StatusBar.xib in Resources */,
 				83EE116F230CCB220030A24E /* VideoDetailViewController.storyboard in Resources */,
 				837F8A3422F1813D005E0822 /* ImageViewerController.storyboard in Resources */,
 				833748E82315140B00B535F0 /* BrightnessToastView.xib in Resources */,
@@ -517,6 +524,7 @@
 				839E117422CC84A60096E43C /* AppDelegate.swift in Sources */,
 				83AEA3462313ADB700354500 /* UIVIew+.swift in Sources */,
 				839F9DF422EFDAEB003AFA0D /* UIColor+.swift in Sources */,
+				8389DC9C236352C7007D5779 /* StatusBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

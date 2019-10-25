@@ -8,25 +8,32 @@
 
 import Foundation
 
-import Foundation
+
+protocol PlayerSliderViewDelegate: class {
+    func timeSliderTouchDown(sliderView: PlayerSliderView)
+    func timeSliderTouchUpInside(sliderView: PlayerSliderView)
+    func timeSliderValueChanged(sliderView: PlayerSliderView)
+}
+
 
 class PlayerSliderView: UIView {
-   
-    @IBOutlet weak var sliderView: UISlider!
+    
+    weak var delegate: PlayerSliderViewDelegate?
+    
     @IBOutlet weak var progressView: UIProgressView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setNib()
         setUI()
-        configureSlider()
+        configure()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setNib()
         setUI()
-        configureSlider()
+        configure()
     }
     
     func setNib() {
@@ -36,77 +43,54 @@ class PlayerSliderView: UIView {
     }
     
     func setUI() {
+
+        self.progressView.tintColor = UIColor(hexFromString: "#F7C203", alpha: 0.7)
+        self.progressView.backgroundColor = UIColor(hexFromString: "#F7C203", alpha: 0.5)
     }
     
-    
-
-    func configureSlider() {
-        backgroundColor = UIColor.clear
+    func configure() {
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(timeSliderValueChanged(_:)))
+        progressView.addGestureRecognizer(panGesture)
         
-        sliderView.maximumValue = 1.0
-        sliderView.minimumValue = 0.0
-        sliderView.value = 0.0
-        sliderView.maximumTrackTintColor = UIColor.clear
-        sliderView.minimumTrackTintColor = UIColor.clear
-
-        let thumbImage = UIImage(named: "VGPlayer_ic_slider_thumb")
-        let normalThumbImage = PlayerUtils.imageSize(image: thumbImage!, scaledToSize: CGSize(width: 15, height: 15))
-        sliderView.setThumbImage(normalThumbImage, for: .normal)
-        let highlightedThumbImage = PlayerUtils.imageSize(image: thumbImage!, scaledToSize: CGSize(width: 20, height: 20))
-        sliderView.setThumbImage(highlightedThumbImage, for: .highlighted)
-
-        
-        progressView.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.7988548801)
-        progressView.trackTintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.2964201627)
+        let tapGesture = UILongPressGestureRecognizer(target: self, action: #selector(timeSliderValueTouched(_:)))
+        tapGesture.minimumPressDuration = 0
+        progressView.addGestureRecognizer(tapGesture)
     }
-
+    
     open func setProgress(_ progress: Float, animated: Bool) {
-        sliderView.value = progress
         progressView.setProgress(progress, animated: animated)
     }
 
+    //MARK: - Evtn
+    @objc func timeSliderValueChanged(_ recognizer: UIPanGestureRecognizer?) {
+    }
+    
+    @objc func timeSliderValueTouched(_ recognizer: UILongPressGestureRecognizer?) {
+        let location = recognizer?.location(in: recognizer?.view)
+        let width = recognizer?.view?.frame.size.width ?? 0.0
+        let pointX = location?.x ?? 0.0
+        
+        let currentValue = pointX / width
+        progressView.setProgress(Float(currentValue), animated: false)
+        
+        
+        switch recognizer?.state {
+        case.began:
+            delegate?.timeSliderTouchDown(sliderView: self)
+        case .changed:
+            let location = recognizer?.location(in: recognizer?.view)
+            let width = recognizer?.view?.frame.size.width ?? 0.0
+            let pointX = location?.x ?? 0.0
+            
+            let currentValue = pointX / width
+            progressView.setProgress(Float(currentValue), animated: false)
+            delegate?.timeSliderValueChanged(sliderView: self)            
+        case .ended:
+            delegate?.timeSliderTouchUpInside(sliderView: self)
+        default:
+            break
+        }
+        
+    }
     
 }
-
-
-
-//open class PlayerSlider: UISlider {
-//
-//    open var progressView : UIProgressView
-//
-//
-//    convenience init() {
-//        self.init(frame: CGRect.zero)
-//    }
-//
-//    public override init(frame: CGRect) {
-//        self.progressView = UIProgressView()
-//        super.init(frame: frame)
-//        configureSlider()
-//    }
-//
-//    required public init?(coder aDecoder: NSCoder) {
-//        self.progressView = UIProgressView()
-//        super.init(coder: aDecoder)
-//        configureSlider()
-//    }
-//
-//
-//
-//    override open func thumbRect(forBounds bounds: CGRect, trackRect rect: CGRect, value: Float) -> CGRect {
-//        let rect = super.thumbRect(forBounds: bounds, trackRect: rect, value: value)
-//        let newRect = CGRect(x: rect.origin.x, y: rect.origin.y + 1, width: rect.width, height: rect.height)
-//        return newRect
-//    }
-//
-//    override open func trackRect(forBounds bounds: CGRect) -> CGRect {
-//        let rect = super.trackRect(forBounds: bounds)
-//        let newRect = CGRect(origin: rect.origin, size: CGSize(width: rect.size.width, height: 2))  // 2
-//        configureProgressView(newRect)
-//        return newRect
-//    }
-//
-//
-//
-//}
-

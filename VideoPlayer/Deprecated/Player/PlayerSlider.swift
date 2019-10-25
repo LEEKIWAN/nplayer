@@ -38,7 +38,7 @@ open class PlayerSlider: UISlider {
     }
     
     override open func trackRect(forBounds bounds: CGRect) -> CGRect {
-        var rect = super.trackRect(forBounds: bounds)
+//        var rect = super.trackRect(forBounds: bounds)
         
         let newRect = CGRect(origin: CGPoint.zero, size: CGSize(width: self.bounds.size.width, height: self.bounds.size.height))  // 2
         configureProgressView(newRect)
