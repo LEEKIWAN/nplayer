@@ -43,6 +43,9 @@
 		836C8DE02305095900283583 /* CMTime+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836C8DDF2305095900283583 /* CMTime+.swift */; };
 		837F8A3422F1813D005E0822 /* ImageViewerController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 837F8A3322F1813D005E0822 /* ImageViewerController.storyboard */; };
 		837F8A3622F18151005E0822 /* ImageViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837F8A3522F18151005E0822 /* ImageViewerController.swift */; };
+		837FC9A6236288900028CFF4 /* SliderDeprecated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837FC9A5236288900028CFF4 /* SliderDeprecated.swift */; };
+		837FC9A823628F5D0028CFF4 /* PlayerSliderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 837FC9A723628F5D0028CFF4 /* PlayerSliderView.xib */; };
+		837FC9AA23628F680028CFF4 /* PlayerSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837FC9A923628F680028CFF4 /* PlayerSliderView.swift */; };
 		83801844235EFC00000FC7A5 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83801843235EFC00000FC7A5 /* PopupViewController.swift */; };
 		83945D462306359200B7987B /* DirectoryMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83945D452306359200B7987B /* DirectoryMonitor.swift */; };
 		8398DD1A2314EF590084951A /* SleepTimerPopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8398DD192314EF590084951A /* SleepTimerPopupView.xib */; };
@@ -107,6 +110,9 @@
 		836C8DDF2305095900283583 /* CMTime+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CMTime+.swift"; sourceTree = "<group>"; };
 		837F8A3322F1813D005E0822 /* ImageViewerController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ImageViewerController.storyboard; sourceTree = "<group>"; };
 		837F8A3522F18151005E0822 /* ImageViewerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerController.swift; sourceTree = "<group>"; };
+		837FC9A5236288900028CFF4 /* SliderDeprecated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderDeprecated.swift; sourceTree = "<group>"; };
+		837FC9A723628F5D0028CFF4 /* PlayerSliderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerSliderView.xib; sourceTree = "<group>"; };
+		837FC9A923628F680028CFF4 /* PlayerSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSliderView.swift; sourceTree = "<group>"; };
 		83801843235EFC00000FC7A5 /* PopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		83945D452306359200B7987B /* DirectoryMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryMonitor.swift; sourceTree = "<group>"; };
 		8398DD192314EF590084951A /* SleepTimerPopupView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SleepTimerPopupView.xib; sourceTree = "<group>"; };
@@ -199,6 +205,7 @@
 				8327B07022F2B33200D31C84 /* PlayerUtils.swift */,
 				8327B07A22F4045200D31C84 /* PlayerSlider.swift */,
 				830BF88322FA8E5F00D3D848 /* CustomSlider.swift */,
+				837FC9A5236288900028CFF4 /* SliderDeprecated.swift */,
 			);
 			path = Player;
 			sourceTree = "<group>";
@@ -285,6 +292,8 @@
 				8398DD1B2314EF680084951A /* SleepTimerPopupView.swift */,
 				833748E72315140B00B535F0 /* BrightnessToastView.xib */,
 				833748E92315141700B535F0 /* BrightnessToastView.swift */,
+				837FC9A723628F5D0028CFF4 /* PlayerSliderView.xib */,
+				837FC9A923628F680028CFF4 /* PlayerSliderView.swift */,
 			);
 			path = Video;
 			sourceTree = "<group>";
@@ -412,6 +421,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				837FC9A823628F5D0028CFF4 /* PlayerSliderView.xib in Resources */,
 				839E117E22CC84A80096E43C /* LaunchScreen.storyboard in Resources */,
 				839E117B22CC84A80096E43C /* Assets.xcassets in Resources */,
 				839E119522CC98A00096E43C /* VideoControllerView.xib in Resources */,
@@ -487,7 +497,9 @@
 				839E117622CC84A60096E43C /* PlayViewController.swift in Sources */,
 				83945D462306359200B7987B /* DirectoryMonitor.swift in Sources */,
 				8330BB4422EA80C50038FAE9 /* FileItemTableViewCell.swift in Sources */,
+				837FC9A6236288900028CFF4 /* SliderDeprecated.swift in Sources */,
 				8327B07922F3CF6700D31C84 /* VideoPlayerController.swift in Sources */,
+				837FC9AA23628F680028CFF4 /* PlayerSliderView.swift in Sources */,
 				836C8DE02305095900283583 /* CMTime+.swift in Sources */,
 				839F9DF222EFC278003AFA0D /* FileType.swift in Sources */,
 				839E119322CC96FC0096E43C /* VideoControllerView.swift in Sources */,

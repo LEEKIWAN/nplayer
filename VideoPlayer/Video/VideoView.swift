@@ -36,6 +36,7 @@ class VideoView: UIView {
     
     // top view
     @IBOutlet weak var sliderView: PlayerSlider!
+    @IBOutlet weak var sliderView2: PlayerSliderView!
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var currentDurationLabel: UILabel!
     @IBOutlet weak var totalDurationLabel: UILabel!
@@ -61,6 +62,8 @@ class VideoView: UIView {
     @IBOutlet weak var rotationLockButton: UIButton!
     @IBOutlet weak var repeatButton: UIButton!
     @IBOutlet weak var settingButton: UIButton!
+    
+    @IBOutlet open weak var consStatusBarHeight: NSLayoutConstraint!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -432,7 +435,8 @@ extension VideoView: VLCMediaPlayerDelegate {
         
         let progresssValue = Float(currentDuration!.intValue) / Float(totalDuration.intValue)
         
-        sliderView.value = progresssValue
+//        sliderView.value = progresssValue
+        sliderView2.setProgress(progresssValue, animated: false)
     }
     
     func mediaPlayerStateChanged(_ aNotification: Notification!) {

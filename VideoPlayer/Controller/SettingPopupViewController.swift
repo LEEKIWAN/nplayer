@@ -42,31 +42,7 @@ class SettingPopupViewController: UIViewController, UITabBarDelegate {
     // MARK: - UITabBarDelegate
     
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        if item == videoTabBarItem {
-            let storyBoard = UIStoryboard(name: "SettingPopupViewController", bundle: nil)
-            let videoVC = storyboard!.instantiateViewController(withIdentifier: "VIDEO_IDENTIFIER")
-            
-            contentsView.addSubview(videoVC.view)
-            videoVC.view.frame = contentsView.bounds
-            videoVC.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            
-            videoVC.didMove(toParent: self)
-        }
-        else if item == audioTabBarItem {
-                
-            let storyBoard = UIStoryboard(name: "SettingPopupViewController", bundle: nil)
-            let videoVC = storyboard!.instantiateViewController(withIdentifier: "AUDIO_IDENTIFIER")
-            
-            contentsView.addSubview(videoVC.view)
-            videoVC.view.frame = contentsView.bounds
-            videoVC.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            
-            videoVC.didMove(toParent: self)
-            
-        }
-        else if item == subtitleTabBarItem {
-            
-        }
+    
         
     }
 }

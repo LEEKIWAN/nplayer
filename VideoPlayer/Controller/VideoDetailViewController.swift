@@ -122,10 +122,24 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
+        
+        guard let videoView = videoView else {
+            return
+        }
+        
         coordinator.animate(alongsideTransition: { _ in
-            //            self.gradient.frame = self.loginButton.bounds
+            if UIDevice.current.orientation.isLandscape {
+                print("Landscape")
+                videoView.consStatusBarHeight.constant = 20
+            } else {
+                print("Portrait")
+                videoView.consStatusBarHeight.constant = 0
+            }
+            
+            
+            
         }) { (_) in
-            //            self.gradient.frame = self.loginButton.bounds
+//            videoView.consStatusBarHeight.constant = 0
         }
     }
     
@@ -170,7 +184,7 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
         popupVC.cornerRadius = 5
         present(popupVC, animated: true, completion: nil)
         
-//        self.present(settingPopupViewController, animated: false, completion: nil)
+        //        self.present(settingPopupViewController, animated: false, completion: nil)
     }
     
     
