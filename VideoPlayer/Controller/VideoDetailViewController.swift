@@ -156,7 +156,8 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
     func videoViewDidClosed(videoView: VideoView) {
         AppUtility.lockOrientation(.all)
         self.setPrefersHomeIndicator(autoHidden: false)
-        
+        videoView.removeFromSuperview()
+        self.videoView = nil
         UIViewController.attemptRotationToDeviceOrientation()
     }
     

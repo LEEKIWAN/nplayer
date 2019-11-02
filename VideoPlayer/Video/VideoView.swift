@@ -145,7 +145,7 @@ class VideoView: UIView {
     }
     
     open func configureVisibleStatusBar() {
-        if UIDevice.current.orientation.isLandscape {
+        if self.frame.size.width > self.frame.size.height {
             statusBar.isHidden = false
             consStatusBarHeight.constant = 23
             consLeftWidth.constant = 50
@@ -186,7 +186,6 @@ class VideoView: UIView {
             
             self.alpha = 0
         }) { (completion) in
-            self.removeFromSuperview()
             self.delegate?.videoViewDidClosed(videoView: self)
         }
     }
