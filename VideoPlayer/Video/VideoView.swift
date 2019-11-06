@@ -67,6 +67,7 @@ class VideoView: UIView {
     @IBOutlet weak var consLeftWidth: NSLayoutConstraint!
     @IBOutlet weak var consRightWidth: NSLayoutConstraint!
     
+    //MARK: - Func
     override init(frame: CGRect) {
         super.init(frame: frame)
         setNib()
@@ -313,10 +314,10 @@ class VideoView: UIView {
     @IBOutlet var panGestureRecognizer: UIPanGestureRecognizer!
     var panGestureDirection: GestureDirection = .horizontal
     var isVolumeAreaTouched : Bool = false
-    
+    var firstLocation: CGPoint = CGPoint.zero
+    var firstCurrentDuration: Float = 0
     
     @IBAction func onPanGesture(_ gesture: UIPanGestureRecognizer) {
-        //        let translation = gesture.translation(in: self)
         let location = gesture.location(in: self)
         let velocity = gesture.velocity(in: self)
         
@@ -333,25 +334,38 @@ class VideoView: UIView {
             }
             else {
                 panGestureDirection = .horizontal
+                firstLocation = location
+                firstCurrentDuration = sliderView.progressView.progress * mediaPlayer.media.length.value.floatValue
+                timeSliderTouchDown(sliderView: sliderView)
             }
             
         case .changed:
-            guard let direction = gesture.direction else { return }
-            
+//            guard let direction = gesture.direction else { return }
+
             if panGestureDirection == .horizontal {
-                if direction == .Right {
-                    mediaPlayer.jumpForward(10)
-                }
-                else if direction == .Left{
-                    mediaPlayer.jumpBackward(10)
-                }
-                play()
-                panGestureRecognizer.isEnabled = false
-                panGestureRecognizer.isEnabled = true
+                
+                var changedLocationX = location.x - firstLocation.x
+                let totalDuration = mediaPlayer.media.length
+                var currentTime = mediaPlayer.time.value.floatValue
+                
+                let slideSensitivity = totalDuration.value.intValue / 400
+
+                changedLocationX *= CGFloat(slideSensitivity)
+                currentTime += Float(changedLocationX)
+                
+                
+                sliderView.setProgress(currentTime / totalDuration.value.floatValue, animated: false)
+                timeSliderValueChanged(sliderView: sliderView)
             }
             else {
                 brightnessToastView.updateProgressView(isVolumeAreaTouched: isVolumeAreaTouched, value: Float(velocity.y / 10000))
             }
+        case .ended:
+            if panGestureDirection == .horizontal {
+                timeSliderTouchUpInside(sliderView: sliderView)
+            }
+            break
+            
         default:
             break
         }
@@ -445,7 +459,7 @@ extension VideoView: PlayerSliderViewDelegate {
     
     func timeSliderValueChanged(sliderView: PlayerSliderView) {
         let totalDuration = mediaPlayer.media.length
-        let currentTime = sliderView.progressView.progress * Float(totalDuration.intValue)
+        let currentTime = sliderView.progressView.progress * totalDuration.value.floatValue
         
         let currentDuration = VLCTime(int: Int32(currentTime))
         mediaPlayer.time = currentDuration

@@ -32,6 +32,15 @@ class FileListViewController: UIViewController {
         super.viewDidLoad()
         self.setSearchController()
         
+        
+        if #available(iOS 13.0, *) {
+            let navBarAppearance = UINavigationBarAppearance()
+            navBarAppearance.configureWithOpaqueBackground()
+            navBarAppearance.backgroundColor = UIColor(hexFromString: "#363636")
+            self.navigationController?.navigationBar.standardAppearance = navBarAppearance
+            self.navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
+        }
+        
         if self == self.navigationController?.viewControllers[0] {
             currentDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
             listFilesFromUrl(with: currentDirectoryURL!)

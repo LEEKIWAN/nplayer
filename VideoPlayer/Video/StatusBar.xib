@@ -12,6 +12,7 @@
             <connections>
                 <outlet property="batterColorView" destination="oto-zR-9WM" id="kUO-k0-Vga"/>
                 <outlet property="batteryLevelLabel" destination="zx1-4u-5L2" id="Aw0-wt-Ttb"/>
+                <outlet property="batteryWidth" destination="dA9-D0-IYp" id="9Nd-rg-nDI"/>
                 <outlet property="boundaryView" destination="Adh-XO-dfr" id="9hf-qo-NwA"/>
                 <outlet property="rechargeImageView" destination="Jxj-iF-4iI" id="aJ5-7l-HyK"/>
                 <outlet property="timeLabel" destination="kTQ-gQ-67r" id="B2b-PP-bZp"/>

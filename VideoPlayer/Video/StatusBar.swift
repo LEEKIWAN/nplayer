@@ -16,6 +16,7 @@ class StatusBar: UIView {
     var batteryState: UIDevice.BatteryState {
         return UIDevice.current.batteryState
     }
+    @IBOutlet weak var batteryWidth: NSLayoutConstraint!
     
     @IBOutlet weak var boundaryView: UIView!
     @IBOutlet weak var batterColorView: UIView!
@@ -63,13 +64,23 @@ class StatusBar: UIView {
         let dateString = dateFormatter.string(from: currentDate)
         timeLabel.text = dateString
         
-        // battery
+        batteryWidth = batteryWidth.setMultiplier(multiplier: CGFloat(self.batteryLevel))
         
         let batteryLevel = Int(self.batteryLevel * 100)
         batteryLevelLabel.text = "\(batteryLevel)%"
+                
         
         if batteryLevel >= 20 {
-            batterColorView.backgroundColor = UIColor(hexFromString: "#62D53F")
+            
+            switch batteryState {
+            case .charging, .full:
+                rechargeImageView.isHidden = false
+                batterColorView.backgroundColor = UIColor(hexFromString: "#62D53F")
+            default:
+                rechargeImageView.isHidden = true
+                batterColorView.backgroundColor = UIColor.white
+            }
+            
         }
         else {
             batterColorView.backgroundColor = UIColor(hexFromString: "#DD554A")
@@ -80,17 +91,5 @@ class StatusBar: UIView {
             batterColorView.backgroundColor = UIColor(hexFromString: "#F8D74A")
         }
         
-        
-        switch batteryState {
-        case .charging:
-            rechargeImageView.isHidden = false
-        default:
-            rechargeImageView.isHidden = true
-        }
-
-//        print("current Battery State : \(batteryState.rawValue)")
-    }
-    
-    
-    
+    }    
 }

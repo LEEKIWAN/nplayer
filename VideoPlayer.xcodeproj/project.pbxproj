@@ -65,6 +65,7 @@
 		83A384A222CDC6C1007EA28D /* AVPlayer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A384A122CDC6C1007EA28D /* AVPlayer+.swift */; };
 		83AEA34423139B9600354500 /* PreferenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AEA34323139B9600354500 /* PreferenceManager.swift */; };
 		83AEA3462313ADB700354500 /* UIVIew+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AEA3452313ADB700354500 /* UIVIew+.swift */; };
+		83CB7A0B236E7DC10071B041 /* NSLayoutConstraint+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CB7A0A236E7DC10071B041 /* NSLayoutConstraint+.swift */; };
 		83EE116F230CCB220030A24E /* VideoDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83EE116E230CCB220030A24E /* VideoDetailViewController.storyboard */; };
 		83EE1172230CCB9B0030A24E /* VideoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EE1171230CCB9B0030A24E /* VideoDetailViewController.swift */; };
 		83EE1174230CE38E0030A24E /* FourCharCode+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EE1173230CE38E0030A24E /* FourCharCode+.swift */; };
@@ -136,6 +137,7 @@
 		83A384A122CDC6C1007EA28D /* AVPlayer+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVPlayer+.swift"; sourceTree = "<group>"; };
 		83AEA34323139B9600354500 /* PreferenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceManager.swift; sourceTree = "<group>"; };
 		83AEA3452313ADB700354500 /* UIVIew+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIew+.swift"; sourceTree = "<group>"; };
+		83CB7A0A236E7DC10071B041 /* NSLayoutConstraint+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+.swift"; sourceTree = "<group>"; };
 		83EE116E230CCB220030A24E /* VideoDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = VideoDetailViewController.storyboard; sourceTree = "<group>"; };
 		83EE1171230CCB9B0030A24E /* VideoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailViewController.swift; sourceTree = "<group>"; };
 		83EE1173230CE38E0030A24E /* FourCharCode+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FourCharCode+.swift"; sourceTree = "<group>"; };
@@ -328,6 +330,7 @@
 				83EE1173230CE38E0030A24E /* FourCharCode+.swift */,
 				8311BD06230E873D0004E891 /* UIPanGestureRecognizer+.swift */,
 				83AEA3452313ADB700354500 /* UIVIew+.swift */,
+				83CB7A0A236E7DC10071B041 /* NSLayoutConstraint+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -503,6 +506,7 @@
 				83668D4822EEAE3C003C918B /* UIImage+SwiftyGif.swift in Sources */,
 				839E117622CC84A60096E43C /* PlayViewController.swift in Sources */,
 				83945D462306359200B7987B /* DirectoryMonitor.swift in Sources */,
+				83CB7A0B236E7DC10071B041 /* NSLayoutConstraint+.swift in Sources */,
 				8330BB4422EA80C50038FAE9 /* FileItemTableViewCell.swift in Sources */,
 				837FC9A6236288900028CFF4 /* SliderDeprecated.swift in Sources */,
 				8327B07922F3CF6700D31C84 /* VideoPlayerController.swift in Sources */,
@@ -676,6 +680,7 @@
 				DEVELOPMENT_TEAM = 77F6X5R2CN;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = VideoPlayer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -699,6 +704,7 @@
 				DEVELOPMENT_TEAM = 77F6X5R2CN;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = VideoPlayer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

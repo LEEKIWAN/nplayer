@@ -10,5 +10,13 @@
             </PersistentString>
          </PersistentStrings>
       </ContextState>
+      <ContextState
+         contextName = "StatusBar.updateStatusBarInformation():StatusBar.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "batteryState">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
    </ContextStates>
 </VariablesViewState>
