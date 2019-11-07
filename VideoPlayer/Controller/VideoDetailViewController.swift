@@ -128,8 +128,10 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
         }
         
         coordinator.animate(alongsideTransition: { _ in
-            videoView.configureVisibleStatusBar()                
+            videoView.configureVisibleStatusBar()
+            videoView.onRotateScreenUpdate()
         }) { (_) in
+            
         }
     }
     

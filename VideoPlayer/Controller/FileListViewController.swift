@@ -32,14 +32,11 @@ class FileListViewController: UIViewController {
         super.viewDidLoad()
         self.setSearchController()
         
-        
-        if #available(iOS 13.0, *) {
-            let navBarAppearance = UINavigationBarAppearance()
-            navBarAppearance.configureWithOpaqueBackground()
-            navBarAppearance.backgroundColor = UIColor(hexFromString: "#363636")
-            self.navigationController?.navigationBar.standardAppearance = navBarAppearance
-            self.navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
-        }
+        let navBarAppearance = UINavigationBarAppearance()
+        navBarAppearance.configureWithOpaqueBackground()
+        navBarAppearance.backgroundColor = UIColor(hexFromString: "#363636")
+        self.navigationController?.navigationBar.standardAppearance = navBarAppearance
+        self.navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
         
         if self == self.navigationController?.viewControllers[0] {
             currentDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
@@ -55,31 +52,33 @@ class FileListViewController: UIViewController {
         navigationItem.searchController = searchController
     }
     
+    
+     override func viewDidAppear(_ animated: Bool) {
+         super.viewDidAppear(animated)
+         if(!searchBarIsEmpty()) {
+             DispatchQueue.main.async { [unowned self] in
+                 self.searchController.searchBar.becomeFirstResponder()
+             }
+         }
+     }
+         
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.unregisterForKeyboardNotifications()
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if(!searchBarIsEmpty()) {
-            DispatchQueue.main.async { [unowned self] in
-                self.searchController.searchBar.becomeFirstResponder()
-            }
-        }
-    }
-    
+
     func setSearchController() {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "필터"
         navigationItem.searchController = searchController
-        
+        definesPresentationContext = true
         searchController.searchBar.delegate = self
         searchController.searchBar.tintColor = UIColor(hexFromString: "#F7C203")
         searchController.searchBar.barStyle = .black
+        
     }
-
+    
     // MARK: - FileManager
     
     func listFilesFromUrl(with url: URL) {
@@ -111,7 +110,7 @@ class FileListViewController: UIViewController {
                 fileList.remove(at: i)
             }
         }
-
+        
         directoryList.sort { (lhs, rhs) -> Bool in
             return lhs.fileName.lowercased() < rhs.fileName.lowercased()
         }
@@ -133,11 +132,11 @@ class FileListViewController: UIViewController {
         
         tableView.reloadData()
     }
-
+    
     func searchBarIsEmpty() -> Bool {
         return searchController.searchBar.text?.isEmpty ?? true
     }
-
+    
     func isFiltering() -> Bool {
         return searchController.isActive && !searchBarIsEmpty()
     }
@@ -224,47 +223,47 @@ extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
         
         
         switch data.getFileType() {
-            case .directory:
-                navigationItem.searchController = nil
-                
-                let storyBoard = UIStoryboard(name: "FileListViewController", bundle: nil)
-                let fileListViewController = storyBoard.instantiateViewController(withIdentifier: "FileListViewController") as! FileListViewController
-                fileListViewController.listFilesFromUrl(with: data.url)
-                fileListViewController.navigationItem.title = data.fileName
-                self.navigationController?.pushViewController(fileListViewController, animated: true)
+        case .directory:
+            navigationItem.searchController = nil
             
-            case .text:
-                let storyBoard = UIStoryboard(name: "TextViewerController", bundle: nil)
-                let textViewerController = storyBoard.instantiateInitialViewController() as! TextViewerController
-                textViewerController.data = data
-                self.present(textViewerController, animated: true, completion: nil)
+            let storyBoard = UIStoryboard(name: "FileListViewController", bundle: nil)
+            let fileListViewController = storyBoard.instantiateViewController(withIdentifier: "FileListViewController") as! FileListViewController
+            fileListViewController.listFilesFromUrl(with: data.url)
+            fileListViewController.navigationItem.title = data.fileName
+            self.navigationController?.pushViewController(fileListViewController, animated: true)
             
-            case .image:
-                let storyBoard = UIStoryboard(name: "ImageViewerController", bundle: nil)
-                let imageViewerController = storyBoard.instantiateInitialViewController() as! ImageViewerController
-                imageViewerController.data = data
-                self.present(imageViewerController, animated: true, completion: nil)
+        case .text:
+            let storyBoard = UIStoryboard(name: "TextViewerController", bundle: nil)
+            let textViewerController = storyBoard.instantiateInitialViewController() as! TextViewerController
+            textViewerController.data = data
+            self.present(textViewerController, animated: true, completion: nil)
             
-            case .video:
-//                let storyBoard = UIStoryboard(name: "VideoPlayerController", bundle: nil)
-//                let videoPlayerController = storyBoard.instantiateInitialViewController() as! VideoPlayerController
-//                videoPlayerController.playItem = data
-//                self.present(videoPlayerController, animated: true, completion: nil)
-                
-
-                let storyBoard = UIStoryboard(name: "VideoDetailViewController", bundle: nil)
-                let videoDetailViewController = storyBoard.instantiateInitialViewController() as! VideoDetailViewController
-                videoDetailViewController.data = data
-                videoDetailViewController.navigationItem.title = data.fileName
-                self.navigationController?.pushViewController(videoDetailViewController, animated: true)
+        case .image:
+            let storyBoard = UIStoryboard(name: "ImageViewerController", bundle: nil)
+            let imageViewerController = storyBoard.instantiateInitialViewController() as! ImageViewerController
+            imageViewerController.data = data
+            self.present(imageViewerController, animated: true, completion: nil)
+            
+        case .video:
+            //                let storyBoard = UIStoryboard(name: "VideoPlayerController", bundle: nil)
+            //                let videoPlayerController = storyBoard.instantiateInitialViewController() as! VideoPlayerController
+            //                videoPlayerController.playItem = data
+            //                self.present(videoPlayerController, animated: true, completion: nil)
             
             
-            default:
-                break
+            let storyBoard = UIStoryboard(name: "VideoDetailViewController", bundle: nil)
+            let videoDetailViewController = storyBoard.instantiateInitialViewController() as! VideoDetailViewController
+            videoDetailViewController.data = data
+            videoDetailViewController.navigationItem.title = data.fileName
+            self.navigationController?.pushViewController(videoDetailViewController, animated: true)
+            
+            
+        default:
+            break
         }
         
-
-//        self.present(playViewController, animated: true, completion: nil)
+        
+        //        self.present(playViewController, animated: true, completion: nil)
     }
     
 }

@@ -67,6 +67,9 @@ class VideoView: UIView {
     @IBOutlet weak var consLeftWidth: NSLayoutConstraint!
     @IBOutlet weak var consRightWidth: NSLayoutConstraint!
     
+    @IBOutlet weak var popupLabel: UILabel!
+    var popupLabelTimer: Timer = Timer()
+    
     //MARK: - Func
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -276,18 +279,62 @@ class VideoView: UIView {
             let ratio = "\(Int(self.bounds.width)):\(Int(self.bounds.height))"
             mediaPlayer.videoCropGeometry = strdup(ratio)
             currentAspectRatio = .aspectFill
+            setupPopupLabelTimer("비율에 맞게 채움")
         case .aspectFill:
             mediaPlayer.videoCropGeometry = nil
             let ratio = "\(Int(self.bounds.width)):\(Int(self.bounds.height + 1))"
             mediaPlayer.videoAspectRatio = strdup(ratio)
             currentAspectRatio = .scaleToFill
+            setupPopupLabelTimer("채움")
         case .scaleToFill:
             mediaPlayer.videoAspectRatio = nil
             mediaPlayer.videoCropGeometry = nil
             currentAspectRatio = .aspectFit
+            setupPopupLabelTimer("비율에 맞게 맞춤")
         }
         
         setupTimer()
+    }
+    
+    open func onRotateScreenUpdate() {
+        switch currentAspectRatio {
+        case .aspectFit:            
+            mediaPlayer.videoAspectRatio = nil
+            mediaPlayer.videoCropGeometry = nil
+        case .aspectFill:
+            let ratio = "\(Int(self.bounds.width)):\(Int(self.bounds.height))"
+            mediaPlayer.videoCropGeometry = strdup(ratio)
+        case .scaleToFill:
+            mediaPlayer.videoCropGeometry = nil
+            let ratio = "\(Int(self.bounds.width)):\(Int(self.bounds.height + 1))"
+            mediaPlayer.videoAspectRatio = strdup(ratio)
+
+        }
+        
+        
+//        switch currentAspectRatio {
+//        case .aspectFit:
+//            let ratio = "\(Int(self.bounds.width)):\(Int(self.bounds.height))"
+//            mediaPlayer.videoCropGeometry = strdup(ratio)
+//        case .aspectFill:
+//            mediaPlayer.videoCropGeometry = nil
+//            let ratio = "\(Int(self.bounds.width)):\(Int(self.bounds.height + 1))"
+//            mediaPlayer.videoAspectRatio = strdup(ratio)
+//
+//        case .scaleToFill:
+//            mediaPlayer.videoAspectRatio = nil
+//            mediaPlayer.videoCropGeometry = nil
+//        }
+    }
+    
+    internal func setupPopupLabelTimer(_ text: String) {
+        popupLabel.text = text
+        popupLabel.isHidden = false
+        popupLabelTimer.invalidate()
+        popupLabelTimer = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false, block: { [weak self] (timer) in
+            guard let strongSelf = self else { return }
+            strongSelf.popupLabel.isHidden = true
+        })
     }
     
     // MARK: - UIGestureRecognizer
@@ -340,10 +387,8 @@ class VideoView: UIView {
             }
             
         case .changed:
-//            guard let direction = gesture.direction else { return }
-
+            guard let direction = gesture.direction else { return }
             if panGestureDirection == .horizontal {
-                
                 var changedLocationX = location.x - firstLocation.x
                 let totalDuration = mediaPlayer.media.length
                 var currentTime = mediaPlayer.time.value.floatValue
@@ -352,8 +397,7 @@ class VideoView: UIView {
 
                 changedLocationX *= CGFloat(slideSensitivity)
                 currentTime += Float(changedLocationX)
-                
-                
+                                
                 sliderView.setProgress(currentTime / totalDuration.value.floatValue, animated: false)
                 timeSliderValueChanged(sliderView: sliderView)
             }
@@ -459,11 +503,16 @@ extension VideoView: PlayerSliderViewDelegate {
     
     func timeSliderValueChanged(sliderView: PlayerSliderView) {
         let totalDuration = mediaPlayer.media.length
+        let prevTime = mediaPlayer.time.value.floatValue
         let currentTime = sliderView.progressView.progress * totalDuration.value.floatValue
         
         let currentDuration = VLCTime(int: Int32(currentTime))
         mediaPlayer.time = currentDuration
         currentDurationLabel.text = currentDuration?.stringValue
+        
+        var searchTime = Int(currentTime - prevTime) / 1000
+        searchTime > 0 ? setupPopupLabelTimer("+\(searchTime.timeFormatted())") : setupPopupLabelTimer("-\(searchTime.timeFormatted())")
+        
     }
     
 }

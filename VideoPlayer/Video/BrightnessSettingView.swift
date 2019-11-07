@@ -141,3 +141,4 @@ class BrightnessSettingView: UIView {
     
     
 }
+

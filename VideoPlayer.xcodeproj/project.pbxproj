@@ -35,6 +35,7 @@
 		833CD49422F2A2B900617F63 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833CD49322F2A2B900617F63 /* Player.swift */; };
 		833CD49622F2A68300617F63 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833CD49522F2A68300617F63 /* PlayerView.swift */; };
 		83560EB42344737E00AA48A2 /* SettingTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83560EB32344737E00AA48A2 /* SettingTabBarController.swift */; };
+		835EBE0A2373FA2F000152B1 /* Int+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835EBE092373FA2F000152B1 /* Int+.swift */; };
 		8361C6C622EEE40B006ECF31 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8361C6C522EEE40B006ECF31 /* String+.swift */; };
 		83668D4022EE9147003C918B /* PlayMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83668D3F22EE9147003C918B /* PlayMode.swift */; };
 		83668D4822EEAE3C003C918B /* UIImage+SwiftyGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83668D4522EEAE3C003C918B /* UIImage+SwiftyGif.swift */; };
@@ -105,6 +106,7 @@
 		833CD49322F2A2B900617F63 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		833CD49522F2A68300617F63 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		83560EB32344737E00AA48A2 /* SettingTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTabBarController.swift; sourceTree = "<group>"; };
+		835EBE092373FA2F000152B1 /* Int+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+.swift"; sourceTree = "<group>"; };
 		8361C6C522EEE40B006ECF31 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		83668D3F22EE9147003C918B /* PlayMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlayMode.swift; path = ../../Video/PlayMode.swift; sourceTree = "<group>"; };
 		83668D4522EEAE3C003C918B /* UIImage+SwiftyGif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+SwiftyGif.swift"; sourceTree = "<group>"; };
@@ -331,6 +333,7 @@
 				8311BD06230E873D0004E891 /* UIPanGestureRecognizer+.swift */,
 				83AEA3452313ADB700354500 /* UIVIew+.swift */,
 				83CB7A0A236E7DC10071B041 /* NSLayoutConstraint+.swift */,
+				835EBE092373FA2F000152B1 /* Int+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -493,6 +496,7 @@
 				83668D4A22EEAE3C003C918B /* SwiftyGifManager.swift in Sources */,
 				833CD49622F2A68300617F63 /* PlayerView.swift in Sources */,
 				83EE1172230CCB9B0030A24E /* VideoDetailViewController.swift in Sources */,
+				835EBE0A2373FA2F000152B1 /* Int+.swift in Sources */,
 				839E118E22CC930C0096E43C /* VideoViewDeprecated.swift in Sources */,
 				83EE1178230D1B320030A24E /* VideoView.swift in Sources */,
 				833CD49422F2A2B900617F63 /* Player.swift in Sources */,
@@ -680,7 +684,7 @@
 				DEVELOPMENT_TEAM = 77F6X5R2CN;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = VideoPlayer/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -704,7 +708,7 @@
 				DEVELOPMENT_TEAM = 77F6X5R2CN;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = VideoPlayer/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

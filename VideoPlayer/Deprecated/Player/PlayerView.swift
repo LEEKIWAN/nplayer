@@ -184,23 +184,22 @@ open class PlayerView: UIView {
     // MARK: - Full Screen
     
     open func enterFullScreen() {
-        let statusBarOrientation = UIApplication.shared.statusBarOrientation
-        if statusBarOrientation == .portrait {
-            parentView = self.superview!
-            viewFrame = self.frame
-        }
-        UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
-        UIApplication.shared.statusBarOrientation = .landscapeRight
-        UIApplication.shared.setStatusBarHidden(false, with: .fade)
+//        let statusBarOrientation = UIApplication.shared.statusBarOrientation
+//        if statusBarOrientation == .portrait {
+//            parentView = self.superview!
+//            viewFrame = self.frame
+//        }
+//        UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
+//        UIApplication.shared.statusBarOrientation = .landscapeRight
+//        UIApplication.shared.setStatusBarHidden(false, with: .fade)
         
         fullScreenButton.isSelected = true
     }
 
     open func exitFullScreen() {
-        UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
-        UIApplication.shared.statusBarOrientation = .portrait
-        
-        fullScreenButton.isSelected = false
+//        UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
+//        UIApplication.shared.statusBarOrientation = .portrait        
+//        fullScreenButton.isSelected = false
     }
     
     
