@@ -21,7 +21,7 @@ class FileListViewController: UIViewController {
     
     var fileList: [FileObject] = []
     var filteredFileList: [FileObject] = []
-    let searchController = UISearchController(searchResultsController: nil)
+    let searchController = UISearchController()
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -41,7 +41,6 @@ class FileListViewController: UIViewController {
         if self == self.navigationController?.viewControllers[0] {
             currentDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
             listFilesFromUrl(with: currentDirectoryURL!)
-            tableView.reloadData()
         }
     }
     
@@ -50,17 +49,9 @@ class FileListViewController: UIViewController {
         registerForKeyboardNotifications()
         directoryMonitor?.startMonitoring()
         navigationItem.searchController = searchController
+        tableView.reloadData()
     }
     
-    
-     override func viewDidAppear(_ animated: Bool) {
-         super.viewDidAppear(animated)
-         if(!searchBarIsEmpty()) {
-             DispatchQueue.main.async { [unowned self] in
-                 self.searchController.searchBar.becomeFirstResponder()
-             }
-         }
-     }
          
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -70,13 +61,14 @@ class FileListViewController: UIViewController {
     func setSearchController() {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
+        definesPresentationContext = true
+        
         searchController.searchBar.placeholder = "필터"
         navigationItem.searchController = searchController
-        definesPresentationContext = true
         searchController.searchBar.delegate = self
         searchController.searchBar.tintColor = UIColor(hexFromString: "#F7C203")
         searchController.searchBar.barStyle = .black
-        
     }
     
     // MARK: - FileManager
@@ -224,8 +216,6 @@ extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
         
         switch data.getFileType() {
         case .directory:
-            navigationItem.searchController = nil
-            
             let storyBoard = UIStoryboard(name: "FileListViewController", bundle: nil)
             let fileListViewController = storyBoard.instantiateViewController(withIdentifier: "FileListViewController") as! FileListViewController
             fileListViewController.listFilesFromUrl(with: data.url)
