@@ -138,7 +138,7 @@ class VideoView: UIView {
         configureVisibleStatusBar()
         sliderView.setProgress(0, animated: false)
         
-        mediaPlayer.setTextRendererFontSize(PreferenceManager.shared.subtitleSize as NSNumber)
+//        mediaPlayer.setTextRendererFontSize(PreferenceManager.shared.subtitleSize as NSNumber)
     }
     
     
@@ -276,14 +276,15 @@ class VideoView: UIView {
     @IBAction func onScreenRatioTouched(_ sender: UIButton) {
         switch currentAspectRatio {
         case .aspectFit:
-            let ratio = "\(Int(self.bounds.width)):\(Int(self.bounds.height))"
+            let ratio = "\(Int(self.bounds.width)):\(Int(self.bounds.height+1))"
             mediaPlayer.videoCropGeometry = strdup(ratio)
+            mediaPlayer.videoAspectRatio = nil
             currentAspectRatio = .aspectFill
             setupPopupLabelTimer("비율에 맞게 채움")
         case .aspectFill:
-            mediaPlayer.videoCropGeometry = nil
-            let ratio = "\(Int(self.bounds.width)):\(Int(self.bounds.height + 1))"
+            let ratio = "\(Int(self.bounds.width)):\(Int(self.bounds.height+1))"
             mediaPlayer.videoAspectRatio = strdup(ratio)
+            mediaPlayer.videoCropGeometry = nil
             currentAspectRatio = .scaleToFill
             setupPopupLabelTimer("채움")
         case .scaleToFill:
@@ -292,7 +293,6 @@ class VideoView: UIView {
             currentAspectRatio = .aspectFit
             setupPopupLabelTimer("비율에 맞게 맞춤")
         }
-        
         setupTimer()
     }
     
@@ -302,11 +302,11 @@ class VideoView: UIView {
             mediaPlayer.videoAspectRatio = nil
             mediaPlayer.videoCropGeometry = nil
         case .aspectFill:
-            let ratio = "\(Int(self.bounds.width)):\(Int(self.bounds.height))"
+            let ratio = "\(Int(self.bounds.width)):\(Int(self.bounds.height+1))"
             mediaPlayer.videoCropGeometry = strdup(ratio)
         case .scaleToFill:
+            let ratio = "\(Int(self.bounds.width)):\(Int(self.bounds.height+1))"
             mediaPlayer.videoCropGeometry = nil
-            let ratio = "\(Int(self.bounds.width)):\(Int(self.bounds.height + 1))"
             mediaPlayer.videoAspectRatio = strdup(ratio)
 
         }

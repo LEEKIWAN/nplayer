@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Switch" rowHeight="56" id="9zK-AD-vvm" customClass="SwitchTableViewCell" customModule="VideoPlayer" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="347" height="56"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9zK-AD-vvm" id="wsM-i3-9S0">
+                <rect key="frame" x="0.0" y="0.0" width="347" height="56"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="P1i-4K-iXp">
+                        <rect key="frame" x="18" y="18" width="42" height="20.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CKY-K9-vjn">
+                                <rect key="frame" x="0.0" y="0.0" width="42" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TWe-C1-rw2">
+                        <rect key="frame" x="280" y="12.5" width="51" height="31"/>
+                        <color key="onTintColor" red="0.96862745100000003" green="0.76078431369999999" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                        <connections>
+                            <action selector="onSwitchValueChanged:" destination="9zK-AD-vvm" eventType="valueChanged" id="7nF-ta-fwu"/>
+                        </connections>
+                    </switch>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="TWe-C1-rw2" firstAttribute="centerY" secondItem="wsM-i3-9S0" secondAttribute="centerY" id="3Yb-vE-Xr4"/>
+                    <constraint firstItem="P1i-4K-iXp" firstAttribute="leading" secondItem="wsM-i3-9S0" secondAttribute="leading" constant="18" id="Fpb-cd-qoE"/>
+                    <constraint firstAttribute="trailing" secondItem="TWe-C1-rw2" secondAttribute="trailing" constant="18" id="i47-HC-Lfe"/>
+                    <constraint firstItem="P1i-4K-iXp" firstAttribute="centerY" secondItem="wsM-i3-9S0" secondAttribute="centerY" id="yIJ-Wi-Fac"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <viewLayoutGuide key="safeArea" id="QR4-LL-eGo"/>
+            <connections>
+                <outlet property="switch" destination="TWe-C1-rw2" id="iaC-gs-J7x"/>
+                <outlet property="titleLabel" destination="CKY-K9-vjn" id="Ahw-LF-8SL"/>
+            </connections>
+            <point key="canvasLocation" x="157.24637681159422" y="156.69642857142856"/>
+        </tableViewCell>
+    </objects>
+</document>

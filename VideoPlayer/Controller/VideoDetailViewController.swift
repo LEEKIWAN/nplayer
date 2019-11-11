@@ -14,10 +14,8 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
     
     var data: FileObject?
     
-    var mediaPlayer: VLCMediaPlayer = VLCMediaPlayer()
     let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
     
-    //    let videoView = VideoView(frame: (self.navigationController?.view.window!.bounds)!)
     var videoView: VideoView!
     
     @IBOutlet weak var backgroundImageView: UIImageView!
@@ -30,6 +28,8 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
     @IBOutlet weak var videoDescriptionLabel: UILabel!
     @IBOutlet weak var audioDescriptionLabel: UILabel!
     
+    
+    var settingPopupViewController: PopupViewController?
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -130,6 +130,7 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
         coordinator.animate(alongsideTransition: { _ in
             videoView.configureVisibleStatusBar()
             videoView.onRotateScreenUpdate()
+            
         }) { (_) in
             
         }
@@ -168,16 +169,25 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
         
     }
     
+    
     func videoViewSettingTouched(videoView: VideoView) {
         let storyBoard = UIStoryboard(name: "SettingPopupViewController", bundle: nil)
-        guard let settingPopupViewController = storyBoard.instantiateInitialViewController() else { return }
+        let tabViewController = storyBoard.instantiateInitialViewController()
+        let settingPopupViewController = PopupViewController(contentController: tabViewController!, popupWidth: 300, popupHeight: 300)
+        settingPopupViewController.backgroundAlpha = 0
+        settingPopupViewController.cornerRadius = 10
+
         
-        let popupVC = PopupViewController(contentController: settingPopupViewController, popupWidth: 300, popupHeight: 300)
+        let _ = tabViewController?.children.map {
+            if $0.children[0] is SubTitlePopupViewController {
+                ($0.children[0] as! SubTitlePopupViewController).mediaPlayer = videoView.mediaPlayer
+            }
+            else if $0.children[0] is VideoPopupViewController {
+                ($0.children[0] as! VideoPopupViewController).mediaPlayer = videoView.mediaPlayer
+            }
+        }
         
-        popupVC.cornerRadius = 5
-        present(popupVC, animated: true, completion: nil)
-        
-        //        self.present(settingPopupViewController, animated: false, completion: nil)
+        present(settingPopupViewController, animated: true, completion: nil)
     }
     
     

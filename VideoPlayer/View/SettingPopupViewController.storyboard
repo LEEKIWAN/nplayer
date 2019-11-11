@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5v9-Mo-1st">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5v9-Mo-1st">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,19 +10,77 @@
         <!--자막-->
         <scene sceneID="5Wj-UM-SNI">
             <objects>
-                <viewController id="14W-rp-75h" sceneMemberID="viewController">
+                <viewController definesPresentationContext="YES" modalPresentationStyle="overCurrentContext" id="14W-rp-75h" customClass="SubTitlePopupViewController" customModule="VideoPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JIW-PJ-SvB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nf1-FT-I6b">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="cZr-AH-eCH">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z26-wD-1mK">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="자막 보기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="byT-aH-DhD">
+                                                        <rect key="frame" x="25" y="14.5" width="67" height="21.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                        <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="08j-fB-kei">
+                                                        <rect key="frame" x="345" y="9.5" width="51" height="31"/>
+                                                        <connections>
+                                                            <action selector="onSubtitleValueChanged:" destination="14W-rp-75h" eventType="valueChanged" id="gfB-r5-Iq2"/>
+                                                        </connections>
+                                                    </switch>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="08j-fB-kei" firstAttribute="centerY" secondItem="z26-wD-1mK" secondAttribute="centerY" id="K2X-6c-mfJ"/>
+                                                    <constraint firstAttribute="trailing" secondItem="08j-fB-kei" secondAttribute="trailing" constant="20" id="XUW-6A-Xho"/>
+                                                    <constraint firstAttribute="height" constant="50" id="qnP-NH-u5e"/>
+                                                    <constraint firstItem="byT-aH-DhD" firstAttribute="centerY" secondItem="z26-wD-1mK" secondAttribute="centerY" id="viJ-zr-ytc"/>
+                                                    <constraint firstItem="byT-aH-DhD" firstAttribute="leading" secondItem="z26-wD-1mK" secondAttribute="leading" constant="25" id="yac-kf-Qt5"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="cZr-AH-eCH" firstAttribute="top" secondItem="8ea-gU-mXe" secondAttribute="top" id="2WY-ug-K8K"/>
+                                    <constraint firstItem="cZr-AH-eCH" firstAttribute="trailing" secondItem="8ea-gU-mXe" secondAttribute="trailing" constant="414" id="6hh-fN-ueG"/>
+                                    <constraint firstItem="cZr-AH-eCH" firstAttribute="width" secondItem="YqG-oI-CsH" secondAttribute="width" id="Fm6-wt-ETb"/>
+                                    <constraint firstItem="8ea-gU-mXe" firstAttribute="height" secondItem="cZr-AH-eCH" secondAttribute="height" id="FmT-9P-pdK"/>
+                                    <constraint firstItem="cZr-AH-eCH" firstAttribute="leading" secondItem="8ea-gU-mXe" secondAttribute="leading" id="mte-Er-nBL"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="8ea-gU-mXe"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="YqG-oI-CsH"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="0.0" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Nf1-FT-I6b" firstAttribute="bottom" secondItem="lC0-4K-Xd0" secondAttribute="bottom" id="J3o-dV-7k0"/>
+                            <constraint firstItem="Nf1-FT-I6b" firstAttribute="top" secondItem="lC0-4K-Xd0" secondAttribute="top" id="Uu6-B5-Nh4"/>
+                            <constraint firstItem="Nf1-FT-I6b" firstAttribute="trailing" secondItem="lC0-4K-Xd0" secondAttribute="trailing" id="gD4-z6-lvR"/>
+                            <constraint firstItem="Nf1-FT-I6b" firstAttribute="leading" secondItem="lC0-4K-Xd0" secondAttribute="leading" id="zDV-3w-X5l"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="lC0-4K-Xd0"/>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="2" title="자막" image="baseline_subtitles_white_48pt_3x" id="rLi-XN-qVp"/>
+                    <navigationItem key="navigationItem" title="자막" id="m6q-z5-Nt9"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="subTitleSwitch" destination="08j-fB-kei" id="O24-Mb-uBI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vRy-XB-ut2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3228" y="532"/>
+            <point key="canvasLocation" x="4137.68115942029" y="531.69642857142856"/>
         </scene>
         <!--오디오-->
         <scene sceneID="0LG-w1-GIm">
@@ -32,54 +89,196 @@
                     <view key="view" contentMode="scaleToFill" id="yVd-1d-X1D">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hdY-pt-rby">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="YvW-B1-zCu">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bFq-ld-Fkh">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="자막 보기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7u9-Jd-eC4">
+                                                        <rect key="frame" x="25" y="14.5" width="67" height="21.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                        <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5u5-lt-l6h">
+                                                        <rect key="frame" x="345" y="9.5" width="51" height="31"/>
+                                                    </switch>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="5u5-lt-l6h" firstAttribute="centerY" secondItem="bFq-ld-Fkh" secondAttribute="centerY" id="E4u-2o-l5v"/>
+                                                    <constraint firstItem="7u9-Jd-eC4" firstAttribute="leading" secondItem="bFq-ld-Fkh" secondAttribute="leading" constant="25" id="E6K-hi-fa4"/>
+                                                    <constraint firstAttribute="height" constant="50" id="H3F-qm-236"/>
+                                                    <constraint firstAttribute="trailing" secondItem="5u5-lt-l6h" secondAttribute="trailing" constant="20" id="SQg-5b-bvS"/>
+                                                    <constraint firstItem="7u9-Jd-eC4" firstAttribute="centerY" secondItem="bFq-ld-Fkh" secondAttribute="centerY" id="kjW-T9-hI8"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="Mzg-BI-Swc" firstAttribute="height" secondItem="YvW-B1-zCu" secondAttribute="height" id="48Y-xR-5lZ"/>
+                                    <constraint firstItem="YvW-B1-zCu" firstAttribute="trailing" secondItem="Mzg-BI-Swc" secondAttribute="trailing" constant="414" id="Mis-RB-YXc"/>
+                                    <constraint firstItem="YvW-B1-zCu" firstAttribute="width" secondItem="n3J-g8-5DD" secondAttribute="width" id="TXP-xy-USy"/>
+                                    <constraint firstItem="YvW-B1-zCu" firstAttribute="top" secondItem="Mzg-BI-Swc" secondAttribute="top" id="ZJm-nh-PBH"/>
+                                    <constraint firstItem="YvW-B1-zCu" firstAttribute="leading" secondItem="Mzg-BI-Swc" secondAttribute="leading" id="a7F-XN-tXv"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="Mzg-BI-Swc"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="n3J-g8-5DD"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="wkG-eh-u0z" firstAttribute="bottom" secondItem="hdY-pt-rby" secondAttribute="bottom" id="1Zq-VQ-wdG"/>
+                            <constraint firstItem="wkG-eh-u0z" firstAttribute="trailing" secondItem="hdY-pt-rby" secondAttribute="trailing" id="4zY-W6-vcg"/>
+                            <constraint firstItem="hdY-pt-rby" firstAttribute="leading" secondItem="yVd-1d-X1D" secondAttribute="leading" id="Ykn-yT-FOi"/>
+                            <constraint firstItem="hdY-pt-rby" firstAttribute="top" secondItem="wkG-eh-u0z" secondAttribute="top" id="uOW-iB-7a3"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="wkG-eh-u0z"/>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="1" title="오디오" image="baseline_equalizer_white_48pt_3x" id="L8o-ct-VwF"/>
+                    <navigationItem key="navigationItem" title="오디오" id="Hhh-4m-TSP"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LKi-vD-zVq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4025" y="172"/>
+            <point key="canvasLocation" x="5844.9275362318849" y="171.42857142857142"/>
         </scene>
         <!--비디오-->
         <scene sceneID="jMw-cB-dwc">
             <objects>
-                <viewController id="UZE-oV-UPn" sceneMemberID="viewController">
+                <viewController id="UZE-oV-UPn" customClass="VideoPopupViewController" customModule="VideoPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="N0Y-lG-scT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BBU-u5-1IC">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="UZE-oV-UPn" id="cfY-tr-fKP"/>
+                                    <outlet property="delegate" destination="UZE-oV-UPn" id="n6g-Cv-xwY"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="10A-le-FVj" firstAttribute="bottom" secondItem="BBU-u5-1IC" secondAttribute="bottom" id="BJd-tI-q6w"/>
+                            <constraint firstItem="BBU-u5-1IC" firstAttribute="leading" secondItem="10A-le-FVj" secondAttribute="leading" id="Rnt-eL-nAt"/>
+                            <constraint firstItem="10A-le-FVj" firstAttribute="trailing" secondItem="BBU-u5-1IC" secondAttribute="trailing" id="c6Y-XA-xX1"/>
+                            <constraint firstItem="BBU-u5-1IC" firstAttribute="top" secondItem="10A-le-FVj" secondAttribute="top" id="fKn-Wl-IU6"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="10A-le-FVj"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="비디오" image="baseline_videocam_white_48pt_3x" id="bsr-v5-cwd">
-                        <inset key="largeContentSizeImageInsets" minX="0.0" minY="1" maxX="0.0" maxY="1"/>
-                        <color key="badgeColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </tabBarItem>
+                    <navigationItem key="navigationItem" title="비디오" id="9Ej-8V-fA3"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="BBU-u5-1IC" id="ugZ-pR-EWm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L94-Vr-9dj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4026" y="-524"/>
+            <point key="canvasLocation" x="4934.7826086956529" y="-524.33035714285711"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="WZg-JB-GeD">
             <objects>
-                <tabBarController id="5v9-Mo-1st" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="J2M-8s-2bk">
+                <tabBarController definesPresentationContext="YES" modalPresentationStyle="overCurrentContext" id="5v9-Mo-1st" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="J2M-8s-2bk">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="0.96862745100000003" green="0.76078431369999999" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" red="0.96862745100000003" green="0.76078431369999999" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
-                        <segue destination="UZE-oV-UPn" kind="relationship" relationship="viewControllers" id="UuC-EI-nAR"/>
-                        <segue destination="32r-Hc-eu3" kind="relationship" relationship="viewControllers" id="tit-Ig-r25"/>
-                        <segue destination="14W-rp-75h" kind="relationship" relationship="viewControllers" id="ZcV-xX-3gR"/>
+                        <segue destination="YAW-1I-0eE" kind="relationship" relationship="viewControllers" id="UuC-EI-nAR"/>
+                        <segue destination="AVe-X4-YTh" kind="relationship" relationship="viewControllers" id="tit-Ig-r25"/>
+                        <segue destination="Uei-ta-Cll" kind="relationship" relationship="viewControllers" id="ZcV-xX-3gR"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4jN-Y4-uWu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3106" y="-200"/>
+        </scene>
+        <!--자막-->
+        <scene sceneID="GtW-aQ-a6C">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Uei-ta-Cll" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" tag="2" title="자막" image="baseline_subtitles_white_48pt_3x" id="rLi-XN-qVp"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ABq-7w-flQ">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="14W-rp-75h" kind="relationship" relationship="rootViewController" id="8ax-0b-lQL"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c8N-qM-AEY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3227.536231884058" y="531.69642857142856"/>
+        </scene>
+        <!--오디오-->
+        <scene sceneID="ZCl-YP-Tud">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AVe-X4-YTh" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" tag="1" title="오디오" image="baseline_equalizer_white_48pt_3x" id="L8o-ct-VwF"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="FFv-AB-wUj">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="32r-Hc-eu3" kind="relationship" relationship="rootViewController" id="WAU-7V-b0J"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fm4-v7-jaM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4934.7826086956529" y="171.42857142857142"/>
+        </scene>
+        <!--비디오-->
+        <scene sceneID="e3h-g7-W0I">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YAW-1I-0eE" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="비디오" image="baseline_videocam_white_48pt_3x" id="bsr-v5-cwd">
+                        <inset key="largeContentSizeImageInsets" minX="0.0" minY="1" maxX="0.0" maxY="1"/>
+                        <color key="badgeColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kPj-xm-g6h">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="UZE-oV-UPn" kind="relationship" relationship="rootViewController" id="imJ-Ml-CjH"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9MH-6H-GCf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4024.6376811594205" y="-524.33035714285711"/>
         </scene>
     </scenes>
     <resources>
