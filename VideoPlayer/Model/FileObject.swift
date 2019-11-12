@@ -113,7 +113,7 @@ class FileObject: NSObject, VLCMediaThumbnailerDelegate, VLCMediaDelegate {
             return .text
         case "mp3":
             return .audio
-        case "mp4", "avi":
+        case "mp4", "avi", "mkv":
             return .video
         case "directory":
             return .directory

@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -35,6 +34,7 @@
                 <outlet property="sleepTimerButton" destination="L4X-Gn-UiM" id="BOx-ee-jJ9"/>
                 <outlet property="sliderView" destination="pne-rc-7ux" id="voc-An-kI5"/>
                 <outlet property="statusBar" destination="UPD-vg-qOE" id="u9S-hb-mZD"/>
+                <outlet property="titleMarqueeLabel" destination="9KU-P2-EQs" id="ZH4-RG-aYc"/>
                 <outlet property="totalDurationLabel" destination="FeA-1U-skI" id="ugG-F1-kHk"/>
                 <outlet property="videoSingleTapGestureRecognizer" destination="T86-ZE-61a" id="6bD-dW-Erq"/>
                 <outlet property="videoView" destination="aad-b1-ZbY" id="3K4-aw-Lg4"/>
@@ -82,9 +82,20 @@
                                     <rect key="frame" x="50" y="0.0" width="314" height="35"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ggg" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9KU-P2-EQs" customClass="MarqueeLabel" customModule="VideoPlayer" customModuleProvider="target">
+                                    <rect key="frame" x="113" y="9" width="188" height="17"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="scrollDuration">
+                                            <real key="value" value="10"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hcc-5w-g0Z">
-                                    <rect key="frame" x="58" y="10.5" width="34" height="14.5"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <rect key="frame" x="58" y="9.5" width="36.5" height="16"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -101,26 +112,29 @@
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FeA-1U-skI">
-                                    <rect key="frame" x="322" y="10.5" width="34" height="14.5"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <rect key="frame" x="319.5" y="9.5" width="36.5" height="16"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
                             <color key="backgroundColor" red="0.1333333333" green="0.1333333333" blue="0.1333333333" alpha="0.69935252568493156" colorSpace="custom" customColorSpace="calibratedRGB"/>
                             <constraints>
+                                <constraint firstItem="9KU-P2-EQs" firstAttribute="width" secondItem="pne-rc-7ux" secondAttribute="width" multiplier="0.6" id="0HE-XX-vLy"/>
                                 <constraint firstItem="FeA-1U-skI" firstAttribute="centerY" secondItem="bgd-G2-7f8" secondAttribute="centerY" id="4ZC-lp-thl"/>
                                 <constraint firstItem="Z6c-gT-XJU" firstAttribute="top" secondItem="bgd-G2-7f8" secondAttribute="top" id="7GD-Sc-wAf"/>
                                 <constraint firstItem="3pl-VL-ESx" firstAttribute="leading" secondItem="bgd-G2-7f8" secondAttribute="leading" id="9Xs-cd-Z9m"/>
                                 <constraint firstItem="3pl-VL-ESx" firstAttribute="top" secondItem="bgd-G2-7f8" secondAttribute="top" id="CMV-ZM-JVE"/>
                                 <constraint firstItem="3pl-VL-ESx" firstAttribute="centerY" secondItem="bgd-G2-7f8" secondAttribute="centerY" id="Fow-2G-uMM"/>
                                 <constraint firstAttribute="bottom" secondItem="pne-rc-7ux" secondAttribute="bottom" id="J0t-Bo-pdd"/>
+                                <constraint firstItem="9KU-P2-EQs" firstAttribute="centerX" secondItem="bgd-G2-7f8" secondAttribute="centerX" id="O3k-9v-hQW"/>
                                 <constraint firstItem="hcc-5w-g0Z" firstAttribute="centerY" secondItem="bgd-G2-7f8" secondAttribute="centerY" id="ORr-7M-ABE"/>
                                 <constraint firstItem="hcc-5w-g0Z" firstAttribute="leading" secondItem="pne-rc-7ux" secondAttribute="leading" constant="8" id="QsN-Go-eRx"/>
                                 <constraint firstAttribute="bottom" secondItem="Z6c-gT-XJU" secondAttribute="bottom" id="V7g-3z-bpg"/>
                                 <constraint firstAttribute="bottom" secondItem="3pl-VL-ESx" secondAttribute="bottom" id="XLB-gK-TMw"/>
                                 <constraint firstItem="pne-rc-7ux" firstAttribute="leading" secondItem="3pl-VL-ESx" secondAttribute="trailing" id="aVG-aB-9Vd"/>
                                 <constraint firstItem="pne-rc-7ux" firstAttribute="top" secondItem="bgd-G2-7f8" secondAttribute="top" id="anR-ry-olh"/>
+                                <constraint firstItem="9KU-P2-EQs" firstAttribute="centerY" secondItem="bgd-G2-7f8" secondAttribute="centerY" id="c2b-pd-s8n"/>
                                 <constraint firstAttribute="height" constant="35" id="f0P-vc-39U"/>
                                 <constraint firstItem="Z6c-gT-XJU" firstAttribute="leading" secondItem="pne-rc-7ux" secondAttribute="trailing" id="gK5-XT-RWw"/>
                                 <constraint firstAttribute="trailing" secondItem="Z6c-gT-XJU" secondAttribute="trailing" id="jFE-yW-AyK"/>
@@ -382,7 +396,7 @@
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" red="0.1333333333" green="0.1333333333" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="ChQ-Hd-6Y1" secondAttribute="bottom" id="4wl-cq-v2P"/>
                 <constraint firstAttribute="trailing" secondItem="ChQ-Hd-6Y1" secondAttribute="trailing" id="62X-UB-wVl"/>

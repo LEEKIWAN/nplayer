@@ -35,6 +35,7 @@ class VideoView: UIView {
     @IBOutlet weak var controllerView: UIView!
     @IBOutlet weak var brightnessToastView: BrightnessToastView!
     
+    @IBOutlet weak var titleMarqueeLabel: MarqueeLabel!
     @IBOutlet weak var sliderView: PlayerSliderView!
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var currentDurationLabel: UILabel!
@@ -123,7 +124,7 @@ class VideoView: UIView {
         
         mediaPlayer.drawable = videoView
         
-        
+        configureMarqueeTitleLabel()
         configureVolume()
         setupTimer()
         
@@ -146,6 +147,11 @@ class VideoView: UIView {
     func configureVolume() {
         brightnessToastView.volumeSlider = volumeView.subviews.first as? UISlider
         addSubview(volumeView)
+    }
+    
+    func configureMarqueeTitleLabel() {
+        let fileName = mediaPlayer.media.url.lastPathComponent
+        titleMarqueeLabel.text = "\(fileName)  "
     }
     
     open func configureVisibleStatusBar() {
@@ -520,6 +526,10 @@ extension VideoView: PlayerSliderViewDelegate {
 // MARK: - VLCMediaPlayerDelegate
 extension VideoView: VLCMediaPlayerDelegate {
     func mediaPlayerTimeChanged(_ aNotification: Notification!) {
+        if mediaPlayer.media == nil {
+            return
+        }
+        
         let currentDuration = mediaPlayer.time
         let totalDuration = mediaPlayer.media.length
         currentDurationLabel.text = currentDuration?.stringValue!

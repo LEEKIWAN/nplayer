@@ -73,6 +73,7 @@
 		83D33EDE23791C2600560335 /* SwitchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83D33EDC23791C2600560335 /* SwitchTableViewCell.xib */; };
 		83D33EE0237922FE00560335 /* VideoPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D33EDF237922FE00560335 /* VideoPopupViewController.swift */; };
 		83D33EE22379238300560335 /* VideoConfigObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D33EE12379238300560335 /* VideoConfigObject.swift */; };
+		83D33EE6237A433A00560335 /* MarqueeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D33EE5237A433A00560335 /* MarqueeLabel.swift */; };
 		83EE116F230CCB220030A24E /* VideoDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83EE116E230CCB220030A24E /* VideoDetailViewController.storyboard */; };
 		83EE1172230CCB9B0030A24E /* VideoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EE1171230CCB9B0030A24E /* VideoDetailViewController.swift */; };
 		83EE1174230CE38E0030A24E /* FourCharCode+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EE1173230CE38E0030A24E /* FourCharCode+.swift */; };
@@ -152,6 +153,7 @@
 		83D33EDC23791C2600560335 /* SwitchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchTableViewCell.xib; sourceTree = "<group>"; };
 		83D33EDF237922FE00560335 /* VideoPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPopupViewController.swift; sourceTree = "<group>"; };
 		83D33EE12379238300560335 /* VideoConfigObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoConfigObject.swift; sourceTree = "<group>"; };
+		83D33EE5237A433A00560335 /* MarqueeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarqueeLabel.swift; sourceTree = "<group>"; };
 		83EE116E230CCB220030A24E /* VideoDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = VideoDetailViewController.storyboard; sourceTree = "<group>"; };
 		83EE1171230CCB9B0030A24E /* VideoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailViewController.swift; sourceTree = "<group>"; };
 		83EE1173230CE38E0030A24E /* FourCharCode+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FourCharCode+.swift"; sourceTree = "<group>"; };
@@ -254,6 +256,7 @@
 				83EE1179230D2E300030A24E /* AppUtility.swift */,
 				8329258F2310F4DD009BE3D4 /* Toast.swift */,
 				83801843235EFC00000FC7A5 /* PopupViewController.swift */,
+				83D33EE5237A433A00560335 /* MarqueeLabel.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -549,6 +552,7 @@
 				83AEA34423139B9600354500 /* PreferenceManager.swift in Sources */,
 				83292597231256ED009BE3D4 /* BrightnessSettingView.swift in Sources */,
 				8311BD13230FD8950004E891 /* VideoAspectRatio.swift in Sources */,
+				83D33EE6237A433A00560335 /* MarqueeLabel.swift in Sources */,
 				833CD49122F267BB00617F63 /* TextViewerController.swift in Sources */,
 				83668D4022EE9147003C918B /* PlayMode.swift in Sources */,
 				837F8A3622F18151005E0822 /* ImageViewerController.swift in Sources */,
