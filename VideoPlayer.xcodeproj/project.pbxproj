@@ -74,6 +74,8 @@
 		83D33EE0237922FE00560335 /* VideoPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D33EDF237922FE00560335 /* VideoPopupViewController.swift */; };
 		83D33EE22379238300560335 /* VideoConfigObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D33EE12379238300560335 /* VideoConfigObject.swift */; };
 		83D33EE6237A433A00560335 /* MarqueeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D33EE5237A433A00560335 /* MarqueeLabel.swift */; };
+		83D33EE8237A527A00560335 /* PopupResolutionViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83D33EE7237A527A00560335 /* PopupResolutionViewController.storyboard */; };
+		83D33EEA237A528100560335 /* PopupResolutionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D33EE9237A528100560335 /* PopupResolutionViewController.swift */; };
 		83EE116F230CCB220030A24E /* VideoDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83EE116E230CCB220030A24E /* VideoDetailViewController.storyboard */; };
 		83EE1172230CCB9B0030A24E /* VideoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EE1171230CCB9B0030A24E /* VideoDetailViewController.swift */; };
 		83EE1174230CE38E0030A24E /* FourCharCode+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EE1173230CE38E0030A24E /* FourCharCode+.swift */; };
@@ -154,6 +156,8 @@
 		83D33EDF237922FE00560335 /* VideoPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPopupViewController.swift; sourceTree = "<group>"; };
 		83D33EE12379238300560335 /* VideoConfigObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoConfigObject.swift; sourceTree = "<group>"; };
 		83D33EE5237A433A00560335 /* MarqueeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarqueeLabel.swift; sourceTree = "<group>"; };
+		83D33EE7237A527A00560335 /* PopupResolutionViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PopupResolutionViewController.storyboard; sourceTree = "<group>"; };
+		83D33EE9237A528100560335 /* PopupResolutionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupResolutionViewController.swift; sourceTree = "<group>"; };
 		83EE116E230CCB220030A24E /* VideoDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = VideoDetailViewController.storyboard; sourceTree = "<group>"; };
 		83EE1171230CCB9B0030A24E /* VideoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailViewController.swift; sourceTree = "<group>"; };
 		83EE1173230CE38E0030A24E /* FourCharCode+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FourCharCode+.swift"; sourceTree = "<group>"; };
@@ -185,6 +189,7 @@
 				8327B07622F3CF4B00D31C84 /* VideoPlayerController.storyboard */,
 				83EE116E230CCB220030A24E /* VideoDetailViewController.storyboard */,
 				833748F92317AD6600B535F0 /* SettingPopupViewController.storyboard */,
+				83D33EE7237A527A00560335 /* PopupResolutionViewController.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -199,6 +204,7 @@
 				83EE1171230CCB9B0030A24E /* VideoDetailViewController.swift */,
 				83D33EDF237922FE00560335 /* VideoPopupViewController.swift */,
 				839686CC237508E0002EA1F4 /* SubTitlePopupViewController.swift */,
+				83D33EE9237A528100560335 /* PopupResolutionViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -464,6 +470,7 @@
 				8330BB3F22EA7EB60038FAE9 /* FileListViewController.storyboard in Resources */,
 				833CD48F22F2676B00617F63 /* TextViewerController.storyboard in Resources */,
 				83D33EDA23791C1800560335 /* TextTableViewCell.xib in Resources */,
+				83D33EE8237A527A00560335 /* PopupResolutionViewController.storyboard in Resources */,
 				839E117922CC84A60096E43C /* PlayViewController.storyboard in Resources */,
 				83292598231256ED009BE3D4 /* BrightnessSettingView.xib in Resources */,
 				8327B07722F3CF4B00D31C84 /* VideoPlayerController.storyboard in Resources */,
@@ -533,6 +540,7 @@
 				83668D4822EEAE3C003C918B /* UIImage+SwiftyGif.swift in Sources */,
 				839E117622CC84A60096E43C /* PlayViewController.swift in Sources */,
 				83945D462306359200B7987B /* DirectoryMonitor.swift in Sources */,
+				83D33EEA237A528100560335 /* PopupResolutionViewController.swift in Sources */,
 				839686CD237508E0002EA1F4 /* SubTitlePopupViewController.swift in Sources */,
 				83CB7A0B236E7DC10071B041 /* NSLayoutConstraint+.swift in Sources */,
 				8330BB4422EA80C50038FAE9 /* FileItemTableViewCell.swift in Sources */,

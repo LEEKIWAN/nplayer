@@ -286,4 +286,5 @@
         <image name="baseline_subtitles_white_48pt_3x" width="25" height="25"/>
         <image name="baseline_videocam_white_48pt_3x" width="25" height="25"/>
     </resources>
+    <color key="tintColor" red="0.96862745100000003" green="0.76078431369999999" blue="0.01176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

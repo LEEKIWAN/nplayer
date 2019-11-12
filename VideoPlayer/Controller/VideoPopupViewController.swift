@@ -12,7 +12,7 @@ class VideoPopupViewController: UIViewController {
     
     var mediaPlayer: VLCMediaPlayer?
     
-    var tableArray: [VideoConfigObject] = []
+    var dataArray: [VideoConfigObject] = []
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -26,10 +26,10 @@ class VideoPopupViewController: UIViewController {
         let titleText: String = getVideoTitleName()
         
         
-        tableArray.append(VideoConfigObject(style: .text, switchIsOn: false, title: titleText, subTitle: subTitleText, selectedValue: "", isSelectAccesory: false ))
-        tableArray.append(VideoConfigObject(style: .text, switchIsOn: false, title: "화면비율", subTitle: "", selectedValue: "기본값", isSelectAccesory: true ))
-        tableArray.append(VideoConfigObject(style: .switch, switchIsOn: false, title: "좌우 반전", subTitle: "", selectedValue: "", isSelectAccesory: false ))
-        tableArray.append(VideoConfigObject(style: .switch, switchIsOn: false, title: "상하 반전", subTitle: "", selectedValue: "", isSelectAccesory: false ))
+        dataArray.append(VideoConfigObject(style: .text, switchIsOn: false, title: titleText, subTitle: subTitleText, selectedValue: "", isSelectAccesory: false ))
+        dataArray.append(VideoConfigObject(style: .text, switchIsOn: false, title: "화면비율", subTitle: "", selectedValue: "기본값", isSelectAccesory: true ))
+        dataArray.append(VideoConfigObject(style: .switch, switchIsOn: false, title: "좌우 반전", subTitle: "", selectedValue: "", isSelectAccesory: false ))
+        dataArray.append(VideoConfigObject(style: .switch, switchIsOn: false, title: "상하 반전", subTitle: "", selectedValue: "", isSelectAccesory: false ))
         
     }
     
@@ -44,9 +44,9 @@ class VideoPopupViewController: UIViewController {
     
     func getVideoInformation() -> String {
         guard let mediaPlayer = mediaPlayer else { return ""}
-        
-        
         guard let tracksInformation = mediaPlayer.media?.tracksInformation else { return ""}
+        
+        
         
         var videoInfo: Dictionary<String, Any>? = nil
         
@@ -63,7 +63,8 @@ class VideoPopupViewController: UIViewController {
         if let videoInfo = videoInfo {
             let videoResolution = "\(videoInfo["width"] as! Int)x\(videoInfo["height"] as! Int)"
             let codecFourCC = FourCharCode(integerLiteral: videoInfo["codec"] as! UInt32).toString()
-            subTitleText = "\(codecFourCC.toCodecName()), \(videoResolution)"
+            let languageCode = "\(videoInfo["language"] ?? "und")"
+            subTitleText = "\(codecFourCC.toCodecName()), \(videoResolution), \(languageCode)"
         }
         
         return subTitleText
@@ -79,11 +80,11 @@ extension VideoPopupViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableArray.count
+        return dataArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let data = tableArray[indexPath.row]
+        let data = dataArray[indexPath.row]
         
         if data.style == .text {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Text", for: indexPath) as! TextTableViewCell
@@ -95,8 +96,6 @@ extension VideoPopupViewController: UITableViewDelegate, UITableViewDataSource {
             else {
                 cell.accessoryType = .none
             }
-            
-            
             return cell
         }
         else {
@@ -105,7 +104,18 @@ extension VideoPopupViewController: UITableViewDelegate, UITableViewDataSource {
             cell.delegate = self
             return cell
         }
-        
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let mediaPlayer = mediaPlayer else { return }
+
+        let data = dataArray[indexPath.row]
+        if data.isSelectAccesory {
+            let storyBoard = UIStoryboard(name: "PopupResolutionViewController", bundle: nil)
+            let resolustionViewController = storyBoard.instantiateInitialViewController() as! PopupResolutionViewController
+            resolustionViewController.mediaPlayer = mediaPlayer
+            navigationController?.pushViewController(resolustionViewController, animated: true)
+        }
     }
 }
 
@@ -113,11 +123,11 @@ extension VideoPopupViewController: SwitchCellDelegate {
     func switchCellValueChanged(cell: SwitchTableViewCell) {
         let view: UIView = mediaPlayer?.drawable as! UIView
         
-        let leftRightObject = tableArray.filter { (object) -> Bool in
+        let leftRightObject = dataArray.filter { (object) -> Bool in
             return object.title == "좌우 반전"
         }.first
         
-        let upDownObject = tableArray.filter { (object) -> Bool in
+        let upDownObject = dataArray.filter { (object) -> Bool in
             return object.title == "상하 반전"
         }.first
                 
@@ -169,15 +179,8 @@ extension VideoPopupViewController: SwitchCellDelegate {
                 }
                 
                 cell.data!.switchIsOn = cell.switch.isOn
-                
-                
             }, completion: nil)
         }
-        
-        
-        
-        
-        
     }
     
     func setAnchorPoint(anchorPoint: CGPoint, forView view: UIView) {

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qpz-5I-t10">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Popup Resolution View Controller-->
+        <scene sceneID="xxq-1C-gNW">
+            <objects>
+                <viewController id="qpz-5I-t10" customClass="PopupResolutionViewController" customModule="VideoPlayer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="92b-uz-dua">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2u9-Yc-hJh">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="qpz-5I-t10" id="gNO-B4-OTj"/>
+                                    <outlet property="delegate" destination="qpz-5I-t10" id="fe5-0y-mAs"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="2u9-Yc-hJh" firstAttribute="leading" secondItem="Ukp-PB-3aw" secondAttribute="leading" id="Tb9-PS-0G5"/>
+                            <constraint firstItem="Ukp-PB-3aw" firstAttribute="bottom" secondItem="2u9-Yc-hJh" secondAttribute="bottom" id="srg-w2-fNa"/>
+                            <constraint firstItem="Ukp-PB-3aw" firstAttribute="trailing" secondItem="2u9-Yc-hJh" secondAttribute="trailing" id="u4g-gE-HKm"/>
+                            <constraint firstItem="2u9-Yc-hJh" firstAttribute="top" secondItem="Ukp-PB-3aw" secondAttribute="top" id="z6G-xT-tsp"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Ukp-PB-3aw"/>
+                    </view>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="2u9-Yc-hJh" id="CzV-Cj-Kux"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HxA-ey-EOb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4934.7826086956529" y="-524.33035714285711"/>
+        </scene>
+    </scenes>
+</document>

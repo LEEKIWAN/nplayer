@@ -283,8 +283,8 @@ class VideoView: UIView {
         switch currentAspectRatio {
         case .aspectFit:
             let ratio = "\(Int(self.bounds.width)):\(Int(self.bounds.height+1))"
-            mediaPlayer.videoCropGeometry = strdup(ratio)
             mediaPlayer.videoAspectRatio = nil
+            mediaPlayer.videoCropGeometry = strdup(ratio)
             currentAspectRatio = .aspectFill
             setupPopupLabelTimer("비율에 맞게 채움")
         case .aspectFill:
@@ -303,34 +303,35 @@ class VideoView: UIView {
     }
     
     open func onRotateScreenUpdate() {
-        switch currentAspectRatio {
-        case .aspectFit:            
-            mediaPlayer.videoAspectRatio = nil
-            mediaPlayer.videoCropGeometry = nil
-        case .aspectFill:
-            let ratio = "\(Int(self.bounds.width)):\(Int(self.bounds.height+1))"
-            mediaPlayer.videoCropGeometry = strdup(ratio)
-        case .scaleToFill:
-            let ratio = "\(Int(self.bounds.width)):\(Int(self.bounds.height+1))"
-            mediaPlayer.videoCropGeometry = nil
-            mediaPlayer.videoAspectRatio = strdup(ratio)
-
-        }
-        
-        
 //        switch currentAspectRatio {
 //        case .aspectFit:
-//            let ratio = "\(Int(self.bounds.width)):\(Int(self.bounds.height))"
-//            mediaPlayer.videoCropGeometry = strdup(ratio)
-//        case .aspectFill:
-//            mediaPlayer.videoCropGeometry = nil
-//            let ratio = "\(Int(self.bounds.width)):\(Int(self.bounds.height + 1))"
-//            mediaPlayer.videoAspectRatio = strdup(ratio)
-//
-//        case .scaleToFill:
 //            mediaPlayer.videoAspectRatio = nil
 //            mediaPlayer.videoCropGeometry = nil
+//        case .aspectFill:
+//            let ratio = "\(Int(self.bounds.width)):\(Int(self.bounds.height+1))"
+//            mediaPlayer.videoCropGeometry = strdup(ratio)
+//        case .scaleToFill:
+//            let ratio = "\(Int(self.bounds.width)):\(Int(self.bounds.height+1))"
+//            mediaPlayer.videoCropGeometry = nil
+//            mediaPlayer.videoAspectRatio = strdup(ratio)
 //        }
+        
+        let value = "\(mediaPlayer.videoAspectRatio)"
+        print(value)
+        
+        let value2 = "\(mediaPlayer.videoCropGeometry)"
+        print(value2)
+        
+//        let aspectRatio = UnsafeMutablePointer<Int8>(mutating: mediaPlayer.videoAspectRatio)
+//        let cropGeometry = UnsafeMutablePointer<Int8>(mutating: mediaPlayer.videoCropGeometry)
+//
+//        print(aspectRatio)
+//        print(cropGeometry)
+//
+//        mediaPlayer.videoCropGeometry = cropGeometry
+//        mediaPlayer.videoAspectRatio = aspectRatio
+        
+        
     }
     
     internal func setupPopupLabelTimer(_ text: String) {
