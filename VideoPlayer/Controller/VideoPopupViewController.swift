@@ -10,6 +10,7 @@ import UIKit
 
 class VideoPopupViewController: UIViewController {
     
+    var videoView: VideoView?
     var mediaPlayer: VLCMediaPlayer?
     
     var dataArray: [VideoConfigObject] = []
@@ -108,12 +109,14 @@ extension VideoPopupViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let mediaPlayer = mediaPlayer else { return }
+        guard let videoView = videoView else { return }
 
         let data = dataArray[indexPath.row]
         if data.isSelectAccesory {
             let storyBoard = UIStoryboard(name: "PopupResolutionViewController", bundle: nil)
             let resolustionViewController = storyBoard.instantiateInitialViewController() as! PopupResolutionViewController
             resolustionViewController.mediaPlayer = mediaPlayer
+            resolustionViewController.videoView = videoView
             navigationController?.pushViewController(resolustionViewController, animated: true)
         }
     }

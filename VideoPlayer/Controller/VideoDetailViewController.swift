@@ -183,7 +183,12 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
                 ($0.children[0] as! SubTitlePopupViewController).mediaPlayer = videoView.mediaPlayer
             }
             else if $0.children[0] is VideoPopupViewController {
-                ($0.children[0] as! VideoPopupViewController).mediaPlayer = videoView.mediaPlayer
+                ($0.children[0] as! VideoPopupViewController).videoView = videoView
+                ($0.children[0] as! VideoPopupViewController).mediaPlayer = videoView.mediaPlayer                
+            }
+            else if $0.children[0] is AudioPopupViewController {
+                ($0.children[0] as! AudioPopupViewController).videoView = videoView
+                ($0.children[0] as! AudioPopupViewController).mediaPlayer = videoView.mediaPlayer
             }
         }
         

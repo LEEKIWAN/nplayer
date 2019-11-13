@@ -9,7 +9,7 @@
 import Foundation
 
 class PopupResolutionViewController: UIViewController {
-    
+    var videoView: VideoView?
     var mediaPlayer: VLCMediaPlayer?
     
     var dataArray: [VideoConfigObject] = []
@@ -80,15 +80,19 @@ extension PopupResolutionViewController: UITableViewDataSource, UITableViewDeleg
         }
         
         dataArray[indexPath.row].isSelectAccesory = true
-        
         tableView.reloadData()
         
         guard let mediaPlayer = mediaPlayer else { return }
         
+        if indexPath.row == 0 {
+            mediaPlayer.videoAspectRatio = nil
+            mediaPlayer.videoCropGeometry = nil
+        }
+        
         let ratio = dataArray[indexPath.row].title
         mediaPlayer.videoAspectRatio = strdup(ratio)
         mediaPlayer.videoCropGeometry = nil
-        
+        videoView?.currentAspectRatio = .custom
         
     }
 }

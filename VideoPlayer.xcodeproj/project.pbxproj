@@ -76,6 +76,11 @@
 		83D33EE6237A433A00560335 /* MarqueeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D33EE5237A433A00560335 /* MarqueeLabel.swift */; };
 		83D33EE8237A527A00560335 /* PopupResolutionViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83D33EE7237A527A00560335 /* PopupResolutionViewController.storyboard */; };
 		83D33EEA237A528100560335 /* PopupResolutionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D33EE9237A528100560335 /* PopupResolutionViewController.swift */; };
+		83D33EEC237BA2BF00560335 /* AudioPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D33EEB237BA2BF00560335 /* AudioPopupViewController.swift */; };
+		83D33EEF237BCED500560335 /* SliderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D33EED237BCED500560335 /* SliderTableViewCell.swift */; };
+		83D33EF0237BCED500560335 /* SliderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83D33EEE237BCED500560335 /* SliderTableViewCell.xib */; };
+		83D33EF3237BCEE900560335 /* StepperTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D33EF1237BCEE900560335 /* StepperTableViewCell.swift */; };
+		83D33EF4237BCEE900560335 /* StepperTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83D33EF2237BCEE900560335 /* StepperTableViewCell.xib */; };
 		83EE116F230CCB220030A24E /* VideoDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83EE116E230CCB220030A24E /* VideoDetailViewController.storyboard */; };
 		83EE1172230CCB9B0030A24E /* VideoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EE1171230CCB9B0030A24E /* VideoDetailViewController.swift */; };
 		83EE1174230CE38E0030A24E /* FourCharCode+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EE1173230CE38E0030A24E /* FourCharCode+.swift */; };
@@ -158,6 +163,11 @@
 		83D33EE5237A433A00560335 /* MarqueeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarqueeLabel.swift; sourceTree = "<group>"; };
 		83D33EE7237A527A00560335 /* PopupResolutionViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PopupResolutionViewController.storyboard; sourceTree = "<group>"; };
 		83D33EE9237A528100560335 /* PopupResolutionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupResolutionViewController.swift; sourceTree = "<group>"; };
+		83D33EEB237BA2BF00560335 /* AudioPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPopupViewController.swift; sourceTree = "<group>"; };
+		83D33EED237BCED500560335 /* SliderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderTableViewCell.swift; sourceTree = "<group>"; };
+		83D33EEE237BCED500560335 /* SliderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SliderTableViewCell.xib; sourceTree = "<group>"; };
+		83D33EF1237BCEE900560335 /* StepperTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperTableViewCell.swift; sourceTree = "<group>"; };
+		83D33EF2237BCEE900560335 /* StepperTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StepperTableViewCell.xib; sourceTree = "<group>"; };
 		83EE116E230CCB220030A24E /* VideoDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = VideoDetailViewController.storyboard; sourceTree = "<group>"; };
 		83EE1171230CCB9B0030A24E /* VideoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailViewController.swift; sourceTree = "<group>"; };
 		83EE1173230CE38E0030A24E /* FourCharCode+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FourCharCode+.swift"; sourceTree = "<group>"; };
@@ -203,8 +213,9 @@
 				8327B07822F3CF6700D31C84 /* VideoPlayerController.swift */,
 				83EE1171230CCB9B0030A24E /* VideoDetailViewController.swift */,
 				83D33EDF237922FE00560335 /* VideoPopupViewController.swift */,
-				839686CC237508E0002EA1F4 /* SubTitlePopupViewController.swift */,
 				83D33EE9237A528100560335 /* PopupResolutionViewController.swift */,
+				83D33EEB237BA2BF00560335 /* AudioPopupViewController.swift */,
+				839686CC237508E0002EA1F4 /* SubTitlePopupViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -217,6 +228,10 @@
 				83D33ED823791C1800560335 /* TextTableViewCell.xib */,
 				83D33EDB23791C2600560335 /* SwitchTableViewCell.swift */,
 				83D33EDC23791C2600560335 /* SwitchTableViewCell.xib */,
+				83D33EED237BCED500560335 /* SliderTableViewCell.swift */,
+				83D33EEE237BCED500560335 /* SliderTableViewCell.xib */,
+				83D33EF1237BCEE900560335 /* StepperTableViewCell.swift */,
+				83D33EF2237BCEE900560335 /* StepperTableViewCell.xib */,
 			);
 			path = CustomCell;
 			sourceTree = "<group>";
@@ -471,11 +486,13 @@
 				833CD48F22F2676B00617F63 /* TextViewerController.storyboard in Resources */,
 				83D33EDA23791C1800560335 /* TextTableViewCell.xib in Resources */,
 				83D33EE8237A527A00560335 /* PopupResolutionViewController.storyboard in Resources */,
+				83D33EF4237BCEE900560335 /* StepperTableViewCell.xib in Resources */,
 				839E117922CC84A60096E43C /* PlayViewController.storyboard in Resources */,
 				83292598231256ED009BE3D4 /* BrightnessSettingView.xib in Resources */,
 				8327B07722F3CF4B00D31C84 /* VideoPlayerController.storyboard in Resources */,
 				8398DD1A2314EF590084951A /* SleepTimerPopupView.xib in Resources */,
 				833748FA2317AD6600B535F0 /* SettingPopupViewController.storyboard in Resources */,
+				83D33EF0237BCED500560335 /* SliderTableViewCell.xib in Resources */,
 				8389DC9E236352D3007D5779 /* StatusBar.xib in Resources */,
 				83EE116F230CCB220030A24E /* VideoDetailViewController.storyboard in Resources */,
 				837F8A3422F1813D005E0822 /* ImageViewerController.storyboard in Resources */,
@@ -555,6 +572,7 @@
 				83D33EE0237922FE00560335 /* VideoPopupViewController.swift in Sources */,
 				833748EA2315141700B535F0 /* BrightnessToastView.swift in Sources */,
 				8327B07122F2B33200D31C84 /* PlayerUtils.swift in Sources */,
+				83D33EF3237BCEE900560335 /* StepperTableViewCell.swift in Sources */,
 				83D33EDD23791C2600560335 /* SwitchTableViewCell.swift in Sources */,
 				832925902310F4DD009BE3D4 /* Toast.swift in Sources */,
 				83AEA34423139B9600354500 /* PreferenceManager.swift in Sources */,
@@ -564,11 +582,13 @@
 				833CD49122F267BB00617F63 /* TextViewerController.swift in Sources */,
 				83668D4022EE9147003C918B /* PlayMode.swift in Sources */,
 				837F8A3622F18151005E0822 /* ImageViewerController.swift in Sources */,
+				83D33EEC237BA2BF00560335 /* AudioPopupViewController.swift in Sources */,
 				830BF88422FA8E5F00D3D848 /* CustomSlider.swift in Sources */,
 				839E117422CC84A60096E43C /* AppDelegate.swift in Sources */,
 				83AEA3462313ADB700354500 /* UIVIew+.swift in Sources */,
 				839F9DF422EFDAEB003AFA0D /* UIColor+.swift in Sources */,
 				8389DC9C236352C7007D5779 /* StatusBar.swift in Sources */,
+				83D33EEF237BCED500560335 /* SliderTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

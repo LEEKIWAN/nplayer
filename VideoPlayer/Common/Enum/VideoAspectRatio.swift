@@ -12,4 +12,5 @@ enum VideoAspectRatio: String {
     case scaleToFill = "scaleToFill"
     case aspectFit = "aspectFit"
     case aspectFill = "aspectFill"
+    case custom = "custom"
 }

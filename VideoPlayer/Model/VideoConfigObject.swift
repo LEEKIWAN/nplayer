@@ -11,6 +11,8 @@ import UIKit
 enum CellStyle {
     case text
     case `switch`
+    case slider
+    case stepper
 }
 
 class VideoConfigObject {

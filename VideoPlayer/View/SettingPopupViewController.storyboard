@@ -85,66 +85,34 @@
         <!--오디오-->
         <scene sceneID="0LG-w1-GIm">
             <objects>
-                <viewController id="32r-Hc-eu3" sceneMemberID="viewController">
+                <viewController id="32r-Hc-eu3" customClass="AudioPopupViewController" customModule="VideoPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yVd-1d-X1D">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hdY-pt-rby">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3or-fv-Eor">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="YvW-B1-zCu">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bFq-ld-Fkh">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="자막 보기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7u9-Jd-eC4">
-                                                        <rect key="frame" x="25" y="14.5" width="67" height="21.5"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                        <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5u5-lt-l6h">
-                                                        <rect key="frame" x="345" y="9.5" width="51" height="31"/>
-                                                    </switch>
-                                                </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstItem="5u5-lt-l6h" firstAttribute="centerY" secondItem="bFq-ld-Fkh" secondAttribute="centerY" id="E4u-2o-l5v"/>
-                                                    <constraint firstItem="7u9-Jd-eC4" firstAttribute="leading" secondItem="bFq-ld-Fkh" secondAttribute="leading" constant="25" id="E6K-hi-fa4"/>
-                                                    <constraint firstAttribute="height" constant="50" id="H3F-qm-236"/>
-                                                    <constraint firstAttribute="trailing" secondItem="5u5-lt-l6h" secondAttribute="trailing" constant="20" id="SQg-5b-bvS"/>
-                                                    <constraint firstItem="7u9-Jd-eC4" firstAttribute="centerY" secondItem="bFq-ld-Fkh" secondAttribute="centerY" id="kjW-T9-hI8"/>
-                                                </constraints>
-                                            </view>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </stackView>
-                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="Mzg-BI-Swc" firstAttribute="height" secondItem="YvW-B1-zCu" secondAttribute="height" id="48Y-xR-5lZ"/>
-                                    <constraint firstItem="YvW-B1-zCu" firstAttribute="trailing" secondItem="Mzg-BI-Swc" secondAttribute="trailing" constant="414" id="Mis-RB-YXc"/>
-                                    <constraint firstItem="YvW-B1-zCu" firstAttribute="width" secondItem="n3J-g8-5DD" secondAttribute="width" id="TXP-xy-USy"/>
-                                    <constraint firstItem="YvW-B1-zCu" firstAttribute="top" secondItem="Mzg-BI-Swc" secondAttribute="top" id="ZJm-nh-PBH"/>
-                                    <constraint firstItem="YvW-B1-zCu" firstAttribute="leading" secondItem="Mzg-BI-Swc" secondAttribute="leading" id="a7F-XN-tXv"/>
-                                </constraints>
-                                <viewLayoutGuide key="contentLayoutGuide" id="Mzg-BI-Swc"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="n3J-g8-5DD"/>
-                            </scrollView>
+                                <connections>
+                                    <outlet property="dataSource" destination="32r-Hc-eu3" id="CxK-xt-yQb"/>
+                                    <outlet property="delegate" destination="32r-Hc-eu3" id="g2B-HN-yt5"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="wkG-eh-u0z" firstAttribute="bottom" secondItem="hdY-pt-rby" secondAttribute="bottom" id="1Zq-VQ-wdG"/>
-                            <constraint firstItem="wkG-eh-u0z" firstAttribute="trailing" secondItem="hdY-pt-rby" secondAttribute="trailing" id="4zY-W6-vcg"/>
-                            <constraint firstItem="hdY-pt-rby" firstAttribute="leading" secondItem="yVd-1d-X1D" secondAttribute="leading" id="Ykn-yT-FOi"/>
-                            <constraint firstItem="hdY-pt-rby" firstAttribute="top" secondItem="wkG-eh-u0z" secondAttribute="top" id="uOW-iB-7a3"/>
+                            <constraint firstItem="wkG-eh-u0z" firstAttribute="bottom" secondItem="3or-fv-Eor" secondAttribute="bottom" id="35x-vZ-Cuh"/>
+                            <constraint firstItem="3or-fv-Eor" firstAttribute="top" secondItem="wkG-eh-u0z" secondAttribute="top" id="DQb-gC-6ou"/>
+                            <constraint firstItem="3or-fv-Eor" firstAttribute="leading" secondItem="wkG-eh-u0z" secondAttribute="leading" id="Gal-X8-YMq"/>
+                            <constraint firstItem="wkG-eh-u0z" firstAttribute="trailing" secondItem="3or-fv-Eor" secondAttribute="trailing" id="fhp-o1-rAb"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wkG-eh-u0z"/>
                     </view>
                     <navigationItem key="navigationItem" title="오디오" id="Hhh-4m-TSP"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="3or-fv-Eor" id="GRR-HW-xp2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LKi-vD-zVq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
