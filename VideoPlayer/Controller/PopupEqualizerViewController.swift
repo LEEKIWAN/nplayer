@@ -89,11 +89,10 @@ extension PopupEqualizerViewController: UITableViewDataSource, UITableViewDelega
             print("amplification \(value)")
             
             let value2 = mediaPlayer.frequencyOfBand(at: i)
-//            print("frequncy \(value2)")
-            
-            
+//            print("frequncy \(value2)")         
         }
         
     }
 }
+
 
