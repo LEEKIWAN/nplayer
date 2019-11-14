@@ -3,18 +3,24 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "VideoView.timeSliderTouchUpInside(_:):VideoView.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "recognizer?.state">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "PopupEqualizerViewController.tableView(_:didSelectRowAt:):PopupEqualizerViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "PopupEqualizerViewController.viewDidLoad():PopupEqualizerViewController.swift">
       </ContextState>
       <ContextState
          contextName = "StatusBar.updateStatusBarInformation():StatusBar.swift">
          <PersistentStrings>
             <PersistentString
                value = "batteryState">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "VideoView.timeSliderTouchUpInside(_:):VideoView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "recognizer?.state">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

@@ -133,7 +133,7 @@ class VideoView: UIView {
         mediaPlayer.hue = PreferenceManager.shared.hue
         mediaPlayer.saturation = PreferenceManager.shared.saturation
         mediaPlayer.gamma = PreferenceManager.shared.gamma
-        
+        mediaPlayer.equalizerEnabled = true
         play()
         
         configureVisibleStatusBar()

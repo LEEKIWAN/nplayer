@@ -33,7 +33,7 @@
                             </label>
                         </subviews>
                     </stackView>
-                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="19i-fr-1nq">
+                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" minimumValue="-1000" maximumValue="1000" stepValue="0.01" translatesAutoresizingMaskIntoConstraints="NO" id="19i-fr-1nq">
                         <rect key="frame" x="263" y="12" width="94" height="32"/>
                         <connections>
                             <action selector="onStepperValueChanged:" destination="0Us-WW-jxW" eventType="valueChanged" id="3kT-qB-bKK"/>

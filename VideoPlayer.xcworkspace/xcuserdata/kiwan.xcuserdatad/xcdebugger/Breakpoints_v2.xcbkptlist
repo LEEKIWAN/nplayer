@@ -7,27 +7,35 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
          <BreakpointContent
-            uuid = "4CA51958-983A-4424-9404-F6096AC6E334"
+            uuid = "19DD54E4-0859-4227-B65F-8AE041373E8D"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            symbolName = ""
+            symbolName = "UIViewAlertForUnsatisfiableConstraints"
             moduleName = "">
             <Locations>
+               <Location
+                  uuid = "19DD54E4-0859-4227-B65F-8AE041373E8D - ba3ad5676a792f38"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "UIViewAlertForUnsatisfiableConstraints"
+                  moduleName = "UIKitCore"
+                  usesParentBreakpointCondition = "Yes"
+                  offsetFromSymbolStart = "0">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
          <BreakpointContent
-            uuid = "BCE4B181-8B46-40BE-BC0D-D85B3DE7746C"
+            uuid = "06C8DD3B-71D5-48DB-8C4F-08AB240ABE46"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            symbolName = ""
-            moduleName = "">
-            <Locations>
-            </Locations>
+            scope = "1"
+            stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

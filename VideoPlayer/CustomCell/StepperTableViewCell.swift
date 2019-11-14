@@ -9,7 +9,7 @@
 import UIKit
 
 protocol StepperCellDelegate: class {
-//    func sliderCellValueChanged(cell: SliderTableViewCell)
+    func stepperCellValueChanged(cell: StepperTableViewCell)
 }
 
 class StepperTableViewCell: UITableViewCell {
@@ -20,7 +20,6 @@ class StepperTableViewCell: UITableViewCell {
         didSet {
             titleLabel.text = data!.title
             subTitleLabel.text = data!.subTitle
-            
         }
     }
     
@@ -40,6 +39,10 @@ class StepperTableViewCell: UITableViewCell {
     }
     
     @IBAction func onStepperValueChanged(_ sender: UIStepper) {
-        
+        let value = sender.value
+        let valueString = String(format: "%.2f", value)
+        subTitleLabel.text = valueString
+        data?.selectedValue = valueString
+        delegate?.stepperCellValueChanged(cell: self)
     }
 }

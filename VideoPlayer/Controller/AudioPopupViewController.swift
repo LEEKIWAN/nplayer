@@ -58,7 +58,6 @@ class AudioPopupViewController: UIViewController {
             }
         }
         
-        
         var subTitleText: String = ""
         
         if let audioInfo = audioInfo {
@@ -111,6 +110,7 @@ extension AudioPopupViewController: UITableViewDelegate, UITableViewDataSource {
         else if data.style == .stepper {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Stepper", for: indexPath) as! StepperTableViewCell
             cell.data = data
+            cell.delegate = self
             return cell
         }
             
@@ -127,8 +127,8 @@ extension AudioPopupViewController: UITableViewDelegate, UITableViewDataSource {
         
         let data = dataArray[indexPath.row]
         if data.isSelectAccesory {
-            let storyBoard = UIStoryboard(name: "PopupResolutionViewController", bundle: nil)
-            let resolustionViewController = storyBoard.instantiateInitialViewController() as! PopupResolutionViewController
+            let storyBoard = UIStoryboard(name: "PopupEqualizerViewController", bundle: nil)
+            let resolustionViewController = storyBoard.instantiateInitialViewController() as! PopupEqualizerViewController
             resolustionViewController.mediaPlayer = mediaPlayer
             resolustionViewController.videoView = videoView
             navigationController?.pushViewController(resolustionViewController, animated: true)
@@ -140,5 +140,13 @@ extension AudioPopupViewController: SliderCellDelegate {
     func sliderCellValueChanged(cell: SliderTableViewCell) {
         guard let mediaPlayer = mediaPlayer else { return }
         mediaPlayer.preAmplification = CGFloat((cell.data!.selectedValue as NSString).floatValue)
+    }
+}
+
+extension AudioPopupViewController: StepperCellDelegate {
+    func stepperCellValueChanged(cell: StepperTableViewCell) {
+        guard let mediaPlayer = mediaPlayer else { return }
+        let value = (cell.data!.selectedValue as NSString).floatValue * 1000000
+        mediaPlayer.currentAudioPlaybackDelay = Int(value)
     }
 }

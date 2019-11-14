@@ -637,7 +637,7 @@ extern NSString *const VLCTitleDescriptionIsMenu;
  * Re-set the equalizer to a profile retrieved from the list
  * \note This doesn't enable the Equalizer automagically
  */
-- (void)resetEqualizerFromProfile:(unsigned)profile;
+- (void)resetEqualizerFromProfile:(id)profile;
 
 /**
  * Toggle equalizer state
