@@ -549,6 +549,14 @@ typedef int VLCMediaParsingOptions;
 - (int)parseWithOptions:(VLCMediaParsingOptions)options timeout:(int)timeoutValue;
 
 /**
+ * Stop the parsing of the media
+ *
+ * When the media parsing is stopped, the mediaDidFinishParsing will
+ * be sent with the VLCMediaParsedStatusTimeout status.
+*/
+- (void)parseStop;
+
+/**
  * Add options to the media, that will be used to determine how
  * VLCMediaPlayer will read the media. This allow to use VLC advanced
  * reading/streaming options in a per-media basis
@@ -556,7 +564,7 @@ typedef int VLCMediaParsingOptions;
  * The options are detailed in vlc --long-help, for instance "--sout-all"
  * And on the web: http://wiki.videolan.org/VLC_command-line_help
 */
-- (void)addOptions:(NSDictionary*)options;
+- (void)addOption:(NSString *)option;
 
 /**
  * Parse a value of an incoming Set-Cookie header (see RFC 6265) and append the

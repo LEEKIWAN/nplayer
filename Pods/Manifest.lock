@@ -1,5 +1,5 @@
 PODS:
-  - MobileVLCKit (3.3.6)
+  - MobileVLCKit (3.3.8)
 
 DEPENDENCIES:
   - MobileVLCKit
@@ -9,7 +9,7 @@ SPEC REPOS:
     - MobileVLCKit
 
 SPEC CHECKSUMS:
-  MobileVLCKit: ac619632d83dd1691e9eedb40f5efdf3c2e6d67c
+  MobileVLCKit: f2d012b084c1f6e491f4c163bc3108dc92c1417e
 
 PODFILE CHECKSUM: a542ef7d06325da1301a9b43f67edd5f9087b595
 

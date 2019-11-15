@@ -77,11 +77,9 @@ extension PopupEqualizerViewController: UITableViewDataSource, UITableViewDelega
         guard let mediaPlayer = mediaPlayer else { return }
         guard let equalizerProfiles = mediaPlayer.equalizerProfiles else { return }
         
-        print(mediaPlayer.equalizerEnabled)
         
         let profile = equalizerProfiles[indexPath.row]
         mediaPlayer.resetEqualizer(fromProfile: profile)
-        
         
         for i in 0 ..< mediaPlayer.numberOfBands {
             
@@ -89,7 +87,6 @@ extension PopupEqualizerViewController: UITableViewDataSource, UITableViewDelega
             print("amplification \(value)")
             
             let value2 = mediaPlayer.frequencyOfBand(at: i)
-//            print("frequncy \(value2)")         
         }
         
     }
