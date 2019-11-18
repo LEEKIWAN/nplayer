@@ -9,7 +9,7 @@
 import Foundation
 
 extension String {
-
+    
     func fileName() -> String {
         return NSURL(fileURLWithPath: self).deletingPathExtension?.lastPathComponent ?? ""
     }
@@ -18,7 +18,7 @@ extension String {
         return NSURL(fileURLWithPath: self).pathExtension ?? ""
     }
     
-
+    
     
     
     init(fourCharCode: FourCharCode) {
@@ -29,8 +29,8 @@ extension String {
         unicodes.compactMap { (unicode) -> String? in
             guard let unicode = unicode else { return nil }
             return String(unicode)
-            }.forEach { (unicode) in
-                s.append(unicode)
+        }.forEach { (unicode) in
+            s.append(unicode)
         }
         
         self = s.trimmingCharacters(in: CharacterSet.whitespaces)
@@ -59,5 +59,49 @@ extension String {
     }
     
     
+    
 }
 
+extension String {
+    func season() -> [String] {
+        if let regex = try? NSRegularExpression(pattern: "S(\\d{1,2})", options: .caseInsensitive) {
+            let string = self as NSString
+
+            return regex.matches(in: self, options: [], range: NSRange(location: 0, length: string.length)).map {
+                string.substring(with: $0.range)
+            }
+        }
+
+        return []
+    }
+    
+    func episode() -> [String] {
+        if let regex = try? NSRegularExpression(pattern: "E(\\d{1,2})", options: .caseInsensitive) {
+            let string = self as NSString
+
+            return regex.matches(in: self, options: [], range: NSRange(location: 0, length: string.length)).map {
+                string.substring(with: $0.range)
+            }
+        }
+
+        return []
+    }
+    
+    
+    func title() -> [String] {
+        if let regex = try? NSRegularExpression(pattern: "([ .\\w]+?)(\\W\\d{4})", options: .caseInsensitive) {
+            let string = self as NSString
+
+            return regex.matches(in: self, options: [], range: NSRange(location: 0, length: string.length)).map {
+                var title = string.substring(with: $0.range)
+                title.removeLast(5)
+                return title
+            }
+        }
+
+        return []
+    }
+    
+    
+    
+}

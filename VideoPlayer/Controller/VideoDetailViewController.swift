@@ -28,26 +28,51 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
     @IBOutlet weak var videoDescriptionLabel: UILabel!
     @IBOutlet weak var audioDescriptionLabel: UILabel!
     
+    @IBOutlet weak var creatorView: UIStackView!
+    @IBOutlet weak var creatorLabel: UILabel!
+    @IBOutlet weak var writerView: UIStackView!
+    @IBOutlet weak var writerLabel: UILabel!
+    
+    @IBOutlet weak var castView: UIStackView!
+    @IBOutlet weak var castLabel: UILabel!
+    
+    @IBOutlet weak var genreView: UIStackView!
+    @IBOutlet weak var genreLabel: UILabel!
+    @IBOutlet weak var contentLabel: UILabel!
     
     var settingPopupViewController: PopupViewController?
+    let movieDB = TheMovieDB.shared
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-    
-    
+        
     override var prefersHomeIndicatorAutoHidden: Bool {
         return shouldHideHomeBarIndicator
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let data = data else {
-            return
-        }
+        setInitialUI()
         
         self.navigationController?.navigationBar.isTranslucent = false;
+        guard let data = data else { return }
         
+        movieDB.initMemberVariable(fileName: data.fileName)
+        movieDB.requestDB { (success, result) in
+            if success {
+                if result is SearchTVObject {
+                    result as! SearchTVObject
+                }
+            }
+            else {
+                self.setInitialUI()
+            }
+        }
+    }
+    
+    func setInitialUI() {
+        guard let data = data else { return }
         titleLabel.text = "\(data.fileName).\(data.extension)"
         thumbnailImageView.image = data.thumbnailImage
         backgroundImageView.image = data.thumbnailImage
@@ -79,7 +104,6 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
         if let audioInfo = audioInfo {
             audioInformationUpdate(track: audioInfo)
         }
-        
     }
     
     override func viewDidLayoutSubviews() {
@@ -89,6 +113,9 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
         if let videoView = videoView {
             videoView.frame = (self.navigationController?.view.window?.bounds)!
         }
+    }
+    
+    func setResponseDataUI(data: SearchTVObject) {
         
     }
     
@@ -132,7 +159,6 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
             videoView.onRotateScreenUpdate()
             
         }) { (_) in
-            
         }
     }
     
@@ -176,7 +202,7 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
         let settingPopupViewController = PopupViewController(contentController: tabViewController!, popupWidth: 300, popupHeight: 300)
         settingPopupViewController.backgroundAlpha = 0
         settingPopupViewController.cornerRadius = 10
-
+        
         
         let _ = tabViewController?.children.map {
             if $0.children[0] is SubTitlePopupViewController {
@@ -194,8 +220,6 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
         
         present(settingPopupViewController, animated: true, completion: nil)
     }
-    
-    
     
     deinit {
         print("Asdf")

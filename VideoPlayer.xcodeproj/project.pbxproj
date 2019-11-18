@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -38,6 +38,10 @@
 		835B050C237CE58000A32B86 /* PopupEqualizerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835B050B237CE58000A32B86 /* PopupEqualizerViewController.swift */; };
 		835B0511237D461900A32B86 /* EqualizerSliderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835B050F237D461900A32B86 /* EqualizerSliderTableViewCell.swift */; };
 		835B0512237D461900A32B86 /* EqualizerSliderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 835B0510237D461900A32B86 /* EqualizerSliderTableViewCell.xib */; };
+		835B0514237E63D300A32B86 /* TheMovieDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835B0513237E63D300A32B86 /* TheMovieDB.swift */; };
+		835B051723822AF800A32B86 /* SearchResultObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835B051623822AF800A32B86 /* SearchResultObject.swift */; };
+		835B05192382565400A32B86 /* SearchMovieObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835B05182382565400A32B86 /* SearchMovieObject.swift */; };
+		835B051B2382588E00A32B86 /* SearchTVObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835B051A2382588E00A32B86 /* SearchTVObject.swift */; };
 		835EBE0A2373FA2F000152B1 /* Int+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835EBE092373FA2F000152B1 /* Int+.swift */; };
 		8361C6C622EEE40B006ECF31 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8361C6C522EEE40B006ECF31 /* String+.swift */; };
 		83668D4022EE9147003C918B /* PlayMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83668D3F22EE9147003C918B /* PlayMode.swift */; };
@@ -127,6 +131,10 @@
 		835B050B237CE58000A32B86 /* PopupEqualizerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupEqualizerViewController.swift; sourceTree = "<group>"; };
 		835B050F237D461900A32B86 /* EqualizerSliderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EqualizerSliderTableViewCell.swift; sourceTree = "<group>"; };
 		835B0510237D461900A32B86 /* EqualizerSliderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EqualizerSliderTableViewCell.xib; sourceTree = "<group>"; };
+		835B0513237E63D300A32B86 /* TheMovieDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheMovieDB.swift; sourceTree = "<group>"; };
+		835B051623822AF800A32B86 /* SearchResultObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultObject.swift; sourceTree = "<group>"; };
+		835B05182382565400A32B86 /* SearchMovieObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovieObject.swift; sourceTree = "<group>"; };
+		835B051A2382588E00A32B86 /* SearchTVObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTVObject.swift; sourceTree = "<group>"; };
 		835EBE092373FA2F000152B1 /* Int+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+.swift"; sourceTree = "<group>"; };
 		8361C6C522EEE40B006ECF31 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		83668D3F22EE9147003C918B /* PlayMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlayMode.swift; path = ../../Video/PlayMode.swift; sourceTree = "<group>"; };
@@ -253,6 +261,9 @@
 			children = (
 				8330BB4922EA81FE0038FAE9 /* FileObject.swift */,
 				83D33EE12379238300560335 /* VideoConfigObject.swift */,
+				835B051623822AF800A32B86 /* SearchResultObject.swift */,
+				835B05182382565400A32B86 /* SearchMovieObject.swift */,
+				835B051A2382588E00A32B86 /* SearchTVObject.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -370,6 +381,7 @@
 				83A384A022CDC6AD007EA28D /* Extension */,
 				83AEA34323139B9600354500 /* PreferenceManager.swift */,
 				83560EB32344737E00AA48A2 /* SettingTabBarController.swift */,
+				835B0513237E63D300A32B86 /* TheMovieDB.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -433,6 +445,7 @@
 				839E116C22CC84A60096E43C /* Sources */,
 				839E116D22CC84A60096E43C /* Frameworks */,
 				839E116E22CC84A60096E43C /* Resources */,
+				5FD18E3C5D2545224496B373 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -517,6 +530,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		5FD18E3C5D2545224496B373 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VideoPlayer/Pods-VideoPlayer-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VideoPlayer/Pods-VideoPlayer-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VideoPlayer/Pods-VideoPlayer-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		EB0139868DF8E9A5D56D98D5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -553,14 +583,17 @@
 				8325628C2301003000C4F1FC /* empty.cpp in Sources */,
 				83EE1174230CE38E0030A24E /* FourCharCode+.swift in Sources */,
 				8316088C22F150B4004390AA /* URL+.swift in Sources */,
+				835B05192382565400A32B86 /* SearchMovieObject.swift in Sources */,
 				83668D4A22EEAE3C003C918B /* SwiftyGifManager.swift in Sources */,
 				833CD49622F2A68300617F63 /* PlayerView.swift in Sources */,
 				83EE1172230CCB9B0030A24E /* VideoDetailViewController.swift in Sources */,
 				835EBE0A2373FA2F000152B1 /* Int+.swift in Sources */,
 				839E118E22CC930C0096E43C /* VideoViewDeprecated.swift in Sources */,
+				835B051723822AF800A32B86 /* SearchResultObject.swift in Sources */,
 				83EE1178230D1B320030A24E /* VideoView.swift in Sources */,
 				833CD49422F2A2B900617F63 /* Player.swift in Sources */,
 				83D33EE22379238300560335 /* VideoConfigObject.swift in Sources */,
+				835B051B2382588E00A32B86 /* SearchTVObject.swift in Sources */,
 				8327B07B22F4045300D31C84 /* PlayerSlider.swift in Sources */,
 				8398DD1C2314EF680084951A /* SleepTimerPopupView.swift in Sources */,
 				83A384A222CDC6C1007EA28D /* AVPlayer+.swift in Sources */,
@@ -584,6 +617,7 @@
 				839F9DF222EFC278003AFA0D /* FileType.swift in Sources */,
 				839E119322CC96FC0096E43C /* VideoControllerView.swift in Sources */,
 				8361C6C622EEE40B006ECF31 /* String+.swift in Sources */,
+				835B0514237E63D300A32B86 /* TheMovieDB.swift in Sources */,
 				83D33EE0237922FE00560335 /* VideoPopupViewController.swift in Sources */,
 				833748EA2315141700B535F0 /* BrightnessToastView.swift in Sources */,
 				8327B07122F2B33200D31C84 /* PlayerUtils.swift in Sources */,
