@@ -12,10 +12,9 @@ import Foundation
 class SubTitlePopupViewController: UIViewController {
 
     var mediaPlayer: VLCMediaPlayer?
+    @IBOutlet weak var tableView: UITableView!
     
 
-    @IBOutlet weak var subTitleSwitch: UISwitch!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -24,16 +23,5 @@ class SubTitlePopupViewController: UIViewController {
         
     }
     
-    @IBAction func onSubtitleValueChanged(_ sender: UISwitch) {
-        
-        guard let mediaPlayer = mediaPlayer, mediaPlayer.videoSubTitlesNames.count > 0 else { return }
-                    
-        if subTitleSwitch.isOn {
-            
-        }
-        else {
-            
-        }
-    }
 }
 

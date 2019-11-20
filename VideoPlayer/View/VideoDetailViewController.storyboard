@@ -245,6 +245,12 @@
                                                     <constraint firstItem="c4U-qe-alw" firstAttribute="width" secondItem="c4U-qe-alw" secondAttribute="height" multiplier="11:10" id="z6Y-vv-tjp"/>
                                                 </constraints>
                                             </stackView>
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GkQ-K6-Odd">
+                                                <rect key="frame" x="96.666666666666671" y="216.33333333333331" width="32.000000000000014" height="18"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <color key="textColor" red="0.68235294120000001" green="0.68627450980000004" blue="0.69019607839999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aPm-W5-Qaf">
                                                 <rect key="frame" x="9" y="374" width="52" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -278,6 +284,7 @@
                                                 <variation key="heightClass=compact" constant="20"/>
                                             </constraint>
                                             <constraint firstItem="Yhp-7n-OLz" firstAttribute="top" secondItem="aw4-zK-4G8" secondAttribute="top" id="NF8-5L-cCE"/>
+                                            <constraint firstItem="GkQ-K6-Odd" firstAttribute="centerY" secondItem="qyA-e3-ua8" secondAttribute="centerY" id="Qh6-Es-dib"/>
                                             <constraint firstItem="KCA-Qo-Nav" firstAttribute="leading" secondItem="Yhp-7n-OLz" secondAttribute="leading" id="RLp-f3-Drm"/>
                                             <constraint firstAttribute="trailing" secondItem="Yhp-7n-OLz" secondAttribute="trailing" constant="10" id="Rpc-oa-dKs"/>
                                             <constraint firstAttribute="bottom" secondItem="aPm-W5-Qaf" secondAttribute="bottom" constant="5" id="WKn-CT-RI8"/>
@@ -291,6 +298,7 @@
                                             <constraint firstItem="aw4-zK-4G8" firstAttribute="leading" secondItem="Fzx-Iw-go4" secondAttribute="leading" constant="9" id="eWb-Hg-9KT"/>
                                             <constraint firstAttribute="trailing" secondItem="aw4-zK-4G8" secondAttribute="trailing" constant="9" id="lgs-gp-F1u"/>
                                             <constraint firstItem="aPm-W5-Qaf" firstAttribute="top" secondItem="R0b-fc-Mfc" secondAttribute="bottom" id="mcA-tG-dVB"/>
+                                            <constraint firstItem="GkQ-K6-Odd" firstAttribute="leading" secondItem="qyA-e3-ua8" secondAttribute="trailing" constant="5" id="q6s-vb-Ybe"/>
                                             <constraint firstItem="aw4-zK-4G8" firstAttribute="top" secondItem="Fzx-Iw-go4" secondAttribute="top" constant="9" id="r0G-8j-7V0"/>
                                             <constraint firstItem="SSh-m1-9E2" firstAttribute="centerX" secondItem="aw4-zK-4G8" secondAttribute="centerX" id="umc-ll-Whc"/>
                                             <constraint firstItem="KCA-Qo-Nav" firstAttribute="trailing" secondItem="Yhp-7n-OLz" secondAttribute="trailing" id="vA7-vt-CPQ"/>
@@ -370,6 +378,7 @@
                         <outlet property="genreLabel" destination="neS-HE-0ob" id="vck-9W-0wN"/>
                         <outlet property="genreView" destination="ZDe-3M-4GQ" id="Es4-Jw-dSJ"/>
                         <outlet property="moreButton" destination="aPm-W5-Qaf" id="GZh-0E-Nrw"/>
+                        <outlet property="scoreLabel" destination="GkQ-K6-Odd" id="ozJ-q3-e29"/>
                         <outlet property="starView" destination="qyA-e3-ua8" id="Y5M-1l-hXy"/>
                         <outlet property="thumbnailImageView" destination="aw4-zK-4G8" id="pPD-eq-kCg"/>
                         <outlet property="titleLabel" destination="Yhp-7n-OLz" id="bUl-fH-3v5"/>

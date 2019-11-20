@@ -42,11 +42,12 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
     
     @IBOutlet weak var starView: UIStackView!
     @IBOutlet var starImageArray: [UIImageView]!
+    @IBOutlet weak var scoreLabel: UILabel!
     
     @IBOutlet weak var moreButton: UIButton!
 
     var moreURL: URL?
-    var theMovieTitle = ""
+    var searchedTitle: String?
     var settingPopupViewController: PopupViewController?
     let movieDB = TheMovieDB.shared
     
@@ -57,6 +58,8 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
     override var prefersHomeIndicatorAutoHidden: Bool {
         return shouldHideHomeBarIndicator
     }
+    
+    // MARK: - Func
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,6 +73,7 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
             if success {
                 if result!.results.count > 0 {
                     let tvID = result!.results.first!.id
+                    self.searchedTitle = result?.results.first?.name
                     self.movieDB.requestTVDB(id: tvID!) { (success, responseData) in
                         self.setTVUI(responseData: responseData!)
                     }
@@ -80,7 +84,6 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
                     
                     self.moreButton.isHidden = false
                     self.moreURL = URL(string: "https://www.themoviedb.org/tv/\(tvID!)?language=ko-KR")
-                    self.theMovieTitle = "\(result?.results.first?.name ?? "") - The Movie Database"
                 }
                 else {
                     self.setInitialUI()
@@ -91,6 +94,33 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
             }
         }
     }
+
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        blurView.frame = backgroundImageView.bounds
+        
+        if let videoView = videoView {
+            videoView.frame = (self.navigationController?.view.window?.bounds)!
+        }
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        guard let videoView = videoView else {
+            return
+        }
+        
+        coordinator.animate(alongsideTransition: { _ in
+            videoView.configureVisibleStatusBar()
+            videoView.onRotateScreenUpdate()
+            
+        }) { (_) in
+        }
+    }
+    
+    //MARK: - UI
     
     func setInitialUI() {
         guard let data = data else { return }
@@ -155,7 +185,11 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
                 castView.isHidden = true
             }
             
-            self.setVoteStarImageView(average: data.vote_average)
+            self.setVoteStarImageUI(average: data.vote_average)
+            self.setTranslateTitleText(data: data)
+            self.movieDB.requestImageTVDB(path: data.still_path) { (image) in
+                self.thumbnailImageView.image = image
+            }
             
         }
         else if responseData is SearchTVObject {
@@ -178,15 +212,28 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
             else {
                 genreView.isHidden = true
             }
-            
-    
         }
     }
     
-    func setVoteStarImageView(average: Float) {
+    func setTranslateTitleText(data: SearchTVEpisodeObject) {
+        guard let title = self.searchedTitle else { return }
+        guard let season = data.season_number else { return }
+        guard let episode = data.episode_number else { return }
+        guard let name = data.name else { return }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let date = dateFormatter.date(from: data.air_date)!
+        let year = Calendar.current.component(.year, from: date)
+        
+        titleLabel.text = "\(title) - Season \(season) (\(year)) Episode \(episode) : \(name)"
+    }
+    
+    func setVoteStarImageUI(average: Float) {
         if average > 0 {
             starView.isHidden = false
-            
+            scoreLabel.isHidden = false
+            scoreLabel.text = String(format: "%.2f", average)
             if average >= 2 {
                 starImageArray[0].image = UIImage(systemName: "star.fill")
             }
@@ -205,23 +252,16 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
         }
         else {
             starView.isHidden = true
+            scoreLabel.isHidden = true
         }
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        blurView.frame = backgroundImageView.bounds
-        
-        if let videoView = videoView {
-            videoView.frame = (self.navigationController?.view.window?.bounds)!
-        }
-    }
     
     func setResponseDataUI(data: SearchTVObject) {
         
     }
     
-    //MARK: - UI
+    
     
     func videoInformationUpdate(track: Dictionary<String, Any>) {
         let videoResolution = "\(track["width"] as! Int)x\(track["height"] as! Int)"
@@ -247,22 +287,7 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
         self.shouldHideHomeBarIndicator = autoHidden
         self.setNeedsUpdateOfHomeIndicatorAutoHidden()
     }
-    
-    
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        
-        guard let videoView = videoView else {
-            return
-        }
-        
-        coordinator.animate(alongsideTransition: { _ in
-            videoView.configureVisibleStatusBar()
-            videoView.onRotateScreenUpdate()
-            
-        }) { (_) in
-        }
-    }
+
     
     
     //MARK: - Event     - 플레이

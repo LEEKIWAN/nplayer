@@ -70,7 +70,7 @@ class FileObject: NSObject, VLCMediaThumbnailerDelegate, VLCMediaDelegate {
             self.thumbnailImage = UIImage(named: "text")
         }
         else if fileType == .directory {
-            self.thumbnailImage = UIImage(named: "folder")
+            self.thumbnailImage = UIImage(systemName: "folder")
         }
         else {
             self.thumbnailImage = UIImage(named: "file")

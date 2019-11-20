@@ -42,28 +42,28 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="393"/>
+            <rect key="frame" x="0.0" y="0.0" width="432" height="413"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aad-b1-ZbY">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="393"/>
+                    <rect key="frame" x="0.0" y="0.0" width="432" height="413"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
                         <outletCollection property="gestureRecognizers" destination="T86-ZE-61a" appends="YES" id="lPg-UW-Ypg"/>
                     </connections>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ChQ-Hd-6Y1">
-                    <rect key="frame" x="0.0" y="44" width="414" height="349"/>
+                    <rect key="frame" x="0.0" y="44" width="432" height="369"/>
                     <subviews>
                         <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lNZ-jO-pH3" customClass="BrightnessSettingView" customModule="VideoPlayer" customModuleProvider="target">
-                            <rect key="frame" x="62" y="129" width="290" height="180"/>
+                            <rect key="frame" x="65" y="115" width="302" height="180"/>
                             <color key="backgroundColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="180" id="85U-UX-p5l"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bgd-G2-7f8" userLabel="Top View">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="35"/>
+                            <rect key="frame" x="0.0" y="0.0" width="432" height="35"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3pl-VL-ESx">
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="35"/>
@@ -79,11 +79,11 @@
                                     </connections>
                                 </button>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pne-rc-7ux" customClass="PlayerSliderView" customModule="VideoPlayer" customModuleProvider="target">
-                                    <rect key="frame" x="50" y="0.0" width="314" height="35"/>
+                                    <rect key="frame" x="50" y="0.0" width="332" height="35"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ggg" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9KU-P2-EQs" customClass="MarqueeLabel" customModule="VideoPlayer" customModuleProvider="target">
-                                    <rect key="frame" x="113" y="9" width="188" height="17"/>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9KU-P2-EQs" customClass="MarqueeLabel" customModule="VideoPlayer" customModuleProvider="target">
+                                    <rect key="frame" x="200.5" y="9" width="31" height="17"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
@@ -93,14 +93,14 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hcc-5w-g0Z">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="753" text="00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hcc-5w-g0Z">
                                     <rect key="frame" x="58" y="9.5" width="36.5" height="16"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z6c-gT-XJU">
-                                    <rect key="frame" x="364" y="0.0" width="50" height="35"/>
+                                    <rect key="frame" x="382" y="0.0" width="50" height="35"/>
                                     <color key="backgroundColor" red="0.96862745098039216" green="0.76078431372549016" blue="0.011764705882352941" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="50" id="R57-Q4-pse"/>
@@ -111,8 +111,8 @@
                                         <action selector="onCloseTouched:" destination="-1" eventType="touchUpInside" id="0XL-a0-yIc"/>
                                     </connections>
                                 </button>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FeA-1U-skI">
-                                    <rect key="frame" x="319.5" y="9.5" width="36.5" height="16"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="753" text="00:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FeA-1U-skI">
+                                    <rect key="frame" x="337.5" y="9.5" width="36.5" height="16"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
@@ -120,7 +120,6 @@
                             </subviews>
                             <color key="backgroundColor" red="0.1333333333" green="0.1333333333" blue="0.1333333333" alpha="0.69935252568493156" colorSpace="custom" customColorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstItem="9KU-P2-EQs" firstAttribute="width" secondItem="pne-rc-7ux" secondAttribute="width" multiplier="0.6" id="0HE-XX-vLy"/>
                                 <constraint firstItem="FeA-1U-skI" firstAttribute="centerY" secondItem="bgd-G2-7f8" secondAttribute="centerY" id="4ZC-lp-thl"/>
                                 <constraint firstItem="Z6c-gT-XJU" firstAttribute="top" secondItem="bgd-G2-7f8" secondAttribute="top" id="7GD-Sc-wAf"/>
                                 <constraint firstItem="3pl-VL-ESx" firstAttribute="leading" secondItem="bgd-G2-7f8" secondAttribute="leading" id="9Xs-cd-Z9m"/>
@@ -136,16 +135,18 @@
                                 <constraint firstItem="pne-rc-7ux" firstAttribute="top" secondItem="bgd-G2-7f8" secondAttribute="top" id="anR-ry-olh"/>
                                 <constraint firstItem="9KU-P2-EQs" firstAttribute="centerY" secondItem="bgd-G2-7f8" secondAttribute="centerY" id="c2b-pd-s8n"/>
                                 <constraint firstAttribute="height" constant="35" id="f0P-vc-39U"/>
+                                <constraint firstItem="FeA-1U-skI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="9KU-P2-EQs" secondAttribute="trailing" constant="20" id="fed-3W-iUQ"/>
                                 <constraint firstItem="Z6c-gT-XJU" firstAttribute="leading" secondItem="pne-rc-7ux" secondAttribute="trailing" id="gK5-XT-RWw"/>
                                 <constraint firstAttribute="trailing" secondItem="Z6c-gT-XJU" secondAttribute="trailing" id="jFE-yW-AyK"/>
                                 <constraint firstItem="FeA-1U-skI" firstAttribute="trailing" secondItem="pne-rc-7ux" secondAttribute="trailing" constant="-8" id="tG6-3o-5NE"/>
+                                <constraint firstItem="9KU-P2-EQs" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="hcc-5w-g0Z" secondAttribute="trailing" constant="20" id="wRI-Eb-WKe"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ftS-zR-Dqv" userLabel="Bottom View">
-                            <rect key="frame" x="0.0" y="309" width="414" height="40"/>
+                            <rect key="frame" x="0.0" y="295" width="432" height="74"/>
                             <subviews>
                                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7CI-kH-BCs">
-                                    <rect key="frame" x="186" y="0.0" width="42" height="40"/>
+                                    <rect key="frame" x="195" y="0.0" width="42" height="40"/>
                                     <inset key="imageEdgeInsets" minX="14" minY="12" maxX="14" maxY="12"/>
                                     <state key="normal" image="VGPlayer_ic_play"/>
                                     <connections>
@@ -153,7 +154,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8hl-4c-nbe">
-                                    <rect key="frame" x="186" y="0.0" width="42" height="40"/>
+                                    <rect key="frame" x="195" y="0.0" width="42" height="40"/>
                                     <inset key="imageEdgeInsets" minX="14" minY="12" maxX="14" maxY="12"/>
                                     <state key="normal" image="VGPlayer_ic_pause"/>
                                     <connections>
@@ -161,7 +162,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OqO-tP-WkO">
-                                    <rect key="frame" x="228" y="0.0" width="48" height="40"/>
+                                    <rect key="frame" x="237" y="0.0" width="48" height="40"/>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <inset key="imageEdgeInsets" minX="9" minY="3" maxX="9" maxY="3"/>
                                     <state key="normal" image="fastforward-1"/>
@@ -170,7 +171,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YXf-N5-4F0">
-                                    <rect key="frame" x="138" y="0.0" width="48" height="40"/>
+                                    <rect key="frame" x="147" y="0.0" width="48" height="40"/>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <inset key="imageEdgeInsets" minX="9" minY="3" maxX="9" maxY="3"/>
                                     <state key="normal" image="rewind-1"/>
@@ -179,7 +180,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nbm-ar-NR2">
-                                    <rect key="frame" x="376" y="0.0" width="38" height="40"/>
+                                    <rect key="frame" x="394" y="0.0" width="38" height="40"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="38" id="RMs-Re-Dqx"/>
                                     </constraints>
@@ -191,7 +192,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HXp-19-myF">
-                                    <rect key="frame" x="338" y="0.0" width="38" height="40"/>
+                                    <rect key="frame" x="356" y="0.0" width="38" height="40"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="38" id="yO0-U8-S7U"/>
                                     </constraints>
@@ -245,7 +246,7 @@
                             <viewLayoutGuide key="safeArea" id="eK6-X9-TAN"/>
                         </view>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="jPR-UU-UGQ">
-                            <rect key="frame" x="364" y="105" width="37" height="139"/>
+                            <rect key="frame" x="382" y="115" width="37" height="139"/>
                             <subviews>
                                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vpc-fw-V7m">
                                     <rect key="frame" x="0.0" y="0.0" width="37" height="37"/>
@@ -255,7 +256,7 @@
                                     </constraints>
                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <inset key="imageEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
-                                    <state key="normal" image="baseline_keyboard_arrow_up_white_48pt"/>
+                                    <state key="normal" image="chevron.up" catalog="system"/>
                                     <connections>
                                         <action selector="onPlaySpeedUpTouched:" destination="-1" eventType="touchUpInside" id="lOr-CU-TmK"/>
                                     </connections>
@@ -283,7 +284,7 @@
                                     </constraints>
                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <inset key="imageEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
-                                    <state key="normal" image="baseline_keyboard_arrow_down_white_48pt"/>
+                                    <state key="normal" image="chevron.down" catalog="system"/>
                                     <connections>
                                         <action selector="onPlaySpeedDownTouched:" destination="-1" eventType="touchUpInside" id="XAe-dR-fN1"/>
                                     </connections>
@@ -295,7 +296,7 @@
                             </constraints>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="mIm-Gx-wFp">
-                            <rect key="frame" x="13" y="105" width="37" height="139"/>
+                            <rect key="frame" x="13" y="115" width="37" height="139"/>
                             <subviews>
                                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="305-Oy-aAp">
                                     <rect key="frame" x="0.0" y="0.0" width="37" height="37"/>
@@ -349,7 +350,7 @@
                             </constraints>
                         </stackView>
                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UPD-vg-qOE" customClass="StatusBar" customModule="VideoPlayer" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
+                            <rect key="frame" x="0.0" y="0.0" width="432" height="0.0"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" id="wML-Pg-sNz"/>
@@ -381,7 +382,7 @@
                     </connections>
                 </view>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dCK-wP-uqn" customClass="BrightnessToastView" customModule="VideoPlayer" customModuleProvider="target">
-                    <rect key="frame" x="114" y="203.5" width="186" height="30"/>
+                    <rect key="frame" x="123" y="213.5" width="186" height="30"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="186" id="AIO-n0-A8s"/>
@@ -389,8 +390,8 @@
                     </constraints>
                 </view>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="VPb-Qu-UKs">
-                    <rect key="frame" x="70" y="182" width="274" height="29"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                    <rect key="frame" x="70" y="190.5" width="292" height="32.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="27"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -417,7 +418,7 @@
             <connections>
                 <outletCollection property="gestureRecognizers" destination="fAY-VL-tSi" appends="YES" id="4ku-4U-JQo"/>
             </connections>
-            <point key="canvasLocation" x="47.826086956521742" y="309.04017857142856"/>
+            <point key="canvasLocation" x="60.869565217391312" y="315.06696428571428"/>
         </view>
         <tapGestureRecognizer id="U7D-Cu-s5k">
             <connections>
@@ -442,8 +443,6 @@
     <resources>
         <image name="VGPlayer_ic_pause" width="31" height="50"/>
         <image name="VGPlayer_ic_play" width="42" height="50"/>
-        <image name="baseline_keyboard_arrow_down_white_48pt" width="48" height="48"/>
-        <image name="baseline_keyboard_arrow_up_white_48pt" width="48" height="48"/>
         <image name="baseline_repeat_one_white_48pt" width="48" height="48"/>
         <image name="baseline_repeat_white_48pt" width="48" height="48"/>
         <image name="baseline_screen_lock_rotation_white_48pt" width="48" height="48"/>
@@ -452,6 +451,8 @@
         <image name="baseline_settings_overscan_white_48pt" width="48" height="48"/>
         <image name="baseline_timer_off_white_48pt" width="48" height="48"/>
         <image name="baseline_timer_white_48pt" width="48" height="48"/>
+        <image name="chevron.down" catalog="system" width="64" height="36"/>
+        <image name="chevron.up" catalog="system" width="64" height="36"/>
         <image name="close" width="30" height="30"/>
         <image name="fastforward-1" width="48" height="48"/>
         <image name="iconmonstr-setting" width="120" height="120"/>

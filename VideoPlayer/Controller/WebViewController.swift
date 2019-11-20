@@ -9,10 +9,11 @@
 import UIKit
 import WebKit
 
-class WebViewController: UIViewController {
+class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
     
     var url: URL?
     @IBOutlet weak var webView: WKWebView!
+    @IBOutlet weak var indicatorView: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,8 +22,12 @@ class WebViewController: UIViewController {
             return
         }
         
-        //        webView.uiDelegate = self
-        //        webView.navigationDelegate = self
+        let backButton = UIBarButtonItem()
+        backButton.title = ""
+        self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
+        
+        webView.uiDelegate = self
+        webView.navigationDelegate = self
         //
         
         webView.load(URLRequest(url: url))
@@ -38,11 +43,21 @@ class WebViewController: UIViewController {
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         guard let title = webView.title else { return }
         self.title = title
-    
+        
     }
     
     deinit {
-        webView.removeObserver(self, forKeyPath: "estimatedProgress")
         webView.removeObserver(self, forKeyPath: "title")
     }
+    
+    
+    //MARK: - Webview
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        indicatorView.startAnimating()
+    }
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        indicatorView.stopAnimating()
+    }
 }
+

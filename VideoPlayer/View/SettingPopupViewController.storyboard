@@ -7,81 +7,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--자막-->
-        <scene sceneID="5Wj-UM-SNI">
-            <objects>
-                <viewController definesPresentationContext="YES" modalPresentationStyle="overCurrentContext" id="14W-rp-75h" customClass="SubTitlePopupViewController" customModule="VideoPlayer" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="JIW-PJ-SvB">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nf1-FT-I6b">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="cZr-AH-eCH">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z26-wD-1mK">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="자막 보기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="byT-aH-DhD">
-                                                        <rect key="frame" x="25" y="14.5" width="67" height="21.5"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                        <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="08j-fB-kei">
-                                                        <rect key="frame" x="345" y="9.5" width="51" height="31"/>
-                                                        <connections>
-                                                            <action selector="onSubtitleValueChanged:" destination="14W-rp-75h" eventType="valueChanged" id="gfB-r5-Iq2"/>
-                                                        </connections>
-                                                    </switch>
-                                                </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstItem="08j-fB-kei" firstAttribute="centerY" secondItem="z26-wD-1mK" secondAttribute="centerY" id="K2X-6c-mfJ"/>
-                                                    <constraint firstAttribute="trailing" secondItem="08j-fB-kei" secondAttribute="trailing" constant="20" id="XUW-6A-Xho"/>
-                                                    <constraint firstAttribute="height" constant="50" id="qnP-NH-u5e"/>
-                                                    <constraint firstItem="byT-aH-DhD" firstAttribute="centerY" secondItem="z26-wD-1mK" secondAttribute="centerY" id="viJ-zr-ytc"/>
-                                                    <constraint firstItem="byT-aH-DhD" firstAttribute="leading" secondItem="z26-wD-1mK" secondAttribute="leading" constant="25" id="yac-kf-Qt5"/>
-                                                </constraints>
-                                            </view>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </stackView>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="cZr-AH-eCH" firstAttribute="top" secondItem="8ea-gU-mXe" secondAttribute="top" id="2WY-ug-K8K"/>
-                                    <constraint firstItem="cZr-AH-eCH" firstAttribute="trailing" secondItem="8ea-gU-mXe" secondAttribute="trailing" constant="414" id="6hh-fN-ueG"/>
-                                    <constraint firstItem="cZr-AH-eCH" firstAttribute="width" secondItem="YqG-oI-CsH" secondAttribute="width" id="Fm6-wt-ETb"/>
-                                    <constraint firstItem="8ea-gU-mXe" firstAttribute="height" secondItem="cZr-AH-eCH" secondAttribute="height" id="FmT-9P-pdK"/>
-                                    <constraint firstItem="cZr-AH-eCH" firstAttribute="leading" secondItem="8ea-gU-mXe" secondAttribute="leading" id="mte-Er-nBL"/>
-                                </constraints>
-                                <viewLayoutGuide key="contentLayoutGuide" id="8ea-gU-mXe"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="YqG-oI-CsH"/>
-                            </scrollView>
-                        </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="tintColor" white="0.0" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="Nf1-FT-I6b" firstAttribute="bottom" secondItem="lC0-4K-Xd0" secondAttribute="bottom" id="J3o-dV-7k0"/>
-                            <constraint firstItem="Nf1-FT-I6b" firstAttribute="top" secondItem="lC0-4K-Xd0" secondAttribute="top" id="Uu6-B5-Nh4"/>
-                            <constraint firstItem="Nf1-FT-I6b" firstAttribute="trailing" secondItem="lC0-4K-Xd0" secondAttribute="trailing" id="gD4-z6-lvR"/>
-                            <constraint firstItem="Nf1-FT-I6b" firstAttribute="leading" secondItem="lC0-4K-Xd0" secondAttribute="leading" id="zDV-3w-X5l"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="lC0-4K-Xd0"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="자막" id="m6q-z5-Nt9"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="subTitleSwitch" destination="08j-fB-kei" id="O24-Mb-uBI"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vRy-XB-ut2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4137.68115942029" y="531.69642857142856"/>
-        </scene>
         <!--오디오-->
         <scene sceneID="0LG-w1-GIm">
             <objects>
@@ -116,7 +41,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LKi-vD-zVq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5844.9275362318849" y="171.42857142857142"/>
+            <point key="canvasLocation" x="5858" y="153"/>
         </scene>
         <!--비디오-->
         <scene sceneID="jMw-cB-dwc">
@@ -183,6 +108,7 @@
                     <tabBarItem key="tabBarItem" tag="2" title="자막" image="baseline_subtitles_white_48pt_3x" id="rLi-XN-qVp"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ABq-7w-flQ">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <textAttributes key="titleTextAttributes">
@@ -191,7 +117,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="14W-rp-75h" kind="relationship" relationship="rootViewController" id="8ax-0b-lQL"/>
+                        <segue destination="5Gi-0I-qFV" kind="relationship" relationship="rootViewController" id="IU4-rr-XqA"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c8N-qM-AEY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -205,6 +131,7 @@
                     <tabBarItem key="tabBarItem" tag="1" title="오디오" image="baseline_equalizer_white_48pt_3x" id="L8o-ct-VwF"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="FFv-AB-wUj">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <textAttributes key="titleTextAttributes">
@@ -230,6 +157,7 @@
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kPj-xm-g6h">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <textAttributes key="titleTextAttributes">
@@ -244,6 +172,42 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9MH-6H-GCf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4024.6376811594205" y="-524.33035714285711"/>
+        </scene>
+        <!--자막-->
+        <scene sceneID="Lbj-2n-AxT">
+            <objects>
+                <viewController id="5Gi-0I-qFV" customClass="SubTitlePopupViewController" customModule="VideoPlayer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wfd-NF-BSP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QNl-oR-st3">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="5Gi-0I-qFV" id="b5K-qz-Pbc"/>
+                                    <outlet property="delegate" destination="5Gi-0I-qFV" id="uc6-fP-fy0"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="pJc-jg-CP8" firstAttribute="trailing" secondItem="QNl-oR-st3" secondAttribute="trailing" id="3Xo-jK-IEo"/>
+                            <constraint firstItem="QNl-oR-st3" firstAttribute="leading" secondItem="pJc-jg-CP8" secondAttribute="leading" id="8EA-R3-cdS"/>
+                            <constraint firstItem="QNl-oR-st3" firstAttribute="top" secondItem="pJc-jg-CP8" secondAttribute="top" id="91m-nE-HQo"/>
+                            <constraint firstItem="pJc-jg-CP8" firstAttribute="bottom" secondItem="QNl-oR-st3" secondAttribute="bottom" id="DmO-l6-BXk"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="pJc-jg-CP8"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="자막" id="6tw-Pl-Jh6"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="QNl-oR-st3" id="Ozl-kW-2uG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TZc-M2-lNN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4081" y="532"/>
         </scene>
     </scenes>
     <resources>

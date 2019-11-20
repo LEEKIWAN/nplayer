@@ -506,7 +506,7 @@ extension VideoView: PlayerSliderViewDelegate {
         currentDurationLabel.text = currentDuration?.stringValue
         
         var searchTime = Int(currentTime - prevTime) / 1000
-        searchTime > 0 ? setupPopupLabelTimer("+\(searchTime.timeFormatted())") : setupPopupLabelTimer("-\(searchTime.timeFormatted())")
+        searchTime > 0 ? setupPopupLabelTimer("+\(searchTime.timeFormatted()) (\(String(describing: currentDuration!.stringValue!)))") : setupPopupLabelTimer("-\(searchTime.timeFormatted()) (\(String(describing: currentDuration!.stringValue!)))")
         
     }
     

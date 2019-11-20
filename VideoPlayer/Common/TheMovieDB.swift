@@ -18,6 +18,7 @@ enum MediaType {
 class TheMovieDB {
     static let shared = TheMovieDB()
     
+    var imageServerURL = "https://image.tmdb.org/t/p/original/"
     let api_key = "65657e31c98d6c9bdd3633d8c482d8fa"
     let serverURL = "https://api.themoviedb.org/3/"
     let language = "ko-KR"
@@ -150,7 +151,19 @@ class TheMovieDB {
         }
     }
     
-    
+    func requestImageTVDB(path: String, completion: @escaping (UIImage?) -> Void) {
+        guard let url = URL(string: "\(self.imageServerURL)\(path)") else { return }
+        AF.request(url).responseData { (response) in
+            switch response.result {
+            case .success(let result):
+                let image = UIImage(data: result)
+                completion(image)
+            case .failure(let error):
+                print(error.errorDescription ?? "")
+                completion(nil)
+            }
+        }
+    }
     
     
 }
