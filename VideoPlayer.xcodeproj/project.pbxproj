@@ -43,6 +43,8 @@
 		835B05192382565400A32B86 /* SearchMovieObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835B05182382565400A32B86 /* SearchMovieObject.swift */; };
 		835B051B2382588E00A32B86 /* SearchTVObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835B051A2382588E00A32B86 /* SearchTVObject.swift */; };
 		835EBE0A2373FA2F000152B1 /* Int+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835EBE092373FA2F000152B1 /* Int+.swift */; };
+		835FB2492383D7AB0052850A /* WebViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 835FB2482383D7AB0052850A /* WebViewController.storyboard */; };
+		835FB24B2383D7BD0052850A /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835FB24A2383D7BD0052850A /* WebViewController.swift */; };
 		8361C6C622EEE40B006ECF31 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8361C6C522EEE40B006ECF31 /* String+.swift */; };
 		83668D4022EE9147003C918B /* PlayMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83668D3F22EE9147003C918B /* PlayMode.swift */; };
 		83668D4822EEAE3C003C918B /* UIImage+SwiftyGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83668D4522EEAE3C003C918B /* UIImage+SwiftyGif.swift */; };
@@ -136,6 +138,8 @@
 		835B05182382565400A32B86 /* SearchMovieObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovieObject.swift; sourceTree = "<group>"; };
 		835B051A2382588E00A32B86 /* SearchTVObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTVObject.swift; sourceTree = "<group>"; };
 		835EBE092373FA2F000152B1 /* Int+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+.swift"; sourceTree = "<group>"; };
+		835FB2482383D7AB0052850A /* WebViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WebViewController.storyboard; sourceTree = "<group>"; };
+		835FB24A2383D7BD0052850A /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		8361C6C522EEE40B006ECF31 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		83668D3F22EE9147003C918B /* PlayMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlayMode.swift; path = ../../Video/PlayMode.swift; sourceTree = "<group>"; };
 		83668D4522EEAE3C003C918B /* UIImage+SwiftyGif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+SwiftyGif.swift"; sourceTree = "<group>"; };
@@ -217,6 +221,7 @@
 				833748F92317AD6600B535F0 /* SettingPopupViewController.storyboard */,
 				83D33EE7237A527A00560335 /* PopupResolutionViewController.storyboard */,
 				835B0509237CE57700A32B86 /* PopupEqualizerViewController.storyboard */,
+				835FB2482383D7AB0052850A /* WebViewController.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -234,6 +239,7 @@
 				83D33EEB237BA2BF00560335 /* AudioPopupViewController.swift */,
 				835B050B237CE58000A32B86 /* PopupEqualizerViewController.swift */,
 				839686CC237508E0002EA1F4 /* SubTitlePopupViewController.swift */,
+				835FB24A2383D7BD0052850A /* WebViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -519,6 +525,7 @@
 				8327B07722F3CF4B00D31C84 /* VideoPlayerController.storyboard in Resources */,
 				8398DD1A2314EF590084951A /* SleepTimerPopupView.xib in Resources */,
 				833748FA2317AD6600B535F0 /* SettingPopupViewController.storyboard in Resources */,
+				835FB2492383D7AB0052850A /* WebViewController.storyboard in Resources */,
 				83D33EF0237BCED500560335 /* SliderTableViewCell.xib in Resources */,
 				8389DC9E236352D3007D5779 /* StatusBar.xib in Resources */,
 				83EE116F230CCB220030A24E /* VideoDetailViewController.storyboard in Resources */,
@@ -591,6 +598,7 @@
 				839E118E22CC930C0096E43C /* VideoViewDeprecated.swift in Sources */,
 				835B051723822AF800A32B86 /* SearchResultObject.swift in Sources */,
 				83EE1178230D1B320030A24E /* VideoView.swift in Sources */,
+				835FB24B2383D7BD0052850A /* WebViewController.swift in Sources */,
 				833CD49422F2A2B900617F63 /* Player.swift in Sources */,
 				83D33EE22379238300560335 /* VideoConfigObject.swift in Sources */,
 				835B051B2382588E00A32B86 /* SearchTVObject.swift in Sources */,

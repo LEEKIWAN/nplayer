@@ -40,13 +40,20 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
     
+    @IBOutlet weak var starView: UIStackView!
+    @IBOutlet var starImageArray: [UIImageView]!
+    
+    @IBOutlet weak var moreButton: UIButton!
+
+    var moreURL: URL?
+    var theMovieTitle = ""
     var settingPopupViewController: PopupViewController?
     let movieDB = TheMovieDB.shared
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-        
+    
     override var prefersHomeIndicatorAutoHidden: Bool {
         return shouldHideHomeBarIndicator
     }
@@ -59,10 +66,24 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
         guard let data = data else { return }
         
         movieDB.initMemberVariable(fileName: data.fileName)
-        movieDB.requestDB { (success, result) in
+        movieDB.requestDB(fileName: data.fileName) { (success, result) in
             if success {
-                if result is SearchTVObject {
-                    result as! SearchTVObject
+                if result!.results.count > 0 {
+                    let tvID = result!.results.first!.id
+                    self.movieDB.requestTVDB(id: tvID!) { (success, responseData) in
+                        self.setTVUI(responseData: responseData!)
+                    }
+                    
+                    self.movieDB.requestTVEpisodeDB(id: tvID!) { (success, responseData) in
+                        self.setTVUI(responseData: responseData!)
+                    }
+                    
+                    self.moreButton.isHidden = false
+                    self.moreURL = URL(string: "https://www.themoviedb.org/tv/\(tvID!)?language=ko-KR")
+                    self.theMovieTitle = "\(result?.results.first?.name ?? "") - The Movie Database"
+                }
+                else {
+                    self.setInitialUI()
                 }
             }
             else {
@@ -103,6 +124,87 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
         
         if let audioInfo = audioInfo {
             audioInformationUpdate(track: audioInfo)
+        }
+    }
+    
+    func setTVUI(responseData: Any) {
+        if responseData is SearchTVEpisodeObject {
+            let data = responseData as! SearchTVEpisodeObject
+            
+            // contents
+            contentLabel.isHidden = false
+            contentLabel.text = data.overview ?? ""
+            
+            let writerText = data.getCrewText(job: "Writer")
+            
+            if writerText.count > 0 {
+                writerView.isHidden = false
+                writerLabel.text = writerText
+            }
+            else {
+                writerView.isHidden = true
+            }
+            
+            let guestText = data.getGuestText()
+            
+            if guestText.count > 0 {
+                castView.isHidden = false
+                castLabel.text = guestText
+            }
+            else {
+                castView.isHidden = true
+            }
+            
+            self.setVoteStarImageView(average: data.vote_average)
+            
+        }
+        else if responseData is SearchTVObject {
+            let data = responseData as! SearchTVObject
+            
+            // creator
+            if data.created_by.count > 0 {
+                creatorView.isHidden = false
+                creatorLabel.text = data.created_by.first!.name
+            }
+            else {
+                creatorView.isHidden = true
+            }
+            
+            // genres
+            if data.genres.count > 0 {
+                genreView.isHidden = false
+                genreLabel.text = data.getGenreText()
+            }
+            else {
+                genreView.isHidden = true
+            }
+            
+    
+        }
+    }
+    
+    func setVoteStarImageView(average: Float) {
+        if average > 0 {
+            starView.isHidden = false
+            
+            if average >= 2 {
+                starImageArray[0].image = UIImage(systemName: "star.fill")
+            }
+            if average >= 4 {
+                starImageArray[1].image = UIImage(systemName: "star.fill")
+            }
+            if average >= 6 {
+                starImageArray[2].image = UIImage(systemName: "star.fill")
+            }
+            if average >= 8 {
+                starImageArray[3].image = UIImage(systemName: "star.fill")
+            }
+            if average >= 10 {
+                starImageArray[4].image = UIImage(systemName: "star.fill")
+            }
+        }
+        else {
+            starView.isHidden = true
         }
     }
     
@@ -164,6 +266,15 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
     
     
     //MARK: - Event     - 플레이
+    @IBAction func onMoreTouched(_ sender: UIButton) {
+        guard let url = moreURL else { return }
+        let storyBoard = UIStoryboard(name: "WebViewController", bundle: nil)
+        let webViewController = storyBoard.instantiateInitialViewController() as! WebViewController
+        webViewController.url = url
+        
+        self.navigationController?.pushViewController(webViewController, animated: true)
+    }
+    
     
     @IBAction func onPlayTouched(_ sender: UIButton) {
         videoView = VideoView(frame: (self.navigationController?.view.window!.bounds)!)

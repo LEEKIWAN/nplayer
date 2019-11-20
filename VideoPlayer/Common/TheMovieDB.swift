@@ -9,6 +9,11 @@
 import Foundation
 import Alamofire
 
+enum MediaType {
+    case tv
+    case movie
+    case none
+}
 
 class TheMovieDB {
     static let shared = TheMovieDB()
@@ -35,8 +40,9 @@ class TheMovieDB {
         title = fileName.title()
     }
     
-    func requestDB(completion: @escaping (Bool, Any) -> Void) {
-
+    func requestDB(fileName: String, completion: @escaping (Bool, SearchResultObject?) -> Void) {
+        self.initMemberVariable(fileName: fileName)
+        
         guard let requestURL = URL(string: "\(serverURL)\(searchQuery)"), title.count > 0 else { return }
         print(requestURL)
         let parameters = ["query" : title.first!, "language" : language, "api_key" : api_key]
@@ -50,32 +56,24 @@ class TheMovieDB {
                     let decoder = JSONDecoder()
                     let data = try decoder.decode(SearchResultObject.self, from: jsonData)
                     
-                    if data.results.count > 0 {
-                        if data.results.first!.media_type == "tv" {
-                            self.requestTVDB(id: data.results.first!.id, completion: completion)
-                        }
-                            
-                        else {
-                            
-                        }
-                    }
-                    
+                    completion(true, data)
                     
                 }
                 catch {
                     print(error.localizedDescription)
-                    completion(false, error.localizedDescription)
+                    completion(false, nil)
                 }
                 
             case .failure(let error):
                 print(error.errorDescription!)
-                completion(false, error.localizedDescription)
+                completion(false, nil)
             }
             
         }
     }
     
-    func requestTVDB(id: Int, completion: @escaping (Bool, Any) -> Void){
+    func requestTVEpisodeDB(id: Int, completion: @escaping (Bool, SearchTVEpisodeObject?) -> Void){
+        
         let tvID = id
         let parameters = ["query" : title.first!, "language" : language, "api_key" : api_key]
         var requestParametsers = "tv/\(tvID)"
@@ -83,14 +81,51 @@ class TheMovieDB {
         if self.season.count > 0 {
             requestParametsers.append("/season/\(self.season.first!.dropFirst() )")
         }
+        else {
+            requestParametsers.append("/season/1")
+        }
         
         if self.episode.count > 0 {
             requestParametsers.append("/episode/\(self.episode.first!.dropFirst())")
+        }
+        else {
+            requestParametsers.append("/episode/1")
         }
         
         guard let tvRequestURL = URL(string: "\(self.serverURL)\(requestParametsers)") else { return }
         
         print(tvRequestURL)
+        AF.request(tvRequestURL, method: .get, parameters: parameters).responseJSON { (response) in
+            switch response.result {
+            case .success(let result):
+                print(result)
+                do {
+                    let jsonData = try JSONSerialization.data(withJSONObject: result, options: .prettyPrinted)
+                    let decoder = JSONDecoder()
+                    let data = try decoder.decode(SearchTVEpisodeObject.self, from: jsonData)
+                    
+                    completion(true, data)
+                }
+                catch {
+                    print(error.localizedDescription)
+                    completion(false, nil)
+                }
+                
+                
+            case .failure(let error):
+                print(error.errorDescription!)
+                completion(false, nil)
+            }
+        }
+    }
+    
+    func requestTVDB(id: Int, completion: @escaping (Bool, SearchTVObject?) -> Void){
+        let tvID = id
+        let parameters = ["query" : title.first!, "language" : language, "api_key" : api_key]
+        let requestParametsers = "tv/\(tvID)"
+        
+        guard let tvRequestURL = URL(string: "\(self.serverURL)\(requestParametsers)") else { return }
+        
         AF.request(tvRequestURL, method: .get, parameters: parameters).responseJSON { (response) in
             switch response.result {
             case .success(let result):
@@ -104,13 +139,13 @@ class TheMovieDB {
                 }
                 catch {
                     print(error.localizedDescription)
-                    completion(false, error.localizedDescription)
+                    completion(false, nil)
                 }
                 
                 
             case .failure(let error):
                 print(error.errorDescription!)
-                completion(false, error.localizedDescription)
+                completion(false, nil)
             }
         }
     }

@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dj2-YK-GTR">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -27,7 +27,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xmr-BK-y7I">
-                                                    <rect key="frame" x="13" y="10" width="50" height="50"/>
+                                                    <rect key="frame" x="13" y="12" width="50" height="46"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="u1w-Gs-66a"/>
                                                         <constraint firstAttribute="width" constant="50" id="ve6-cR-nq3"/>
@@ -108,8 +108,8 @@
                                                 <constraint firstItem="xmr-BK-y7I" firstAttribute="leading" secondItem="aW3-4z-hNb" secondAttribute="leading" constant="13" id="1bC-1H-6u1"/>
                                                 <constraint firstItem="xmr-BK-y7I" firstAttribute="centerY" secondItem="aW3-4z-hNb" secondAttribute="centerY" id="CkC-88-zNt"/>
                                                 <constraint firstItem="q9R-sO-mjY" firstAttribute="centerY" secondItem="aW3-4z-hNb" secondAttribute="centerY" id="KSx-dO-ltr"/>
-                                                <constraint firstItem="xmr-BK-y7I" firstAttribute="top" secondItem="aW3-4z-hNb" secondAttribute="top" constant="10" id="NyI-zJ-9cH"/>
-                                                <constraint firstAttribute="bottom" secondItem="xmr-BK-y7I" secondAttribute="bottom" constant="10" id="jQI-eO-rqB"/>
+                                                <constraint firstItem="xmr-BK-y7I" firstAttribute="top" secondItem="aW3-4z-hNb" secondAttribute="top" constant="12" id="NyI-zJ-9cH"/>
+                                                <constraint firstAttribute="bottom" secondItem="xmr-BK-y7I" secondAttribute="bottom" constant="12" id="jQI-eO-rqB"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="q9R-sO-mjY" secondAttribute="trailing" id="kNx-v1-RCD"/>
                                                 <constraint firstItem="q9R-sO-mjY" firstAttribute="leading" secondItem="xmr-BK-y7I" secondAttribute="trailing" constant="13" id="ysg-my-qkT"/>
                                             </constraints>
