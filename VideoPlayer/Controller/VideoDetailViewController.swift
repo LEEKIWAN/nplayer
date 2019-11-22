@@ -234,20 +234,36 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
             starView.isHidden = false
             scoreLabel.isHidden = false
             scoreLabel.text = String(format: "%.2f", average)
-            if average >= 2 {
-                starImageArray[0].image = UIImage(systemName: "star.fill")
+            
+            if average >= 1 {
+                starImageArray[0].image = UIImage(systemName: "star.lefthalf.fill")
+                if average >= 2 {
+                    starImageArray[0].image = UIImage(systemName: "star.fill")
+                }
             }
-            if average >= 4 {
-                starImageArray[1].image = UIImage(systemName: "star.fill")
+            if average >= 3 {
+                starImageArray[1].image = UIImage(systemName: "star.lefthalf.fill")
+                if average >= 4 {
+                    starImageArray[1].image = UIImage(systemName: "star.fill")
+                }
             }
-            if average >= 6 {
-                starImageArray[2].image = UIImage(systemName: "star.fill")
+            if average >= 5 {
+                starImageArray[2].image = UIImage(systemName: "star.lefthalf.fill")
+                if average >= 6 {
+                    starImageArray[2].image = UIImage(systemName: "star.fill")
+                }
             }
-            if average >= 8 {
-                starImageArray[3].image = UIImage(systemName: "star.fill")
+            if average >= 7 {
+                starImageArray[3].image = UIImage(systemName: "star.lefthalf.fill")
+                if average >= 8 {
+                    starImageArray[3].image = UIImage(systemName: "star.fill")
+                }
             }
-            if average >= 10 {
-                starImageArray[4].image = UIImage(systemName: "star.fill")
+            if average >= 9 {
+                starImageArray[4].image = UIImage(systemName: "star.lefthalf.fill")
+                if average >= 10 {
+                    starImageArray[4].image = UIImage(systemName: "star.fill")
+                }
             }
         }
         else {
@@ -297,7 +313,7 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
         let webViewController = storyBoard.instantiateInitialViewController() as! WebViewController
         webViewController.url = url
         
-        self.navigationController?.pushViewController(webViewController, animated: true)
+        self.present(webViewController, animated: true, completion: nil)
     }
     
     
@@ -342,6 +358,7 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
         
         let _ = tabViewController?.children.map {
             if $0.children[0] is SubTitlePopupViewController {
+                ($0.children[0] as! SubTitlePopupViewController).videoView = videoView
                 ($0.children[0] as! SubTitlePopupViewController).mediaPlayer = videoView.mediaPlayer
             }
             else if $0.children[0] is VideoPopupViewController {
@@ -351,7 +368,7 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
             else if $0.children[0] is AudioPopupViewController {
                 ($0.children[0] as! AudioPopupViewController).videoView = videoView
                 ($0.children[0] as! AudioPopupViewController).mediaPlayer = videoView.mediaPlayer
-            }
+            }            
         }
         
         present(settingPopupViewController, animated: true, completion: nil)

@@ -8,6 +8,8 @@
 
 import Foundation
 import MediaPlayer
+import NVActivityIndicatorView
+import AVKit
 
 protocol VideoViewDelegate: class {
     func videoViewDidClosed(videoView: VideoView)
@@ -71,6 +73,9 @@ class VideoView: UIView {
     @IBOutlet weak var popupLabel: UILabel!
     var popupLabelTimer: Timer = Timer()
     
+    @IBOutlet weak var indicatorBackgroundView: UIView!
+    @IBOutlet weak var indicatorView: NVActivityIndicatorView!
+    
     //MARK: - Func
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -120,8 +125,10 @@ class VideoView: UIView {
     
     func setPlayItem(item: FileObject) {
         self.playItem = item
-        mediaPlayer.media = playItem.vlcMedia!
         
+//        indicatorView.startAnimating()
+        
+        mediaPlayer.media = playItem.vlcMedia!
         mediaPlayer.drawable = videoView
         
         configureMarqueeTitleLabel()
@@ -187,7 +194,6 @@ class VideoView: UIView {
             popupView.delegate = self
             addSubview(popupView)
         }
-        
     }
     
     @IBAction func onCloseTouched(_ sender: UIButton?) {
@@ -331,6 +337,24 @@ class VideoView: UIView {
             strongSelf.popupLabel.isHidden = true
         })
     }
+    
+    @IBAction func onAirplayTouched(_ sender: UIButton) {
+        let rect = CGRect(x: -100, y: 0, width: 0, height: 0)
+        let airplayVolume = MPVolumeView(frame: rect)
+        airplayVolume.showsVolumeSlider = true
+        self.addSubview(airplayVolume)
+        for view: UIView in airplayVolume.subviews {
+            if let button = view as? UIButton {
+                button.sendActions(for: .touchUpInside)
+                break
+            }
+        }
+
+        airplayVolume.removeFromSuperview()
+//
+        
+    }
+    
     
     // MARK: - UIGestureRecognizer
     

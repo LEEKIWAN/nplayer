@@ -40,6 +40,16 @@ class FileListViewController: UIViewController {
         
         if self == self.navigationController?.viewControllers[0] {
             currentDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            do {
+                let folderPath =  currentDirectoryURL!.appendingPathComponent("즐겨찾기")
+                if !FileManager.default.fileExists(atPath: folderPath.path) {
+                    try FileManager.default.createDirectory(atPath: folderPath.path, withIntermediateDirectories: true, attributes: nil)
+                }
+            }
+            catch {
+                print("Document directory is \(error.localizedDescription)")
+            }
+            
             listFilesFromUrl(with: currentDirectoryURL!)
         }
     }

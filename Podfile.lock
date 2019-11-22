@@ -1,20 +1,26 @@
 PODS:
   - Alamofire (5.0.0-rc.3)
   - MobileVLCKit (3.3.8)
+  - NVActivityIndicatorView (4.8.0):
+    - NVActivityIndicatorView/Presenter (= 4.8.0)
+  - NVActivityIndicatorView/Presenter (4.8.0)
 
 DEPENDENCIES:
   - Alamofire (~> 5.0.0-rc.3)
   - MobileVLCKit
+  - NVActivityIndicatorView
 
 SPEC REPOS:
   trunk:
     - Alamofire
     - MobileVLCKit
+    - NVActivityIndicatorView
 
 SPEC CHECKSUMS:
   Alamofire: ca8c0de6906873be89d6deec5c8de279e00bf872
   MobileVLCKit: f2d012b084c1f6e491f4c163bc3108dc92c1417e
+  NVActivityIndicatorView: d24b7ebcf80af5dcd994adb650e2b6c93379270f
 
-PODFILE CHECKSUM: d2258dc82640cd31baa1b8ea091a116b554d5fe9
+PODFILE CHECKSUM: cb7a2e4c94bcdc97a665f7a14be730be733576eb
 
 COCOAPODS: 1.8.4
