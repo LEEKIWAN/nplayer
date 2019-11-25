@@ -565,6 +565,7 @@ typedef int VLCMediaParsingOptions;
  * And on the web: http://wiki.videolan.org/VLC_command-line_help
 */
 - (void)addOption:(NSString *)option;
+- (void)addOptions:(NSDictionary*)options;
 
 /**
  * Parse a value of an incoming Set-Cookie header (see RFC 6265) and append the

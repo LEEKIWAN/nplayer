@@ -141,12 +141,13 @@ class VideoView: UIView {
         mediaPlayer.saturation = PreferenceManager.shared.saturation
         mediaPlayer.gamma = PreferenceManager.shared.gamma
         mediaPlayer.equalizerEnabled = true
+        
         play()
         
         configureVisibleStatusBar()
         sliderView.setProgress(0, animated: false)
-        
-//        mediaPlayer.setTextRendererFontSize(PreferenceManager.shared.subtitleSize as NSNumber)
+
+        mediaPlayer.setTextRendererFontSize(PreferenceManager.shared.subtitleSize as NSNumber)
     }
     
     
@@ -404,7 +405,6 @@ class VideoView: UIView {
                 firstCurrentDuration = sliderView.progressView.progress * mediaPlayer.media.length.value.floatValue
                 timeSliderTouchDown(sliderView: sliderView)
             }
-            
         case .changed:
             guard let direction = gesture.direction else { return }
             if panGestureDirection == .horizontal {

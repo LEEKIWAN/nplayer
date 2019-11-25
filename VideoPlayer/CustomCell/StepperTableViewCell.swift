@@ -20,6 +20,17 @@ class StepperTableViewCell: UITableViewCell {
         didSet {
             titleLabel.text = data!.title
             subTitleLabel.text = data!.subTitle
+            
+            if data?.title == "지연" {
+                stepper.maximumValue = 1000
+                stepper.minimumValue = -1000
+                stepper.stepValue = 0.1
+            }
+            else {
+                stepper.maximumValue = 50
+                stepper.minimumValue = 1
+                stepper.stepValue = 1
+            }
         }
     }
     
@@ -39,10 +50,19 @@ class StepperTableViewCell: UITableViewCell {
     }
     
     @IBAction func onStepperValueChanged(_ sender: UIStepper) {
-        let value = sender.value
-        let valueString = String(format: "%.2f", value)
-        subTitleLabel.text = valueString
-        data?.selectedValue = valueString
-        delegate?.stepperCellValueChanged(cell: self)
+        if data?.title == "지연" {
+            let value = sender.value
+            let valueString = String(format: "%.2f", value)
+            subTitleLabel.text = valueString
+            data?.selectedValue = valueString
+            delegate?.stepperCellValueChanged(cell: self)
+        }
+        else {
+            let value = sender.value
+            let valueString = String(format: "%.0f", value)
+            subTitleLabel.text = valueString
+            data?.selectedValue = valueString
+            delegate?.stepperCellValueChanged(cell: self)
+        }
     }
 }

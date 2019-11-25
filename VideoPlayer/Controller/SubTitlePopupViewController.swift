@@ -54,6 +54,7 @@ class SubTitlePopupViewController: UIViewController {
         
         if subTitleNames.count > 0 {
             dataArray.append(VideoConfigObject(style: .stepper, switchIsOn: false, title: "지연", subTitle: "0.00", selectedValue: "", isSelectAccesory: false ))
+            dataArray.append(VideoConfigObject(style: .stepper, switchIsOn: false, title: "자막크기", subTitle: "12", selectedValue: "", isSelectAccesory: false ))
         }
         
         
@@ -107,7 +108,6 @@ extension SubTitlePopupViewController: UITableViewDelegate, UITableViewDataSourc
         if dataArray[indexPath.row].style != .text {
             return
         }
-//2 gksrnrdj 3영어ㅕ
         
         let subTitleIndex = indexPath.row + 1
         print(Int32(subTitleIndex))
@@ -124,8 +124,18 @@ extension SubTitlePopupViewController: UITableViewDelegate, UITableViewDataSourc
 extension SubTitlePopupViewController: StepperCellDelegate {
     func stepperCellValueChanged(cell: StepperTableViewCell) {
         guard let mediaPlayer = mediaPlayer else { return }
-        let value = (cell.data!.selectedValue as NSString).floatValue * 1000000
-        mediaPlayer.currentVideoSubTitleDelay = Int(value)
+        
+        if cell.data?.title == "지연" {
+            let value = (cell.data!.selectedValue as NSString).floatValue * 1000000
+            mediaPlayer.currentVideoSubTitleDelay = Int(value)
+        }
+        else {
+            var value = (cell.data!.selectedValue as NSString).integerValue
+            value = 30 - value
+            PreferenceManager.shared.subtitleSize = value
+            mediaPlayer.setTextRendererFontSize(PreferenceManager.shared.subtitleSize as NSNumber)
+
+        }
     }
 }
 
