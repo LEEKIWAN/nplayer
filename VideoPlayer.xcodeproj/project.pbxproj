@@ -91,6 +91,8 @@
 		83D33EF0237BCED500560335 /* SliderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83D33EEE237BCED500560335 /* SliderTableViewCell.xib */; };
 		83D33EF3237BCEE900560335 /* StepperTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D33EF1237BCEE900560335 /* StepperTableViewCell.swift */; };
 		83D33EF4237BCEE900560335 /* StepperTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83D33EF2237BCEE900560335 /* StepperTableViewCell.xib */; };
+		83E8E1B7238BC8F500E8CDC1 /* VideoCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 83E8E1B5238BC8F500E8CDC1 /* VideoCoreData.xcdatamodeld */; };
+		83E8E1B9238BC9C700E8CDC1 /* VideoCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E8E1B8238BC9C700E8CDC1 /* VideoCoreData.swift */; };
 		83EE116F230CCB220030A24E /* VideoDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83EE116E230CCB220030A24E /* VideoDetailViewController.storyboard */; };
 		83EE1172230CCB9B0030A24E /* VideoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EE1171230CCB9B0030A24E /* VideoDetailViewController.swift */; };
 		83EE1174230CE38E0030A24E /* FourCharCode+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EE1173230CE38E0030A24E /* FourCharCode+.swift */; };
@@ -188,6 +190,8 @@
 		83D33EEE237BCED500560335 /* SliderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SliderTableViewCell.xib; sourceTree = "<group>"; };
 		83D33EF1237BCEE900560335 /* StepperTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperTableViewCell.swift; sourceTree = "<group>"; };
 		83D33EF2237BCEE900560335 /* StepperTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StepperTableViewCell.xib; sourceTree = "<group>"; };
+		83E8E1B6238BC8F500E8CDC1 /* VideoData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VideoData.xcdatamodel; sourceTree = "<group>"; };
+		83E8E1B8238BC9C700E8CDC1 /* VideoCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCoreData.swift; sourceTree = "<group>"; };
 		83EE116E230CCB220030A24E /* VideoDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = VideoDetailViewController.storyboard; sourceTree = "<group>"; };
 		83EE1171230CCB9B0030A24E /* VideoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailViewController.swift; sourceTree = "<group>"; };
 		83EE1173230CE38E0030A24E /* FourCharCode+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FourCharCode+.swift"; sourceTree = "<group>"; };
@@ -382,6 +386,7 @@
 		83A3849F22CDC6A8007EA28D /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				83E8E1B4238BC8CF00E8CDC1 /* CoreData */,
 				8361C6C722EFC15C006ECF31 /* Enum */,
 				83668D4322EEAE27003C918B /* Library */,
 				83A384A022CDC6AD007EA28D /* Extension */,
@@ -408,6 +413,15 @@
 				835EBE092373FA2F000152B1 /* Int+.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		83E8E1B4238BC8CF00E8CDC1 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				83E8E1B5238BC8F500E8CDC1 /* VideoCoreData.xcdatamodeld */,
+				83E8E1B8238BC9C700E8CDC1 /* VideoCoreData.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		83EE1170230CCB4C0030A24E /* Deprecated */ = {
@@ -589,6 +603,7 @@
 				8311BD07230E873D0004E891 /* UIPanGestureRecognizer+.swift in Sources */,
 				8325628C2301003000C4F1FC /* empty.cpp in Sources */,
 				83EE1174230CE38E0030A24E /* FourCharCode+.swift in Sources */,
+				83E8E1B9238BC9C700E8CDC1 /* VideoCoreData.swift in Sources */,
 				8316088C22F150B4004390AA /* URL+.swift in Sources */,
 				835B05192382565400A32B86 /* SearchMovieObject.swift in Sources */,
 				83668D4A22EEAE3C003C918B /* SwiftyGifManager.swift in Sources */,
@@ -609,6 +624,7 @@
 				8330BB4A22EA81FE0038FAE9 /* FileObject.swift in Sources */,
 				8330BB4122EA7ECB0038FAE9 /* FileListViewController.swift in Sources */,
 				835B0511237D461900A32B86 /* EqualizerSliderTableViewCell.swift in Sources */,
+				83E8E1B7238BC8F500E8CDC1 /* VideoCoreData.xcdatamodeld in Sources */,
 				83668D4922EEAE3C003C918B /* UIImageView+SwiftyGif.swift in Sources */,
 				83668D4822EEAE3C003C918B /* UIImage+SwiftyGif.swift in Sources */,
 				839E117622CC84A60096E43C /* PlayViewController.swift in Sources */,
@@ -857,6 +873,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		83E8E1B5238BC8F500E8CDC1 /* VideoCoreData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				83E8E1B6238BC8F500E8CDC1 /* VideoData.xcdatamodel */,
+			);
+			currentVersion = 83E8E1B6238BC8F500E8CDC1 /* VideoData.xcdatamodel */;
+			path = VideoCoreData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 839E116822CC84A60096E43C /* Project object */;
 }

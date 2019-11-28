@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ulj-rq-kkM">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="61" width="414" height="801"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -27,26 +27,37 @@
                                 <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
                                 <color key="color" red="0.96862745100000003" green="0.76078431369999999" blue="0.01176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vkf-tK-322">
+                                <rect key="frame" x="124" y="44" width="166" height="7"/>
+                                <color key="backgroundColor" red="0.96862745100000003" green="0.76078431369999999" blue="0.01176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="7" id="Nuy-2P-E8z"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="vkf-tK-322" firstAttribute="centerX" secondItem="44j-2A-G6o" secondAttribute="centerX" id="4Op-EF-pTl"/>
                             <constraint firstItem="YgU-A6-4Pv" firstAttribute="trailing" secondItem="ulj-rq-kkM" secondAttribute="trailing" id="6u4-mI-Jrs"/>
                             <constraint firstItem="ulj-rq-kkM" firstAttribute="leading" secondItem="YgU-A6-4Pv" secondAttribute="leading" id="80z-Ac-nBB"/>
+                            <constraint firstItem="vkf-tK-322" firstAttribute="top" secondItem="YgU-A6-4Pv" secondAttribute="top" id="Dcc-x4-VpO"/>
+                            <constraint firstItem="ulj-rq-kkM" firstAttribute="top" secondItem="vkf-tK-322" secondAttribute="bottom" constant="10" id="Vh6-JV-Y6E"/>
                             <constraint firstItem="gsr-uq-a2M" firstAttribute="centerX" secondItem="44j-2A-G6o" secondAttribute="centerX" id="b8a-nZ-xy3"/>
                             <constraint firstItem="gsr-uq-a2M" firstAttribute="centerY" secondItem="44j-2A-G6o" secondAttribute="centerY" id="da0-k9-0Pw"/>
+                            <constraint firstItem="vkf-tK-322" firstAttribute="width" secondItem="44j-2A-G6o" secondAttribute="width" multiplier="0.4" id="ffs-XH-xuh"/>
                             <constraint firstItem="YgU-A6-4Pv" firstAttribute="bottom" secondItem="ulj-rq-kkM" secondAttribute="bottom" id="nz3-P4-dcd"/>
-                            <constraint firstItem="ulj-rq-kkM" firstAttribute="top" secondItem="YgU-A6-4Pv" secondAttribute="top" id="z8f-Xy-d8H"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="YgU-A6-4Pv"/>
                     </view>
                     <connections>
                         <outlet property="indicatorView" destination="gsr-uq-a2M" id="ZOz-3g-Asx"/>
+                        <outlet property="topView" destination="vkf-tK-322" id="Lde-0O-Xai"/>
                         <outlet property="webView" destination="ulj-rq-kkM" id="OYt-jF-H5S"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fot-C4-sUA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="287" y="-95"/>
+            <point key="canvasLocation" x="286.95652173913044" y="-95.089285714285708"/>
         </scene>
     </scenes>
 </document>

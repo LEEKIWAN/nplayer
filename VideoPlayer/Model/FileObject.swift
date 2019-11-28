@@ -23,8 +23,7 @@ class FileObject: NSObject, VLCMediaThumbnailerDelegate, VLCMediaDelegate {
     
     // directory
     var fileCountInDir: Int?
-    
-    
+        
     // Video
     var vlcMedia: VLCMedia?
     var totalDurationText: String?
@@ -33,8 +32,8 @@ class FileObject: NSObject, VLCMediaThumbnailerDelegate, VLCMediaDelegate {
     var tableView: UITableView?
     var indexPath: IndexPath?
     
+    
     init(url: URL) {
-        
         self.url = url
         self.filePath = url.path
         self.fileName = url.lastPathComponent.fileName()
@@ -102,7 +101,6 @@ class FileObject: NSObject, VLCMediaThumbnailerDelegate, VLCMediaDelegate {
         }
         
         self.totalDurationText = asset.duration.stringValue
-        
     }
     
     func getFileType() -> FileType {
@@ -125,7 +123,7 @@ class FileObject: NSObject, VLCMediaThumbnailerDelegate, VLCMediaDelegate {
     // MARK: - VLCMediaThumbnailerDelegate
     
     func mediaThumbnailerDidTimeOut(_ mediaThumbnailer: VLCMediaThumbnailer!) {
-        print("timeOut")
+        print("timeout")
     }
     
     func mediaThumbnailer(_ mediaThumbnailer: VLCMediaThumbnailer!, didFinishThumbnail thumbnail: CGImage!) {

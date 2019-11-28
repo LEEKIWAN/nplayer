@@ -57,8 +57,7 @@ class DirectoryMonitor {
             monitoredDirectoryFileDescriptor = open(URL.path, O_EVTONLY)
             
             // Define a dispatch source monitoring the directory for additions, deletions, and renamings.
-//            directoryMonitorSource = dispatch_source_create(DISPATCH_SOURCE_TYPE_VNODE, UInt(monitoredDirectoryFileDescriptor), DISPATCH_VNODE_WRITE, directoryMonitorQueue)
-            
+//            directoryMonitorSource = dispatch_source_create(DISPATCH_SOURCE_TYPE_VNODE, UInt(monitoredDirectoryFileDescriptor), DISPATCH_VNODE_WRITE, directoryMonitorQueue)                        
             
 //            let timer = DispatchSource.makeTimerSource(flags: DispatchSource.TimerFlags(rawValue: 0), queue: queue);
 //            directoryMonitorSource = DispatchSource.makeTimerSource(flags: <#T##DispatchSource.TimerFlags#>, queue: <#T##DispatchQueue?#>)

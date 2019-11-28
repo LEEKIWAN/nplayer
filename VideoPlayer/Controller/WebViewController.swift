@@ -14,9 +14,12 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
     var url: URL?
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var indicatorView: UIActivityIndicatorView!
+    @IBOutlet weak var topView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        topView.layer.cornerRadius = topView.frame.size.height / 2
         
         guard let url = url else {
             return
