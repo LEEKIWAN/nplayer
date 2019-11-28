@@ -10,7 +10,7 @@ import UIKit
 
 class ImageViewerController: UIViewController {
     
-    var data: FileObject?
+//    var data: FileObject?
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -22,19 +22,19 @@ class ImageViewerController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        guard data != nil else {
-            return
-        }
-        
-        titleLabel.text = data?.fileName
-        
-        
-        if data?.extension.lowercased() == "gif" {
-            self.imageView.setGifFromURL(data!.url)
-        }
-        else {
-            self.imageView.image = UIImage(contentsOfFile: data!.filePath)
-        }
+//        guard data != nil else {
+//            return
+//        }
+//        
+//        titleLabel.text = data?.fileName
+//
+//
+//        if data?.extension.lowercased() == "gif" {
+//            self.imageView.setGifFromURL(data!.url)
+//        }
+//        else {
+//            self.imageView.image = UIImage(contentsOfFile: data!.filePath)
+//        }
         
 //
         
@@ -42,9 +42,9 @@ class ImageViewerController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if data?.extension.lowercased() == "gif" {
-            imageView.startAnimatingGif()
-        }
+//        if data?.extension.lowercased() == "gif" {
+//            imageView.startAnimatingGif()
+//        }
     }
     
     

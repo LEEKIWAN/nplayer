@@ -10,7 +10,7 @@ import UIKit
 
 class TextViewerController: UIViewController {
 
-    var data: FileObject?
+//    var data: FileObject?
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var textView: UITextView!
@@ -27,7 +27,7 @@ class TextViewerController: UIViewController {
 //            self.imageView.setGifFromURL(data!.url)
 //        }
 //        else {
-            textView.text = try? String(contentsOfFile: data!.filePath, encoding: .utf8)
+//            textView.text = try? String(contentsOfFile: data!.filePath, encoding: .utf8)
 //        }
         
     }

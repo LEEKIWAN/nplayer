@@ -29,3 +29,12 @@ extension Int {
     }
 
 }
+
+
+extension Int64 {
+    var string: String {
+        return ByteCountFormatter.string(fromByteCount: self, countStyle: .file)
+    }
+    
+}
+

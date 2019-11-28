@@ -25,7 +25,47 @@
 		8330BB3F22EA7EB60038FAE9 /* FileListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8330BB3E22EA7EB60038FAE9 /* FileListViewController.storyboard */; };
 		8330BB4122EA7ECB0038FAE9 /* FileListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330BB4022EA7ECB0038FAE9 /* FileListViewController.swift */; };
 		8330BB4422EA80C50038FAE9 /* FileItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330BB4322EA80C50038FAE9 /* FileItemTableViewCell.swift */; };
-		8330BB4A22EA81FE0038FAE9 /* FileObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330BB4922EA81FE0038FAE9 /* FileObject.swift */; };
+		8330BB4A22EA81FE0038FAE9 /* FileObject2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330BB4922EA81FE0038FAE9 /* FileObject2.swift */; };
+		8331166A238FA49B001F2637 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83311669238FA49B001F2637 /* Date+.swift */; };
+		8331169D238FABC4001F2637 /* OneDriveFileProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83311671238FABC4001F2637 /* OneDriveFileProvider.swift */; };
+		8331169E238FABC4001F2637 /* CloudFileProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83311672238FABC4001F2637 /* CloudFileProvider.swift */; };
+		8331169F238FABC4001F2637 /* FileObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83311673238FABC4001F2637 /* FileObject.swift */; };
+		833116A0238FABC4001F2637 /* RemoteSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83311674238FABC4001F2637 /* RemoteSession.swift */; };
+		833116A1238FABC4001F2637 /* SMBClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83311675238FABC4001F2637 /* SMBClient.swift */; };
+		833116A2238FABC4001F2637 /* FTPFileProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83311676238FABC4001F2637 /* FTPFileProvider.swift */; };
+		833116A3238FABC4001F2637 /* FileProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83311677238FABC4001F2637 /* FileProvider.swift */; };
+		833116A4238FABC4001F2637 /* DropboxFileProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83311678238FABC4001F2637 /* DropboxFileProvider.swift */; };
+		833116A5238FABC4001F2637 /* ExtendedLocalFileProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83311679238FABC4001F2637 /* ExtendedLocalFileProvider.swift */; };
+		833116A6238FABC4001F2637 /* OneDriveHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8331167A238FABC4001F2637 /* OneDriveHelper.swift */; };
+		833116A7238FABC4001F2637 /* FoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8331167C238FABC4001F2637 /* FoundationExtensions.swift */; };
+		833116A8238FABC4001F2637 /* HashMAC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8331167D238FABC4001F2637 /* HashMAC.swift */; };
+		833116A9238FABC4001F2637 /* HTTPFileProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8331167E238FABC4001F2637 /* HTTPFileProvider.swift */; };
+		833116AA238FABC4001F2637 /* LocalFileProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8331167F238FABC4001F2637 /* LocalFileProvider.swift */; };
+		833116AB238FABC4001F2637 /* FTPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83311680238FABC4001F2637 /* FTPHelper.swift */; };
+		833116AC238FABC4001F2637 /* SMBFileProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83311681238FABC4001F2637 /* SMBFileProvider.swift */; };
+		833116AD238FABC4001F2637 /* WebDAVFileProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83311682238FABC4001F2637 /* WebDAVFileProvider.swift */; };
+		833116AE238FABC4001F2637 /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83311684238FABC4001F2637 /* Options.swift */; };
+		833116AF238FABC4001F2637 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83311685238FABC4001F2637 /* Error.swift */; };
+		833116B0238FABC4001F2637 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83311686238FABC4001F2637 /* Element.swift */; };
+		833116B1238FABC4001F2637 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83311687238FABC4001F2637 /* Document.swift */; };
+		833116B2238FABC4001F2637 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83311688238FABC4001F2637 /* Parser.swift */; };
+		833116B3238FABC4001F2637 /* LocalHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83311689238FABC4001F2637 /* LocalHelper.swift */; };
+		833116B4238FABC4001F2637 /* ServerTrustPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8331168A238FABC4001F2637 /* ServerTrustPolicy.swift */; };
+		833116B5238FABC4001F2637 /* SMBErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8331168C238FABC4001F2637 /* SMBErrorType.swift */; };
+		833116B6238FABC4001F2637 /* SMB2Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8331168D238FABC4001F2637 /* SMB2Session.swift */; };
+		833116B7238FABC4001F2637 /* SMB2FileHandle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8331168E238FABC4001F2637 /* SMB2FileHandle.swift */; };
+		833116B8238FABC4001F2637 /* SMB2Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8331168F238FABC4001F2637 /* SMB2Types.swift */; };
+		833116B9238FABC4001F2637 /* SMB2FileOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83311690238FABC4001F2637 /* SMB2FileOperation.swift */; };
+		833116BA238FABC4001F2637 /* SMB2IOCtl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83311691238FABC4001F2637 /* SMB2IOCtl.swift */; };
+		833116BB238FABC4001F2637 /* CIFSTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83311692238FABC4001F2637 /* CIFSTypes.swift */; };
+		833116BC238FABC4001F2637 /* SMB2QueryTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83311693238FABC4001F2637 /* SMB2QueryTypes.swift */; };
+		833116BD238FABC4001F2637 /* SMB2SetInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83311694238FABC4001F2637 /* SMB2SetInfo.swift */; };
+		833116BE238FABC4001F2637 /* SMB2DataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83311695238FABC4001F2637 /* SMB2DataTypes.swift */; };
+		833116BF238FABC4001F2637 /* SMB2Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83311696238FABC4001F2637 /* SMB2Query.swift */; };
+		833116C0238FABC4001F2637 /* SMB2Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83311697238FABC4001F2637 /* SMB2Tree.swift */; };
+		833116C1238FABC4001F2637 /* SMB2Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83311698238FABC4001F2637 /* SMB2Notification.swift */; };
+		833116C2238FABC4001F2637 /* DropboxHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83311699238FABC4001F2637 /* DropboxHelper.swift */; };
+		833116C3238FABC4001F2637 /* FPSStreamTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8331169A238FABC4001F2637 /* FPSStreamTask.swift */; };
 		833748E82315140B00B535F0 /* BrightnessToastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 833748E72315140B00B535F0 /* BrightnessToastView.xib */; };
 		833748EA2315141700B535F0 /* BrightnessToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833748E92315141700B535F0 /* BrightnessToastView.swift */; };
 		833748FA2317AD6600B535F0 /* SettingPopupViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 833748F92317AD6600B535F0 /* SettingPopupViewController.storyboard */; };
@@ -122,7 +162,47 @@
 		8330BB3E22EA7EB60038FAE9 /* FileListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FileListViewController.storyboard; sourceTree = "<group>"; };
 		8330BB4022EA7ECB0038FAE9 /* FileListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileListViewController.swift; sourceTree = "<group>"; };
 		8330BB4322EA80C50038FAE9 /* FileItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileItemTableViewCell.swift; sourceTree = "<group>"; };
-		8330BB4922EA81FE0038FAE9 /* FileObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileObject.swift; sourceTree = "<group>"; };
+		8330BB4922EA81FE0038FAE9 /* FileObject2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileObject2.swift; sourceTree = "<group>"; };
+		83311669238FA49B001F2637 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
+		83311671238FABC4001F2637 /* OneDriveFileProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneDriveFileProvider.swift; sourceTree = "<group>"; };
+		83311672238FABC4001F2637 /* CloudFileProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudFileProvider.swift; sourceTree = "<group>"; };
+		83311673238FABC4001F2637 /* FileObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileObject.swift; sourceTree = "<group>"; };
+		83311674238FABC4001F2637 /* RemoteSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteSession.swift; sourceTree = "<group>"; };
+		83311675238FABC4001F2637 /* SMBClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMBClient.swift; sourceTree = "<group>"; };
+		83311676238FABC4001F2637 /* FTPFileProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTPFileProvider.swift; sourceTree = "<group>"; };
+		83311677238FABC4001F2637 /* FileProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileProvider.swift; sourceTree = "<group>"; };
+		83311678238FABC4001F2637 /* DropboxFileProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropboxFileProvider.swift; sourceTree = "<group>"; };
+		83311679238FABC4001F2637 /* ExtendedLocalFileProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendedLocalFileProvider.swift; sourceTree = "<group>"; };
+		8331167A238FABC4001F2637 /* OneDriveHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneDriveHelper.swift; sourceTree = "<group>"; };
+		8331167C238FABC4001F2637 /* FoundationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoundationExtensions.swift; sourceTree = "<group>"; };
+		8331167D238FABC4001F2637 /* HashMAC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HashMAC.swift; sourceTree = "<group>"; };
+		8331167E238FABC4001F2637 /* HTTPFileProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPFileProvider.swift; sourceTree = "<group>"; };
+		8331167F238FABC4001F2637 /* LocalFileProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalFileProvider.swift; sourceTree = "<group>"; };
+		83311680238FABC4001F2637 /* FTPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTPHelper.swift; sourceTree = "<group>"; };
+		83311681238FABC4001F2637 /* SMBFileProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMBFileProvider.swift; sourceTree = "<group>"; };
+		83311682238FABC4001F2637 /* WebDAVFileProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebDAVFileProvider.swift; sourceTree = "<group>"; };
+		83311684238FABC4001F2637 /* Options.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
+		83311685238FABC4001F2637 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		83311686238FABC4001F2637 /* Element.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
+		83311687238FABC4001F2637 /* Document.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
+		83311688238FABC4001F2637 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		83311689238FABC4001F2637 /* LocalHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalHelper.swift; sourceTree = "<group>"; };
+		8331168A238FABC4001F2637 /* ServerTrustPolicy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerTrustPolicy.swift; sourceTree = "<group>"; };
+		8331168C238FABC4001F2637 /* SMBErrorType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMBErrorType.swift; sourceTree = "<group>"; };
+		8331168D238FABC4001F2637 /* SMB2Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMB2Session.swift; sourceTree = "<group>"; };
+		8331168E238FABC4001F2637 /* SMB2FileHandle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMB2FileHandle.swift; sourceTree = "<group>"; };
+		8331168F238FABC4001F2637 /* SMB2Types.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMB2Types.swift; sourceTree = "<group>"; };
+		83311690238FABC4001F2637 /* SMB2FileOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMB2FileOperation.swift; sourceTree = "<group>"; };
+		83311691238FABC4001F2637 /* SMB2IOCtl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMB2IOCtl.swift; sourceTree = "<group>"; };
+		83311692238FABC4001F2637 /* CIFSTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CIFSTypes.swift; sourceTree = "<group>"; };
+		83311693238FABC4001F2637 /* SMB2QueryTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMB2QueryTypes.swift; sourceTree = "<group>"; };
+		83311694238FABC4001F2637 /* SMB2SetInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMB2SetInfo.swift; sourceTree = "<group>"; };
+		83311695238FABC4001F2637 /* SMB2DataTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMB2DataTypes.swift; sourceTree = "<group>"; };
+		83311696238FABC4001F2637 /* SMB2Query.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMB2Query.swift; sourceTree = "<group>"; };
+		83311697238FABC4001F2637 /* SMB2Tree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMB2Tree.swift; sourceTree = "<group>"; };
+		83311698238FABC4001F2637 /* SMB2Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMB2Notification.swift; sourceTree = "<group>"; };
+		83311699238FABC4001F2637 /* DropboxHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropboxHelper.swift; sourceTree = "<group>"; };
+		8331169A238FABC4001F2637 /* FPSStreamTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FPSStreamTask.swift; sourceTree = "<group>"; };
 		833748E72315140B00B535F0 /* BrightnessToastView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BrightnessToastView.xib; sourceTree = "<group>"; };
 		833748E92315141700B535F0 /* BrightnessToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrightnessToastView.swift; sourceTree = "<group>"; };
 		833748F92317AD6600B535F0 /* SettingPopupViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingPopupViewController.storyboard; sourceTree = "<group>"; };
@@ -269,13 +349,83 @@
 		8330BB4822EA81E90038FAE9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8330BB4922EA81FE0038FAE9 /* FileObject.swift */,
+				8330BB4922EA81FE0038FAE9 /* FileObject2.swift */,
 				83D33EE12379238300560335 /* VideoConfigObject.swift */,
 				835B051623822AF800A32B86 /* SearchResultObject.swift */,
 				835B05182382565400A32B86 /* SearchMovieObject.swift */,
 				835B051A2382588E00A32B86 /* SearchTVObject.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		8331166D238FABC4001F2637 /* FilesProvider */ = {
+			isa = PBXGroup;
+			children = (
+				8331167B238FABC4001F2637 /* Extensions */,
+				83311683238FABC4001F2637 /* AEXML */,
+				8331168B238FABC4001F2637 /* SMBTypes */,
+				83311671238FABC4001F2637 /* OneDriveFileProvider.swift */,
+				83311672238FABC4001F2637 /* CloudFileProvider.swift */,
+				83311673238FABC4001F2637 /* FileObject.swift */,
+				83311674238FABC4001F2637 /* RemoteSession.swift */,
+				83311675238FABC4001F2637 /* SMBClient.swift */,
+				83311676238FABC4001F2637 /* FTPFileProvider.swift */,
+				83311677238FABC4001F2637 /* FileProvider.swift */,
+				83311678238FABC4001F2637 /* DropboxFileProvider.swift */,
+				83311679238FABC4001F2637 /* ExtendedLocalFileProvider.swift */,
+				8331167A238FABC4001F2637 /* OneDriveHelper.swift */,
+				8331167E238FABC4001F2637 /* HTTPFileProvider.swift */,
+				8331167F238FABC4001F2637 /* LocalFileProvider.swift */,
+				83311680238FABC4001F2637 /* FTPHelper.swift */,
+				83311681238FABC4001F2637 /* SMBFileProvider.swift */,
+				83311682238FABC4001F2637 /* WebDAVFileProvider.swift */,
+				83311689238FABC4001F2637 /* LocalHelper.swift */,
+				8331168A238FABC4001F2637 /* ServerTrustPolicy.swift */,
+				83311699238FABC4001F2637 /* DropboxHelper.swift */,
+				8331169A238FABC4001F2637 /* FPSStreamTask.swift */,
+			);
+			path = FilesProvider;
+			sourceTree = "<group>";
+		};
+		8331167B238FABC4001F2637 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8331167C238FABC4001F2637 /* FoundationExtensions.swift */,
+				8331167D238FABC4001F2637 /* HashMAC.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		83311683238FABC4001F2637 /* AEXML */ = {
+			isa = PBXGroup;
+			children = (
+				83311684238FABC4001F2637 /* Options.swift */,
+				83311685238FABC4001F2637 /* Error.swift */,
+				83311686238FABC4001F2637 /* Element.swift */,
+				83311687238FABC4001F2637 /* Document.swift */,
+				83311688238FABC4001F2637 /* Parser.swift */,
+			);
+			path = AEXML;
+			sourceTree = "<group>";
+		};
+		8331168B238FABC4001F2637 /* SMBTypes */ = {
+			isa = PBXGroup;
+			children = (
+				8331168C238FABC4001F2637 /* SMBErrorType.swift */,
+				8331168D238FABC4001F2637 /* SMB2Session.swift */,
+				8331168E238FABC4001F2637 /* SMB2FileHandle.swift */,
+				8331168F238FABC4001F2637 /* SMB2Types.swift */,
+				83311690238FABC4001F2637 /* SMB2FileOperation.swift */,
+				83311691238FABC4001F2637 /* SMB2IOCtl.swift */,
+				83311692238FABC4001F2637 /* CIFSTypes.swift */,
+				83311693238FABC4001F2637 /* SMB2QueryTypes.swift */,
+				83311694238FABC4001F2637 /* SMB2SetInfo.swift */,
+				83311695238FABC4001F2637 /* SMB2DataTypes.swift */,
+				83311696238FABC4001F2637 /* SMB2Query.swift */,
+				83311697238FABC4001F2637 /* SMB2Tree.swift */,
+				83311698238FABC4001F2637 /* SMB2Notification.swift */,
+			);
+			path = SMBTypes;
 			sourceTree = "<group>";
 		};
 		833CD49222F2A29300617F63 /* Player */ = {
@@ -305,6 +455,7 @@
 		83668D4322EEAE27003C918B /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				8331166D238FABC4001F2637 /* FilesProvider */,
 				83668D4422EEAE2D003C918B /* SwiftyGif */,
 				83945D452306359200B7987B /* DirectoryMonitor.swift */,
 				83EE1179230D2E300030A24E /* AppUtility.swift */,
@@ -411,6 +562,7 @@
 				83AEA3452313ADB700354500 /* UIVIew+.swift */,
 				83CB7A0A236E7DC10071B041 /* NSLayoutConstraint+.swift */,
 				835EBE092373FA2F000152B1 /* Int+.swift */,
+				83311669238FA49B001F2637 /* Date+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -598,20 +750,31 @@
 			buildActionMask = 2147483647;
 			files = (
 				83EE117A230D2E300030A24E /* AppUtility.swift in Sources */,
+				833116AD238FABC4001F2637 /* WebDAVFileProvider.swift in Sources */,
+				833116A1238FABC4001F2637 /* SMBClient.swift in Sources */,
 				8316088A22F0392C004390AA /* UINavigationController+.swift in Sources */,
 				83560EB42344737E00AA48A2 /* SettingTabBarController.swift in Sources */,
 				8311BD07230E873D0004E891 /* UIPanGestureRecognizer+.swift in Sources */,
+				8331169F238FABC4001F2637 /* FileObject.swift in Sources */,
+				833116B1238FABC4001F2637 /* Document.swift in Sources */,
 				8325628C2301003000C4F1FC /* empty.cpp in Sources */,
+				833116A6238FABC4001F2637 /* OneDriveHelper.swift in Sources */,
+				833116A0238FABC4001F2637 /* RemoteSession.swift in Sources */,
 				83EE1174230CE38E0030A24E /* FourCharCode+.swift in Sources */,
 				83E8E1B9238BC9C700E8CDC1 /* VideoCoreData.swift in Sources */,
 				8316088C22F150B4004390AA /* URL+.swift in Sources */,
+				833116BC238FABC4001F2637 /* SMB2QueryTypes.swift in Sources */,
+				833116BF238FABC4001F2637 /* SMB2Query.swift in Sources */,
 				835B05192382565400A32B86 /* SearchMovieObject.swift in Sources */,
+				833116AC238FABC4001F2637 /* SMBFileProvider.swift in Sources */,
 				83668D4A22EEAE3C003C918B /* SwiftyGifManager.swift in Sources */,
 				833CD49622F2A68300617F63 /* PlayerView.swift in Sources */,
 				83EE1172230CCB9B0030A24E /* VideoDetailViewController.swift in Sources */,
 				835EBE0A2373FA2F000152B1 /* Int+.swift in Sources */,
+				833116BE238FABC4001F2637 /* SMB2DataTypes.swift in Sources */,
 				839E118E22CC930C0096E43C /* VideoViewDeprecated.swift in Sources */,
 				835B051723822AF800A32B86 /* SearchResultObject.swift in Sources */,
+				833116B5238FABC4001F2637 /* SMBErrorType.swift in Sources */,
 				83EE1178230D1B320030A24E /* VideoView.swift in Sources */,
 				835FB24B2383D7BD0052850A /* WebViewController.swift in Sources */,
 				833CD49422F2A2B900617F63 /* Player.swift in Sources */,
@@ -619,16 +782,27 @@
 				835B051B2382588E00A32B86 /* SearchTVObject.swift in Sources */,
 				8327B07B22F4045300D31C84 /* PlayerSlider.swift in Sources */,
 				8398DD1C2314EF680084951A /* SleepTimerPopupView.swift in Sources */,
+				833116BB238FABC4001F2637 /* CIFSTypes.swift in Sources */,
+				833116C2238FABC4001F2637 /* DropboxHelper.swift in Sources */,
+				833116A4238FABC4001F2637 /* DropboxFileProvider.swift in Sources */,
 				83A384A222CDC6C1007EA28D /* AVPlayer+.swift in Sources */,
+				833116B9238FABC4001F2637 /* SMB2FileOperation.swift in Sources */,
 				83801844235EFC00000FC7A5 /* PopupViewController.swift in Sources */,
-				8330BB4A22EA81FE0038FAE9 /* FileObject.swift in Sources */,
+				833116B2238FABC4001F2637 /* Parser.swift in Sources */,
+				833116A5238FABC4001F2637 /* ExtendedLocalFileProvider.swift in Sources */,
+				8330BB4A22EA81FE0038FAE9 /* FileObject2.swift in Sources */,
+				833116B4238FABC4001F2637 /* ServerTrustPolicy.swift in Sources */,
 				8330BB4122EA7ECB0038FAE9 /* FileListViewController.swift in Sources */,
 				835B0511237D461900A32B86 /* EqualizerSliderTableViewCell.swift in Sources */,
 				83E8E1B7238BC8F500E8CDC1 /* VideoCoreData.xcdatamodeld in Sources */,
 				83668D4922EEAE3C003C918B /* UIImageView+SwiftyGif.swift in Sources */,
+				833116B7238FABC4001F2637 /* SMB2FileHandle.swift in Sources */,
 				83668D4822EEAE3C003C918B /* UIImage+SwiftyGif.swift in Sources */,
+				833116A9238FABC4001F2637 /* HTTPFileProvider.swift in Sources */,
 				839E117622CC84A60096E43C /* PlayViewController.swift in Sources */,
 				83945D462306359200B7987B /* DirectoryMonitor.swift in Sources */,
+				833116BD238FABC4001F2637 /* SMB2SetInfo.swift in Sources */,
+				833116C1238FABC4001F2637 /* SMB2Notification.swift in Sources */,
 				83D33EEA237A528100560335 /* PopupResolutionViewController.swift in Sources */,
 				839686CD237508E0002EA1F4 /* SubTitlePopupViewController.swift in Sources */,
 				83CB7A0B236E7DC10071B041 /* NSLayoutConstraint+.swift in Sources */,
@@ -636,21 +810,29 @@
 				837FC9A6236288900028CFF4 /* SliderDeprecated.swift in Sources */,
 				8327B07922F3CF6700D31C84 /* VideoPlayerController.swift in Sources */,
 				83D33ED923791C1800560335 /* TextTableViewCell.swift in Sources */,
+				833116A8238FABC4001F2637 /* HashMAC.swift in Sources */,
 				837FC9AA23628F680028CFF4 /* PlayerSliderView.swift in Sources */,
+				833116B0238FABC4001F2637 /* Element.swift in Sources */,
 				836C8DE02305095900283583 /* CMTime+.swift in Sources */,
 				839F9DF222EFC278003AFA0D /* FileType.swift in Sources */,
+				833116AB238FABC4001F2637 /* FTPHelper.swift in Sources */,
 				839E119322CC96FC0096E43C /* VideoControllerView.swift in Sources */,
 				8361C6C622EEE40B006ECF31 /* String+.swift in Sources */,
 				835B0514237E63D300A32B86 /* TheMovieDB.swift in Sources */,
+				833116C0238FABC4001F2637 /* SMB2Tree.swift in Sources */,
 				83D33EE0237922FE00560335 /* VideoPopupViewController.swift in Sources */,
 				833748EA2315141700B535F0 /* BrightnessToastView.swift in Sources */,
 				8327B07122F2B33200D31C84 /* PlayerUtils.swift in Sources */,
+				833116AE238FABC4001F2637 /* Options.swift in Sources */,
 				83D33EF3237BCEE900560335 /* StepperTableViewCell.swift in Sources */,
 				83D33EDD23791C2600560335 /* SwitchTableViewCell.swift in Sources */,
+				8331169D238FABC4001F2637 /* OneDriveFileProvider.swift in Sources */,
 				832925902310F4DD009BE3D4 /* Toast.swift in Sources */,
+				8331166A238FA49B001F2637 /* Date+.swift in Sources */,
 				83AEA34423139B9600354500 /* PreferenceManager.swift in Sources */,
 				83292597231256ED009BE3D4 /* BrightnessSettingView.swift in Sources */,
 				8311BD13230FD8950004E891 /* VideoAspectRatio.swift in Sources */,
+				833116B6238FABC4001F2637 /* SMB2Session.swift in Sources */,
 				83D33EE6237A433A00560335 /* MarqueeLabel.swift in Sources */,
 				833CD49122F267BB00617F63 /* TextViewerController.swift in Sources */,
 				83668D4022EE9147003C918B /* PlayMode.swift in Sources */,
@@ -658,11 +840,21 @@
 				835B050C237CE58000A32B86 /* PopupEqualizerViewController.swift in Sources */,
 				83D33EEC237BA2BF00560335 /* AudioPopupViewController.swift in Sources */,
 				830BF88422FA8E5F00D3D848 /* CustomSlider.swift in Sources */,
+				833116B8238FABC4001F2637 /* SMB2Types.swift in Sources */,
+				8331169E238FABC4001F2637 /* CloudFileProvider.swift in Sources */,
+				833116B3238FABC4001F2637 /* LocalHelper.swift in Sources */,
 				839E117422CC84A60096E43C /* AppDelegate.swift in Sources */,
+				833116A7238FABC4001F2637 /* FoundationExtensions.swift in Sources */,
+				833116AF238FABC4001F2637 /* Error.swift in Sources */,
 				83AEA3462313ADB700354500 /* UIVIew+.swift in Sources */,
 				839F9DF422EFDAEB003AFA0D /* UIColor+.swift in Sources */,
+				833116A2238FABC4001F2637 /* FTPFileProvider.swift in Sources */,
+				833116BA238FABC4001F2637 /* SMB2IOCtl.swift in Sources */,
+				833116AA238FABC4001F2637 /* LocalFileProvider.swift in Sources */,
 				8389DC9C236352C7007D5779 /* StatusBar.swift in Sources */,
 				83D33EEF237BCED500560335 /* SliderTableViewCell.swift in Sources */,
+				833116A3238FABC4001F2637 /* FileProvider.swift in Sources */,
+				833116C3238FABC4001F2637 /* FPSStreamTask.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

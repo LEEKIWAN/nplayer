@@ -116,8 +116,7 @@ public extension UIImage {
     /// - Parameter name: Filename
     /// - Parameter levelOfIntegrity: 0 to 1, 1 meaning no frame skipping
     func setGif(_ name: String, levelOfIntegrity: GifLevelOfIntegrity) throws {
-        if let url = Bundle.main.url(forResource: name,
-                                     withExtension: name.pathExtension() == "gif" ? "" : "gif") {
+        if let url = Bundle.main.url(forResource: name, withExtension: name.pathExtension == "gif" ? "" : "gif") {
             if let data = try? Data(contentsOf: url) {
                 try setGifFromData(data, levelOfIntegrity: levelOfIntegrity)
             }
@@ -326,7 +325,9 @@ public extension UIImage {
 }
 
 extension String {
-    fileprivate func pathExtension() -> String {
-        return (self as NSString).pathExtension
-    }
+//    private func pathExtension() -> String {
+//        return (self as NSString).pathExtension
+//    }
+    
+    
 }

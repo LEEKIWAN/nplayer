@@ -23,7 +23,7 @@ class VideoView: UIView {
     var isPlaying: Bool = true
     
     weak var delegate: VideoViewDelegate?
-    var playItem: FileObject!
+//    var playItem: FileObject!
     
     var mediaPlayer: VLCMediaPlayer = VLCMediaPlayer(options: ["-vvvv"])
     
@@ -123,12 +123,12 @@ class VideoView: UIView {
     }
     
     
-    func setPlayItem(item: FileObject) {
-        self.playItem = item
+    func setPlayItem(item: NSObject) {
+//        self.playItem = item
         
 //        indicatorView.startAnimating()
         
-        mediaPlayer.media = playItem.vlcMedia!
+//        mediaPlayer.media = playItem.vlcMedia!
         mediaPlayer.drawable = videoView
         
         configureMarqueeTitleLabel()

@@ -11,7 +11,7 @@
  class VideoPlayerController: UIViewController ,VLCMediaPlayerDelegate {
     
     @IBOutlet weak var videoView: UIView!
-    var playItem: FileObject!
+//    var playItem: FileObject!
     
     // Enable debugging
     var mediaPlayer: VLCMediaPlayer = VLCMediaPlayer(options: ["-vvvv"])
@@ -39,13 +39,13 @@
         //Playing RTSP from internet
         //        let url = URL(string: "rtsp://184.72.239.149/vod/mp4:BigBuckBunny_115k.mov")
         
-        let url = playItem.url
-        
-        let media = VLCMedia(url: url)
-        mediaPlayer.media = media
-        
-        mediaPlayer.delegate = self
-        mediaPlayer.drawable = self.videoView
+//        let url = playItem.url
+//        
+//        let media = VLCMedia(url: url)
+//        mediaPlayer.media = media
+//        
+//        mediaPlayer.delegate = self
+//        mediaPlayer.drawable = self.videoView
     }
     
     @objc func rotated() {

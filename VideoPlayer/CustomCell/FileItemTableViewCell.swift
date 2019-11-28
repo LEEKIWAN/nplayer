@@ -38,33 +38,33 @@ class FileItemTableViewCell: UITableViewCell {
     func setData(data: FileObject) {
         self.data = data
         
-        fileNameLabel.text = data.fileName
-        fileSizeLabel.text = data.fileSize
-        createDateLabel.text = data.fileCreation
-        thumbnailImageView.image = data.thumbnailImage
+        fileNameLabel.text = data.name
+        fileSizeLabel.text = data.size.string
+        createDateLabel.text = data.creationDate?.String
+
+        //        thumbnailImageView.image = data.thumbnailImage
+
         
-        if(data.extension.isEmpty) {
-            fileExtensionLabel.isHidden = true
+        if data.isDirectory {
+          self.thumbnailImageView.layer.cornerRadius = 0
+              fileInfoStackView.isHidden = true
+              playInfoStackView.isHidden = true
+              
+              if let fileCount = data.childrensCount, fileCount > 0 {
+                  fileCountLabel.isHidden = false
+                  fileCountLabel.text = "\(fileCount)개의 항목"
+              }
+              else {
+                  fileCountLabel.isHidden = true
+              }
         }
         else {
             fileExtensionLabel.isHidden = false
-            fileExtensionLabel.text = data.extension.uppercased()
+            fileExtensionLabel.text = data.url.pathExtension
         }
         
         
         switch data.getFileType() {
-            case .directory:
-                self.thumbnailImageView.layer.cornerRadius = 0
-                fileInfoStackView.isHidden = true
-                playInfoStackView.isHidden = true
-                
-                if let fileCount = data.fileCountInDir, fileCount > 0 {
-                    fileCountLabel.isHidden = false
-                    fileCountLabel.text = "\(fileCount)개의 항목"
-                }
-                else {
-                    fileCountLabel.isHidden = true
-                }
             case .text:
                 self.thumbnailImageView.layer.cornerRadius = 0
                 fileInfoStackView.isHidden = false
