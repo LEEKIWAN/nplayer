@@ -159,7 +159,11 @@ open class LocalFileProvider: NSObject, FileProvider, FileProviderMonitor, FileP
     open func contentsOfDirectory(path: String, completionHandler: @escaping (_ contents: [FileObject], _ error: Error?) -> Void) {
         dispatch_queue.async {
             do {
-                let contents = try self.fileManager.contentsOfDirectory(at: self.url(of: path), includingPropertiesForKeys: nil, options: .skipsSubdirectoryDescendants)
+                
+                let encoded  = path.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)
+                let pathURL = URL(string: encoded!)
+
+                let contents = try self.fileManager.contentsOfDirectory(at: pathURL! , includingPropertiesForKeys: nil, options: .skipsSubdirectoryDescendants)
                 let filesAttributes = contents.compactMap({ (fileURL) -> LocalFileObject? in
                     let path = self.relativePathOf(url: fileURL)
                     return LocalFileObject(fileWithPath: path, relativeTo: self.baseURL)

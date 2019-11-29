@@ -38,11 +38,11 @@ class FileItemTableViewCell: UITableViewCell {
     func setData(data: FileObject) {
         self.data = data
         
-        fileNameLabel.text = data.name
+        fileNameLabel.text = data.fileName
         fileSizeLabel.text = data.size.string
         createDateLabel.text = data.creationDate?.String
 
-        //        thumbnailImageView.image = data.thumbnailImage
+        thumbnailImageView.image = data.thumbnailImage
 
         
         if data.isDirectory {

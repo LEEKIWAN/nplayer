@@ -15,40 +15,49 @@ class FileListViewController: UIViewController {
     var currentDirectoryURL: URL?
     var directoryMonitor: DirectoryMonitor?
     
+    @IBOutlet weak var rightBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var consTableViewBottom: NSLayoutConstraint!
+    @IBOutlet weak var consEditViewHeight: NSLayoutConstraint!
     
     var fileList: [FileObject] = []
     var filteredFileList: [FileObject] = []
     let searchController = UISearchController()
+    var directoryTimer: Timer?
+    
+    override var isEditing: Bool {
+        didSet {
+            self.editModeUI(isEditing: isEditing)
+        }
+    }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
+    // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setSearchController()
-
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.configureWithOpaqueBackground()
         navBarAppearance.backgroundColor = UIColor(hexFromString: "#363636")
         self.navigationController?.navigationBar.standardAppearance = navBarAppearance
         self.navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
-//
+        //
         if self == self.navigationController?.viewControllers[0] {
-            currentDirectoryURL = URL(string: "/")
-//            do {
-//                let folderPath =  currentDirectoryURL!.appendingPathComponent("즐겨찾기")
-//                if !FileManager.default.fileExists(atPath: folderPath.path) {
-//                    try FileManager.default.createDirectory(atPath: folderPath.path, withIntermediateDirectories: true, attributes: nil)
-//                }
-//            }
-//            catch {
-//                print("Document directory is \(error.localizedDescription)")
-//            }
-
+            currentDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+            //            do {
+            //                let folderPath =  currentDirectoryURL!.appendingPathComponent("즐겨찾기")
+            //                if !FileManager.default.fileExists(atPath: folderPath.path) {
+            //                    try FileManager.default.createDirectory(atPath: folderPath.path, withIntermediateDirectories: true, attributes: nil)
+            //                }
+            //            }
+            //            catch {
+            //                print("Document directory is \(error.localizedDescription)")
+            //            }
+            
             listFilesFromUrl(with: currentDirectoryURL!)
         }
     }
@@ -56,17 +65,18 @@ class FileListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         registerForKeyboardNotifications()
-//        directoryMonitor?.startMonitoring()
-//        navigationItem.searchController = searchController
-//        tableView.reloadData()
+        NotificationCenter.default.addObserver(self, selector: #selector(directoryWriting), name: .NSFileHandleReadToEndOfFileCompletion, object: nil)
+        directoryMonitor?.startMonitoring()
+        navigationItem.searchController = searchController
+        tableView.reloadData()
     }
     
-         
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.unregisterForKeyboardNotifications()
     }
-
+    
     func setSearchController() {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -85,6 +95,8 @@ class FileListViewController: UIViewController {
     func listFilesFromUrl(with url: URL) {
         fileList.removeAll()
         currentDirectoryURL = url
+        directoryMonitor = DirectoryMonitor(URL: url)
+        directoryMonitor?.delegate = self
         
         let documentsProvider = LocalFileProvider()
         documentsProvider.contentsOfDirectory(path: url.path) { (fileList, error) in
@@ -96,6 +108,7 @@ class FileListViewController: UIViewController {
                 self.tableView.reloadData()
             }
         }
+        
     }
     
     
@@ -103,7 +116,7 @@ class FileListViewController: UIViewController {
     
     func filterContentForSearchText(_ searchText: String) {
         filteredFileList = fileList.filter({( file: FileObject) -> Bool in
-            return file.name.lowercased().contains(searchText.lowercased())
+            return file.fileName.lowercased().contains(searchText.lowercased())
         })
         
         tableView.reloadData()
@@ -116,6 +129,46 @@ class FileListViewController: UIViewController {
     func isFiltering() -> Bool {
         return searchController.isActive && !searchBarIsEmpty()
     }
+    
+    func editModeUI(isEditing: Bool) {
+        if isEditing {
+            self.consEditViewHeight.constant = 50
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(onETCTouched(_:)))
+            
+        }
+        else {
+            self.consEditViewHeight.constant = 0
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "ellipsis"), style: .plain, target: self, action: #selector(onETCTouched(_:)))
+        }
+    }
+    
+    // MARK: - Event
+    
+    @IBAction func onETCTouched(_ sender: UIBarButtonItem) {
+        if !isEditing {
+            let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "선택", style: .default, handler: { (alert) in
+                self.isEditing = true
+            }))
+            
+            alert.addAction(UIAlertAction(title: "정렬", style: .default, handler: { (alert) in
+                
+            }))
+            
+            alert.addAction(UIAlertAction(title: "재생 정보 초기화", style: .default, handler: { (alert) in
+                
+            }))
+            
+            alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
+            
+            self.present(alert, animated: true, completion: nil)
+        }
+        else {
+            self.isEditing = false
+        }
+    }
+    
+    
     
     
     // MARK: - KeyBoard
@@ -196,47 +249,37 @@ extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
             data = fileList[indexPath.row]
         }
         
-        
-//        switch data.getFileType() {
-//        case .directory:
-//            let storyBoard = UIStoryboard(name: "FileListViewController", bundle: nil)
-//            let fileListViewController = storyBoard.instantiateViewController(withIdentifier: "FileListViewController") as! FileListViewController
-//            fileListViewController.listFilesFromUrl(with: data.url)
-//            fileListViewController.navigationItem.title = data.fileName
-//            self.navigationController?.pushViewController(fileListViewController, animated: true)
-//
-//        case .text:
-//            let storyBoard = UIStoryboard(name: "TextViewerController", bundle: nil)
-//            let textViewerController = storyBoard.instantiateInitialViewController() as! TextViewerController
-//            textViewerController.data = data
-//            self.present(textViewerController, animated: true, completion: nil)
-//
-//        case .image:
-//            let storyBoard = UIStoryboard(name: "ImageViewerController", bundle: nil)
-//            let imageViewerController = storyBoard.instantiateInitialViewController() as! ImageViewerController
-//            imageViewerController.data = data
-//            self.present(imageViewerController, animated: true, completion: nil)
-//
-//        case .video:
-//            //                let storyBoard = UIStoryboard(name: "VideoPlayerController", bundle: nil)
-//            //                let videoPlayerController = storyBoard.instantiateInitialViewController() as! VideoPlayerController
-//            //                videoPlayerController.playItem = data
-//            //                self.present(videoPlayerController, animated: true, completion: nil)
-//
-//
-//            let storyBoard = UIStoryboard(name: "VideoDetailViewController", bundle: nil)
-//            let videoDetailViewController = storyBoard.instantiateInitialViewController() as! VideoDetailViewController
-//            videoDetailViewController.data = data
-//            videoDetailViewController.navigationItem.title = data.fileName
-//            self.navigationController?.pushViewController(videoDetailViewController, animated: true)
-//
-//
-//        default:
-//            break
-//        }
-        
-        
-        //        self.present(playViewController, animated: true, completion: nil)
+        switch data.getFileType() {
+        case .directory:
+            let storyBoard = UIStoryboard(name: "FileListViewController", bundle: nil)
+            let fileListViewController = storyBoard.instantiateViewController(withIdentifier: "FileListViewController") as! FileListViewController
+            fileListViewController.listFilesFromUrl(with: data.url)
+            fileListViewController.navigationItem.title = data.fileName
+            self.navigationController?.pushViewController(fileListViewController, animated: true)
+            
+        case .text:
+            let storyBoard = UIStoryboard(name: "TextViewerController", bundle: nil)
+            let textViewerController = storyBoard.instantiateInitialViewController() as! TextViewerController
+            textViewerController.data = data
+            self.present(textViewerController, animated: true, completion: nil)
+            
+        case .image:
+            let storyBoard = UIStoryboard(name: "ImageViewerController", bundle: nil)
+            let imageViewerController = storyBoard.instantiateInitialViewController() as! ImageViewerController
+            imageViewerController.data = data
+            self.present(imageViewerController, animated: true, completion: nil)
+            
+        case .video:
+            let storyBoard = UIStoryboard(name: "VideoDetailViewController", bundle: nil)
+            let videoDetailViewController = storyBoard.instantiateInitialViewController() as! VideoDetailViewController
+            videoDetailViewController.data = data
+            videoDetailViewController.navigationItem.title = data.fileName
+            self.navigationController?.pushViewController(videoDetailViewController, animated: true)
+            
+            
+        default:
+            break
+        }
     }
     
 }
@@ -261,7 +304,18 @@ extension FileListViewController: DirectoryMonitorDelegate {
         guard let currentDirectoryURL = currentDirectoryURL else {
             return
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+        let documentsProvider = LocalFileProvider()
+        documentsProvider.contentsOfDirectory(path: currentDirectoryURL.path) { (fileList, error) in
+            let addedFile = Array(Set(fileList).subtracting(self.fileList))
+            if(addedFile.count > 0) {
+                directoryMonitor.addedFile = addedFile.first!
+            }
+            else {
+                directoryMonitor.addedFile = nil
+            }
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
             self.listFilesFromUrl(with: currentDirectoryURL)
             
             DispatchQueue.main.async {
@@ -269,4 +323,22 @@ extension FileListViewController: DirectoryMonitorDelegate {
             }
         }
     }
+    
+    @objc func directoryWriting() {
+        directoryTimer?.invalidate()
+        print("ddd")
+        directoryTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(fire(timer:)), userInfo: nil, repeats: false)
+    }
+    
+    
+    @objc func fire(timer: Timer) {
+        print("fff")
+        guard let currentDirectoryURL = currentDirectoryURL else { return }
+        self.listFilesFromUrl(with: currentDirectoryURL)
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
+    
 }

@@ -143,9 +143,13 @@ open class FileObject: NSObject, VLCMediaThumbnailerDelegate, VLCMediaDelegate {
     
     /// File is a Directory
     open var isDirectory: Bool {
-        return self.type == .directory
+        return self.url.hasDirectoryPath
     }
     
+    open var fileName: String {
+        return self.url.lastPathComponent.fileName()
+    }
+
     /// File is a normal file
     open var isRegularFile: Bool {
         return self.type == .regular
@@ -161,12 +165,12 @@ open class FileObject: NSObject, VLCMediaThumbnailerDelegate, VLCMediaDelegate {
     // Video
     var vlcMedia: VLCMedia?
     var totalDurationText: String?
-
+    
     // tableView
     var tableView: UITableView?
     var indexPath: IndexPath?
     
-
+    
     func createThumbanailImage() {
         let fileType = getFileType()
         if fileType == .video {
@@ -188,23 +192,22 @@ open class FileObject: NSObject, VLCMediaThumbnailerDelegate, VLCMediaDelegate {
             self.thumbnailImage = UIImage(named: "file")
         }
     }
-
-
+    
+    
     func createVideoMetadatas() {
-        
         self.vlcMedia = VLCMedia(url: url)
         self.vlcMedia?.delegate = self
         self.vlcMedia?.parse(withOptions: 0)
         let thumbnailer = VLCMediaThumbnailer(media: VLCMedia(url: url), andDelegate: self)
         thumbnailer?.fetchThumbnail()
     }
-
+    
     func createAudioMetadatas() {
-        let asset = AVURLAsset(url: self.url)
-
+        let asset = AVURLAsset(url: url)
+        
         for metadataItem in asset.commonMetadata {
             if (metadataItem.commonKey! == .commonKeyArtwork) {
-
+                
                 if let data = metadataItem.dataValue {
                     self.thumbnailImage = UIImage(data: data)
                 }
@@ -213,46 +216,51 @@ open class FileObject: NSObject, VLCMediaThumbnailerDelegate, VLCMediaDelegate {
                 }
             }
         }
-
+        
         self.totalDurationText = asset.duration.stringValue
     }
-
+    
     func getFileType() -> FileType {
-        switch self.url.pathExtension.lowercased() {
-        case "png", "gif", "jpg", "jpeg":
-            return .image
-        case "txt", "md", "swift":
-            return .text
-        case "mp3":
-            return .audio
-        case "mp4", "avi", "mkv":
-            return .video
-        case "directory":
+        if self.isDirectory {
             return .directory
-        default:
-            return .etc
         }
+        else {
+            switch self.url.pathExtension.lowercased() {
+            case "png", "gif", "jpg", "jpeg":
+                return .image
+            case "txt", "md", "swift":
+                return .text
+            case "mp3":
+                return .audio
+            case "mp4", "avi", "mkv":
+                return .video
+            default:
+                return .etc
+            }
+        }
+        
+        
     }
-
+    
     // MARK: - VLCMediaThumbnailerDelegate
-
+    
     public func mediaThumbnailerDidTimeOut(_ mediaThumbnailer: VLCMediaThumbnailer!) {
         print("timeout")
     }
-
+    
     public func mediaThumbnailer(_ mediaThumbnailer: VLCMediaThumbnailer!, didFinishThumbnail thumbnail: CGImage!) {
         self.thumbnailImage = UIImage(cgImage: thumbnail)
         tableView?.reloadRows(at: [indexPath!], with: .none)
     }
-
-
+    
+    
     // MARK: - VLCMediaDelegate
-
+    
     public func mediaDidFinishParsing(_ aMedia: VLCMedia) {
         self.totalDurationText = vlcMedia?.length.stringValue
         tableView?.reloadRows(at: [indexPath!], with: .none)
     }
-
+    
 }
 
 extension FileObject {

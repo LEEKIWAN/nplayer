@@ -43,7 +43,6 @@ class TheMovieDB {
     
     func requestDB(fileName: String, completion: @escaping (Bool, SearchResultObject?) -> Void) {
         self.initMemberVariable(fileName: fileName)
-        
         guard let requestURL = URL(string: "\(serverURL)\(searchQuery)"), title.count > 0 else { return }
         print(requestURL)
         let parameters = ["query" : title.first!, "language" : language, "api_key" : api_key]
@@ -94,8 +93,7 @@ class TheMovieDB {
         }
         
         guard let tvRequestURL = URL(string: "\(self.serverURL)\(requestParametsers)") else { return }
-        
-        print(tvRequestURL)
+
         AF.request(tvRequestURL, method: .get, parameters: parameters).responseJSON { (response) in
             switch response.result {
             case .success(let result):

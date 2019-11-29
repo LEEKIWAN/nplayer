@@ -131,6 +131,8 @@
 		83D33EF0237BCED500560335 /* SliderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83D33EEE237BCED500560335 /* SliderTableViewCell.xib */; };
 		83D33EF3237BCEE900560335 /* StepperTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D33EF1237BCEE900560335 /* StepperTableViewCell.swift */; };
 		83D33EF4237BCEE900560335 /* StepperTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83D33EF2237BCEE900560335 /* StepperTableViewCell.xib */; };
+		83DAE74D23909F9A001B015F /* LoadingViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83DAE74C23909F9A001B015F /* LoadingViewController.storyboard */; };
+		83DAE74F23909FAF001B015F /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DAE74E23909FAF001B015F /* LoadingViewController.swift */; };
 		83E8E1B7238BC8F500E8CDC1 /* VideoCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 83E8E1B5238BC8F500E8CDC1 /* VideoCoreData.xcdatamodeld */; };
 		83E8E1B9238BC9C700E8CDC1 /* VideoCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E8E1B8238BC9C700E8CDC1 /* VideoCoreData.swift */; };
 		83EE116F230CCB220030A24E /* VideoDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83EE116E230CCB220030A24E /* VideoDetailViewController.storyboard */; };
@@ -270,6 +272,8 @@
 		83D33EEE237BCED500560335 /* SliderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SliderTableViewCell.xib; sourceTree = "<group>"; };
 		83D33EF1237BCEE900560335 /* StepperTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperTableViewCell.swift; sourceTree = "<group>"; };
 		83D33EF2237BCEE900560335 /* StepperTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StepperTableViewCell.xib; sourceTree = "<group>"; };
+		83DAE74C23909F9A001B015F /* LoadingViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoadingViewController.storyboard; sourceTree = "<group>"; };
+		83DAE74E23909FAF001B015F /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		83E8E1B6238BC8F500E8CDC1 /* VideoData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VideoData.xcdatamodel; sourceTree = "<group>"; };
 		83E8E1B8238BC9C700E8CDC1 /* VideoCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCoreData.swift; sourceTree = "<group>"; };
 		83EE116E230CCB220030A24E /* VideoDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = VideoDetailViewController.storyboard; sourceTree = "<group>"; };
@@ -306,6 +310,7 @@
 				83D33EE7237A527A00560335 /* PopupResolutionViewController.storyboard */,
 				835B0509237CE57700A32B86 /* PopupEqualizerViewController.storyboard */,
 				835FB2482383D7AB0052850A /* WebViewController.storyboard */,
+				83DAE74C23909F9A001B015F /* LoadingViewController.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -324,6 +329,7 @@
 				835B050B237CE58000A32B86 /* PopupEqualizerViewController.swift */,
 				839686CC237508E0002EA1F4 /* SubTitlePopupViewController.swift */,
 				835FB24A2383D7BD0052850A /* WebViewController.swift */,
+				83DAE74E23909FAF001B015F /* LoadingViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -682,6 +688,7 @@
 				8330BB3F22EA7EB60038FAE9 /* FileListViewController.storyboard in Resources */,
 				833CD48F22F2676B00617F63 /* TextViewerController.storyboard in Resources */,
 				83D33EDA23791C1800560335 /* TextTableViewCell.xib in Resources */,
+				83DAE74D23909F9A001B015F /* LoadingViewController.storyboard in Resources */,
 				835B0512237D461900A32B86 /* EqualizerSliderTableViewCell.xib in Resources */,
 				83D33EE8237A527A00560335 /* PopupResolutionViewController.storyboard in Resources */,
 				83D33EF4237BCEE900560335 /* StepperTableViewCell.xib in Resources */,
@@ -777,6 +784,7 @@
 				833116B5238FABC4001F2637 /* SMBErrorType.swift in Sources */,
 				83EE1178230D1B320030A24E /* VideoView.swift in Sources */,
 				835FB24B2383D7BD0052850A /* WebViewController.swift in Sources */,
+				83DAE74F23909FAF001B015F /* LoadingViewController.swift in Sources */,
 				833CD49422F2A2B900617F63 /* Player.swift in Sources */,
 				83D33EE22379238300560335 /* VideoConfigObject.swift in Sources */,
 				835B051B2382588E00A32B86 /* SearchTVObject.swift in Sources */,

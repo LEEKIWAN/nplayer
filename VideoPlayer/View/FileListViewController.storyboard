@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Xrv-eO-qkt">
-                                <rect key="frame" x="0.0" y="88" width="375" height="690"/>
+                                <rect key="frame" x="0.0" y="88" width="375" height="640"/>
                                 <color key="backgroundColor" red="0.15294117647058825" green="0.15330693125724792" blue="0.15318098664283752" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ItemCell" rowHeight="70" id="jQa-PH-GL0" customClass="FileItemTableViewCell" customModule="VideoPlayer" customModuleProvider="target">
@@ -134,19 +134,37 @@
                                     <outlet property="delegate" destination="NO7-FB-nnu" id="0Vc-lY-vq6"/>
                                 </connections>
                             </tableView>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nO5-zc-VIb">
+                                <rect key="frame" x="0.0" y="728" width="375" height="50"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Xb6-ye-DjO"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.15315786000000001" green="0.1533069313" blue="0.15318098660000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Xrv-eO-qkt" firstAttribute="top" secondItem="acN-dN-EbH" secondAttribute="top" id="908-Ue-UzL"/>
                             <constraint firstItem="acN-dN-EbH" firstAttribute="trailing" secondItem="Xrv-eO-qkt" secondAttribute="trailing" id="F2o-MJ-EVG"/>
-                            <constraint firstItem="acN-dN-EbH" firstAttribute="bottom" secondItem="Xrv-eO-qkt" secondAttribute="bottom" id="Ye2-NO-CTv"/>
+                            <constraint firstItem="acN-dN-EbH" firstAttribute="trailing" secondItem="nO5-zc-VIb" secondAttribute="trailing" id="Wfb-Fi-GnM"/>
                             <constraint firstItem="Xrv-eO-qkt" firstAttribute="leading" secondItem="acN-dN-EbH" secondAttribute="leading" id="f7a-wz-QSl"/>
+                            <constraint firstItem="nO5-zc-VIb" firstAttribute="top" secondItem="Xrv-eO-qkt" secondAttribute="bottom" id="wBj-K7-mpp"/>
+                            <constraint firstItem="acN-dN-EbH" firstAttribute="bottom" secondItem="nO5-zc-VIb" secondAttribute="bottom" id="wdq-cE-sxu"/>
+                            <constraint firstItem="nO5-zc-VIb" firstAttribute="leading" secondItem="acN-dN-EbH" secondAttribute="leading" id="wrl-hj-U6y"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="acN-dN-EbH"/>
                     </view>
-                    <navigationItem key="navigationItem" title="로컬" id="zWe-Yz-H4g"/>
+                    <navigationItem key="navigationItem" title="로컬" id="zWe-Yz-H4g">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="nyo-fm-K0C">
+                            <connections>
+                                <action selector="onETCTouched:" destination="NO7-FB-nnu" id="7Qp-o4-HJw"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="consTableViewBottom" destination="Ye2-NO-CTv" id="j1h-rP-MuT"/>
+                        <outlet property="consEditViewHeight" destination="Xb6-ye-DjO" id="6KP-ws-LCN"/>
+                        <outlet property="consTableViewBottom" destination="wdq-cE-sxu" id="ZLf-ef-qqE"/>
+                        <outlet property="rightBarButtonItem" destination="nyo-fm-K0C" id="ZsT-dW-qpz"/>
                         <outlet property="tableView" destination="Xrv-eO-qkt" id="OUF-kB-39i"/>
                     </connections>
                 </viewController>
