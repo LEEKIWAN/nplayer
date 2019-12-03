@@ -15,7 +15,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelectionDuringEditing="YES" allowsMultipleSelection="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Xrv-eO-qkt">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelectionDuringEditing="YES" allowsMultipleSelection="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Xrv-eO-qkt">
                                 <rect key="frame" x="0.0" y="88" width="375" height="690"/>
                                 <color key="backgroundColor" red="0.15294117647058825" green="0.15330693125724792" blue="0.15318098664283752" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
@@ -171,7 +171,7 @@
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="onTrashTouched:" destination="NO7-FB-nnu" eventType="touchUpInside" id="PI9-GC-9G9"/>
+                                                    <action selector="onFileRemoveTouched:" destination="NO7-FB-nnu" eventType="touchUpInside" id="Dzj-ff-syu"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -209,12 +209,12 @@
                     <connections>
                         <outlet property="consEditViewHeight" destination="Xb6-ye-DjO" id="6KP-ws-LCN"/>
                         <outlet property="consTableViewBottom" destination="wdq-cE-sxu" id="ZLf-ef-qqE"/>
-                        <outlet property="moveButton" destination="iXF-GX-m0Z" id="Cjo-FU-2U4"/>
+                        <outlet property="fileMoveButton" destination="iXF-GX-m0Z" id="xE8-bF-yDE"/>
+                        <outlet property="fileRemoveButton" destination="XRP-5B-BNi" id="p3o-MF-Xpd"/>
                         <outlet property="rightBarButtonItem" destination="nyo-fm-K0C" id="ZsT-dW-qpz"/>
                         <outlet property="shareButton" destination="R9g-d9-RGs" id="1D6-7b-MEo"/>
                         <outlet property="tableView" destination="Xrv-eO-qkt" id="OUF-kB-39i"/>
                         <outlet property="toggleCheckButton" destination="Uzk-lO-xIQ" id="GuJ-4e-aru"/>
-                        <outlet property="trashButton" destination="XRP-5B-BNi" id="Aqs-Ct-qr9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wbg-l4-93m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

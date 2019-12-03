@@ -59,8 +59,10 @@ class FileItemTableViewCell: UITableViewCell {
               }
         }
         else {
+            fileInfoStackView.isHidden = false
+            fileCountLabel.isHidden = true
             fileExtensionLabel.isHidden = false
-            fileExtensionLabel.text = data.url.pathExtension
+            fileExtensionLabel.text = data.url.pathExtension.uppercased()
         }
         
         
@@ -94,6 +96,7 @@ class FileItemTableViewCell: UITableViewCell {
             
             default:
                 self.thumbnailImageView.layer.cornerRadius = 0
+//                self.label
                 break
         }
     }
@@ -101,7 +104,5 @@ class FileItemTableViewCell: UITableViewCell {
  
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
-        self.isUserInteractionEnabled = true
     }
 }

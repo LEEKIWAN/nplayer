@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 import AVKit
+import LinkPresentation
 
 class FileListViewController: UIViewController {
     
@@ -21,11 +22,12 @@ class FileListViewController: UIViewController {
     @IBOutlet weak var consEditViewHeight: NSLayoutConstraint!
     
     @IBOutlet weak var toggleCheckButton: UIButton!
-    @IBOutlet weak var moveButton: UIButton!
+    @IBOutlet weak var fileMoveButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
-    @IBOutlet weak var trashButton: UIButton!
+    @IBOutlet weak var fileRemoveButton: UIButton!
     
     
+    var fileOfImageToShare: FileObject?
     
     var fileList: [FileObject] = []
     var filteredFileList: [FileObject] = []
@@ -140,25 +142,14 @@ class FileListViewController: UIViewController {
     
     func editModeUI(isEditing: Bool) {
         if isEditing {
-            UIView.animate(withDuration: 0.3) {
-                self.consEditViewHeight.constant = 50
-                self.view.layoutIfNeeded()
-            }
-            
+            self.consEditViewHeight.constant = 50
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(onETCTouched(_:)))
             self.tableView.setEditing(true, animated: true)
         }
         else {
-            UIView.animate(withDuration: 0.3) {
-                self.consEditViewHeight.constant = 0
-                self.view.layoutIfNeeded()
-            }
-            
+            self.consEditViewHeight.constant = 0
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "ellipsis"), style: .plain, target: self, action: #selector(onETCTouched(_:)))
             self.tableView.setEditing(false, animated: true)
-            let _ = fileList.map {
-                $0.isSelected = false
-            }
         }
     }
     
@@ -190,36 +181,72 @@ class FileListViewController: UIViewController {
     
     
     @IBAction func onToggleCheckTouched(_ sender: UIButton) {
-        let deselectFile = fileList.filter {
-            !$0.isSelected
+        var isAllChecked = false
+        
+        if tableView.indexPathsForSelectedRows?.count == fileList.count {
+            isAllChecked = true
         }
-        if deselectFile.count > 0 {
+        
+        if !isAllChecked {
             for i in 0 ..< fileList.count {
-                let cell = tableView.cellForRow(at: IndexPath(row: i, section: 0))
-                fileList[i].isSelected = true
-                cell?.setSelected(true, animated: true)
+                tableView.selectRow(at: IndexPath(row: i, section: 0), animated: true, scrollPosition: .none)
             }
         }
         else {
             for i in 0 ..< fileList.count {
-                let cell = tableView.cellForRow(at: IndexPath(row: i, section: 0))
-                fileList[i].isSelected = false
-                cell?.setSelected(false, animated: true)
+                tableView.deselectRow(at: IndexPath(row: i, section: 0), animated: true)
             }
         }
+        updateBottomUI()
     }
     @IBAction func onFileMoveTouched(_ sender: UIButton) {
         
     }
     
     @IBAction func onShareTouched(_ sender: UIButton) {
+        fileOfImageToShare = nil
         
+        var fileURLs: [URL] = []
+        for i in 0 ..< tableView.indexPathsForSelectedRows!.count {
+            let indexPath = tableView.indexPathsForSelectedRows![i]
+            fileURLs.append(fileList[indexPath.row].url)
+            if self.fileOfImageToShare == nil {
+                self.fileOfImageToShare = fileList[indexPath.row]
+            }
+        }
+        
+        let vc = UIActivityViewController(activityItems: [self] + fileURLs , applicationActivities: [])
+        present(vc, animated: true, completion: nil)
     }
     
-    @IBAction func onTrashTouched(_ sender: UIButton) {
+    @IBAction func onFileRemoveTouched(_ sender: UIButton) {
+        var selectedFiles: [FileObject] = []
+        for i in 0 ..< tableView.indexPathsForSelectedRows!.count {
+            let indexPath = tableView.indexPathsForSelectedRows![i]
+            selectedFiles.append(fileList[indexPath.row])
+        }
         
+        
+        let documentsProvider = LocalFileProvider()
+        documentsProvider.removeItem(path: "new.txt", completionHandler: nil)
+
+        //        documentsProvider.contentsOfDirectory(path: url.path) { (fileList, error) in
+//            if error != nil {
+//                print(error!.localizedDescription)
+//            }
+//            self.fileList.append(contentsOf: fileList.sort(by: .name, ascending: true, isDirectoriesFirst: true))
+//            DispatchQueue.main.async {
+//                self.tableView.reloadData()
+//            }
+//        }
+
     }
     
+    private func updateBottomUI() {
+        self.fileMoveButton.isEnabled = tableView.indexPathsForSelectedRows?.count ?? 0 > 0 ? true : false
+        self.fileRemoveButton.isEnabled = tableView.indexPathsForSelectedRows?.count ?? 0 > 0 ? true : false
+        self.shareButton.isEnabled = tableView.indexPathsForSelectedRows?.count ?? 0 > 0 ? true : false
+    }
     
     
     // MARK: - KeyBoard
@@ -286,16 +313,13 @@ extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
             cell.setData(data: fileList[indexPath.row])
         }
         
-//        print(fileList[indexPath.row].isSelected)
-//        cell.setSelected(fileList[indexPath.row].isSelected, animated: false)
-        
         return cell
     }
     
     //MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if self.isEditing {
-            fileList[indexPath.row].isSelected = true
+            updateBottomUI()
         }
         else {
             var data: FileObject
@@ -336,18 +360,9 @@ extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
         }
     }
     
-
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        fileList[indexPath.row].isSelected = false
-    }
-    
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if fileList[indexPath.row].isSelected {
-             cell.setSelected(true, animated: false)
-        }
-        else {
-             cell.setSelected(false, animated: false)
+        if self.isEditing {
+            updateBottomUI()
         }
     }
     
@@ -383,3 +398,26 @@ extension FileListViewController: DirectoryMonitorDelegate {
     }
 }
 
+extension FileListViewController: UIActivityItemSource {
+
+    func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
+        return UIImage()
+    }
+
+    func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
+        return self.fileOfImageToShare
+    }
+
+    func activityViewControllerLinkMetadata(_ activityViewController: UIActivityViewController) -> LPLinkMetadata? {
+        let metadata = LPLinkMetadata()
+
+        metadata.title = self.fileOfImageToShare!.name
+//        metadata.originalURL = self.fileOfImageToShare!.thumbnailImage
+//        metadata.url = self.fileOfImageToShare!.thumbnailImage
+//        metadata.imageProvider = NSItemProvider.init(contentsOf: self.fileOfImageToShare!.thumbnailImage)
+//        NSItemProvider(
+//        metadata.iconProvider = NSItemProvider.init(contentsOf: self.fileOfImageToShare!.thumbnailImage)
+
+        return metadata
+    }
+}

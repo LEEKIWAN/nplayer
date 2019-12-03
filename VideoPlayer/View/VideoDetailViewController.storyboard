@@ -56,7 +56,7 @@
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SSh-m1-9E2">
                                                 <rect key="frame" x="169" y="86.333333333333343" width="37" height="46"/>
-                                                <state key="normal" image="play"/>
+                                                <state key="normal" image="mPlay"/>
                                                 <connections>
                                                     <action selector="onPlayTouched:" destination="Xuu-Lb-SiA" eventType="touchUpInside" id="1fM-dn-aaj"/>
                                                 </connections>
@@ -399,7 +399,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="play" width="37" height="46"/>
+        <image name="mPlay" width="37" height="46"/>
         <image name="star" catalog="system" width="64" height="58"/>
     </resources>
 </document>
