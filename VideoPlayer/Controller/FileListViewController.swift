@@ -20,10 +20,16 @@ class FileListViewController: UIViewController {
     @IBOutlet weak var consTableViewBottom: NSLayoutConstraint!
     @IBOutlet weak var consEditViewHeight: NSLayoutConstraint!
     
+    @IBOutlet weak var toggleCheckButton: UIButton!
+    @IBOutlet weak var moveButton: UIButton!
+    @IBOutlet weak var shareButton: UIButton!
+    @IBOutlet weak var trashButton: UIButton!
+    
+    
+    
     var fileList: [FileObject] = []
     var filteredFileList: [FileObject] = []
     let searchController = UISearchController()
-    var directoryTimer: Timer?
     
     override var isEditing: Bool {
         didSet {
@@ -45,6 +51,9 @@ class FileListViewController: UIViewController {
         navBarAppearance.backgroundColor = UIColor(hexFromString: "#363636")
         self.navigationController?.navigationBar.standardAppearance = navBarAppearance
         self.navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
+        
+        tableView.allowsSelectionDuringEditing = true
+        tableView.allowsSelection = true
         //
         if self == self.navigationController?.viewControllers[0] {
             currentDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -65,7 +74,6 @@ class FileListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         registerForKeyboardNotifications()
-        NotificationCenter.default.addObserver(self, selector: #selector(directoryWriting), name: .NSFileHandleReadToEndOfFileCompletion, object: nil)
         directoryMonitor?.startMonitoring()
         navigationItem.searchController = searchController
         tableView.reloadData()
@@ -132,13 +140,25 @@ class FileListViewController: UIViewController {
     
     func editModeUI(isEditing: Bool) {
         if isEditing {
-            self.consEditViewHeight.constant = 50
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(onETCTouched(_:)))
+            UIView.animate(withDuration: 0.3) {
+                self.consEditViewHeight.constant = 50
+                self.view.layoutIfNeeded()
+            }
             
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(onETCTouched(_:)))
+            self.tableView.setEditing(true, animated: true)
         }
         else {
-            self.consEditViewHeight.constant = 0
+            UIView.animate(withDuration: 0.3) {
+                self.consEditViewHeight.constant = 0
+                self.view.layoutIfNeeded()
+            }
+            
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "ellipsis"), style: .plain, target: self, action: #selector(onETCTouched(_:)))
+            self.tableView.setEditing(false, animated: true)
+            let _ = fileList.map {
+                $0.isSelected = false
+            }
         }
     }
     
@@ -168,6 +188,37 @@ class FileListViewController: UIViewController {
         }
     }
     
+    
+    @IBAction func onToggleCheckTouched(_ sender: UIButton) {
+        let deselectFile = fileList.filter {
+            !$0.isSelected
+        }
+        if deselectFile.count > 0 {
+            for i in 0 ..< fileList.count {
+                let cell = tableView.cellForRow(at: IndexPath(row: i, section: 0))
+                fileList[i].isSelected = true
+                cell?.setSelected(true, animated: true)
+            }
+        }
+        else {
+            for i in 0 ..< fileList.count {
+                let cell = tableView.cellForRow(at: IndexPath(row: i, section: 0))
+                fileList[i].isSelected = false
+                cell?.setSelected(false, animated: true)
+            }
+        }
+    }
+    @IBAction func onFileMoveTouched(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func onShareTouched(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func onTrashTouched(_ sender: UIButton) {
+        
+    }
     
     
     
@@ -235,50 +286,68 @@ extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
             cell.setData(data: fileList[indexPath.row])
         }
         
+//        print(fileList[indexPath.row].isSelected)
+//        cell.setSelected(fileList[indexPath.row].isSelected, animated: false)
+        
         return cell
     }
     
     //MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        var data: FileObject
-        if isFiltering() {
-            data = filteredFileList[indexPath.row]
+        if self.isEditing {
+            fileList[indexPath.row].isSelected = true
         }
         else {
-            data = fileList[indexPath.row]
+            var data: FileObject
+            if isFiltering() {
+                data = filteredFileList[indexPath.row]
+            }
+            else {
+                data = fileList[indexPath.row]
+            }
+            
+            switch data.getFileType() {
+            case .directory:
+                let storyBoard = UIStoryboard(name: "FileListViewController", bundle: nil)
+                let fileListViewController = storyBoard.instantiateViewController(withIdentifier: "FileListViewController") as! FileListViewController
+                fileListViewController.listFilesFromUrl(with: data.url)
+                fileListViewController.navigationItem.title = data.fileName
+                self.navigationController?.pushViewController(fileListViewController, animated: true)
+            case .text:
+                let storyBoard = UIStoryboard(name: "TextViewerController", bundle: nil)
+                let textViewerController = storyBoard.instantiateInitialViewController() as! TextViewerController
+                textViewerController.data = data
+                self.present(textViewerController, animated: true, completion: nil)
+            case .image:
+                let storyBoard = UIStoryboard(name: "ImageViewerController", bundle: nil)
+                let imageViewerController = storyBoard.instantiateInitialViewController() as! ImageViewerController
+                imageViewerController.data = data
+                self.present(imageViewerController, animated: true, completion: nil)
+                
+            case .video:
+                let storyBoard = UIStoryboard(name: "VideoDetailViewController", bundle: nil)
+                let videoDetailViewController = storyBoard.instantiateInitialViewController() as! VideoDetailViewController
+                videoDetailViewController.data = data
+                videoDetailViewController.navigationItem.title = data.fileName
+                self.navigationController?.pushViewController(videoDetailViewController, animated: true)
+            default:
+                break
+            }
         }
-        
-        switch data.getFileType() {
-        case .directory:
-            let storyBoard = UIStoryboard(name: "FileListViewController", bundle: nil)
-            let fileListViewController = storyBoard.instantiateViewController(withIdentifier: "FileListViewController") as! FileListViewController
-            fileListViewController.listFilesFromUrl(with: data.url)
-            fileListViewController.navigationItem.title = data.fileName
-            self.navigationController?.pushViewController(fileListViewController, animated: true)
-            
-        case .text:
-            let storyBoard = UIStoryboard(name: "TextViewerController", bundle: nil)
-            let textViewerController = storyBoard.instantiateInitialViewController() as! TextViewerController
-            textViewerController.data = data
-            self.present(textViewerController, animated: true, completion: nil)
-            
-        case .image:
-            let storyBoard = UIStoryboard(name: "ImageViewerController", bundle: nil)
-            let imageViewerController = storyBoard.instantiateInitialViewController() as! ImageViewerController
-            imageViewerController.data = data
-            self.present(imageViewerController, animated: true, completion: nil)
-            
-        case .video:
-            let storyBoard = UIStoryboard(name: "VideoDetailViewController", bundle: nil)
-            let videoDetailViewController = storyBoard.instantiateInitialViewController() as! VideoDetailViewController
-            videoDetailViewController.data = data
-            videoDetailViewController.navigationItem.title = data.fileName
-            self.navigationController?.pushViewController(videoDetailViewController, animated: true)
-            
-            
-        default:
-            break
+    }
+    
+
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        fileList[indexPath.row].isSelected = false
+    }
+    
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if fileList[indexPath.row].isSelected {
+             cell.setSelected(true, animated: false)
+        }
+        else {
+             cell.setSelected(false, animated: false)
         }
     }
     
@@ -304,18 +373,7 @@ extension FileListViewController: DirectoryMonitorDelegate {
         guard let currentDirectoryURL = currentDirectoryURL else {
             return
         }
-        let documentsProvider = LocalFileProvider()
-        documentsProvider.contentsOfDirectory(path: currentDirectoryURL.path) { (fileList, error) in
-            let addedFile = Array(Set(fileList).subtracting(self.fileList))
-            if(addedFile.count > 0) {
-                directoryMonitor.addedFile = addedFile.first!
-            }
-            else {
-                directoryMonitor.addedFile = nil
-            }
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.listFilesFromUrl(with: currentDirectoryURL)
             
             DispatchQueue.main.async {
@@ -323,22 +381,5 @@ extension FileListViewController: DirectoryMonitorDelegate {
             }
         }
     }
-    
-    @objc func directoryWriting() {
-        directoryTimer?.invalidate()
-        print("ddd")
-        directoryTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(fire(timer:)), userInfo: nil, repeats: false)
-    }
-    
-    
-    @objc func fire(timer: Timer) {
-        print("fff")
-        guard let currentDirectoryURL = currentDirectoryURL else { return }
-        self.listFilesFromUrl(with: currentDirectoryURL)
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-    }
-    
-    
 }
+

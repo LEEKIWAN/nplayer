@@ -160,6 +160,8 @@ open class FileObject: NSObject, VLCMediaThumbnailerDelegate, VLCMediaDelegate {
         return self.type == .symbolicLink
     }
     
+    open var isSelected: Bool = false
+    
     var thumbnailImage: UIImage?
     
     // Video

@@ -96,8 +96,12 @@ class FileItemTableViewCell: UITableViewCell {
                 self.thumbnailImageView.layer.cornerRadius = 0
                 break
         }
-        
-        
     }
     
+ 
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        
+        self.isUserInteractionEnabled = true
+    }
 }

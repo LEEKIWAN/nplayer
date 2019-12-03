@@ -15,11 +15,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Xrv-eO-qkt">
-                                <rect key="frame" x="0.0" y="88" width="375" height="640"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelectionDuringEditing="YES" allowsMultipleSelection="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Xrv-eO-qkt">
+                                <rect key="frame" x="0.0" y="88" width="375" height="690"/>
                                 <color key="backgroundColor" red="0.15294117647058825" green="0.15330693125724792" blue="0.15318098664283752" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ItemCell" rowHeight="70" id="jQa-PH-GL0" customClass="FileItemTableViewCell" customModule="VideoPlayer" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemCell" rowHeight="70" id="jQa-PH-GL0" customClass="FileItemTableViewCell" customModule="VideoPlayer" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jQa-PH-GL0" id="aW3-4z-hNb">
@@ -135,10 +135,55 @@
                                 </connections>
                             </tableView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nO5-zc-VIb">
-                                <rect key="frame" x="0.0" y="728" width="375" height="50"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="0.0" y="778" width="375" height="0.0"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="VgT-Oh-YjG">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uzk-lO-xIQ">
+                                                <rect key="frame" x="0.0" y="0.0" width="93.666666666666671" height="0.0"/>
+                                                <state key="normal" image="text.badge.checkmark" catalog="system">
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="onToggleCheckTouched:" destination="NO7-FB-nnu" eventType="touchUpInside" id="htB-op-uWL"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iXF-GX-m0Z">
+                                                <rect key="frame" x="93.666666666666686" y="0.0" width="94" height="0.0"/>
+                                                <state key="normal" title="이동"/>
+                                                <connections>
+                                                    <action selector="onFileMoveTouched:" destination="NO7-FB-nnu" eventType="touchUpInside" id="Jjn-UH-HwC"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R9g-d9-RGs">
+                                                <rect key="frame" x="187.66666666666666" y="0.0" width="93.666666666666657" height="0.0"/>
+                                                <state key="normal" image="square.and.arrow.up" catalog="system">
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="onShareTouched:" destination="NO7-FB-nnu" eventType="touchUpInside" id="jLP-Ms-IeC"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XRP-5B-BNi">
+                                                <rect key="frame" x="281.33333333333331" y="0.0" width="93.666666666666686" height="0.0"/>
+                                                <state key="normal" image="trash" catalog="system">
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="onTrashTouched:" destination="NO7-FB-nnu" eventType="touchUpInside" id="PI9-GC-9G9"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.21176470589999999" green="0.21176470589999999" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="Xb6-ye-DjO"/>
+                                    <constraint firstAttribute="bottom" secondItem="VgT-Oh-YjG" secondAttribute="bottom" id="J39-wW-Xgh"/>
+                                    <constraint firstAttribute="trailing" secondItem="VgT-Oh-YjG" secondAttribute="trailing" id="MdF-TF-cnY"/>
+                                    <constraint firstAttribute="height" id="Xb6-ye-DjO"/>
+                                    <constraint firstItem="VgT-Oh-YjG" firstAttribute="leading" secondItem="nO5-zc-VIb" secondAttribute="leading" id="tlH-jf-CKz"/>
+                                    <constraint firstItem="VgT-Oh-YjG" firstAttribute="top" secondItem="nO5-zc-VIb" secondAttribute="top" id="xm1-Uf-A8q"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -164,8 +209,12 @@
                     <connections>
                         <outlet property="consEditViewHeight" destination="Xb6-ye-DjO" id="6KP-ws-LCN"/>
                         <outlet property="consTableViewBottom" destination="wdq-cE-sxu" id="ZLf-ef-qqE"/>
+                        <outlet property="moveButton" destination="iXF-GX-m0Z" id="Cjo-FU-2U4"/>
                         <outlet property="rightBarButtonItem" destination="nyo-fm-K0C" id="ZsT-dW-qpz"/>
+                        <outlet property="shareButton" destination="R9g-d9-RGs" id="1D6-7b-MEo"/>
                         <outlet property="tableView" destination="Xrv-eO-qkt" id="OUF-kB-39i"/>
+                        <outlet property="toggleCheckButton" destination="Uzk-lO-xIQ" id="GuJ-4e-aru"/>
+                        <outlet property="trashButton" destination="XRP-5B-BNi" id="Aqs-Ct-qr9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wbg-l4-93m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -199,5 +248,10 @@
             <point key="canvasLocation" x="218.84057971014494" y="-230.35714285714283"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="square.and.arrow.up" catalog="system" width="56" height="64"/>
+        <image name="text.badge.checkmark" catalog="system" width="64" height="54"/>
+        <image name="trash" catalog="system" width="60" height="64"/>
+    </resources>
     <color key="tintColor" red="0.99913078546524048" green="0.79727625846862793" blue="0.0021498878486454487" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
