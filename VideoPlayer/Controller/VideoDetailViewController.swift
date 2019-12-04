@@ -314,6 +314,7 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
         loadingViewController = storyBoard.instantiateInitialViewController()
         self.present(loadingViewController!, animated: false, completion: nil)
     }
+
     func stopProgressView() {
         loadingViewController?.dismiss(animated: false, completion: nil)
     }

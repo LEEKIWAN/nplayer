@@ -27,6 +27,7 @@ class FileListViewController: UIViewController {
     @IBOutlet weak var fileRemoveButton: UIButton!
     
     
+    var loadingViewController: LoadingViewController?
     var fileOfImageToShare: FileObject?
     
     var fileList: [FileObject] = []
@@ -59,15 +60,15 @@ class FileListViewController: UIViewController {
         //
         if self == self.navigationController?.viewControllers[0] {
             currentDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-            //            do {
-            //                let folderPath =  currentDirectoryURL!.appendingPathComponent("즐겨찾기")
-            //                if !FileManager.default.fileExists(atPath: folderPath.path) {
-            //                    try FileManager.default.createDirectory(atPath: folderPath.path, withIntermediateDirectories: true, attributes: nil)
-            //                }
-            //            }
-            //            catch {
-            //                print("Document directory is \(error.localizedDescription)")
-            //            }
+                        do {
+                            let folderPath =  currentDirectoryURL!.appendingPathComponent("즐겨찾기")
+                            if !FileManager.default.fileExists(atPath: folderPath.path) {
+                                try FileManager.default.createDirectory(atPath: folderPath.path, withIntermediateDirectories: true, attributes: nil)
+                            }
+                        }
+                        catch {
+                            print("Document directory is \(error.localizedDescription)")
+                        }
             
             listFilesFromUrl(with: currentDirectoryURL!)
         }
@@ -98,6 +99,16 @@ class FileListViewController: UIViewController {
         searchController.searchBar.delegate = self
         searchController.searchBar.tintColor = UIColor(hexFromString: "#F7C203")
         searchController.searchBar.barStyle = .black
+    }
+    
+    func startProgressView() {
+        let storyBoard = UIStoryboard(name: "LoadingViewController", bundle: nil)
+        loadingViewController = storyBoard.instantiateInitialViewController()
+        self.present(loadingViewController!, animated: false, completion: nil)
+    }
+    
+    func stopProgressView() {
+        loadingViewController?.dismiss(animated: false, completion: nil)
     }
     
     // MARK: - FileManager
@@ -220,27 +231,37 @@ class FileListViewController: UIViewController {
     }
     
     @IBAction func onFileRemoveTouched(_ sender: UIButton) {
-        var selectedFiles: [FileObject] = []
-        for i in 0 ..< tableView.indexPathsForSelectedRows!.count {
-            let indexPath = tableView.indexPathsForSelectedRows![i]
-            selectedFiles.append(fileList[indexPath.row])
-        }
-        
-        
-        let documentsProvider = LocalFileProvider()
-        documentsProvider.removeItem(path: "new.txt", completionHandler: nil)
-
-        //        documentsProvider.contentsOfDirectory(path: url.path) { (fileList, error) in
-//            if error != nil {
-//                print(error!.localizedDescription)
-//            }
-//            self.fileList.append(contentsOf: fileList.sort(by: .name, ascending: true, isDirectoriesFirst: true))
-//            DispatchQueue.main.async {
-//                self.tableView.reloadData()
-//            }
-//        }
-
+        let alert = UIAlertController(title: nil, message: "선택된 항목을 삭제하시겠습니까?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "취소", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "확인", style: .default, handler: { (alert) in
+            if let selectedRows = self.tableView.indexPathsForSelectedRows {
+                self.startProgressView()
+                
+                var selectedFiles: [FileObject] = []
+                for indexPath in selectedRows {
+                    selectedFiles.append(self.fileList[indexPath.row])
+                }
+                
+                var selectedFileCount = selectedFiles.count
+                
+                let documentsProvider = LocalFileProvider()
+                for file in selectedFiles {
+                    documentsProvider.removeItem(path: file.url.absoluteString, completionHandler: { (error) in
+                        selectedFileCount -= 1
+                        if selectedFileCount == 0 {
+                            DispatchQueue.main.async {
+                                self.stopProgressView()
+                                self.isEditing = false
+                            }
+                        }
+                    })
+                }
+            }
+        }))
+            
+        self.present(alert, animated: true, completion: nil)
     }
+        
     
     private func updateBottomUI() {
         self.fileMoveButton.isEnabled = tableView.indexPathsForSelectedRows?.count ?? 0 > 0 ? true : false
@@ -399,25 +420,25 @@ extension FileListViewController: DirectoryMonitorDelegate {
 }
 
 extension FileListViewController: UIActivityItemSource {
-
+    
     func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
         return UIImage()
     }
-
+    
     func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
         return self.fileOfImageToShare
     }
-
+    
     func activityViewControllerLinkMetadata(_ activityViewController: UIActivityViewController) -> LPLinkMetadata? {
         let metadata = LPLinkMetadata()
-
+        
         metadata.title = self.fileOfImageToShare!.name
-//        metadata.originalURL = self.fileOfImageToShare!.thumbnailImage
-//        metadata.url = self.fileOfImageToShare!.thumbnailImage
-//        metadata.imageProvider = NSItemProvider.init(contentsOf: self.fileOfImageToShare!.thumbnailImage)
-//        NSItemProvider(
-//        metadata.iconProvider = NSItemProvider.init(contentsOf: self.fileOfImageToShare!.thumbnailImage)
-
+        //        metadata.originalURL = self.fileOfImageToShare!.thumbnailImage
+        //        metadata.url = self.fileOfImageToShare!.thumbnailImage
+        //        metadata.imageProvider = NSItemProvider.init(contentsOf: self.fileOfImageToShare!.thumbnailImage)
+        //        NSItemProvider(
+        //        metadata.iconProvider = NSItemProvider.init(contentsOf: self.fileOfImageToShare!.thumbnailImage)
+        
         return metadata
     }
 }

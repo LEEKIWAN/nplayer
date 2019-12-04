@@ -13,9 +13,9 @@ class LoadingViewController: UIViewController {
 
     @IBOutlet weak var indicatorView: NVActivityIndicatorView!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         self.indicatorView.startAnimating()
     }

@@ -6,7 +6,18 @@
          contextName = "PopupEqualizerViewController.tableView(_:didSelectRowAt:):PopupEqualizerViewController.swift">
       </ContextState>
       <ContextState
+         contextName = "closure #1 in FileListViewController.onFileRemoveTouched(_:):FileListViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "fileList">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "PopupEqualizerViewController.viewDidLoad():PopupEqualizerViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "FileListViewController.onShareTouched(_:):FileListViewController.swift">
       </ContextState>
       <ContextState
          contextName = "StatusBar.updateStatusBarInformation():StatusBar.swift">

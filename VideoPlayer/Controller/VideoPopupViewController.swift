@@ -25,8 +25,7 @@ class VideoPopupViewController: UIViewController {
         
         let subTitleText: String = getVideoInformation()
         let titleText: String = getVideoTitleName()
-        
-        
+                
         dataArray.append(VideoConfigObject(style: .text, switchIsOn: false, title: titleText, subTitle: subTitleText, selectedValue: "", isSelectAccesory: false ))
         dataArray.append(VideoConfigObject(style: .text, switchIsOn: false, title: "화면비율", subTitle: "", selectedValue: "기본값", isSelectAccesory: true ))
         dataArray.append(VideoConfigObject(style: .switch, switchIsOn: false, title: "좌우 반전", subTitle: "", selectedValue: "", isSelectAccesory: false ))
