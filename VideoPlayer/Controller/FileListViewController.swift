@@ -21,6 +21,7 @@ class FileListViewController: UIViewController {
     @IBOutlet weak var consTableViewBottom: NSLayoutConstraint!
     @IBOutlet weak var consEditViewHeight: NSLayoutConstraint!
     
+    @IBOutlet weak var fileCopyButton: UIButton!
     @IBOutlet weak var toggleCheckButton: UIButton!
     @IBOutlet weak var fileMoveButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
@@ -55,20 +56,19 @@ class FileListViewController: UIViewController {
         self.navigationController?.navigationBar.standardAppearance = navBarAppearance
         self.navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
         
-        tableView.allowsSelectionDuringEditing = true
-        tableView.allowsSelection = true
+        tableView.register(UINib(nibName: "FileItemTableViewCell", bundle: nil), forCellReuseIdentifier: "ItemCell")
         //
         if self == self.navigationController?.viewControllers[0] {
             currentDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-                        do {
-                            let folderPath =  currentDirectoryURL!.appendingPathComponent("즐겨찾기")
-                            if !FileManager.default.fileExists(atPath: folderPath.path) {
-                                try FileManager.default.createDirectory(atPath: folderPath.path, withIntermediateDirectories: true, attributes: nil)
-                            }
-                        }
-                        catch {
-                            print("Document directory is \(error.localizedDescription)")
-                        }
+            do {
+                let folderPath =  currentDirectoryURL!.appendingPathComponent("즐겨찾기")
+                if !FileManager.default.fileExists(atPath: folderPath.path) {
+                    try FileManager.default.createDirectory(atPath: folderPath.path, withIntermediateDirectories: true, attributes: nil)
+                }
+            }
+            catch {
+                print("Document directory is \(error.localizedDescription)")
+            }
             
             listFilesFromUrl(with: currentDirectoryURL!)
         }
@@ -77,7 +77,7 @@ class FileListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         registerForKeyboardNotifications()
-        directoryMonitor?.startMonitoring()
+//        directoryMonitor?.startMonitoring()
         navigationItem.searchController = searchController
         tableView.reloadData()
     }
@@ -116,8 +116,8 @@ class FileListViewController: UIViewController {
     func listFilesFromUrl(with url: URL) {
         fileList.removeAll()
         currentDirectoryURL = url
-        directoryMonitor = DirectoryMonitor(URL: url)
-        directoryMonitor?.delegate = self
+//        directoryMonitor = DirectoryMonitor(URL: url)
+//        directoryMonitor?.delegate = self
         
         let documentsProvider = LocalFileProvider()
         documentsProvider.contentsOfDirectory(path: url.path) { (fileList, error) in
@@ -129,7 +129,19 @@ class FileListViewController: UIViewController {
                 self.tableView.reloadData()
             }
         }
-        
+    }
+    
+    func reloadTableView() {
+        DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
+            guard let vcs = self.navigationController?.viewControllers else { return }
+            
+            for i in 0 ..< vcs.count {
+                if vcs[i] is FileListViewController {
+                    let vc = (vcs[i] as! FileListViewController)                    
+                    vc.listFilesFromUrl(with: vc.currentDirectoryURL!)
+                }
+            }
+        })
     }
     
     
@@ -162,6 +174,7 @@ class FileListViewController: UIViewController {
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "ellipsis"), style: .plain, target: self, action: #selector(onETCTouched(_:)))
             self.tableView.setEditing(false, animated: true)
         }
+        updateBottomUI()
     }
     
     // MARK: - Event
@@ -210,8 +223,46 @@ class FileListViewController: UIViewController {
         }
         updateBottomUI()
     }
-    @IBAction func onFileMoveTouched(_ sender: UIButton) {
+    @IBAction func onFileCopyTouched(_ sender: UIButton) {
+        let storyBoard = UIStoryboard(name: "DirectoryViewController", bundle: nil)
+        let navigationController = storyBoard.instantiateInitialViewController()
+        let directoryViewController = navigationController?.children.first as! DirectoryViewController
+        directoryViewController.mode = .copy
+        directoryViewController.currentDirectoryURL = currentDirectoryURL
+        directoryViewController.fileListViewController = self
         
+        var selectedFiles: [FileObject] = []
+        
+        if let selectedRows = self.tableView.indexPathsForSelectedRows {
+            for indexPath in selectedRows {
+                selectedFiles.append(self.fileList[indexPath.row])
+            }
+        }
+        
+        directoryViewController.selectedFiles = selectedFiles
+        
+        self.present(navigationController!, animated: true, completion: nil)
+    }
+    
+    @IBAction func onFileMoveTouched(_ sender: UIButton) {
+        let storyBoard = UIStoryboard(name: "DirectoryViewController", bundle: nil)
+        let navigationController = storyBoard.instantiateInitialViewController()
+        let directoryViewController = navigationController?.children.first as! DirectoryViewController
+        directoryViewController.mode = .move
+        directoryViewController.currentDirectoryURL = currentDirectoryURL
+        directoryViewController.fileListViewController = self
+        
+        var selectedFiles: [FileObject] = []
+        
+        if let selectedRows = self.tableView.indexPathsForSelectedRows {
+            for indexPath in selectedRows {
+                selectedFiles.append(self.fileList[indexPath.row])
+            }
+        }
+        
+        directoryViewController.selectedFiles = selectedFiles
+        
+        self.present(navigationController!, animated: true, completion: nil)
     }
     
     @IBAction func onShareTouched(_ sender: UIButton) {
@@ -244,14 +295,22 @@ class FileListViewController: UIViewController {
                 
                 var selectedFileCount = selectedFiles.count
                 
+                
                 let documentsProvider = LocalFileProvider()
                 for file in selectedFiles {
                     documentsProvider.removeItem(path: file.url.absoluteString, completionHandler: { (error) in
                         selectedFileCount -= 1
+
+                        if error == nil {
+                            let index = self.fileList.firstIndex(of: file)
+                            self.fileList.remove(at: index!)
+                        }
+
                         if selectedFileCount == 0 {
                             DispatchQueue.main.async {
                                 self.stopProgressView()
                                 self.isEditing = false
+                                self.tableView.reloadData()
                             }
                         }
                     })
@@ -264,6 +323,7 @@ class FileListViewController: UIViewController {
         
     
     private func updateBottomUI() {
+        self.fileCopyButton.isEnabled = tableView.indexPathsForSelectedRows?.count ?? 0 > 0 ? true : false
         self.fileMoveButton.isEnabled = tableView.indexPathsForSelectedRows?.count ?? 0 > 0 ? true : false
         self.fileRemoveButton.isEnabled = tableView.indexPathsForSelectedRows?.count ?? 0 > 0 ? true : false
         self.shareButton.isEnabled = tableView.indexPathsForSelectedRows?.count ?? 0 > 0 ? true : false
@@ -409,13 +469,13 @@ extension FileListViewController: DirectoryMonitorDelegate {
         guard let currentDirectoryURL = currentDirectoryURL else {
             return
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.listFilesFromUrl(with: currentDirectoryURL)
-            
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+//            self.listFilesFromUrl(with: currentDirectoryURL)
+//
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+//                self.tableView.reloadData()
+//            }
+//        }
     }
 }
 

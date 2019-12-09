@@ -3,21 +3,15 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "PopupEqualizerViewController.tableView(_:didSelectRowAt:):PopupEqualizerViewController.swift">
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in FileListViewController.onFileRemoveTouched(_:):FileListViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "fileList">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "PopupEqualizerViewController.viewDidLoad():PopupEqualizerViewController.swift">
       </ContextState>
       <ContextState
-         contextName = "FileListViewController.onShareTouched(_:):FileListViewController.swift">
+         contextName = "VideoView.timeSliderTouchUpInside(_:):VideoView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "recognizer?.state">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "StatusBar.updateStatusBarInformation():StatusBar.swift">
@@ -28,10 +22,24 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "VideoView.timeSliderTouchUpInside(_:):VideoView.swift">
+         contextName = "FileListViewController.onShareTouched(_:):FileListViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "PopupEqualizerViewController.tableView(_:didSelectRowAt:):PopupEqualizerViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #3 in DirectoryViewController.onAddDirectoryTouched(_:):DirectoryViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "recognizer?.state">
+               value = "self.currentDirectoryURL">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in FileListViewController.onFileRemoveTouched(_:):FileListViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "fileList">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

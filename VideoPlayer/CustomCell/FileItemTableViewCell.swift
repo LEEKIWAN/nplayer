@@ -58,6 +58,13 @@ class FileItemTableViewCell: UITableViewCell {
                   fileCountLabel.isHidden = true
               }
         }
+        else if data.name == "..." {
+            self.thumbnailImageView.layer.cornerRadius = 0
+            fileInfoStackView.isHidden = true
+            playInfoStackView.isHidden = true
+            fileCountLabel.isHidden = true
+            
+        }
         else {
             fileInfoStackView.isHidden = false
             fileCountLabel.isHidden = true
