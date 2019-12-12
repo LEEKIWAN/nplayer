@@ -342,8 +342,9 @@ class VideoDetailViewController: UIViewController, VideoViewDelegate {
             self.navigationController?.view.addSubview(self.videoView)
 
         }) { (completion) in
-            //            AppUtility.lockOrientation(.landscape)
+            AppUtility.lockOrientation(.landscapeRight)
             self.setPrefersHomeIndicator(autoHidden: true)
+            UIViewController.attemptRotationToDeviceOrientation()
         }
     }
 
