@@ -5,3 +5,12 @@
 ![72329318-dbc27e00-36f7-11ea-9c09-e2284d11821e](https://user-images.githubusercontent.com/30687224/73906607-db786580-48e6-11ea-82c7-6a5bf1a6843b.png)
 ![72329319-dc5b1480-36f7-11ea-9bbf-82b005ce854a](https://user-images.githubusercontent.com/30687224/73906612-de735600-48e6-11ea-8917-b9ee7c4ec9df.png)
 
+
+# Using Pod Library
+
+- MobileVLCKit
+Link : https://code.videolan.org/videolan/VLCKit
+- Alamofire
+Link : https://github.com/Alamofire/Alamofire
+- NVActivityIndicatorView
+Link : https://github.com/ninjaprox/NVActivityIndicatorView
